@@ -1,0 +1,18 @@
+Package: NLMR
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Authors@R:c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")),
+            person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+Depends: R (>= 3.1.0)
+RoxygenNote: 6.0.1
+Imports: stats, raster, methods, ArgumentCheck, pracma, sp, R.utils, spatstat, maptools
+URL: https://github.com/marcosci/NLMR
+BugReports: https://github.com/marcosci/NLMR/issues

@@ -1,0 +1,26 @@
+
+[![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) [![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
+
+NLMR
+====
+
+The goal of NLMR is to ...
+
+Installation
+------------
+
+You can install NLMR from github with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("marcosci/NLMR")
+```
+
+Example
+-------
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+## basic example code
+```
