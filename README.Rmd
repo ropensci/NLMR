@@ -16,6 +16,9 @@ knitr::opts_chunk$set(
 
 # NLMR
 
+\figure{vignettes/bestiary.png}
+
+
 The goal of NLMR is to ...
 
 ## Installation
