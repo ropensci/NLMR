@@ -27,4 +27,5 @@ Imports:
     stats
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
-Suggests: testthat
+Suggests: testthat,
+    covr

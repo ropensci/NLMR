@@ -5,3 +5,4 @@
 man-roxygen
 ^\.travis\.yml$
 ^docs$
+^codecov\.yml$
