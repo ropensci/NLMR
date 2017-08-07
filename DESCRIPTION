@@ -13,6 +13,6 @@ LazyData: true
 ByteCompile: true
 Depends: R (>= 3.1.0)
 RoxygenNote: 6.0.1
-Imports: stats, raster, methods, ArgumentCheck, pracma, sp, R.utils, spatstat, maptools
+Imports: stats, raster, methods, ArgumentCheck, pracma, sp, R.utils, spatstat, maptools, ggplot2, rasterVis
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
