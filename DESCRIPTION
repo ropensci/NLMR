@@ -19,6 +19,7 @@ Imports:
     maptools,
     methods,
     pracma,
+    rasterVis,
     R.utils,
     raster,
     sp,
@@ -26,3 +27,4 @@ Imports:
     stats
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
+Suggests: testthat
