@@ -17,8 +17,8 @@ after_success:
 
 env:
   global:
-    - R_BUILD_ARGS="--no-build-vignettes --no-manual --no-resave-data"
-    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"
+    - R_BUILD_ARGS="--no-build-vignettes --no-manual --no-resave-data --no-vignettes "
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings --no-vignettes "
     - R_CHECK_TIME="TRUE"
     - R_CHECK_TESTS="TRUE"
     - _R_CHECK_TIMINGS_="0"

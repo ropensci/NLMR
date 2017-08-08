@@ -55,12 +55,11 @@ test_that("RandomNLM produces more than 0 values", {
   expect_that(length(example_randomNLM@data@values) == 0, is_false())
 })
 
-test_that("RandomNLM produces more than 0 values", {
-  example_randomNLM <- randomNLM(10, 10)
-  chisq.test(example_randomNLM[], B=999)
+test_that("RandomNLM produces values with a uniform distribution", {
+  example_randomNLM <- randomNLM(10, 10, rescale = FALSE)
+  example_randomNLM_test <- chisq.test(example_randomNLM[])
 
-  expect_that(length(example_randomNLM@data@values) == 0, is_false())
+
+  expect_that(example_randomNLM_test$p.value == 1, is_true())
 })
 
-test <- sample(1:14, 100, replace = TRUE)
-chisq.test(test, simulate.p.value = TRUE)
