@@ -10,6 +10,7 @@ r_packages:
   - ggthemes
   - viridis
   - rasterVis
+  - igraph
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
