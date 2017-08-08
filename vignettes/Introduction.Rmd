@@ -10,7 +10,7 @@ vignette: >
 ---
 
 
-```{r, echo=FALSE, fig.height=15, fig.width=12, message=FALSE, warning=FALSE, results='asis'}
+```{r, echo=FALSE, fig.height=15, fig.width=12, message=FALSE, warning=FALSE, results='asis', cache=TRUE}
 library(gridExtra)
 library(grid)
 library(NLMR)
@@ -24,14 +24,14 @@ planary <- planargradientNLM(50,50)
 p4 <- nlmr_plot(planary)
 randomRecClustery <- randomRectangularClusterNLM(50, 50, 8, 16)
 p5 <- nlmr_plot(randomRecClustery)
-randomElementy <- randomElementNLM(50,50, 90)
-p6 <- nlmr_plot(randomElementy)
+#randomElementy <- randomElementNLM(50,50)
+#p6 <- nlmr_plot(randomElementy)
 randomClustery <- randomClusterNLM(50,50, n = 4)
 p7 <- nlmr_plot(randomClustery)
 randomMPD <- mpdNLM(100,100)
 p8 <- nlmr_plot(randomMPD)
 
-grid.draw(grid.arrange(p1, p2, p3, p4, p5, p6, p7, p8, ncol=2))
+grid.draw(grid.arrange(p1, p2, p3, p4, p5, p7, p8, ncol=2))
 
 ```
 

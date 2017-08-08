@@ -55,7 +55,7 @@ setMethod(
         msg = "'n' must be >= 1 and smaller than the sum of nCol and nRow. Value has been set to (nCol * nRow)/2",
         argcheck = Check
       )
-      n <- floor((nCol * nRow)/2)
+      n <- ceiling((nCol * nRow)/2)
     }
 
     if (!is.logical(rescale)){
@@ -97,10 +97,7 @@ setMethod(
 
     randomElement_Raster <- raster::rasterize(randomElement_spdf,
                                               raster::raster(matrix(NA, nRow, nCol)),
-                                              field = randomElement_spdf@data[,1],
-                                              fun = "mean",
-                                              update = TRUE,
-                                              updateValue = "NA")
+                                              field = randomElement_spdf@data[,1])
 
     # Rescale values to 0-1
     if (rescale == TRUE) {
@@ -111,3 +108,4 @@ setMethod(
 
   }
 )
+
