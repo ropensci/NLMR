@@ -4,6 +4,11 @@ language: R
 sudo: false
 cache: packages
 
+env:
+  global:
+    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings"
+    - _R_CHECK_TIMINGS_="0"
+
 r_packages:
   - covr
   - gridExtra
