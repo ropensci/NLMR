@@ -86,7 +86,7 @@ setMethod(
     percolationArray = classifyArray(matrix(array[],nCol,nRow), c(1 - p, p))
 
     # Cluster identification (clustering of adjoining pixels)
-    clusters <- raster::clump(raster::raster(percolationArray), direction = 4)
+    clusters <- raster::clump(raster::raster(percolationArray), direction = n)
 
     # Number of individual cluster
     nClusters <- max(raster::values(clusters), na.rm = TRUE)
