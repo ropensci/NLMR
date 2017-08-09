@@ -12,13 +12,12 @@
 #' @param nRow Number of rows for the raster (numerical)
 #' @param rescale If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return Raster with random values ranging from 0-1.
+#' @return RasterLayer with random values ranging from 0-1.
 #'
 #'
 #' @examples
-#' \dontrun{
 #' randomNLM(nCol = 100, nRow = 100)
-#' }
+#'
 #'
 #' @aliases randomNLM
 #' @rdname randomNLM
@@ -28,38 +27,16 @@
 
 randomNLM  <-  function(nCol, nRow, rescale = TRUE) {
 
+    # Check function arguments ----
+    assert_count(nCol , positive=TRUE)
+    assert_count(nRow , positive=TRUE)
+    assert_logical(rescale)
 
-    # Check Function arguments
-    Check <- ArgumentCheck::newArgCheck()
-
-    if (nCol < 1)
-      ArgumentCheck::addError(
-        msg = "'nCol' must be >= 1",
-        argcheck = Check
-      )
-
-    if (nRow < 1)
-      ArgumentCheck::addError(
-        msg = "'nRow' must be >= 1",
-        argcheck = Check
-      )
-
-    if (!is.logical(rescale)){
-      ArgumentCheck::addWarning(
-        msg = "'rescale' must be logical. Value has been set to TRUE",
-        argcheck = Check
-      )
-      rescale <- TRUE
-    }
-
-    # Return errors and warnings (if any)
-    ArgumentCheck::finishArgCheck(Check)
-
-    # Assign random values to raster cells
+    # Assign random values to raster cells ----
     random_Raster <-
       raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
 
-    # Rescale values to 0-1
+    # Rescale values to 0-1 ----
     if (rescale == TRUE) {
       random_Raster <- rescaleNLM(random_Raster)
     }

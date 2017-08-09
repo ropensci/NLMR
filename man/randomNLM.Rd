@@ -14,7 +14,7 @@ randomNLM(nCol, nRow, rescale = TRUE)
 \item{rescale}{If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-Raster with random values ranging from 0-1.
+RasterLayer with random values ranging from 0-1.
 }
 \description{
 Create a spatially random neutral landscape model with values from a uniform distribution.
@@ -25,8 +25,7 @@ Each raster cell is randomly assigned a value between 0 and 1 drawn from an unif
 If the parameter \code{rescale == TRUE} than the minimum and maximum value are used to rescale the cell values to a range between 0 and 1.
 }
 \examples{
-\dontrun{
 randomNLM(nCol = 100, nRow = 100)
-}
+
 
 }
