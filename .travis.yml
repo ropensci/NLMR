@@ -12,9 +12,6 @@ r_packages:
   - rasterVis
   - igraph
 
-r_github_packages:
-  - marcosci/NLMR
-
 after_success:
   - Rscript -e 'covr::codecov()'
 
