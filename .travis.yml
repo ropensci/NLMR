@@ -17,6 +17,7 @@ after_success:
 
 env:
   global:
+    - CODECOV_TOKEN="67be45c9-fe6c-4d3a-95ad-fd3d6131409c"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings --no-vignettes"
     - R_CHECK_TIME="TRUE"
     - R_CHECK_TESTS="TRUE"
