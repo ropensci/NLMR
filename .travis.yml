@@ -13,11 +13,10 @@ r_packages:
   - igraph
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov(token = '67be45c9-fe6c-4d3a-95ad-fd3d6131409c')'
 
 env:
   global:
-    - R_BUILD_ARGS="--no-build-vignettes --no-manual --no-resave-data --no-vignettes"
     - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings --no-vignettes"
     - R_CHECK_TIME="TRUE"
     - R_CHECK_TESTS="TRUE"
