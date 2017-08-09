@@ -1,20 +1,16 @@
-#' Method randomNLM
-#' @name randomNLM-method
-#' @rdname randomNLM-method
-#' @exportMethod randomNLM
-
-setGeneric("randomNLM", function(nCol, nRow, rescale = TRUE) {
-  standardGeneric("randomNLM")
-})
-
-
-#' distancegradientNLM
+#' randomNML
 #'
-#' Create a spatially random neutral landscape model with values ranging 0-1.
+#' @description Create a spatially random neutral landscape model with values from a uniform distribution.
+#'
+#'
+#' @details
+#' The function takes the number of columns and rows as input and creates a RasterLayer with the same extent.
+#' Each raster cell is randomly assigned a value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
+#' If the parameter \code{rescale == TRUE} than the minimum and maximum value are used to rescale the cell values to a range between 0 and 1.
 #'
 #' @param nCol Number of columns for the raster (numerical)
 #' @param nRow Number of rows for the raster (numerical)
-#' @param rescale If \code{TRUE} (Standard), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated (logical)
+#' @param rescale If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
@@ -25,14 +21,13 @@ setGeneric("randomNLM", function(nCol, nRow, rescale = TRUE) {
 #' }
 #'
 #' @aliases randomNLM
-#' @rdname randomNLM-method
+#' @rdname randomNLM
 #'
 #' @export
 #'
 
-setMethod(
-  "randomNLM",
-  definition = function(nCol, nRow, rescale = TRUE) {
+randomNLM  <-  function(nCol, nRow, rescale = TRUE) {
+
 
     # Check Function arguments
     Check <- ArgumentCheck::newArgCheck()
@@ -60,6 +55,7 @@ setMethod(
     # Return errors and warnings (if any)
     ArgumentCheck::finishArgCheck(Check)
 
+    # Assign random values to raster cells
     random_Raster <-
       raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
 
@@ -70,5 +66,4 @@ setMethod(
 
     return(random_Raster)
 
-  }
-)
+}

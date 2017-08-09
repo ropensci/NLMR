@@ -27,7 +27,6 @@ Imports:
     stats,
     ggthemes,
     viridis,
-    rasterVis,
     igraph
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
@@ -35,6 +34,7 @@ Suggests:
     testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    lintr
 VignetteBuilder: 
     knitr

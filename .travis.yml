@@ -22,3 +22,8 @@ env:
     - R_CHECK_TIME="TRUE"
     - R_CHECK_TESTS="TRUE"
     - _R_CHECK_TIMINGS_="0"
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
