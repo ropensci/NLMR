@@ -1,3 +1,4 @@
+# nolint start
 context("RandomNLM results")
 
 # Test input ----
@@ -62,3 +63,4 @@ test_that("RandomNLM produces values with a uniform distribution", {
 
   expect_that(example_randomNLM_test$p.value == 1, is_true())
 })
+# nolint end
