@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Method distancegradientNLM — rescaleNLM-method • NLMR</title>
+<title>calcBoundaries — calcBoundaries • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,37 +80,38 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Method distancegradientNLM</h1>
+    <h1>calcBoundaries</h1>
     </div>
 
     
-    <p>Method distancegradientNLM</p>
-<p>A rescale in which the values in the raster are linearly rescaled to range between 0 and 1.</p>
+    <p>Determine upper class boundaries for classification of a matrix with values ranging 0-1 based upon an
+vector of cumulative proportions.</p>
     
 
-    <pre class="usage"><span class='fu'>rescaleNLM</span>(<span class='no'>r</span>)
-
-<span class='co'># S4 method for RasterLayer</span>
-<span class='fu'>rescaleNLM</span>(<span class='no'>r</span>)</pre>
+    <pre class="usage"><span class='fu'>calcBoundaries</span>(<span class='no'>x</span>, <span class='no'>cumulativeProportions</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>r</th>
-      <td><p>RasterLayer containing a neutral landscape</p></td>
+      <th>x</th>
+      <td><p>[<code>matrix(x,y)</code>] 2D matrix of data values.</p></td>
+    </tr>
+    <tr>
+      <th>cumulativeProportions</th>
+      <td><p>[<code>numerical</code>] Vector of class cumulative proportions.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Rectangular matrix with values ranging from 0-1</p>
+    <p>Numerical vector with boundaries for matrix classifcation</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>rescaleNLM</span>(<span class='no'>rasterNLM</span>)
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(<span class='fu'>runif</span>(<span class='fl'>100</span>,<span class='fl'>0</span>,<span class='fl'>1</span>),<span class='fl'>10</span>,<span class='fl'>10</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.25</span>, <span class='fl'>0.25</span>)
+<span class='fu'>calcBoundaries</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt; [1] 0.4659872 0.2255625 1.0000000</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

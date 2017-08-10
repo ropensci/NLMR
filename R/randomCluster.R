@@ -1,136 +1,108 @@
-#' Method randomClusterNLM
-#' @name randomClusterNLM-method
-#' @rdname randomClusterNLM-method
-#' @exportMethod randomClusterNLM
+# Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
+.voronoipolygons <- function(x) {
 
-setGeneric("randomClusterNLM", function(nCol, nRow, n, p, rescale = TRUE) {
-  standardGeneric("randomClusterNLM")
-})
+  crds <- x@coords
+
+  z <- deldir::deldir(crds[,1], crds[,2])
+  w <- deldir::tile.list(z)
+  polys <- vector(mode='list', length=length(w))
+  for (i in seq(along=polys)) {
+    pcrds <- cbind(w[[i]]$x, w[[i]]$y)
+    pcrds <- rbind(pcrds, pcrds[1,])
+    polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
+  }
+  SP <-  sp::SpatialPolygons(polys)
+  voronoi <- sp::SpatialPolygonsDataFrame(SP, data=data.frame(x=crds[,1],
+                                                              y=crds[,2], row.names=sapply(methods::slot(SP, 'polygons'),
+                                                                                           function(x) methods::slot(x, 'ID'))))
+}
 
 
 #' randomClusterNLM
 #'
 #' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
 #'
-#' @param nCol Number of columns for the raster (numerical)
-#' @param nRow Number of rows for the raster (numerical)
-#' @param n Clusters are defined using a set of neighbourhood structures, 4 = '4-neighbourhood', 8 = '8-neighbourhood'
-#' @param p The p value controls the proportion of elements randomly selected to form clusters.
-#' @param rescale If \code{TRUE} (Standard), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated (logical)
+#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a set of neighbourhood structures, 4 = '4-neighbourhood', 8 = '8-neighbourhood'
+#' @param p [\code{numerical(1)}]\cr The p value controls the proportion of elements randomly selected to form clusters.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
 #'
 #' @examples
-#' \dontrun{
-#' randomClusterNLM(nCol = 100, nRow = 100)
-#' }
+#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p=0.4)
 #'
 #' @aliases randomClusterNLM
-#' @rdname randomClusterNLM-method
+#' @rdname randomClusterNLM
 #'
 #' @export
 #'
 
-setMethod(
-  "randomClusterNLM",
-  definition = function(nCol, nRow, n, p, rescale = TRUE) {
-    require(maptools)
-    # Check Function arguments
-    Check <- ArgumentCheck::newArgCheck()
+randomClusterNLM  <-
+  function(nCol, nRow, neighbourhood, p, rescale = TRUE) {
+    # Check function arguments ----
+    checkmate::assert_count(nCol , positive = TRUE)
+    checkmate::assert_count(nRow , positive = TRUE)
+    checkmate::assert_numeric(p)
+    checkmate::assert_true(p <= 1)
+    checkmate::assert_logical(rescale)
 
-    if (nCol < 1)
-      ArgumentCheck::addError(
-        msg = "'nCol' must be >= 1",
-        argcheck = Check
-      )
-
-    if (nRow < 1)
-      ArgumentCheck::addError(
-        msg = "'nRow' must be >= 1",
-        argcheck = Check
-      )
-
-    if (missing(n) || n == 4 || n == 8) {
-      ArgumentCheck::addWarning(
-        msg = "'n' must be 4 or 8. Value has been set 4",
-        argcheck = Check
-      )
-      n <- 4
-    }
-
-    if (missing(p) || p <= 1 || p >= 0) {
-      ArgumentCheck::addWarning(
-        msg = "'p' must be between 0 and 1. Value has been set 0.4",
-        argcheck = Check
-      )
-      p <- 0.4
-    }
-
-
-    if (!is.logical(rescale)){
-      ArgumentCheck::addWarning(
-        msg = "'rescale' must be logical. Value has been set to TRUE",
-        argcheck = Check
-      )
-      rescale <- TRUE
-    }
-
-    # Return errors and warnings (if any)
-    ArgumentCheck::finishArgCheck(Check)
+    # Create a random raster
+    random_raster <- randomNLM(nCol, nRow)
 
     # Create percolation array
-    array <- randomNLM(nCol, nRow)
+    percolation_raster = classifyMatrix(matrix(random_raster[], nCol, nRow), c(1 - p, p))
 
-    # Create percolation array
-    percolationArray = classifyArray(matrix(array[],nCol,nRow), c(1 - p, p))
+    # Cluster identification (clustering of adjoining pixels) ----
+    suppressMessages(clusters <-
+      raster::clump(raster::raster(percolation_raster), direction = neighbourhood))
 
-    # Cluster identification (clustering of adjoining pixels)
-    clusters <- raster::clump(raster::raster(percolationArray), direction = n)
+    # Number of individual cluster ----
+    n_clusters <- max(raster::values(clusters), na.rm = TRUE)
 
-    # Number of individual cluster
-    nClusters <- max(raster::values(clusters), na.rm = TRUE)
+    # Create random set of values for each the clusters ----
+    types <- factor(stats::runif(n_clusters, 0, 1))
+    num_types <- as.numeric(types)
+    num_types <-  R.utils::insert(num_types, 1, 0)
 
-    # Create random set of values for each the clusters
-    types <- factor(stats::runif(nClusters, 0, 1))
-    numTypes <- as.numeric(types)
-    numTypes <-  R.utils::insert(numTypes, 1, 0)
+    # Apply values by indexing by cluster ----
+    clustertype <- sample(num_types, n_clusters, replace = TRUE)
+    raster::values(clusters) <-
+      clustertype[raster::values(clusters)]
 
-    # Apply values by indexing by cluster
-    clustertype <- sample(numTypes, nClusters, replace = TRUE)
-    raster::values(clusters) <- clustertype[raster::values(clusters)]
+    # Convert array cells with values to Points, NA = empty space ----
+    randomcluster_point <-
+      raster::rasterToPoints(clusters, spatial = TRUE)
 
-    # Convert array cells with values to Points, NA = empty space
-    randomCluster_Point <- raster::rasterToPoints(clusters,spatial=TRUE)
+    # Create a tessellated surface ---
+    randomcluster_tess <-.voronoipolygons(randomcluster_point)
 
-    # Create a tessellated surface
-    suppressMessages(
-    randomCluster_Tess <- methods::as(spatstat::dirichlet(spatstat::as.ppp(randomCluster_Point@coords,
-                                                                           spatstat::ripras(randomCluster_Point@coords, shape = "rectangle"))),
-                                      "SpatialPolygons")
+    # Fill tessellated surface with values from points ----
+    randomxluster_values <-
+      sp::over(randomcluster_tess, randomcluster_point, fn = mean)
+    randomcluster_spdf   <-
+      sp::SpatialPolygonsDataFrame(randomcluster_tess, randomxluster_values)
+
+    # Convert to raster ----
+    randomcluster_raster <- raster::rasterize(
+      randomcluster_spdf,
+      raster::raster(matrix(NA, nRow, nCol)),
+      field = randomcluster_spdf@data[, 1],
+      fun = "mean",
+      update = TRUE,
+      updateValue = "all",
+      na.rm = TRUE
     )
-
-    # Fill tessellated surface with values from points
-    randomCluster_Values <- sp::over(randomCluster_Tess, randomCluster_Point, fn = mean)
-    randomCluster_spdf   <- sp::SpatialPolygonsDataFrame(randomCluster_Tess, randomCluster_Values)
-
-    # Convert to raster
-    randomCluster_Raster <- raster::rasterize(randomCluster_spdf,
-                                              raster::raster(matrix(NA, nRow, nCol)),
-                                              field = randomCluster_spdf@data[,1],
-                                              fun = "mean",
-                                              update = TRUE,
-                                              updateValue = "all",
-                                              na.rm = TRUE)
-    # Rescale values to 0-1
+    # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      randomCluster_Raster <- rescaleNLM(randomCluster_Raster)
+      randomcluster_raster <- rescaleNLM(randomcluster_raster)
     }
 
-    return(randomCluster_Raster)
+    return(randomcluster_raster)
 
   }
-)
 
 
 # plot(as.im.RasterLayer(raster::raster(percolationArray)))

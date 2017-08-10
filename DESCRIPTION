@@ -11,12 +11,12 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-Depends: R (>= 3.1.0)
+Depends: 
+    R (>= 3.1.0)
 RoxygenNote: 6.0.1
 Imports:
     ArgumentCheck,
     ggplot2,
-    maptools,
     methods,
     pracma,
     rasterVis,
@@ -27,14 +27,16 @@ Imports:
     stats,
     ggthemes,
     viridis,
-    rasterVis,
-    igraph
+    igraph,
+    checkmate,
+    deldir
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests: 
     testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    lintr
 VignetteBuilder: 
     knitr
