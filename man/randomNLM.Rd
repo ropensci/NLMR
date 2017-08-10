@@ -2,19 +2,19 @@
 % Please edit documentation in R/random.R
 \name{randomNLM}
 \alias{randomNLM}
-\title{randomNML}
+\title{randomNLM}
 \usage{
 randomNLM(nCol, nRow, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{Number of columns for the raster (numerical)}
+\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
-\item{nRow}{Number of rows for the raster (numerical)}
+\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{rescale}{If \code{TRUE} (default), the values are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer with random values ranging from 0-1.
+RasterLayer with random values.
 }
 \description{
 Create a spatially random neutral landscape model with values from a uniform distribution.

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlmr_plot — nlmr_plot • NLMR</title>
+<title>classifyMatrix — classifyMatrix • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,32 +80,51 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlmr_plot</h1>
+    <h1>classifyMatrix</h1>
     </div>
 
     
-    <p>Plot a Raster* object with the NLMR default theme</p>
+    <p>Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.</p>
     
 
-    <pre class="usage"><span class='fu'>nlmr_plot</span>(<span class='no'>nlm_obj</span>)</pre>
+    <pre class="usage"><span class='fu'>classifyMatrix</span>(<span class='no'>x</span>, <span class='no'>weighting</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nlm_obj</th>
-      <td><p>[<code>Raster* object</code>]</p></td>
+      <th>x</th>
+      <td><p>[<code>matrix(x,y)</code>] 2D matrix of data values.</p></td>
+    </tr>
+    <tr>
+      <th>weighting</th>
+      <td><p>[<code>numerical</code>]  Vector of numeric values.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>rasterVis visualization</p>
+    <p>Rectangular matrix reclassified values.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The length of the weighting vector determines the number of classes in the resulting matrix.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='randomNLM.html'>randomNLM</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
-<span class='fu'>nlmr_plot</span>(<span class='no'>nlm_raster</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ggplot2::aes_string(fill = value): object 'value' not found</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(<span class='fu'>runif</span>(<span class='fl'>100</span>,<span class='fl'>0</span>,<span class='fl'>1</span>),<span class='fl'>10</span>,<span class='fl'>10</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.25</span>, <span class='fl'>0.25</span>)
+<span class='fu'>classifyMatrix</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+#&gt;  [1,]    1    1    2    0    0    1    2    2    1     2
+#&gt;  [2,]    1    2    0    1    2    0    2    0    0     0
+#&gt;  [3,]    0    0    0    2    1    1    2    0    2     0
+#&gt;  [4,]    0    2    2    2    0    0    0    2    0     2
+#&gt;  [5,]    0    2    2    0    2    0    1    0    2     2
+#&gt;  [6,]    1    0    0    0    0    0    2    1    0     0
+#&gt;  [7,]    0    0    0    1    1    0    1    1    0     2
+#&gt;  [8,]    1    1    1    0    0    0    0    0    0     1
+#&gt;  [9,]    0    1    0    0    2    0    0    0    1     0
+#&gt; [10,]    2    1    0    2    1    2    1    1    0     2</div><div class='input'>
 
 </div></pre>
   </div>
@@ -115,6 +134,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

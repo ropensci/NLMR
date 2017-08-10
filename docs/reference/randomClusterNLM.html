@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlmr_plot — nlmr_plot • NLMR</title>
+<title>randomClusterNLM — randomClusterNLM • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,33 +80,55 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlmr_plot</h1>
+    <h1>randomClusterNLM</h1>
     </div>
 
     
-    <p>Plot a Raster* object with the NLMR default theme</p>
+    <p>Create a random rectangular cluster neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlmr_plot</span>(<span class='no'>nlm_obj</span>)</pre>
+    <pre class="usage"><span class='fu'>randomClusterNLM</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>neighbourhood</span>, <span class='no'>p</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nlm_obj</th>
-      <td><p>[<code>Raster* object</code>]</p></td>
+      <th>nCol</th>
+      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
+    </tr>
+    <tr>
+      <th>nRow</th>
+      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
+    </tr>
+    <tr>
+      <th>neighbourhood</th>
+      <td><p>[<code>numerical(1)</code>] Clusters are defined using a set of neighbourhood structures, 4 = '4-neighbourhood', 8 = '8-neighbourhood'</p></td>
+    </tr>
+    <tr>
+      <th>p</th>
+      <td><p>[<code>numerical(1)</code>] The p value controls the proportion of elements randomly selected to form clusters.</p></td>
+    </tr>
+    <tr>
+      <th>rescale</th>
+      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>rasterVis visualization</p>
+    <p>Raster with random values ranging from 0-1.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='randomNLM.html'>randomNLM</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
-<span class='fu'>nlmr_plot</span>(<span class='no'>nlm_raster</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ggplot2::aes_string(fill = value): object 'value' not found</span></div><div class='input'>
-
+    <pre class="examples"><div class='input'><span class='fu'>randomClusterNLM</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>0.4</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 10, 10, 100  (nrow, ncol, ncell)
+#&gt; resolution  : 0.1, 0.1  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

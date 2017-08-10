@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Method mpdNLM — mpdNLM-method • NLMR</title>
+<title>mpdNLM — mpdNLM • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,49 +80,52 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Method mpdNLM</h1>
+    <h1>mpdNLM</h1>
     </div>
 
     
-    <p>Method mpdNLM</p>
-<p>Create a midpoint displacement neutral landscape model with values ranging 0-1.</p>
+    <p>Create a midpoint displacement neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>mpdNLM</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>h</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># S4 method for ANY</span>
-<span class='fu'>mpdNLM</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>h</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>mpdNLM</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>h</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>nCol</th>
-      <td><p>Number of columns for the raster (numerical)</p></td>
+      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
     </tr>
     <tr>
       <th>nRow</th>
-      <td><p>Number of rows for the raster (numerical)</p></td>
+      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
     </tr>
     <tr>
       <th>h</th>
-      <td><p>The h value controls the level of spatial autocorrelation in element values.</p></td>
+      <td><p>[<code>numerical(1)</code>] The h value controls the level of spatial autocorrelation in element values.</p></td>
     </tr>
     <tr>
       <th>rescale</th>
-      <td><p>If <code>TRUE</code> (Standard), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated (logical)</p></td>
+      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Raster with random values ranging from 0-1.</p>
+    <p>RasterLayer with random values ranging from 0-1.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>mpdNLM</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>mpdNLM</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 129, 129, 16641  (nrow, ncol, ncell)
+#&gt; resolution  : 0.007751938, 0.007751938  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

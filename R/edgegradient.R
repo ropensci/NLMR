@@ -1,91 +1,49 @@
-#' Method edgegradientNLM
-#' @name edgegradientNLM-method
-#' @rdname edgegradientNLM-method
-#' @exportMethod edgegradientNLM
-
-setGeneric("edgegradientNLM", function(nCol, nRow, direction = NA, rescale = TRUE) {
-  standardGeneric("edgegradientNLM")
-})
-
-
 #' edgegradientNLM
 #'
 #' Create an edge gradient neutral landscape model with values ranging 0-1.
 #'
-#' @param nCol Number of columns for the raster (numerical).
-#' @param nRow Number of rows for the raster (numerical).
-#' @param direction Direction of the gradient, if unspecified the direction is randomly determined (numeric (0-360), optional).
-#' @param rescale If \code{TRUE} (Standard), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated (logical)
+#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param direction [\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return Raster with random values ranging from 0-1.
+#' @return RasterLayer with random values ranging from 0-1.
 #'
 #' @examples
-#' \dontrun{
-#' edgegradientNLM(x = 100, y = 100)
-#' }
+#' edgegradientNLM(nCol = 100, nRow = 100, direction = 80)
 #'
 #' @aliases edgegradientNLM
-#' @rdname edgegradientNLM-method
+#' @rdname edgegradientNLM
 #'
 #' @export
 #'
 
-setMethod(
-  "edgegradientNLM",
-  definition = function(nCol, nRow, direction, rescale = TRUE) {
+edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
 
-    # Check Function arguments
-    Check <- ArgumentCheck::newArgCheck()
+  # Check function arguments ----
+  checkmate::assert_count(nCol , positive = TRUE)
+  checkmate::assert_count(nRow , positive = TRUE)
+  checkmate::assert_numeric(direction)
+  checkmate::assert_true(direction <= 360, na.ok = TRUE)
+  checkmate::assert_logical(rescale)
 
-    if (nCol < 1)
-      ArgumentCheck::addError(
-        msg = "'nCol' must be >= 1",
-        argcheck = Check
-      )
-
-    if (nRow < 1)
-      ArgumentCheck::addError(
-        msg = "'nRow' must be >= 1",
-        argcheck = Check
-      )
-
-    if (missing(direction) || direction < 0 || direction > 360) {
-      ArgumentCheck::addWarning(
-        msg = "'direction' must be between 0 and 360. Value has be set to NA and will be choosen randomly",
-        argcheck = Check
-      )
-      direction <- NA
-    }
-
-    if (!is.logical(rescale)){
-      ArgumentCheck::addWarning(
-        msg = "'rescale' must be logical. Value has be set to TRUE",
-        argcheck = Check
-      )
-      rescale <- TRUE
-    }
-
-    # Return errors and warnings (if any)
-    ArgumentCheck::finishArgCheck(Check)
-
-    # If direction was not set, give it a random value between 0 and 360
-    if (is.na(direction)) {
-      direction <- stats::runif(1, 0, 360)
-    }
-
-    # Create planar gradient
-    gradientRaster <-  planargradientNLM(50, 50, direction)
-
-    # Transform to a central gradient
-    edgeGradientRaster <-
-      (abs(0.5 - gradientRaster) * -2) + 1
-
-    # Rescale values to 0-
-    if (rescale == TRUE) {
-      edgeGradientRaster <- rescaleNLM(edgeGradientRaster)
-    }
-
-    return(edgeGradientRaster)
-
+  # If direction was not set, give it a random value between 0 and 360 ---
+  if (is.na(direction)) {
+    direction <- stats::runif(1, 0, 360)
   }
-)
+
+  # Create planar gradient ----
+  gradient_raster <-  planargradientNLM(50, 50, direction)
+
+  # Transform to a central gradient ----
+  edgegradient_raster <-
+    (abs(0.5 - gradient_raster) * -2) + 1
+
+  # Rescale values to 0-1 ----
+  if (rescale == TRUE) {
+    edgegradient_raster <- rescaleNLM(edgegradient_raster)
+  }
+
+  return(edgegradient_raster)
+
+}

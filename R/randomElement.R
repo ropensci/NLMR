@@ -1,111 +1,88 @@
-#' Method randomElementNLM
-#' @name randomElementNLM-method
-#' @rdname randomElementNLM-method
-#' @exportMethod randomElementNLM
+# Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
+.voronoipolygons <- function(x) {
 
-setGeneric("randomElementNLM", function(nCol, nRow, n, rescale = TRUE) {
-  standardGeneric("randomElementNLM")
-})
+  crds <- x@coords
+
+  z <- deldir::deldir(crds[,1], crds[,2])
+  w <- deldir::tile.list(z)
+  polys <- vector(mode='list', length=length(w))
+  for (i in seq(along=polys)) {
+    pcrds <- cbind(w[[i]]$x, w[[i]]$y)
+    pcrds <- rbind(pcrds, pcrds[1,])
+    polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
+  }
+  SP <-  sp::SpatialPolygons(polys)
+  voronoi <- sp::SpatialPolygonsDataFrame(SP, data=data.frame(x=crds[,1],
+                                                          y=crds[,2], row.names=sapply(methods::slot(SP, 'polygons'),
+                                                                                       function(x) methods::slot(x, 'ID'))))
+}
 
 
 #' randomElementNLM
 #'
 #' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
 #'
-#' @param nCol Number of columns for the raster (numerical)
-#' @param nRow Number of rows for the raster (numerical)
-#' @param n The number of elements randomly selected to form the basis of nearest-neighbour clusters (numerical)
-#' @param rescale If \code{TRUE} (Standard), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated (logical)
+#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param n [\code{numerical(1)}]\cr The number of elements randomly selected to form the basis of nearest-neighbour clusters.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return Raster with random values ranging from 0-1.
-#'
+#' @return RasterLayer with random values ranging from 0-1.
 #'
 #' @examples
-#' \dontrun{
-#' randomElementNLM(nCol = 100, nRow = 100, n = 400)
-#' }
+#' randomElementNLM(nCol = 10, nRow = 10, n = 40)
+#'
 #'
 #' @aliases randomElementNLM
-#' @rdname randomElementNLM-method
+#' @rdname randomElementNLM
 #'
 #' @export
 #'
 
-setMethod(
-  "randomElementNLM",
-  definition = function(nCol, nRow, n, rescale = TRUE) {
-    require(maptools)
-    # Check Function arguments
-    Check <- ArgumentCheck::newArgCheck()
+randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
+  # Check function arguments ----
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(n, positive = TRUE)
+  checkmate::assert_true(n < nRow * nCol)
+  checkmate::assert_logical(rescale)
 
-    if (nCol < 1)
-      ArgumentCheck::addError(
-        msg = "'nCol' must be >= 1",
-        argcheck = Check
-      )
+  # Create an empty matrix dimension nCol * nRow ---
+  matrix <- matrix(NA, nRow, nCol)
 
-    if (nRow < 1)
-      ArgumentCheck::addError(
-        msg = "'nRow' must be >= 1",
-        argcheck = Check
-      )
+  # Insert value for n elements ----
+  for (element in seq(1, n)) {
+    randomCol <- sample(c(1:nCol), 1)
+    randomRow <- sample(c(1:nRow), 1)
 
-    if (missing(n) || n > 0 || n < (nCol * nRow)) {
-      ArgumentCheck::addWarning(
-        msg = "'n' must be >= 1 and smaller than the sum of nCol and nRow. Value has been set to (nCol * nRow)/2",
-        argcheck = Check
-      )
-      n <- ceiling((nCol * nRow)/2)
+    if (is.na(matrix[randomRow, randomCol])) {
+      matrix[randomRow, randomCol]  <- stats::runif(1, 0, 1)
     }
-
-    if (!is.logical(rescale)){
-      ArgumentCheck::addWarning(
-        msg = "'rescale' must be logical. Value has be set to TRUE",
-        argcheck = Check
-      )
-      rescale <- TRUE
-    }
-    # Return errors and warnings (if any)
-    ArgumentCheck::finishArgCheck(Check)
-
-    # Create an empty array of correct dimensions
-    array <- matrix(NA, nRow, nCol)
-
-    # Insert value for n elements
-    for (element in seq(1, n)){
-
-      randomCol <- sample(c(1:nCol),1)
-      randomRow <- sample(c(1:nRow),1)
-
-      if(is.na(array[randomRow, randomCol])){
-        array[randomRow, randomCol]  <- stats::runif(1,0,1)
-      }
-
-    }
-
-    # Convert array cells with values to Points, NA = empty space
-    randomElement_Point <- raster::rasterToPoints(raster::raster(array),spatial=TRUE)
-
-    # Create a tessellated surface
-    suppressMessages(
-    randomElement_Tess <- methods::as(spatstat::dirichlet(spatstat::as.ppp(randomElement_Point)), "SpatialPolygons")
-    )
-
-    # Fill tessellated surface with values from points
-    randomElement_Values <- sp::over(randomElement_Tess, randomElement_Point, fn = mean)
-    randomElement_spdf   <- sp::SpatialPolygonsDataFrame(randomElement_Tess, randomElement_Values)
-
-    randomElement_Raster <- raster::rasterize(randomElement_spdf,
-                                              raster::raster(matrix(NA, nRow, nCol)),
-                                              field = randomElement_spdf@data[,1])
-
-    # Rescale values to 0-1
-    if (rescale == TRUE) {
-      randomElement_Raster <- rescaleNLM(randomElement_Raster)
-    }
-
-    return(randomElement_Raster)
 
   }
-)
 
+  # Convert matrix cells with values to Points, NA = empty space ----
+  randomelement_point <-
+    raster::rasterToPoints(raster::raster(matrix), spatial = TRUE)
+
+  # Create a tessellated surface
+  randomelement_tess <- .voronoipolygons(randomelement_point)
+
+  # Fill tessellated surface with values from points
+  randomelement_values <-
+    sp::over(randomelement_tess, randomelement_point, fn = mean)
+  randomelement_spdf   <-
+    sp::SpatialPolygonsDataFrame(randomelement_tess, randomelement_values)
+
+  randomelement_raster <- raster::rasterize(randomelement_spdf,
+                                            raster::raster(matrix(NA, nRow, nCol)),
+                                            field = randomelement_spdf@data[, 1])
+
+  # Rescale values to 0-1
+  if (rescale == TRUE) {
+    randomelement_raster <- rescaleNLM(randomelement_raster)
+  }
+
+  return(randomelement_raster)
+
+}

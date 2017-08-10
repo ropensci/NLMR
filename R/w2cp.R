@@ -1,13 +1,3 @@
-#' Method w2cp
-#' @name w2cp-method
-#' @rdname w2cp-method
-#' @exportMethod w2cp
-
-setGeneric("w2cp", function( weighting ) {
-  standardGeneric("w2cp")
-})
-
-
 #' w2cp
 #'
 #' Convert a list of category  weighting  into a 1D array of cumulative proportions.
@@ -18,9 +8,8 @@ setGeneric("w2cp", function( weighting ) {
 #'
 #'
 #' @examples
-#' \dontrun{
-#' w2cp(rasterNLM)
-#' }
+#' w2cp(c(0.5, 0.4, 0.6))
+#'
 #'
 #' @aliases w2cp
 #' @rdname w2cp-method
@@ -28,27 +17,12 @@ setGeneric("w2cp", function( weighting ) {
 #' @export
 #'
 
-setMethod(
-  "w2cp",
-  definition = function( weighting ) {
+w2cp <- function(weighting) {
+  w <-  weighting
+  proportions <- w / sum(w)
+  cumulativeProportions <- cumsum(proportions)
+  cumulativeProportions[max(length(proportions))]  <- 1
+  return(cumulativeProportions)
 
-    w <-  weighting
-    proportions <- w/sum(w)
-    cumulativeProportions <- cumsum(proportions)
-    cumulativeProportions[max(length(proportions))]  <- 1
-    return(cumulativeProportions)
+}
 
-    }
-)
-
-
-
-# w2cp <- function( weighting ) {
-#
-#   w <-  weighting
-#   proportions <- w/sum(w)
-#   cumulativeProportions <- cumsum(proportions)
-#   cumulativeProportions[max(length(proportions))]  <- 1
-#   return(cumulativeProportions)
-#
-# }

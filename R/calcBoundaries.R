@@ -1,59 +1,44 @@
-#' Method calcBoundaries
-#' @name calcBoundaries-method
-#' @rdname calcBoundaries-method
-#' @exportMethod calcBoundaries
-
-setGeneric("calcBoundaries", function(array, cumulativeProportions) {
-  standardGeneric("calcBoundaries")
-})
-
-
 #' calcBoundaries
 #'
-#' Determine upper class boundaries for classification of an array with values ranging 0-1 based upon an
-#' array of cumulative proportions.
+#' @description Determine upper class boundaries for classification of a matrix with values ranging 0-1 based upon an
+#' vector of cumulative proportions.
 #'
-#' @param array 2D array of data values
-#' @param cumulativeProportions 1D array of class cumulative proportions
+#' @param x [\code{matrix(x,y)}]\cr 2D matrix of data values.
+#' @param cumulativeProportions [\code{numerical}]\cr Vector of class cumulative proportions.
 #'
-#' @return Rectangular matrix with values ranging from 0-1
+#' @return Numerical vector with boundaries for matrix classifcation
 #'
 #'
 #' @examples
-#' \dontrun{
-#' calcBoundaries(rasterNLM)
-#' }
+#' x <- matrix(runif(100,0,1),10,10)
+#' y <- c(0.5, 0.25, 0.25)
+#' calcBoundaries(x,y)
 #'
 #' @aliases calcBoundaries
-#' @rdname calcBoundaries-method
+#' @rdname calcBoundaries
 #'
 #' @export
 #'
 
-setMethod(
-  "calcBoundaries",
-  signature = signature("matrix"),
-  definition = function(array, cumulativeProportions) {
+calcBoundaries <- function(x, cumulativeProportions) {
 
-    # Determine the number of cells that are in the classification area
-    nCells <- length(array)
+  # Check function arguments ----
+  checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)
+  checkmate::assert_numeric(cumulativeProportions)
 
-    # Based on the number of cells, find the index of upper boundary element
-    boundaryIndexes <- as.integer((cumulativeProportions * nCells) - 1)
+  # Get number of cells  ----
+  nCells <- length(x)
 
-    # Index out the the upper boundary value for each class
-    boundaryValues <- sort(array)[boundaryIndexes]
+  # Use number of cells to find index of upper boundary element ----
+  boundaryIndexes <- as.integer((cumulativeProportions * nCells) - 1)
 
-    # Ensure the maximum boundary value is equal to 1
-    boundaryValues[max(length(boundaryValues))] = 1
-    return(boundaryValues)
+  # Get boundary values ----
+  boundaryValues <- sort(x)[boundaryIndexes]
 
+  # Always set the maximum boundary value to 1 ----
+  boundaryValues[max(length(boundaryValues))] = 1
 
-  }
-)
+  return(boundaryValues)
 
-
-
-
-
+}
 

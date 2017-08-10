@@ -1,37 +1,24 @@
-#' Method distancegradientNLM
-#' @name rescaleNLM-method
-#' @rdname rescaleNLM-method
-#' @exportMethod rescaleNLM
-
-setGeneric("rescaleNLM", function(r) {
-  standardGeneric("rescaleNLM")
-})
-
-
 #' rescaleNLM
 #'
 #' A rescale in which the values in the raster are linearly rescaled to range between 0 and 1.
 #'
-#' @param r RasterLayer containing a neutral landscape
+#' @param r [\code{Raster* object}]
 #'
-#' @return Rectangular matrix with values ranging from 0-1
+#' @return Raster* object with values ranging from 0-1
 #'
 #'
 #' @examples
-#' \dontrun{
-#' rescaleNLM(rasterNLM)
-#' }
+#'
+#' rescaleNLM(randomNLM(10,10))
+#'
 #'
 #' @aliases rescaleNLM
-#' @rdname rescaleNLM-method
+#' @rdname rescaleNLM
 #'
 #' @export
 #'
 
-setMethod(
-  "rescaleNLM",
-  signature = signature("RasterLayer"),
-  definition = function(r) {
+rescaleNLM = function(r) {
     rescaledNLM <-
       (r - raster::cellStats(r, "min")) / (raster::cellStats(r, "max") - raster::cellStats(r, "min"))
 
@@ -39,4 +26,4 @@ setMethod(
 
 
   }
-)
+
