@@ -11,9 +11,9 @@
 # against a corner) and displace at random.
 .displacevals <- function(p, disheight) {
   if (length(p) == 4) {
-    pcentre = 0.25 * sum(p) + .randomdisplace(disheight)
+    pcentre <-  0.25 * sum(p) + .randomdisplace(disheight)
   } else{
-    pcentre = sum(p) / 3 + .randomdisplace(disheight)
+    pcentre <-  sum(p) / 3 + .randomdisplace(disheight)
   }
   return(pcentre)
 
@@ -54,8 +54,10 @@
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param h [\code{numerical(1)}]\cr The h value controls the level of spatial autocorrelation in element values.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param h [\code{numerical(1)}]\cr The h value controls the level of spatial
+#'          autocorrelation in element values.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
+#'                are rescaled between 0-1.
 #'
 #' @return RasterLayer with random values ranging from 0-1.
 #'
@@ -88,20 +90,25 @@ mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
   # 0, range from [-0.5, 0.5] x displacementheight
   disheight <-  2.0
   surface <-
-    matrix(stats::runif(dim * dim, 0, 1), dim, dim) * disheight - 0.5 * disheight
+    matrix(stats::runif(dim * dim, 0, 1), dim, dim) *
+    disheight - 0.5 * disheight
 
   # Set square size to cover the whole array
   inc <-  dim - 1
   while (inc > 1) {
     # while considering a square/diamond at least 2x2 in size
 
-    i2 = inc / 2 # what is half the width (i.e. where is the centre?)
+    i2 <- inc / 2 # what is half the width (i.e. where is the centre?)
     # SQUARE step
     for (x in seq(1, dim - 1, inc)) {
       for (y in seq(1, dim - 1, inc)) {
         # this adjusts the centre of the square
         surface[x + i2, y + i2]  <-
-          .displacevals(c(surface[x, y], surface[x + inc, y], surface[x + inc, y + inc], surface[x, y + inc]), disheight)
+          .displacevals(c(surface[x, y],
+                          surface[x + inc, y],
+                          surface[x + inc, y + inc],
+                          surface[x, y + inc]),
+                        disheight)
       }
     }
     # DIAMOND step
@@ -154,8 +161,8 @@ mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
       }
     }
     # Reduce displacement height
-    disheight = disheight * 2 ** (-h)
-    inc = inc / 2
+    disheight <- disheight * 2 ** (-h)
+    inc <- inc / 2
   }
 
   mpd_Raster <- raster::raster(surface)

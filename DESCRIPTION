@@ -15,7 +15,6 @@ Depends:
     R (>= 3.1.0)
 RoxygenNote: 6.0.1
 Imports:
-    ArgumentCheck,
     ggplot2,
     methods,
     pracma,
@@ -23,11 +22,9 @@ Imports:
     R.utils,
     raster,
     sp,
-    spatstat,
     stats,
     ggthemes,
     viridis,
-    igraph,
     checkmate,
     deldir
 URL: https://github.com/marcosci/NLMR

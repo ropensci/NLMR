@@ -11,9 +11,11 @@ mpdNLM(nCol, nRow, h, rescale = TRUE)
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{h}{[\code{numerical(1)}]\cr The h value controls the level of spatial autocorrelation in element values.}
+\item{h}{[\code{numerical(1)}]\cr The h value controls the level of spatial
+autocorrelation in element values.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
+are rescaled between 0-1.}
 }
 \value{
 RasterLayer with random values ranging from 0-1.

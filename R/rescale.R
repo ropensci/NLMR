@@ -18,9 +18,10 @@
 #' @export
 #'
 
-rescaleNLM = function(r) {
+rescaleNLM <- function(r) {
     rescaledNLM <-
-      (r - raster::cellStats(r, "min")) / (raster::cellStats(r, "max") - raster::cellStats(r, "min"))
+      (r - raster::cellStats(r, "min")) /
+                   (raster::cellStats(r, "max") - raster::cellStats(r, "min"))
 
     return(rescaledNLM)
 

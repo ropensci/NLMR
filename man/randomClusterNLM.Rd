@@ -11,17 +11,22 @@ randomClusterNLM(nCol, nRow, neighbourhood, p, rescale = TRUE)
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{neighbourhood}{[\code{numerical(1)}]\cr Clusters are defined using a set of neighbourhood structures, 4 = '4-neighbourhood', 8 = '8-neighbourhood'}
+\item{neighbourhood}{[\code{numerical(1)}]\cr Clusters are defined using a
+set of neighbourhood structures, 4 = '4-neighbourhood',
+8 = '8-neighbourhood'.}
 
-\item{p}{[\code{numerical(1)}]\cr The p value controls the proportion of elements randomly selected to form clusters.}
+\item{p}{[\code{numerical(1)}]\cr The p value controls the proportion of
+elements randomly selected to form clusters.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
+are rescaled between 0-1.}
 }
 \value{
 Raster with random values ranging from 0-1.
 }
 \description{
-Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+Create a random rectangular cluster neutral landscape model with values
+ranging 0-1.
 }
 \examples{
 randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p=0.4)

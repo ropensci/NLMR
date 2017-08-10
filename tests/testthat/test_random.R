@@ -2,9 +2,9 @@ context("RandomNLM results")
 
 # Test input ----
 test_that("RandomNLM throws correct error of nCol is 0 or missing", {
-  test_that("nCol is 0", {
+  test_that("nCol is 0 throws an error", {
     expect_that(randomNLM(0, 1),
-                throws_error("nCol' must be >= 1"))
+                throws_error("Assertion on 'nCol' failed: Must be >= 1."))
   })
 
 
@@ -19,7 +19,7 @@ test_that("RandomNLM throws correct error of nCol is 0 or missing", {
 test_that("RandomNLM throws correct error of nRow is 0 or missing", {
   test_that("nRow is 0", {
     expect_that(randomNLM(1, 0),
-                throws_error("nRow' must be >= 1"))
+                throws_error("Assertion on 'nRow' failed: Must be >= 1."))
   })
 
 

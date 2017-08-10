@@ -12,20 +12,25 @@
     polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
   }
   SP <-  sp::SpatialPolygons(polys)
-  voronoi <- sp::SpatialPolygonsDataFrame(SP, data=data.frame(x=crds[,1],
-                                                          y=crds[,2], row.names=sapply(methods::slot(SP, 'polygons'),
-                                                                                       function(x) methods::slot(x, 'ID'))))
+  voronoi <- sp::SpatialPolygonsDataFrame(SP,
+                                          data=data.frame(x=crds[,1],
+                                                          y=crds[,2],
+                                                          row.names=lapply(methods::slot(SP, 'polygons'),
+                                                                           function(x) methods::slot(x, 'ID'))))
 }
 
 
 #' randomElementNLM
 #'
-#' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+#' Create a random rectangular cluster neutral landscape model with values
+#' ranging 0-1.
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param n [\code{numerical(1)}]\cr The number of elements randomly selected to form the basis of nearest-neighbour clusters.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param n [\code{numerical(1)}]\cr The number of elements randomly selected
+#'          to form the basis of nearest-neighbour clusters.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default),
+#'                the values are rescaled between 0-1.
 #'
 #' @return RasterLayer with random values ranging from 0-1.
 #'
@@ -75,7 +80,9 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
     sp::SpatialPolygonsDataFrame(randomelement_tess, randomelement_values)
 
   randomelement_raster <- raster::rasterize(randomelement_spdf,
-                                            raster::raster(matrix(NA, nRow, nCol)),
+                                            raster::raster(matrix(NA,
+                                                                  nRow,
+                                                                  nCol)),
                                             field = randomelement_spdf@data[, 1])
 
   # Rescale values to 0-1

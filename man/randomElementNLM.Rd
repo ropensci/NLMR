@@ -11,15 +11,18 @@ randomElementNLM(nCol, nRow, n, rescale = TRUE)
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{n}{[\code{numerical(1)}]\cr The number of elements randomly selected to form the basis of nearest-neighbour clusters.}
+\item{n}{[\code{numerical(1)}]\cr The number of elements randomly selected
+to form the basis of nearest-neighbour clusters.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default),
+the values are rescaled between 0-1.}
 }
 \value{
 RasterLayer with random values ranging from 0-1.
 }
 \description{
-Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+Create a random rectangular cluster neutral landscape model with values
+ranging 0-1.
 }
 \examples{
 randomElementNLM(nCol = 10, nRow = 10, n = 40)

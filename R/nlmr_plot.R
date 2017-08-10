@@ -48,7 +48,7 @@ nlmr_plot <- function(nlm_obj) {
         direction = "horizontal",
         barheight = ggplot2::unit(2, units = "mm"),
         barwidth = ggplot2::unit(50, units = "mm"),
-        draw.ulim = F,
+        draw.ulim = FALSE,
         title.position = 'top',
         title.hjust = 0.5,
         label.hjust = 0.5

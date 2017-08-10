@@ -22,10 +22,12 @@
 #' @export
 #'
 
-distancegradientNLM <- function(nCol, nRow, origin, rescale = TRUE) {
-
-    # raster::distance would produce an annyoing warning because of a missing CRS
-    suppressWarnings("In couldBeLonLat(x) : CRS is NA. Assuming it is longitude/latitude")
+distancegradientNLM <-
+  function(nCol, nRow, origin, rescale = TRUE) {
+    # raster::distance would produce an annyoing warning
+    # because of a missing CRS
+    suppressWarnings("In couldBeLonLat(x) : CRS is NA.
+                     Assuming it is longitude/latitude")
 
     # Check function arguments ----
     checkmate::assert_count(nCol , positive = TRUE)

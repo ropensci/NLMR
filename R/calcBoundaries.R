@@ -36,7 +36,7 @@ calcBoundaries <- function(x, cumulativeProportions) {
   boundaryValues <- sort(x)[boundaryIndexes]
 
   # Always set the maximum boundary value to 1 ----
-  boundaryValues[max(length(boundaryValues))] = 1
+  boundaryValues[max(length(boundaryValues))] <-  1
 
   return(boundaryValues)
 

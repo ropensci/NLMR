@@ -12,21 +12,28 @@
     polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
   }
   SP <-  sp::SpatialPolygons(polys)
-  voronoi <- sp::SpatialPolygonsDataFrame(SP, data=data.frame(x=crds[,1],
-                                                              y=crds[,2], row.names=sapply(methods::slot(SP, 'polygons'),
+  voronoi <- sp::SpatialPolygonsDataFrame(SP,
+                                          data=data.frame(x=crds[,1],
+                                                          y=crds[,2],
+                                                          row.names=lapply(methods::slot(SP, 'polygons'),
                                                                                            function(x) methods::slot(x, 'ID'))))
 }
 
 
 #' randomClusterNLM
 #'
-#' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+#' Create a random rectangular cluster neutral landscape model with values
+#' ranging 0-1.
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a set of neighbourhood structures, 4 = '4-neighbourhood', 8 = '8-neighbourhood'
-#' @param p [\code{numerical(1)}]\cr The p value controls the proportion of elements randomly selected to form clusters.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
+#'                      set of neighbourhood structures, 4 = '4-neighbourhood',
+#'                      8 = '8-neighbourhood'.
+#' @param p [\code{numerical(1)}]\cr The p value controls the proportion of
+#'          elements randomly selected to form clusters.
+#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
+#'                are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
@@ -53,11 +60,13 @@ randomClusterNLM  <-
     random_raster <- randomNLM(nCol, nRow)
 
     # Create percolation array
-    percolation_raster = classifyMatrix(matrix(random_raster[], nCol, nRow), c(1 - p, p))
+    percolation_raster <- classifyMatrix(matrix(random_raster[], nCol, nRow),
+                                         c(1 - p, p))
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-      raster::clump(raster::raster(percolation_raster), direction = neighbourhood))
+      raster::clump(raster::raster(percolation_raster),
+                    direction = neighbourhood))
 
     # Number of individual cluster ----
     n_clusters <- max(raster::values(clusters), na.rm = TRUE)
@@ -103,17 +112,3 @@ randomClusterNLM  <-
     return(randomcluster_raster)
 
   }
-
-
-# plot(as.im.RasterLayer(raster::raster(percolationArray)))
-# Z <-  spatstat::connected(as.im.RasterLayer(raster::raster(percolationArray)), background = 0, method="interpreted")
-# plot(Z)
-# test <- raster::raster(Z)
-#
-# test <- matrix(as.numeric(spatstat::as.matrix.im(Z)), 100, 100)
-# test <- raster::raster(test)
-# plot(test)
-
-
-# test <- SDMTools::ConnCompLabel(percolationArray)
-# image(t(test),col=c('grey',rainbow(length(unique(test))-1)))

@@ -44,7 +44,7 @@ planargradientNLM  <- function(nCol,
 
   # Create arrays of row and column index ----
   col_index <- matrix(0:(nCol - 1), nCol, nRow)
-  row_index <- matrix(0:(nRow - 1) , nCol, nRow, byrow = T)
+  row_index <- matrix(0:(nRow - 1) , nCol, nRow, byrow = TRUE)
 
   # Create gradient matrix ----
   gradient_matrix  <-

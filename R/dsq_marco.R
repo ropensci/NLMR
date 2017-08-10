@@ -17,10 +17,12 @@
 
 marco_mpd <- function(n, roughness = 0.5){
 
-  # The diamond-square algorithm begins with a 2D square array of width and height 2n + 1
+  # The diamond-square algorithm begins with a 2D square array of width and
+  # height 2n + 1
   size <- 2^n + 1
 
-  # The size is then used to create a matrix, which has the xy-dims of size and is used as input for the algorithm
+  # The size is then used to create a matrix, which has the xy-dims of size and
+  # is used as input for the algorithm
   dsq_square <- matrix(0, nrow = size, ncol = size)
 
   #
@@ -57,8 +59,8 @@ marco_mpd <- function(n, roughness = 0.5){
         ))
         dsq_square[row, col] <- avg + stats::rnorm(1, 0, r)
 
-        if (row == 0) { dsq_square[size - 1, col] = avg }
-        if (col == 0) { dsq_square[row, size - 1] = avg }
+        if (row == 0) { dsq_square[size - 1, col] <- avg }
+        if (col == 0) { dsq_square[row, size - 1] <- avg }
       }
     }
 
