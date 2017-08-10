@@ -75,15 +75,15 @@
 mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol , positive = TRUE)
-  checkmate::assert_count(nRow , positive = TRUE)
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_numeric(h)
   checkmate::assert_true(h <= 1.0)
   checkmate::assert_logical(rescale)
 
   # Determine the dimension of the smallest square
-  maxDim <-  max(nRow, nCol)
-  N      <- as.integer(ceiling(log(maxDim - 1, 2)))
+  max_dim <-  max(nRow, nCol)
+  N      <- as.integer(ceiling(log(max_dim - 1, 2)))
   dim    <-  2 ** N + 1
 
   # Create a surface consisting of random displacement heights average value

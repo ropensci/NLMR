@@ -20,9 +20,8 @@
 w2cp <- function(weighting) {
   w <-  weighting
   proportions <- w / sum(w)
-  cumulativeProportions <- cumsum(proportions)
-  cumulativeProportions[max(length(proportions))]  <- 1
-  return(cumulativeProportions)
+  cumulative_proportions <- cumsum(proportions)
+  cumulative_proportions[max(length(proportions))]  <- 1
+  return(cumulative_proportions)
 
 }
-

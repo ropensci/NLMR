@@ -1,24 +1,26 @@
 # Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
 .voronoipolygons <- function(x) {
-
   crds <- x@coords
 
-  z <- deldir::deldir(crds[,1], crds[,2])
+  z <- deldir::deldir(crds[, 1], crds[, 2])
   w <- deldir::tile.list(z)
-  polys <- vector(mode='list', length=length(w))
-  for (i in seq(along=polys)) {
+  polys <- vector(mode = "list", length = length(w))
+  for (i in seq(along = polys)) {
     pcrds <- cbind(w[[i]]$x, w[[i]]$y)
-    pcrds <- rbind(pcrds, pcrds[1,])
-    polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
+    pcrds <- rbind(pcrds, pcrds[1, ])
+    polys[[i]] <-
+      sp::Polygons(list(sp::Polygon(pcrds)), ID = as.character(i))
   }
   SP <-  sp::SpatialPolygons(polys)
   voronoi <- sp::SpatialPolygonsDataFrame(SP,
-                                          data=data.frame(x=crds[,1],
-                                                          y=crds[,2],
-                                                          row.names=lapply(methods::slot(SP, 'polygons'),
-                                                                           function(x) methods::slot(x, 'ID'))))
+                                          data = data.frame(
+                                            x = crds[, 1],
+                                            y = crds[, 2],
+                                            row.names = lapply(
+                                              methods::slot(SP, "polygons"),
+                                              function(x)methods::slot(x, "ID"))
+                                          ))
 }
-
 
 #' randomElementNLM
 #'
@@ -79,11 +81,12 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
   randomelement_spdf   <-
     sp::SpatialPolygonsDataFrame(randomelement_tess, randomelement_values)
 
-  randomelement_raster <- raster::rasterize(randomelement_spdf,
-                                            raster::raster(matrix(NA,
-                                                                  nRow,
-                                                                  nCol)),
-                                            field = randomelement_spdf@data[, 1])
+  randomelement_raster <-
+    raster::rasterize(randomelement_spdf,
+                      raster::raster(matrix(NA,
+                                            nRow,
+                                            nCol)),
+                      field = randomelement_spdf@data[, 1])
 
   # Rescale values to 0-1
   if (rescale == TRUE) {

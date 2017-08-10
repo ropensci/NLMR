@@ -45,11 +45,11 @@ randomRectangularClusterNLM <-
       row <- sample(c(1:nRow), 1)
       col <- sample(c(1:nCol), 1)
 
-      matrix[if ((row + width) < nRow)
+      matrix[if ( (row + width) < nRow)
         row:(row + width)
         else
           row:nRow,
-        if ((col + height) < nCol)
+        if ( (col + height) < nCol)
           col:(col + height)
         else
           col:nCol] <- stats::runif(1, 0, 1)

@@ -28,8 +28,8 @@
 randomNLM  <-  function(nCol, nRow, rescale = TRUE) {
 
     # Check function arguments ----
-    checkmate::assert_count(nCol , positive=TRUE)
-    checkmate::assert_count(nRow , positive=TRUE)
+    checkmate::assert_count(nCol, positive = TRUE)
+    checkmate::assert_count(nRow, positive = TRUE)
     checkmate::assert_logical(rescale)
 
     # Assign random values to raster cells ----

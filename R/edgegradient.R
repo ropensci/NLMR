@@ -21,8 +21,8 @@
 edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol , positive = TRUE)
-  checkmate::assert_count(nRow , positive = TRUE)
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_numeric(direction)
   checkmate::assert_true(direction <= 360, na.ok = TRUE)
   checkmate::assert_logical(rescale)

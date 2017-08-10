@@ -4,7 +4,7 @@
 #' vector of cumulative proportions.
 #'
 #' @param x [\code{matrix(x,y)}]\cr 2D matrix of data values.
-#' @param cumulativeProportions [\code{numerical}]\cr Vector of class cumulative proportions.
+#' @param cumulative_proportions [\code{numerical}]\cr Vector of class cumulative proportions.
 #'
 #' @return Numerical vector with boundaries for matrix classifcation
 #'
@@ -20,25 +20,24 @@
 #' @export
 #'
 
-calcBoundaries <- function(x, cumulativeProportions) {
+calcBoundaries <- function(x, cumulative_proportions) {
 
   # Check function arguments ----
   checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)
   checkmate::assert_numeric(cumulativeProportions)
 
   # Get number of cells  ----
-  nCells <- length(x)
+  n_cells <- length(x)
 
   # Use number of cells to find index of upper boundary element ----
-  boundaryIndexes <- as.integer((cumulativeProportions * nCells) - 1)
+  boundary_indexes <- as.integer( (cumulative_proportions * n_cells) - 1)
 
   # Get boundary values ----
-  boundaryValues <- sort(x)[boundaryIndexes]
+  boundary_values <- sort(x)[boundary_indexes]
 
   # Always set the maximum boundary value to 1 ----
-  boundaryValues[max(length(boundaryValues))] <-  1
+  boundary_values[max(length(boundary_values))] <-  1
 
-  return(boundaryValues)
+  return(boundary_values)
 
 }
-
