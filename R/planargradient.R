@@ -27,8 +27,8 @@ planargradientNLM  <- function(nCol,
                               rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol , positive = TRUE)
-  checkmate::assert_count(nRow , positive = TRUE)
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_count(direction, na.ok = TRUE)
   checkmate::assert_true(direction <= 360, na.ok = TRUE)
   checkmate::assert_logical(rescale)
@@ -44,7 +44,7 @@ planargradientNLM  <- function(nCol,
 
   # Create arrays of row and column index ----
   col_index <- matrix(0:(nCol - 1), nCol, nRow)
-  row_index <- matrix(0:(nRow - 1) , nCol, nRow, byrow = TRUE)
+  row_index <- matrix(0:(nRow - 1), nCol, nRow, byrow = TRUE)
 
   # Create gradient matrix ----
   gradient_matrix  <-

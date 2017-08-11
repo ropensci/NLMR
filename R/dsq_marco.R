@@ -19,7 +19,7 @@ marco_mpd <- function(n, roughness = 0.5){
 
   # The diamond-square algorithm begins with a 2D square array of width and
   # height 2n + 1
-  size <- 2^n + 1
+  size <- 2 ^ n + 1
 
   # The size is then used to create a matrix, which has the xy-dims of size and
   # is used as input for the algorithm
@@ -29,12 +29,12 @@ marco_mpd <- function(n, roughness = 0.5){
   r <- stats::runif(1, min = 0, max = 0.5)
 
   # Main loop
-  for (side.length in 2^(n:1)) {
+  for (side.length in 2 ^ ( n:1 )) {
     half.side <- side.length / 2
 
     # Square step
-    for (col in seq(1, size - 1, by=side.length)) {
-      for (row in seq(1, size - 1, by=side.length)) {
+    for (col in seq(1, size - 1, by = side.length)) {
+      for (row in seq(1, size - 1, by = side.length)) {
         avg <- mean(c(
           dsq_square[row, col],        # upper left
           dsq_square[row + side.length, col],  # lower left
@@ -48,19 +48,23 @@ marco_mpd <- function(n, roughness = 0.5){
     }
 
     # Diamond step
-    for (row in seq(1, size, by=half.side)) {
-      for (col in seq((col+half.side) %% side.length, size, side.length)) {
+    for (row in seq(1, size, by = half.side)) {
+      for (col in seq( (col + half.side) %% side.length, size, side.length)) {
 
         avg <- mean(c(
-          dsq_square[(row - half.side + size) %% size, col],# above
+          dsq_square[(row - half.side + size) %% size, col], # above
           dsq_square[(row + half.side) %% size, col], # below
           dsq_square[row, (col + half.side) %% size], # right
           dsq_square[row, (col - half.side) %% size]  # left
         ))
         dsq_square[row, col] <- avg + stats::rnorm(1, 0, r)
 
-        if (row == 0) { dsq_square[size - 1, col] <- avg }
-        if (col == 0) { dsq_square[row, size - 1] <- avg }
+        if (row == 0) {
+          dsq_square[size - 1, col] <- avg
+          }
+        if (col == 0) {
+          dsq_square[row, size - 1] <- avg
+          }
       }
     }
 
@@ -69,14 +73,13 @@ marco_mpd <- function(n, roughness = 0.5){
   }
 
   # reduces size of
-  dsq_square <- dsq_square[-1,]
-  dsq_square <- dsq_square[,-1]
-  dsq_square <- dsq_square[,-max(ncol(dsq_square))]
-  dsq_square <- dsq_square[-max(nrow(dsq_square)),]
+  dsq_square <- dsq_square[-1, ]
+  dsq_square <- dsq_square[, -1]
+  dsq_square <- dsq_square[, -max(ncol(dsq_square))]
+  dsq_square <- dsq_square[-max(nrow(dsq_square)), ]
 
   dsq_raster <- raster::raster(dsq_square)
 
   return(dsq_raster)
 
 }
-

@@ -30,8 +30,8 @@ distancegradientNLM <-
                      Assuming it is longitude/latitude")
 
     # Check function arguments ----
-    checkmate::assert_count(nCol , positive = TRUE)
-    checkmate::assert_count(nRow , positive = TRUE)
+    checkmate::assert_count(nCol, positive = TRUE)
+    checkmate::assert_count(nRow, positive = TRUE)
     checkmate::assert_vector(origin, any.missing = FALSE)
     checkmate::assert_true(origin[2] <= nCol)
     checkmate::assert_true(origin[4] <= nRow)

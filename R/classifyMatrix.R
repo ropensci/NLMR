@@ -32,11 +32,11 @@ classifyMatrix <- function(x, weighting) {
   boundaryValues  <- calcBoundaries(x, cumulativeProportions)
 
   # Classify the matrix based on the boundary values
-  classifiedMatrix <-
-    matrix(findInterval(x, boundaryValues),
+  classified_matrix <-
+    matrix(findInterval(x, boundary_values),
            dim(x)[1],
            dim(x)[2])
 
-  return(classifiedMatrix)
+  return(classified_matrix)
 
 }

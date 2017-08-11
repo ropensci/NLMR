@@ -49,7 +49,7 @@ nlmr_plot <- function(nlm_obj) {
         barheight = ggplot2::unit(2, units = "mm"),
         barwidth = ggplot2::unit(50, units = "mm"),
         draw.ulim = FALSE,
-        title.position = 'top',
+        title.position = "top",
         title.hjust = 0.5,
         label.hjust = 0.5
       )

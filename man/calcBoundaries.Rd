@@ -4,12 +4,12 @@
 \alias{calcBoundaries}
 \title{calcBoundaries}
 \usage{
-calcBoundaries(x, cumulativeProportions)
+calcBoundaries(x, cumulative_proportions)
 }
 \arguments{
 \item{x}{[\code{matrix(x,y)}]\cr 2D matrix of data values.}
 
-\item{cumulativeProportions}{[\code{numerical}]\cr Vector of class cumulative proportions.}
+\item{cumulative_proportions}{[\code{numerical}]\cr Vector of class cumulative proportions.}
 }
 \value{
 Numerical vector with boundaries for matrix classifcation

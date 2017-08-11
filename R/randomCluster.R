@@ -1,22 +1,25 @@
 # Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
 .voronoipolygons <- function(x) {
-
   crds <- x@coords
 
-  z <- deldir::deldir(crds[,1], crds[,2])
+  z <- deldir::deldir(crds[, 1], crds[, 2])
   w <- deldir::tile.list(z)
-  polys <- vector(mode='list', length=length(w))
-  for (i in seq(along=polys)) {
+  polys <- vector(mode = "list", length = length(w))
+  for (i in seq(along = polys)) {
     pcrds <- cbind(w[[i]]$x, w[[i]]$y)
-    pcrds <- rbind(pcrds, pcrds[1,])
-    polys[[i]] <- sp::Polygons(list(sp::Polygon(pcrds)), ID=as.character(i))
+    pcrds <- rbind(pcrds, pcrds[1, ])
+    polys[[i]] <-
+      sp::Polygons(list(sp::Polygon(pcrds)), ID = as.character(i))
   }
   SP <-  sp::SpatialPolygons(polys)
   voronoi <- sp::SpatialPolygonsDataFrame(SP,
-                                          data=data.frame(x=crds[,1],
-                                                          y=crds[,2],
-                                                          row.names=lapply(methods::slot(SP, 'polygons'),
-                                                                                           function(x) methods::slot(x, 'ID'))))
+                                          data = data.frame(
+                                            x = crds[, 1],
+                                            y = crds[, 2],
+                                            row.names = lapply(
+                                              methods::slot(SP, "polygons"),
+                                              function(x)methods::slot(x, "ID"))
+                                          ))
 }
 
 
@@ -50,8 +53,8 @@
 randomClusterNLM  <-
   function(nCol, nRow, neighbourhood, p, rescale = TRUE) {
     # Check function arguments ----
-    checkmate::assert_count(nCol , positive = TRUE)
-    checkmate::assert_count(nRow , positive = TRUE)
+    checkmate::assert_count(nCol, positive = TRUE)
+    checkmate::assert_count(nRow, positive = TRUE)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
@@ -87,7 +90,7 @@ randomClusterNLM  <-
       raster::rasterToPoints(clusters, spatial = TRUE)
 
     # Create a tessellated surface ---
-    randomcluster_tess <-.voronoipolygons(randomcluster_point)
+    randomcluster_tess <- .voronoipolygons(randomcluster_point)
 
     # Fill tessellated surface with values from points ----
     randomxluster_values <-
