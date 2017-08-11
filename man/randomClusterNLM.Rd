@@ -12,8 +12,8 @@ randomClusterNLM(nCol, nRow, neighbourhood, p, rescale = TRUE)
 \item{nRow}{[\code{integer(1)}]\cr Number of rows in the raster.}
 
 \item{neighbourhood}{[\code{numerical(1)}]\cr Clusters are defined using a
-set of neighbourhood structures, 4 = '4-neighbourhood',
-8 = '8-neighbourhood'.}
+set of neighbourhood structures, 4 (Rook's case),
+8 (Queen's case).}
 
 \item{p}{[\code{numerical(1)}]\cr The p value controls the proportion of
 elements randomly selected to form clusters.}
@@ -29,6 +29,6 @@ Create a random cluster nearest-neighbour neutral landscape model with values
 ranging 0-1.
 }
 \examples{
-randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p=0.4)
+randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
 
 }

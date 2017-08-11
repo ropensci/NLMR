@@ -31,8 +31,8 @@
 #' @param nCol [\code{integer(1)}]\cr Number of columns in the raster.
 #' @param nRow  [\code{integer(1)}]\cr Number of rows in the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
-#'                      set of neighbourhood structures, 4 = '4-neighbourhood',
-#'                      8 = '8-neighbourhood'.
+#'                      set of neighbourhood structures, 4 (Rook's case),
+#'                      8 (Queen's case).
 #' @param p [\code{numerical(1)}]\cr The p value controls the proportion of
 #'          elements randomly selected to form clusters.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
@@ -42,7 +42,7 @@
 #'
 #'
 #' @examples
-#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p=0.4)
+#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
 #'
 #' @aliases randomClusterNLM
 #' @rdname randomClusterNLM
