@@ -25,11 +25,11 @@
 
 #' randomClusterNLM
 #'
-#' Create a random rectangular cluster neutral landscape model with values
+#' Create a random cluster nearest-neighbour neutral landscape model with values
 #' ranging 0-1.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param nCol [\code{integer(1)}]\cr Number of columns in the raster.
+#' @param nRow  [\code{integer(1)}]\cr Number of rows in the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
 #'                      set of neighbourhood structures, 4 = '4-neighbourhood',
 #'                      8 = '8-neighbourhood'.
