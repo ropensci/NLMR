@@ -54,6 +54,7 @@ randomClusterNLM  <-
     checkmate::assert_count(nRow , positive = TRUE)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
+    checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_logical(rescale)
 
     # Create a random raster
