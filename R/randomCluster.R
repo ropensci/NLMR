@@ -101,7 +101,7 @@ randomClusterNLM  <-
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(matrix(NA, nRow, nCol)),
+      raster::raster(matrix(0, nRow, nCol)),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
