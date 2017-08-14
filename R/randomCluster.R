@@ -25,14 +25,14 @@
 
 #' randomClusterNLM
 #'
-#' Create a random rectangular cluster neutral landscape model with values
+#' Create a random cluster nearest-neighbour neutral landscape model with values
 #' ranging 0-1.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param nCol [\code{integer(1)}]\cr Number of columns in the raster.
+#' @param nRow  [\code{integer(1)}]\cr Number of rows in the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
-#'                      set of neighbourhood structures, 4 = '4-neighbourhood',
-#'                      8 = '8-neighbourhood'.
+#'                      set of neighbourhood structures, 4 (Rook's case),
+#'                      8 (Queen's case).
 #' @param p [\code{numerical(1)}]\cr The p value controls the proportion of
 #'          elements randomly selected to form clusters.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
@@ -42,7 +42,7 @@
 #'
 #'
 #' @examples
-#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p=0.4)
+#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
 #'
 #' @aliases randomClusterNLM
 #' @rdname randomClusterNLM
@@ -57,6 +57,7 @@ randomClusterNLM  <-
     checkmate::assert_count(nRow, positive = TRUE)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
+    checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_logical(rescale)
 
     # Create a random raster
@@ -100,7 +101,7 @@ randomClusterNLM  <-
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(matrix(NA, nRow, nCol)),
+      raster::raster(matrix(0, nRow, nCol)),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
