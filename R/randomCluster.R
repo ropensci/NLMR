@@ -71,7 +71,7 @@ randomClusterNLM  <-
       raster::clump(raster::raster(percolation_raster),
                     direction = neighbourhood))
 
-    # Number of individual cluster ----
+    # Number of individual clusters ----
     n_clusters <- max(raster::values(clusters), na.rm = TRUE)
 
     # Create random set of values for each the clusters ----

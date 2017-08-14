@@ -33,7 +33,7 @@ calcBoundaries <- function(x, cumulative_proportions) {
   boundary_indexes <- as.integer( (cumulative_proportions * n_cells) - 1)
 
   # Get boundary values ----
-  boundary_values <- sort(x)[boundary_indexes]
+  boundary_values <- sort(as.vector(x))[boundary_indexes]
 
   # Always set the maximum boundary value to 1 ----
   boundary_values[max(length(boundary_values))] <-  1

@@ -28,7 +28,7 @@ classifyMatrix <- function(x, weighting) {
   checkmate::assert_numeric(weighting)
 
   # Calculate cum. proportions and boundary values ----
-  cumulative_proportions  <- w2cp(x)
+  cumulative_proportions  <- w2cp(weighting)
   boundary_values  <- calcBoundaries(x, cumulative_proportions)
 
   # Classify the matrix based on the boundary values
