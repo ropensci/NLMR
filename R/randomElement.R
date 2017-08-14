@@ -59,11 +59,11 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
 
   # Insert value for n elements ----
   for (element in seq(1, n)) {
-    randomCol <- sample(c(1:nCol), 1)
-    randomRow <- sample(c(1:nRow), 1)
+    random_col <- sample(c(1:nCol), 1)
+    random_row <- sample(c(1:nRow), 1)
 
-    if (is.na(matrix[randomRow, randomCol])) {
-      matrix[randomRow, randomCol]  <- stats::runif(1, 0, 1)
+    if (is.na(matrix[random_row, random_col])) {
+      matrix[random_row, random_col]  <- stats::runif(1, 0, 1)
     }
 
   }
