@@ -29,6 +29,6 @@ Create a random cluster nearest-neighbour neutral landscape model with values
 ranging 0-1.
 }
 \examples{
-randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
+randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
 
 }
