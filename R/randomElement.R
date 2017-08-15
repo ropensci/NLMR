@@ -83,9 +83,7 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
 
   randomelement_raster <-
     raster::rasterize(randomelement_spdf,
-                      raster::raster(matrix(NA,
-                                            nRow,
-                                            nCol)),
+                      raster::raster(nrow = nRow, ncol = nCol, resolution = c(0.03333333, 0.03333333), ext = raster::extent(c(0,1,0,1))),
                       field = randomelement_spdf@data[, 1])
 
   # Rescale values to 0-1

@@ -42,7 +42,7 @@
 #'
 #'
 #' @examples
-#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
+#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
 #'
 #' @aliases randomClusterNLM
 #' @rdname randomClusterNLM
@@ -101,7 +101,7 @@ randomClusterNLM  <-
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(matrix(0, nRow, nCol)),
+      raster::raster(nrow = nRow, ncol = nCol, resolution = c(0.03333333, 0.03333333), ext = raster::extent(c(0,1,0,1))),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
