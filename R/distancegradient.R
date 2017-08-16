@@ -38,10 +38,10 @@ distancegradientNLM <-
     checkmate::assert_logical(rescale)
     # create empty raster ----
     distancegradient <-
-      raster::raster(raster::extent(0, nCol, 0, nRow))
+      raster::raster(ncol = nCol, nrow = nRow, ext = raster::extent(c(0,1,0,1)))
 
     # set origin to 1 ----
-    distancegradient[raster::extent(origin)] <- 1
+    distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1
 
     # measure distance to origin ----
     suppressWarnings(distancegradient <-

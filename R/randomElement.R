@@ -37,7 +37,7 @@
 #' @return RasterLayer with random values ranging from 0-1.
 #'
 #' @examples
-#' randomElementNLM(nCol = 10, nRow = 10, n = 40)
+#' randomElementNLM(nCol = 50, nRow = 50, n = 40)
 #'
 #'
 #' @aliases randomElementNLM
@@ -83,7 +83,7 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
 
   randomelement_raster <-
     raster::rasterize(randomelement_spdf,
-                      raster::raster(nrow = nRow, ncol = nCol, resolution = c(0.03333333, 0.03333333), ext = raster::extent(c(0,1,0,1))),
+                      raster::raster(nrow = nRow, ncol = nCol, resolution = c(1/nCol, 1/nRow), ext = raster::extent(c(0,1,0,1))),
                       field = randomelement_spdf@data[, 1])
 
   # Rescale values to 0-1

@@ -93,21 +93,22 @@ randomClusterNLM  <-
     randomcluster_tess <- .voronoipolygons(randomcluster_point)
 
     # Fill tessellated surface with values from points ----
-    randomxluster_values <-
+    randomcluster_values <-
       sp::over(randomcluster_tess, randomcluster_point, fn = mean)
     randomcluster_spdf   <-
-      sp::SpatialPolygonsDataFrame(randomcluster_tess, randomxluster_values)
+      sp::SpatialPolygonsDataFrame(randomcluster_tess, randomcluster_values)
 
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(nrow = nRow, ncol = nCol, resolution = c(0.03333333, 0.03333333), ext = raster::extent(c(0,1,0,1))),
+      raster::raster(ncol=nCol, nrow=nRow, ext = raster::extent(c(0,1,0,1)), resolution = c(1/nCol, 1/nRow)),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
       updateValue = "all",
       na.rm = TRUE
     )
+
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
       randomcluster_raster <- rescaleNLM(randomcluster_raster)

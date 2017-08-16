@@ -25,7 +25,7 @@ Create a random rectangular cluster neutral landscape model with values
 ranging 0-1.
 }
 \examples{
-randomElementNLM(nCol = 10, nRow = 10, n = 40)
+randomElementNLM(nCol = 50, nRow = 50, n = 40)
 
 
 }
