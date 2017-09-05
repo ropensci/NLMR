@@ -1,0 +1,19 @@
+---
+title: "NLMR: Simulating neutral landscape models with R"
+author: 
+  - Marco Sciaini
+  - Craig Simpkins
+  - Kerstin Wiegand
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Neutral landscape models, originally developed to compare anthropogenic landscape fragmentation against randomness, find their application today mostly in the field of landscape ecology to test the effect of landscape patterns on spatial ecological processes. In contrast to many other ecological models (process-based, agent-based), neutral landscape models produce patterns that resemble landscapes without ecological reasoning behind them. 
+
+A series of such landscape patterns can be simulated in which concerned variables are changed while other variables are kept constant. With this approach, the influence the concerned variable on the study object of can be determined. In addition to real field work, the simulation of landscapes with extreme configurations is possible, thus allowing to find thresholds for conservation related landscape processes such as fragmentation.  
+
+So far, most of the software available to generate neutral landscapes can only perform a very limited set of algorithms or are written in programming languages that are not very widespread in the field of computational ecology. Hence, our R package aims to be a broad library of neutral landscape models that can easily be implemented in existing landscape analysis. It combines many algorithms of existing software for simulating models, as well as utility functions to classify and combine them. The simulation results are obtained in a geospatial data format (raster* objects from the raster package) and can, therefore, be used in any sort of raster data operation that is performed with real field observation data. Furthermore, the data format allows ecologists to use their simulations in any GIS software to communicate their research.
