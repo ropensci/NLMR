@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NLMR: Simulating neutral landscape models with R • NLMR</title>
+<title>NLMR: A collection of algorithms for simulating neutral landscape models with R • NLMR</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +45,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/BES_2017_Abstract_msciain.html">NLMR: Simulating neutral landscape models with R</a>
+      <a href="../articles/BES_2017_Abstract_msciain.html">NLMR: A collection of algorithms for simulating neutral landscape models with R</a>
     </li>
   </ul>
 </li>
@@ -69,9 +69,9 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>NLMR: Simulating neutral landscape models with R</h1>
+      <h1>NLMR: A collection of algorithms for simulating neutral landscape models with R</h1>
                         <h4 class="author">Marco Sciaini</h4>
-                        <h4 class="author">Craig Simpkins</h4>
+                        <h4 class="author">Craig Eric Simpkins</h4>
                         <h4 class="author">Kerstin Wiegand</h4>
             
             <h4 class="date">2017-09-05</h4>
@@ -80,9 +80,9 @@
     
     
 <div class="contents">
-<p>Neutral landscape models, originally developed to compare anthropogenic landscape fragmentation against randomness, find their application today mostly in the field of landscape ecology to test the effect of landscape patterns on spatial ecological processes. In contrast to many other ecological models (process-based, agent-based), neutral landscape models produce patterns that resemble landscapes without ecological reasoning behind them.</p>
-<p>A series of such landscape patterns can be simulated in which concerned variables are changed while other variables are kept constant. With this approach, the influence the concerned variable on the study object of can be determined. In addition to real field work, the simulation of landscapes with extreme configurations is possible, thus allowing to find thresholds for conservation related landscape processes such as fragmentation.</p>
-<p>So far, most of the software available to generate neutral landscapes can only perform a very limited set of algorithms or are written in programming languages that are not very widespread in the field of computational ecology. Hence, our R package aims to be a broad library of neutral landscape models that can easily be implemented in existing landscape analysis. It combines many algorithms of existing software for simulating models, as well as utility functions to classify and combine them. The simulation results are obtained in a geospatial data format (raster* objects from the raster package) and can, therefore, be used in any sort of raster data operation that is performed with real field observation data. Furthermore, the data format allows ecologists to use their simulations in any GIS software to communicate their research.</p>
+<p>Neutral landscape models, originally developed as a null model against which to compare anthropogenic landscape fragmentation patterns. Today these models are mostly applied in the field of landscape ecology to test the effect of landscape patterns on spatial ecological processes. In contrast to many other landscape models (process-based, agent-based), neutral landscape models produce patterns that are not grounded in ecological reasoning. By doing so, we construct a simple standard for landscape patterns and thus the basis for testing differences between landscapes.</p>
+<p>A series of such neutral landscape patterns can be simulated in which concerned variables are changed while other variables are kept constant. With this approach, the influence of the concerned variable on the object of study can be determined. In addition to empirical data, the simulation of landscapes with extreme configurations is possible, thus allowing us to find thresholds for conservation related landscape processes such as fragmentation.</p>
+<p>So far, most of the software available to generate neutral landscapes only perform a limited set of algorithms or are implemented in programming languages that are not widely used in the field of computational ecology. Our R package, NLMR, aims to be a broad library of neutral landscape models that can easily extend in existing landscape analyses. NLMR combines a large number of algorithms from published software for simulating neutral landscapes and includes utility functions to classify and combine the landscapes. The simulation results are obtained in a geospatial data format (raster* objects from the raster package) and can, therefore, be used in any sort of raster data operation that is performed with standard observation data. Furthermore, the data format allows ecologists to use their simulations in most GIS software programs allowing for easy communication of their research.</p>
 </div>
   </div>
 

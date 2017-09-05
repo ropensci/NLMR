@@ -33,14 +33,14 @@ randomNLM  <-  function(nCol, nRow, rescale = TRUE) {
     checkmate::assert_logical(rescale)
 
     # Assign random values to raster cells ----
-    random_Raster <-
+    random_raster <-
       raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      random_Raster <- rescaleNLM(random_Raster)
+      random_raster <- rescaleNLM(random_raster)
     }
 
-    return(random_Raster)
+    return(random_raster)
 
 }
