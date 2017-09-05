@@ -29,7 +29,7 @@ classifyMatrix <- function(x, weighting) {
 
   # Calculate cum. proportions and boundary values ----
   cumulative_proportions  <- w2cp(weighting)
-  boundary_values  <- calcBoundaries(x, cumulative_proportions)
+  boundary_values  <- calc_boundaries(x, cumulative_proportions)
 
   # Classify the matrix based on the boundary values
   classified_matrix <-
