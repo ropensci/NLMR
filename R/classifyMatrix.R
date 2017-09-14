@@ -10,9 +10,9 @@
 #' @return Rectangular matrix reclassified values.
 #'
 #' @examples
-#' x <- matrix(runif(100,0,1),10,10)
+#' x <- matrix(runif(100, 0, 1), 10, 10)
 #' y <- c(0.5, 0.25, 0.25)
-#' classifyMatrix(x,y)
+#' classifyMatrix(x, y)
 #'
 #'
 #' @aliases classifyMatrix
@@ -31,12 +31,11 @@ classifyMatrix <- function(x, weighting) {
   cumulative_proportions  <- w2cp(weighting)
   boundary_values  <- calc_boundaries(x, cumulative_proportions)
 
-  # Classify the matrix based on the boundary values
+  # Classify the matrix based on the boundary values ----
   classified_matrix <-
     matrix(findInterval(x, boundary_values),
            dim(x)[1],
            dim(x)[2])
 
   return(classified_matrix)
-
 }

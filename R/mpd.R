@@ -3,7 +3,7 @@
 .randomdisplace <- function(disheight) {
   # Returns a random displacement between -0.5 * disheight and 0.5 * disheight
   displacement <-
-    stats::runif(1, 0, 1) * (disheight - 0.5) * disheight
+    stats::runif(1, 0, 1) * disheight - 0.5 * disheight
   return(displacement)
 }
 
@@ -78,7 +78,7 @@ mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_numeric(h)
-  checkmate::assert_true(h <= 1.0)
+  checkmate::assert_true(h <= 1.0 || h >= 0)
   checkmate::assert_logical(rescale)
 
   # Determine the dimension of the smallest square
@@ -90,8 +90,7 @@ mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
   # 0, range from [-0.5, 0.5] x displacementheight
   disheight <-  2.0
   surface <-
-    matrix(stats::runif(dim * dim, 0, 1), dim, dim) *
-    disheight - 0.5 * disheight
+    matrix(stats::runif(dim * dim, 0, 1), dim, dim) * disheight - 0.5 * disheight
 
   # Set square size to cover the whole array
   inc <-  dim - 1

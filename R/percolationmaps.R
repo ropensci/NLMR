@@ -40,5 +40,6 @@ percolationNLMR  <- function(nCol,
 
 }
 
-raster::plot(percolationNLMR(1000, 1000, 0.7))
+
+raster::plot(percolationNLMR(100, 50, 0.4))
 

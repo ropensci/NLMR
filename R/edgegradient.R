@@ -4,10 +4,10 @@
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param direction [\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.
+#' @param direction [\code{numerical(1)}]\cr Direction of the gradient (between 0 and 360 dec), if unspecified the direction is randomly determined.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with random values ranging from 0-1.
+#' @return RasterLayer with xxxxxxx.
 #'
 #' @examples
 #' edgegradientNLM(nCol = 100, nRow = 100, direction = 80)
@@ -24,7 +24,6 @@ edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_numeric(direction)
-  checkmate::assert_true(direction <= 360, na.ok = TRUE)
   checkmate::assert_logical(rescale)
 
   # If direction was not set, give it a random value between 0 and 360 ---
@@ -45,5 +44,9 @@ edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
   }
 
   return(edgegradient_raster)
-
 }
+
+#####
+# Sebastians comment: Make transformation to planar gradient adjustable by the user
+#####
+

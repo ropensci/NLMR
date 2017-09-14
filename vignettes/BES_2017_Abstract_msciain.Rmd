@@ -1,5 +1,5 @@
 ---
-title: "NLMR: A collection of algorithms for simulating neutral landscape models with R"
+title: "nlmR: A collection of algorithms for simulating neutral landscape models with R"
 author: 
   - Marco Sciaini
   - Craig Eric Simpkins 

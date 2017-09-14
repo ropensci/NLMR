@@ -2,8 +2,7 @@
 #'
 #' @description Create a distance gradient neutral landscape model with values ranging 0-1.
 #'
-#' @details origin is a umeric vector of xmin, xmax, ymin, ymax for a square inside the raster from which the distance is measured.
-#' xmax and ymax must be smaller than nCol and nRow.
+#' @details origin is a numeric vector of xmin, xmax, ymin, ymax for a square inside the raster from which the distance is measured.
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
@@ -36,6 +35,7 @@ distancegradientNLM <-
     checkmate::assert_true(origin[2] <= nCol)
     checkmate::assert_true(origin[4] <= nRow)
     checkmate::assert_logical(rescale)
+
     # create empty raster ----
     distancegradient <-
       raster::raster(ncol = nCol, nrow = nRow, ext = raster::extent(c(0,1,0,1)))

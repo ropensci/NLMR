@@ -68,3 +68,6 @@ randomRectangularClusterNLM <-
     return(randomrectangularcluster_raster)
 
   }
+
+
+##### Falling leaves algorithm? googlen or ask katrin

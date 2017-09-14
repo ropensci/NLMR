@@ -23,14 +23,13 @@
 
 planargradientNLM  <- function(nCol,
                               nRow,
-                              direction  = NA,
+                              direction = NA,
                               rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_count(direction, na.ok = TRUE)
-  checkmate::assert_true(direction <= 360, na.ok = TRUE)
+  checkmate::numeric(direction)
   checkmate::assert_logical(rescale)
 
   # If direction was not set, give it a random value between 0 and 360 ----

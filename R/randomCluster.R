@@ -117,3 +117,8 @@ randomClusterNLM  <-
     return(randomcluster_raster)
 
   }
+
+
+#####
+## cut rasterized object to ectent of 0,1,0,1
+#####
