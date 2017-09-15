@@ -21,9 +21,9 @@ Classify a matrix with values ranging 0-1 into proportions based upon a vector o
 The length of the weighting vector determines the number of classes in the resulting matrix.
 }
 \examples{
-x <- matrix(runif(100,0,1),10,10)
+x <- matrix(runif(100, 0, 1), 10, 10)
 y <- c(0.5, 0.25, 0.25)
-classifyMatrix(x,y)
+classifyMatrix(x, y)
 
 
 }

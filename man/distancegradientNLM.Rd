@@ -22,8 +22,7 @@ RasterLayer with distance measurements starting in a predefined origin.
 Create a distance gradient neutral landscape model with values ranging 0-1.
 }
 \details{
-origin is a umeric vector of xmin, xmax, ymin, ymax for a square inside the raster from which the distance is measured.
-xmax and ymax must be smaller than nCol and nRow.
+origin is a numeric vector of xmin, xmax, ymin, ymax for a square inside the raster from which the distance is measured.
 }
 \examples{
 distancegradientNLM(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))

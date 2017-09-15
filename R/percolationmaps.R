@@ -39,10 +39,3 @@ percolationNLMR  <- function(nCol,
   return(percolation_raster)
 
 }
-<<<<<<< HEAD
-
-
-raster::plot(percolationNLMR(100, 50, 0.4))
-
-=======
->>>>>>> b1d53c97bc968e9d2f981cbc144764c8cbaeca02

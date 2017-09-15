@@ -11,12 +11,12 @@ edgegradientNLM(nCol, nRow, direction = NA, rescale = TRUE)
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{direction}{[\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.}
+\item{direction}{[\code{numerical(1)}]\cr Direction of the gradient (between 0 and 360 dec), if unspecified the direction is randomly determined.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer with random values ranging from 0-1.
+RasterLayer with xxxxxxx.
 }
 \description{
 Create an edge gradient neutral landscape model with values ranging 0-1.
