@@ -109,6 +109,8 @@ randomClusterNLM  <-
       na.rm = TRUE
     )
 
+    randomcluster_raster <- raster::crop(randomcluster_raster, raster::extent(0,1,0,1))
+
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
       randomcluster_raster <- rescaleNLM(randomcluster_raster)

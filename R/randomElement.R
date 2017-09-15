@@ -86,6 +86,10 @@ randomElementNLM <- function(nCol, nRow, n, rescale = TRUE) {
                       raster::raster(nrow = nRow, ncol = nCol, resolution = c(1/nCol, 1/nRow), ext = raster::extent(randomelement_spdf)),
                       field = randomelement_spdf@data[, 1])
 
+
+  randomelement_raster <- raster::crop(randomelement_raster, raster::extent(0,1,0,1))
+
+
   # Rescale values to 0-1
   if (rescale == TRUE) {
     randomelement_raster <- rescaleNLM(randomelement_raster)
