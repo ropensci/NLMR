@@ -1,0 +1,136 @@
+---
+title: "Overview"
+author: "Marco Sciaini"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+## Bestiary
+
+```{r echo=FALSE, fig.height=12, fig.width=12, message=FALSE, results='hide'}
+# load packages ----
+library(NLMR)
+library(ggplot2)
+library(reshape2)
+library(viridis)
+library(lemon)
+
+# create landscapes
+set.seed(5)
+percolation <- percolationNLMR(50,50,0.4)
+random <- randomNLM(50,50)
+distagrad <- distancegradientNLM(50, 50, c(10,15,10,15))
+edgy <- edgegradientNLM(50,50, 90)
+planary <- planargradientNLM(50,50)
+randomRecClustery <- randomRectangularClusterNLM(50, 50, 8, 16, rescale = FALSE)
+randomElementy <- randomElementNLM(50,50, 90)
+randomClustery <- randomClusterNLM(50,50, p = 0.5, neighbourhood = 4)
+randomMPD <- mpdNLM(50,50, h=0.5)
+
+# transform rasters to long data frame to use facets
+
+## first transform to SpatialPixelsDataFrame to have a transformation to long format
+percolation_spdf       <- as(percolation, "SpatialPixelsDataFrame")
+random_spdf            <- as(random, "SpatialPixelsDataFrame")
+distagrad_spdf         <- as(distagrad, "SpatialPixelsDataFrame")
+edgy_spdf              <- as(edgy, "SpatialPixelsDataFrame")
+planary_spdf           <- as(planary, "SpatialPixelsDataFrame")
+randomRecClustery_spdf <- as(randomRecClustery, "SpatialPixelsDataFrame")
+randomElementy_spdf    <- as(randomElementy, "SpatialPixelsDataFrame")
+randomClustery_spdf    <- as(randomClustery, "SpatialPixelsDataFrame")
+randomMPD_spdf         <- as(randomMPD, "SpatialPixelsDataFrame")
+
+## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
+percolation_df <- as.data.frame(percolation_spdf)
+percolation_df[,4] <- "Percolation"
+
+random_df <- as.data.frame(random_spdf)
+random_df[,4] <- "Random"
+
+edgy_df <- as.data.frame(edgy_spdf)
+edgy_df[,4] <- "Edge gradient"
+
+distagrad_df <- as.data.frame(distagrad_spdf)
+distagrad_df[,4] <- "Distance gradient"
+
+planary_df <- as.data.frame(planary_spdf)
+planary_df[,4] <- "Planar gradient"
+
+randomRecClustery_df <- as.data.frame(randomRecClustery_spdf)
+randomRecClustery_df[,4] <- "Random-rectangalur cluster"
+
+randomElementy_df <- as.data.frame(randomElementy_spdf)
+randomElementy_df[,4] <- "Random elements"
+
+randomClustery_df <- as.data.frame(randomClustery_spdf)
+randomClustery_df[,4] <- "Random cluster"
+
+randomMPD_df <- as.data.frame(randomMPD_spdf)
+randomMPD_df[,4] <- "Midpoint displacement"
+
+## bind all of them together
+nlm_df <- rbind(percolation_df,
+                random_df,
+                edgy_df,
+                distagrad_df,
+                planary_df,
+                randomRecClustery_df,
+                randomClustery_df,
+                randomElementy_df,
+                randomMPD_df)
+
+# nlm_df <- rbind(percolation_df,
+#                 random_df,
+#                 edgy_df,
+#                 distagrad_df,
+#                 planary_df)
+
+## rename columns
+colnames(nlm_df) <- c("value", "x", "y", "Type")
+
+# Plot the rasters as facets
+nlmr_bestiary <- ggplot(nlm_df, aes(x=x, y=y)) +
+  geom_raster(aes(fill=value), alpha=0.8) +
+  facet_wrap( ~ Type, ncol = 3, scales = "fixed") +
+  ggplot2::coord_equal() +
+  ggplot2::labs(x = "Easting",
+                y = "Northing") +
+  ggplot2::theme(
+    legend.position = "bottom",
+    text = ggplot2::element_text(color = "#22211d"),
+    axis.line = ggplot2::element_line(),
+    axis.ticks.length = ggplot2::unit(.15, "cm"),
+    axis.ticks = ggplot2::element_line(),
+    panel.background=element_blank(),
+    panel.border=element_blank(), # bg of the panelt
+    panel.grid.major = element_blank(), # get rid of major grid
+    panel.grid.minor = element_blank(), # get rid of minor grid
+    aspect.ratio=1
+  ) +
+  viridis::scale_fill_viridis(
+    option = "D",
+    direction = -1,
+    na.value = "transparent",
+    name = "Z",
+    guide = ggplot2::guide_colorbar(
+      direction = "horizontal",
+      barheight = ggplot2::unit(2, units = "mm"),
+      barwidth = ggplot2::unit(50, units = "mm"),
+      draw.ulim = FALSE,
+      title.position = "top",
+      title.hjust = 0.5,
+      label.hjust = 0.5
+    )) +
+  coord_capped_cart(
+    xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
+
+nlmr_bestiary <- nlmr_bestiary + theme(text = element_text(size = 17),
+                                       axis.text.x = element_text(size = 15, angle = 70, vjust=-1.2, hjust = -1.2))
+
+print(nlmr_bestiary)
+```
