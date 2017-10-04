@@ -11,6 +11,7 @@ r_packages:
   - viridis
   - rasterVis
   - igraph
+  - lemon
 
 after_success:
   - Rscript -e 'covr::codecov(token = '67be45c9-fe6c-4d3a-95ad-fd3d6131409c')'
