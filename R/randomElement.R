@@ -37,8 +37,9 @@
 #' @return RasterLayer with random values ranging from 0-1.
 #'
 #' @examples
+#' \donttest{
 #' randomElementNLM(nCol = 50, nRow = 50, n = 40)
-#'
+#' }
 #'
 #' @aliases randomElementNLM
 #' @rdname randomElementNLM

@@ -25,7 +25,8 @@ Create a random rectangular cluster neutral landscape model with values
 ranging 0-1.
 }
 \examples{
+\donttest{
 randomElementNLM(nCol = 50, nRow = 50, n = 40)
-
+}
 
 }

@@ -52,6 +52,6 @@ nlmr_plot <- function(nlm_obj) {
         title.position = "top",
         title.hjust = 0.5,
         label.hjust = 0.5
-      )
-    )
+      ))
 }
+

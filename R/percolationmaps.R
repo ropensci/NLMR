@@ -31,7 +31,11 @@ percolationNLMR  <- function(nCol,
 
   percolation_matrix <- matrix(NA, nrow = nRow, ncol = nCol)
 
-  percolation_matrix[] <- vapply(percolation_matrix, function(x){ifelse(runif(1,0,1) < prob, 1, 0)}, numeric(1))
+  percolation_matrix[] <- vapply(percolation_matrix,
+                                 function(x){
+                                   ifelse(stats::runif(1,0,1) < prob, 1, 0)
+                                   },
+                                 numeric(1))
 
   percolation_raster <-
     raster::raster(percolation_matrix)
