@@ -1,4 +1,4 @@
-#' distancegradientNLM
+#' nlm_distancegradient
 #'
 #' @description Create a distance gradient neutral landscape model with values ranging 0-1.
 #'
@@ -13,15 +13,15 @@
 #'
 #'
 #' @examples
-#' distancegradientNLM(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))
+#' nlm_distancegradient(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))
 #'
-#' @aliases distancegradientNLM
-#' @rdname distancegradientNLM
+#' @aliases nlm_distancegradient
+#' @rdname nlm_distancegradient
 #'
 #' @export
 #'
 
-distancegradientNLM <-
+nlm_distancegradient <-
   function(nCol, nRow, origin, rescale = TRUE) {
     # raster::distance would produce an annyoing warning
     # because of a missing CRS

@@ -48,7 +48,7 @@
 }
 
 
-#' mpdNLM
+#' nlm_mpd
 #'
 #' Create a midpoint displacement neutral landscape model with values ranging 0-1.
 #'
@@ -63,16 +63,16 @@
 #'
 #'
 #' @examples
-#' mpdNLM(nCol = 100, nRow = 100, h = 0.2)
+#' nlm_mpd(nCol = 100, nRow = 100, h = 0.2)
 #'
 #'
-#' @aliases mpdNLM
-#' @rdname mpdNLM-method
+#' @aliases nlm_mpd
+#' @rdname nlm_mpd-method
 #'
 #' @export
 #'
 
-mpdNLM  <-  function(nCol, nRow, h, rescale = TRUE) {
+nlm_mpd  <-  function(nCol, nRow, h, rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)

@@ -1,4 +1,4 @@
-#' planargradientNLM
+#' nlm_planargradient
 #'
 #' Create a planar gradient neutral landscape model with values ranging 0-1.
 #'
@@ -11,17 +11,17 @@
 #'
 #'
 #' @examples
-#' planargradientNLM(nCol = 100, nRow = 100)
+#' nlm_planargradient(nCol = 100, nRow = 100)
 #'
 #'
-#' @aliases planargradientNLM
-#' @rdname planargradientNLM
+#' @aliases nlm_planargradient
+#' @rdname nlm_planargradient
 #'
 #' @export
 #'
 
 
-planargradientNLM  <- function(nCol,
+nlm_planargradient  <- function(nCol,
                               nRow,
                               direction = NA,
                               rescale = TRUE) {

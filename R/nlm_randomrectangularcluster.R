@@ -1,4 +1,4 @@
-#' randomRectangularClusterNLM
+#' nlm_randomrectangularcluster
 #'
 #' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
 #'
@@ -12,16 +12,16 @@
 #'
 #'
 #' @examples
-#' randomRectangularClusterNLM(nCol = 100, nRow = 100, minL = 5, maxL = 40)
+#' nlm_randomrectangularcluster(nCol = 100, nRow = 100, minL = 5, maxL = 40)
 #'
 #'
-#' @aliases randomRectangularClusterNLM
-#' @rdname randomRectangularClusterNLM
+#' @aliases nlm_randomrectangularcluster
+#' @rdname nlm_randomrectangularcluster
 #'
 #' @export
 #'
 
-randomRectangularClusterNLM <-
+nlm_randomrectangularcluster <-
   function(nCol, nRow, minL, maxL, rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)

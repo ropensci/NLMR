@@ -9,7 +9,7 @@
 #'
 #' @examples
 #'
-#' rescaleNLM(randomNLM(10,10))
+#' rescaleNLM(nlm_random(10,10))
 #'
 #'
 #' @aliases rescaleNLM

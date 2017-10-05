@@ -1,4 +1,4 @@
-#' edgegradientNLM
+#' nlm_edgegradient
 #'
 #' Create an edge gradient neutral landscape model with values ranging 0-1.
 #'
@@ -10,15 +10,15 @@
 #' @return RasterLayer with xxxxxxx.
 #'
 #' @examples
-#' edgegradientNLM(nCol = 100, nRow = 100, direction = 80)
+#' nlm_edgegradient(nCol = 100, nRow = 100, direction = 80)
 #'
-#' @aliases edgegradientNLM
-#' @rdname edgegradientNLM
+#' @aliases nlm_edgegradient
+#' @rdname nlm_edgegradient
 #'
 #' @export
 #'
 
-edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
+nlm_edgegradient <- function(nCol, nRow, direction = NA, rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -32,7 +32,7 @@ edgegradientNLM <- function(nCol, nRow, direction = NA, rescale = TRUE) {
   }
 
   # Create planar gradient ----
-  gradient_raster <-  planargradientNLM(50, 50, direction)
+  gradient_raster <-  nlm_planargradient(50, 50, direction)
 
   # Transform to a central gradient ----
   edgegradient_raster <-

@@ -1,4 +1,4 @@
-#' percolationNLMR
+#' nlm_percolationmaps
 #'
 #' Create a simple neutral landscape model with either 0 or 1 as values.
 #'
@@ -10,16 +10,16 @@
 #'
 #'
 #' @examples
-#' percolationNLMR(nCol = 100, nRow = 100, p=0.5)
+#' nlm_percolationmaps(nCol = 100, nRow = 100, p=0.5)
 #'
 #'
-#' @aliases percolationNLMR
-#' @rdname percolationNLMR
+#' @aliases nlm_percolationmaps
+#' @rdname nlm_percolationmaps
 #'
 #' @export
 #'
 
-percolationNLMR  <- function(nCol,
+nlm_percolationmaps  <- function(nCol,
                              nRow,
                              prob) {
 

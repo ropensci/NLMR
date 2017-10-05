@@ -17,7 +17,7 @@ A rescale in which the values in the raster are linearly rescaled to range betwe
 }
 \examples{
 
-rescaleNLM(randomNLM(10,10))
+rescaleNLM(nlm_random(10,10))
 
 
 }

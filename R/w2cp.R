@@ -15,7 +15,6 @@
 #' @rdname w2cp-method
 #'
 #' @export
-#'
 
 w2cp <- function(weighting) {
 

@@ -23,7 +23,7 @@
 }
 
 
-#' randomClusterNLM
+#' nlm_randomcluster
 #'
 #' Create a random cluster nearest-neighbour neutral landscape model with values
 #' ranging 0-1.
@@ -42,15 +42,15 @@
 #'
 #'
 #' @examples
-#' randomClusterNLM(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
+#' nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
 #'
-#' @aliases randomClusterNLM
-#' @rdname randomClusterNLM
+#' @aliases nlm_randomcluster
+#' @rdname nlm_randomcluster
 #'
 #' @export
 #'
 
-randomClusterNLM  <-
+nlm_randomcluster  <-
   function(nCol, nRow, neighbourhood, p, rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
@@ -61,7 +61,7 @@ randomClusterNLM  <-
     checkmate::assert_logical(rescale)
 
     # Create a random raster
-    random_raster <- randomNLM(nCol, nRow)
+    random_raster <- nlm_random(nCol, nRow)
 
     # Create percolation array
     percolation_raster <- classifyMatrix(matrix(random_raster[], nCol, nRow),

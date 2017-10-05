@@ -32,3 +32,23 @@
 #
 # plot(s2, add = TRUE)
 #
+
+
+# library(sf)
+#
+# pol <- rbind(c(-3,3), c(-3,4), c(-2,4), c(-2,3), c(-3,3))
+# pol <- st_polygon(list(pol))
+# blade <- rbind(c(-2.5, 3), c(-2.6, 4))
+# blade <- st_linestring(blade)
+#
+# plot(pol)
+# plot(blade, add = TRUE)
+#
+# test <- st_sfc(sf:::CPL_split(st_geometry(pol), st_geometry(blade)))
+#
+# str(test[1])
+# test[1][[1]][1, drop = FALSE]
+#
+#
+# plot(test[1][[1]][[1]])
+# plot(test[1][[1]][[2]], add = TRUE, col = "skyblue")

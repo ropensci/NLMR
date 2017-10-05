@@ -1,4 +1,4 @@
-#' randomNLM
+#' nlm_random
 #'
 #' @description Create a spatially random neutral landscape model with values from a uniform distribution.
 #'
@@ -16,16 +16,16 @@
 #'
 #'
 #' @examples
-#' randomNLM(nCol = 100, nRow = 100)
+#' nlm_random(nCol = 100, nRow = 100)
 #'
 #'
-#' @aliases randomNLM
-#' @rdname randomNLM
+#' @aliases nlm_random
+#' @rdname nlm_random
 #'
 #' @export
 #'
 
-randomNLM  <-  function(nCol, nRow, rescale = TRUE) {
+nlm_random  <-  function(nCol, nRow, rescale = TRUE) {
 
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)

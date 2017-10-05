@@ -8,7 +8,7 @@
 #'
 #'
 #' @examples
-#' nlm_raster <- randomNLM(10,10)
+#' nlm_raster <- nlm_random(10,10)
 #' nlmr_plot(nlm_raster)
 #'
 #'
