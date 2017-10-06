@@ -1,5 +1,5 @@
 ---
-title: "Basic Usage of nlmR"
+title: "Basic Usage of NLMR"
 author: "Craig E. Simpkins & Marco Sciaini"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

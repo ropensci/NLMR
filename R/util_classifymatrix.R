@@ -1,4 +1,4 @@
-#' classifyMatrix
+#' util_classify
 #'
 #' @description Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.
 #'
@@ -12,16 +12,16 @@
 #' @examples
 #' x <- matrix(runif(100, 0, 1), 10, 10)
 #' y <- c(0.5, 0.25, 0.25)
-#' classifyMatrix(x, y)
+#' util_classify(x, y)
 #'
 #'
-#' @aliases classifyMatrix
-#' @rdname classifyMatrix
+#' @aliases util_classify
+#' @rdname util_classify
 #'
 #' @export
 #'
 
-classifyMatrix <- function(x, weighting) {
+util_classify <- function(x, weighting) {
 
   # Check function arguments ----
   checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)
@@ -29,7 +29,7 @@ classifyMatrix <- function(x, weighting) {
 
   # Calculate cum. proportions and boundary values ----
   cumulative_proportions  <- w2cp(weighting)
-  boundary_values  <- calc_boundaries(x, cumulative_proportions)
+  boundary_values  <- util_calc_boundaries(x, cumulative_proportions)
 
   # Classify the matrix based on the boundary values ----
   classified_matrix <-

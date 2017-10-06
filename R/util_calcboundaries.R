@@ -1,4 +1,4 @@
-#' calc_boundaries
+#' util_calc_boundaries
 #'
 #' @description Determine upper class boundaries for classification of a matrix with values ranging 0-1 based upon an
 #' vector of cumulative proportions.
@@ -13,15 +13,15 @@
 #' @examples
 #' x <- matrix(runif(100,0,1),10,10)
 #' y <- NLMR::w2cp(c(0.5, 0.25, 0.25)) #cumulative proportion
-#' calc_boundaries(x,y)
+#' util_calc_boundaries(x,y)
 #'
-#' @aliases calc_boundaries
-#' @rdname calc_boundaries
+#' @rdname util_classify
+#' @keywords internal
 #'
 #' @export
 #'
 
-calc_boundaries <- function(x, cumulative_proportions) {
+util_calc_boundaries <- function(x, cumulative_proportions) {
 
   # Check function arguments ----
   checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)

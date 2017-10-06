@@ -64,12 +64,12 @@ nlm_randomcluster  <-
     random_raster <- nlm_random(nCol, nRow)
 
     # Create percolation array
-    percolation_raster <- classifyMatrix(matrix(random_raster[], nCol, nRow),
+    random_raster <- util_classify(matrix(random_raster[], nCol, nRow),
                                          c(1 - p, p))
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-      raster::clump(raster::raster(percolation_raster),
+      raster::clump(raster::raster(random_raster),
                     direction = neighbourhood))
 
     # Number of individual clusters ----

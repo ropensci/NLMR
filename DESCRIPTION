@@ -1,12 +1,10 @@
 Package: NLMR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: NLMR - Neutral Landscape Models with R
 Version: 0.1.0
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")),
             person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")))
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: R package to create neutral landscape models (NLM).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -34,6 +32,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    lintr
+    lintr,
+    lemon,
+    reshape2
 VignetteBuilder: 
     knitr

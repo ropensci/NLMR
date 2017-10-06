@@ -1,0 +1,44 @@
+---
+output: github_document
+---
+
+
+[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR)  [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) [![Project Status: WIP ? Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator)
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+------------------------------------------------------------------------
+
+<i class="fa fa-paperclip" aria-hidden="true"></i> Background
+------------------------------------------------------------
+
+Neutral landscape models, originally developed as a null model against which to compare anthropogenic landscape fragmentation patterns. Today these models are mostly applied in the field of landscape ecology to test the effect of landscape patterns on spatial ecological processes. In contrast to many other landscape models (process-based, agent-based), neutral landscape models produce patterns that are not grounded in ecological reasoning. By doing so, we construct a simple standard for landscape patterns and thus the basis for testing differences between landscapes.
+
+A series of such neutral landscape patterns can be simulated in which concerned variables are changed while other variables are kept constant. With this approach, the influence of the concerned variable on the object of study can be determined. In addition to empirical data, the simulation of landscapes with extreme configurations is possible, thus allowing us to find thresholds for conservation related landscape processes such as fragmentation. 
+
+So far, most of the software available to generate neutral landscapes only perform a limited set of algorithms or are implemented in programming languages that are not widely used in the field of computational ecology. Our R package, NLMR, aims to be a broad library of neutral landscape models that can easily extend in existing landscape analyses. NLMR combines a large number of algorithms from published software for simulating neutral landscapes and includes utility functions to classify and combine the landscapes. The simulation results are obtained in a geospatial data format (raster* objects from the raster package) and can, therefore, be used in any sort of raster data operation that is performed with standard observation data. Furthermore, the data format allows ecologists to use their simulations in most GIS software programs allowing for easy communication of their research.
+
+------------------------------------------------------------------------
+
+<i class="fa fa-cog" aria-hidden="true"></i> Getting Started
+------------------------------------------------------------
+
+- To install `NLMR`, please follow instructions reported here
+
+
+------------------------------------------------------------------------
+
+<i class="fa fa-newspaper-o" aria-hidden="true"></i> What's New
+---------------------------------------------------------------
+
+xxx. See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. A new release (1.3.3) is foreseen in the coming weeks to port the improvements on CRAN.
+
+------------------------------------------------------------------------
+
+<i class="fa fa-pencil" aria-hidden="true"></i>Citation
+-------------------------------------------------------
+
+To cite `NLMR` in publications, please use:

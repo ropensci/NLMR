@@ -1,0 +1,8 @@
+urls:
+  reference: https://marcosci.github.io/NLMR//reference
+  article: https://marcosci.github.io/NLMR//articles
+articles:
+  BasicUsageVignette: BasicUsageVignette.html
+  bestiary: bestiary.html
+  faq: faq.html
+

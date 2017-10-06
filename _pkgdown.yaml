@@ -1,0 +1,28 @@
+title: NLMR
+url: https://marcosci.github.io/NLMR/
+template:
+  params:
+    bootswatch: flatly
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "How To"
+      menu:
+      -  text: Overview
+         href: articles/bestiary.html
+      -  text: Basic Usage of NLMR
+         href: articles/BasicUsageVignette.html
+  right:
+    - text: "faq"
+      icon: fa-question-circle-o
+      href: articles/faq.html
+    - icon: fa-newspaper-o
+      text: "news"
+      href: news/index.html
+    - icon: fa-file-code-o
+      text: "functions"
+      href: reference/index.html
+    - icon: fa-github fa-lg
+      text: "github"
+      href: https://github.com/marcosci/NLMR
