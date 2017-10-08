@@ -46,7 +46,7 @@ xxx. See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/ind
 
 ------------------------------------------------------------------------
 
-<i class="fa fa-pencil" aria-hidden="true"></i>Citation
+<i class="fa fa-pencil" aria-hidden="true"></i> Citation
 -------------------------------------------------------
 
 To cite `NLMR` in publications, please use:

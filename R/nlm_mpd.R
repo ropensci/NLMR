@@ -67,7 +67,7 @@
 #'
 #'
 #' @aliases nlm_mpd
-#' @rdname nlm_mpd-method
+#' @rdname nlm_mpd
 #'
 #' @export
 #'
