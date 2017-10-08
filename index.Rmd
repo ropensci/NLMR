@@ -40,7 +40,7 @@ So far, most of the software available to generate neutral landscapes only perfo
 <i class="fa fa-newspaper-o" aria-hidden="true"></i> What's New
 ---------------------------------------------------------------
 
-xxx. See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. A new release (1.3.3) is foreseen in the coming weeks to port the improvements on CRAN.
+xxx. See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. 
 
 ------------------------------------------------------------------------
 
