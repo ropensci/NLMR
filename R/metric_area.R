@@ -1,4 +1,4 @@
-#' metric_fractaldim
+#' metric_area
 #'
 #' @description Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.
 #'
@@ -9,18 +9,15 @@
 #'
 #' @return Rectangular matrix reclassified values.
 #'
-#' @aliases metric_fractaldim
-#' @rdname metric_fractaldim
+#' @aliases metric_area
+#' @rdname metric_area
 #'
 #' @export
 #'
 
-nlm_area <- function(nlm, poi){
-  if(length(poi) == 2){
-    nlm_ccl <- SDMTools::ConnCompLabel(nlm >= poi[1] & nlm <= poi[2])
-  } else {
-    nlm_ccl <- SDMTools::ConnCompLabel(nlm == poi)
-  }
-  nlm_patch_metrics <- dplyr::tbl_df(SDMTools::PatchStat(mat = nlm_ccl))
-  return(nlm_patch_metrics)
+metric_area <- function(nlm, poi){
+
+
+  cs <- dplyr::tbl_df(SDMTools::PatchStat(mat = nlm))
+  return(cs)
 }
