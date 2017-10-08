@@ -113,7 +113,7 @@ nlm_randomcluster  <-
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      randomcluster_raster <- rescaleNLM(randomcluster_raster)
+      randomcluster_raster <- util_rescale(randomcluster_raster)
     }
 
     return(randomcluster_raster)

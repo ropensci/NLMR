@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>randomNLM — randomNLM • NLMR</title>
+<title>metric_fractaldim — nlm_patchmetrics • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -52,29 +52,23 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
+  <a href="../index.html">
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    How To
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/BasicUsageVignette.html">Basic Usage of nlmR</a>
-    </li>
-    <li>
-      <a href="../articles/BES_2017_Abstract_msciain.html">nlmR: A collection of algorithms for simulating neutral landscape models with R</a>
-    </li>
-    <li>
       <a href="../articles/bestiary.html">Overview</a>
+    </li>
+    <li>
+      <a href="../articles/BasicUsageVignette.html">Basic Usage of NLMR</a>
     </li>
   </ul>
 </li>
@@ -82,9 +76,31 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="../articles/faq.html">
+    <span class="fa fa-question-circle-o"></span>
+     
+    faq
+  </a>
+</li>
+<li>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    news
+  </a>
+</li>
+<li>
+  <a href="../reference/index.html">
+    <span class="fa fa-file-code-o"></span>
+     
+    functions
+  </a>
+</li>
+<li>
   <a href="https://github.com/marcosci/NLMR">
     <span class="fa fa-github fa-lg"></span>
      
+    github
   </a>
 </li>
       </ul>
@@ -98,55 +114,37 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>randomNLM</h1>
+    <h1>metric_fractaldim</h1>
     </div>
 
     
-    <p>Create a spatially random neutral landscape model with values from a uniform distribution.</p>
+    <p>Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.</p>
     
 
-    <pre class="usage"><span class='fu'>randomNLM</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_patchmetrics</span>(<span class='no'>nlm</span>, <span class='no'>poi</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
-      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
+      <th>nlm</th>
+      <td><p>[<code>matrix(x,y)</code>] 2D matrix of data values.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
-      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
-    </tr>
-    <tr>
-      <th>rescale</th>
-      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
+      <th>poi</th>
+      <td><p>[<code>numerical</code>]  Vector of numeric values.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RasterLayer with random values.</p>
+    <p>Rectangular matrix reclassified values.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function takes the number of columns and rows as input and creates a RasterLayer with the same extent.
-Each raster cell is randomly assigned a value between 0 and 1 drawn from an uniform distribution (<code>runif(1,0,1)</code>).
-If the parameter <code>rescale == TRUE</code> than the minimum and maximum value are used to rescale the cell values to a range between 0 and 1.</p>
+    <p>The length of the weighting vector determines the number of classes in the resulting matrix.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>randomNLM</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 0.01, 0.01  (x, y)
-#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -156,9 +154,7 @@ If the parameter <code>rescale == TRUE</code> than the minimum and maximum value
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

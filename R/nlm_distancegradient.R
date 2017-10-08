@@ -49,7 +49,7 @@ nlm_distancegradient <-
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      distancegradient <- rescaleNLM(distancegradient)
+      distancegradient <- util_rescale(distancegradient)
     }
 
     return(distancegradient)

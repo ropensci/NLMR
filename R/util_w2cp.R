@@ -1,4 +1,4 @@
-#' w2cp
+#' util_w2cp
 #'
 #' Convert a list of category  weighting  into a 1D array of cumulative proportions.
 #'
@@ -8,15 +8,13 @@
 #'
 #'
 #' @examples
-#' w2cp(c(0.5, 0.4, 0.6))
+#' util_w2cp(c(0.5, 0.4, 0.6))
 #'
 #'
-#' @aliases w2cp
-#' @rdname w2cp-method
-#'
+#' @keywords internal
 #' @export
 
-w2cp <- function(weighting) {
+util_w2cp <- function(weighting) {
 
   w <-  weighting
   proportions <- w / sum(w)

@@ -93,7 +93,7 @@ nlm_randomelement <- function(nCol, nRow, n, rescale = TRUE) {
 
   # Rescale values to 0-1
   if (rescale == TRUE) {
-    randomelement_raster <- rescaleNLM(randomelement_raster)
+    randomelement_raster <- util_rescale(randomelement_raster)
   }
 
   return(randomelement_raster)

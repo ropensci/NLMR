@@ -1,4 +1,4 @@
-#' rescaleNLM
+#' util_rescale
 #'
 #' A rescale in which the values in the raster are linearly rescaled to range between 0 and 1.
 #'
@@ -9,16 +9,16 @@
 #'
 #' @examples
 #'
-#' rescaleNLM(nlm_random(10,10))
+#' util_rescale(nlm_random(10,10))
 #'
 #'
-#' @aliases rescaleNLM
-#' @rdname rescaleNLM
+#' @aliases util_rescale
+#' @rdname util_rescale
 #'
 #' @export
 #'
 
-rescaleNLM <- function(r) {
+util_rescale <- function(r) {
     rescaled_NLM <-
       (r - raster::cellStats(r, "min")) /
                    (raster::cellStats(r, "max") - raster::cellStats(r, "min"))

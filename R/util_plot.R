@@ -1,24 +1,23 @@
-#' nlmr_plot
+#' util_plot
 #'
 #' Plot a Raster* object with the NLMR default theme
 #'
 #' @param nlm_obj [\code{Raster* object}]
 #'
-#' @return rasterVis visualization
-#'
+#' @return visualization
 #'
 #' @examples
 #' nlm_raster <- nlm_random(10,10)
-#' nlmr_plot(nlm_raster)
+#' util_plot(nlm_raster)
 #'
 #'
-#' @aliases nlmr_plot
-#' @rdname nlmr_plot-method
+#' @aliases util_plot
+#' @rdname util_plot
 #'
 #' @export
 #'
 
-nlmr_plot <- function(nlm_obj) {
+util_plot <- function(nlm_obj) {
   rasterVis::gplot(nlm_obj) +
     ggplot2::geom_raster(ggplot2::aes_string(fill = "value")) +
     ggthemes::geom_rangeframe(data = data.frame(

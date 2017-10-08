@@ -6,3 +6,5 @@ man-roxygen
 ^\.travis\.yml$
 ^docs$
 ^codecov\.yml$
+^_pkgdown\.yml$
+^index\.Rmd$

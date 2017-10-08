@@ -168,7 +168,7 @@ nlm_mpd  <-  function(nCol, nRow, h, rescale = TRUE) {
 
   # Rescale values to 0-1
   if (rescale == TRUE) {
-    mpd_Raster <- rescaleNLM(mpd_Raster)
+    mpd_Raster <- util_rescale(mpd_Raster)
   }
 
   return(mpd_Raster)

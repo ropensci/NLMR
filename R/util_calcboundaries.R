@@ -12,14 +12,12 @@
 #'
 #' @examples
 #' x <- matrix(runif(100,0,1),10,10)
-#' y <- NLMR::w2cp(c(0.5, 0.25, 0.25)) #cumulative proportion
+#' y <- util_w2cp(c(0.5, 0.25, 0.25)) #cumulative proportion
 #' util_calc_boundaries(x,y)
 #'
-#' @rdname util_classify
 #' @keywords internal
-#'
 #' @export
-#'
+
 
 util_calc_boundaries <- function(x, cumulative_proportions) {
 

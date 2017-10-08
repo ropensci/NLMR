@@ -54,7 +54,7 @@ nlm_planargradient  <- function(nCol,
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
-    gradient_raster <- rescaleNLM(gradient_raster)
+    gradient_raster <- util_rescale(gradient_raster)
   }
 
   return(gradient_raster)

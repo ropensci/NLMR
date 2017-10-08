@@ -40,7 +40,7 @@ nlm_edgegradient <- function(nCol, nRow, direction = NA, rescale = TRUE) {
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
-    edgegradient_raster <- rescaleNLM(edgegradient_raster)
+    edgegradient_raster <- util_rescale(edgegradient_raster)
   }
 
   return(edgegradient_raster)

@@ -10,6 +10,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<i class="fa fa-code" aria-hidden="true"></i> **NLMR**
+------------------------------------------------------------
+
+**N**eutral **L**andscape **M**odels with **R**
+
+
 ------------------------------------------------------------------------
 
 <i class="fa fa-paperclip" aria-hidden="true"></i> Background

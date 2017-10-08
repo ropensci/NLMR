@@ -38,7 +38,7 @@ nlm_random  <-  function(nCol, nRow, rescale = TRUE) {
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      random_raster <- rescaleNLM(random_raster)
+      random_raster <- util_rescale(random_raster)
     }
 
     return(random_raster)

@@ -2,7 +2,30 @@ title: NLMR
 url: https://marcosci.github.io/NLMR/
 template:
   params:
-    bootswatch: flatly
+    bootswatch: sandstone
+  reference:
+    - title: Neutral Landscape Models
+      desc: ~
+      contents:
+        - '`nlm_distancegradient`'
+        - '`nlm_edgegradient`'
+        - '`nlm_mpd`'
+        - '`nlm_percolationmaps`'
+        - '`nlm_planargradient`'
+        - '`nlm_randomcluster`'
+        - '`nlm_randomelement`'
+        - '`nlm_random`'
+        - '`nlm_randomrectangularcluster`'
+    - title: Metrics
+      desc: ~
+      contents:
+        - '`metric_fractaldim`'
+    - title: Utility Functions
+      desc: ~
+      contents:
+        - '`util_plot`'
+        - '`util_classify`'
+        - '`util_rescale`'
 navbar:
   left:
     - icon: fa-home
@@ -26,3 +49,8 @@ navbar:
     - icon: fa-github fa-lg
       text: "github"
       href: https://github.com/marcosci/NLMR
+
+
+
+
+
