@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>metric_fractaldim — metric_fractaldim • NLMR</title>
+<title>nlm_mpd — nlm_mpd • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -114,37 +114,55 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>metric_fractaldim</h1>
+    <h1>nlm_mpd</h1>
     </div>
 
     
-    <p>Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.</p>
+    <p>Create a midpoint displacement neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>metric_fractaldim</span>(<span class='no'>nlm</span>, <span class='no'>poi</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_mpd</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>h</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nlm</th>
-      <td><p>[<code>matrix(x,y)</code>] 2D matrix of data values.</p></td>
+      <th>nCol</th>
+      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>poi</th>
-      <td><p>[<code>numerical</code>]  Vector of numeric values.</p></td>
+      <th>nRow</th>
+      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
+    </tr>
+    <tr>
+      <th>h</th>
+      <td><p>[<code>numerical(1)</code>] The h value controls the level of spatial
+autocorrelation in element values.</p></td>
+    </tr>
+    <tr>
+      <th>rescale</th>
+      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values
+are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Rectangular matrix reclassified values.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The length of the weighting vector determines the number of classes in the resulting matrix.</p>
+    <p>RasterLayer with random values ranging from 0-1.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>nlm_mpd</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 129, 129, 16641  (nrow, ncol, ncell)
+#&gt; resolution  : 0.007751938, 0.007751938  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -152,9 +170,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
