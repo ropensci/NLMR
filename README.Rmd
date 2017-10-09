@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) 
 [![Join the chat at  https://gitter.im/NLMR_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) 
 
-# NLMR <img src="man/figures/logo.png" align="right"  height="200" width="200" />
+# NLMR <img src="man/figures/logo.png" align="right"  height="150" />
 
 The goal of NLMR is to ...
 
