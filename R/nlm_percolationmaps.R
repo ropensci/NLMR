@@ -1,4 +1,4 @@
-#' nlm_percolationmaps
+#' nlm_percolation
 #'
 #' Create a simple neutral landscape model with either 0 or 1 as values.
 #'
@@ -10,18 +10,18 @@
 #'
 #'
 #' @examples
-#' nlm_percolationmaps(nCol = 100, nRow = 100, p=0.5)
+#' nlm_percolation(nCol = 100, nRow = 100, p=0.5)
 #'
 #'
-#' @aliases nlm_percolationmaps
-#' @rdname nlm_percolationmaps
+#' @aliases nlm_percolation
+#' @rdname nlm_percolation
 #'
 #' @export
 #'
 
-nlm_percolationmaps  <- function(nCol,
+nlm_percolation  <- function(nCol,
                              nRow,
-                             prob) {
+                             prob = 0.5) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)

@@ -9,7 +9,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-Depends: 
+Depends:
     R (>= 3.1.0)
 RoxygenNote: 6.0.1
 Imports:
@@ -26,10 +26,12 @@ Imports:
     checkmate,
     deldir,
     SDMTools,
-    dplyr
+    dplyr,
+    gstat,
+    Rcpp
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
-Suggests: 
+Suggests:
     testthat,
     covr,
     knitr,
@@ -37,5 +39,6 @@ Suggests:
     lintr,
     lemon,
     reshape2
-VignetteBuilder: 
+VignetteBuilder:
     knitr
+LinkingTo: Rcpp

@@ -22,7 +22,7 @@ library(lemon)
 
 # create landscapes
 set.seed(5)
-percolation <- nlm_percolationmaps(50,50,0.4)
+percolation <- nlm_percolation(50,50,0.4)
 random <- nlm_random(50,50)
 distagrad <- nlm_distancegradient(50, 50, c(10,15,10,15))
 edgy <- nlm_edgegradient(50,50, 90)
@@ -146,7 +146,7 @@ library(lemon)
 
 # create landscapes
 set.seed(5)
-percolation <- nlm_percolationmaps(50,50,0.4)
+percolation <- nlm_percolation(50,50,0.4)
 random <- nlm_random(50,50)
 distagrad <- nlm_distancegradient(50, 50, c(10,15,10,15))
 edgy <- nlm_edgegradient(50,50, 90)

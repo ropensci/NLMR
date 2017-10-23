@@ -15,9 +15,26 @@
 #' @export
 #'
 
-metric_area <- function(nlm, poi){
+metric_area <- function(nlm, poi = NULL){
 
 
-  cs <- dplyr::tbl_df(SDMTools::PatchStat(mat = nlm))
-  return(cs)
+  if(is.null(poi)){
+    poi <- sort(unique(nlm@data@values))
+  }
+
+  freq_tib <- dplyr::tbl_df(raster::freq(nlm))
+
+  if(length(poi) == 1){
+    area_poi      <- freq_tib[freq_tib == poi,2]
+    area_poi_perc <- area_poi / raster::ncell(nlm)
+  } else {
+    area_poi      <- freq_tib[freq_tib == poi,2]
+    area_poi_perc <- dplyr::tbl_df(area_poi / raster::ncell(nlm))
+  }
+
+  area_poi$class <- poi
+  area_poi_perc$class <- poi
+
+  return(list(Total_Area = area_poi, Percentage_Area = area_poi_perc))
 }
+

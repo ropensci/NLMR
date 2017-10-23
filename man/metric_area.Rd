@@ -4,7 +4,7 @@
 \alias{metric_area}
 \title{metric_area}
 \usage{
-metric_area(nlm, poi)
+metric_area(nlm, poi = NULL)
 }
 \arguments{
 \item{nlm}{[\code{matrix(x,y)}]\cr 2D matrix of data values.}

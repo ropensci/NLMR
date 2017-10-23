@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_randomcluster — nlm_randomcluster • NLMR</title>
+<title>nlm_percolation — nlm_percolation • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -114,60 +114,48 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlm_randomcluster</h1>
+    <h1>nlm_percolation</h1>
     </div>
 
     
-    <p>Create a random cluster nearest-neighbour neutral landscape model with values
-ranging 0-1.</p>
+    <p>Create a simple neutral landscape model with either 0 or 1 as values.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_randomcluster</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>neighbourhood</span>, <span class='no'>p</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_percolation</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>nCol</th>
-      <td><p>[<code>integer(1)</code>] Number of columns in the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
     </tr>
     <tr>
       <th>nRow</th>
-      <td><p>[<code>integer(1)</code>] Number of rows in the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
     </tr>
     <tr>
-      <th>neighbourhood</th>
-      <td><p>[<code>numerical(1)</code>] Clusters are defined using a
-set of neighbourhood structures, 4 (Rook's case),
-8 (Queen's case).</p></td>
-    </tr>
-    <tr>
-      <th>p</th>
-      <td><p>[<code>numerical(1)</code>] The p value controls the proportion of
-elements randomly selected to form clusters.</p></td>
-    </tr>
-    <tr>
-      <th>rescale</th>
-      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values
-are rescaled between 0-1.</p></td>
+      <th>prob</th>
+      <td><p>[<code>numerical(1)</code>] Probability value for setting a cell either to 0 or 1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Raster with random values ranging from 0-1.</p>
+    <p>RasterLayer with random values 0 amd 1.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_randomcluster</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>8</span>, <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.4</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 10, 10, 100  (nrow, ncol, ncell)
-#&gt; resolution  : 0.1, 0.1  (x, y)
-#&gt; extent      : -0.04, 0.96, 0.04, 1.04  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+    <pre class="examples"><div class='input'><span class='fu'>nlm_percolation</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>0.5</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
+#&gt; resolution  : 0.01, 0.01  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

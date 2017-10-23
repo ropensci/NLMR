@@ -10,7 +10,7 @@ reference:
       - '`nlm_distancegradient`'
       - '`nlm_edgegradient`'
       - '`nlm_mpd`'
-      - '`nlm_percolationmaps`'
+      - '`nlm_percolation`'
       - '`nlm_planargradient`'
       - '`nlm_randomcluster`'
       - '`nlm_randomelement`'
