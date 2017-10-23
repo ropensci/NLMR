@@ -4,8 +4,9 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(nCol, nRow, autocorr_range, direction = "random",
-  angle = 1, rescale = TRUE)
+nlm_gaussianfield(nCol, nRow, autocorr_range = 10, mag_var = 0.5,
+  beta = 0.5, nug = 3, direction = "random", angle = 1,
+  rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr
@@ -16,6 +17,15 @@ Number of rows for the raster.}
 
 \item{autocorr_range}{[\code{numerical(1)}]\cr
 Maximal distance of spatial autocorrelation}
+
+\item{mag_var}{[\code{numerical(1)}]\cr
+Magnitude of variation}
+
+\item{beta}{[\code{numerical(1)}]\cr
+mean value over the field}
+
+\item{nug}{[\code{numerical(1)}]\cr
+Small-scale variations}
 
 \item{direction}{[\code{character("random" | "linear")}]\cr
 Direction of the gradient. Either random, or with a linear trend.}

@@ -8,6 +8,12 @@
 #'  Number of rows for the raster.
 #' @param autocorr_range [\code{numerical(1)}]\cr
 #' Maximal distance of spatial autocorrelation
+#' @param mag_var [\code{numerical(1)}]\cr
+#' Magnitude of variation
+#' @param beta [\code{numerical(1)}]\cr
+#' mean value over the field
+#' @param nug [\code{numerical(1)}]\cr
+#' Small-scale variations
 #' @param direction [\code{character("random" | "linear")}]\cr
 #' Direction of the gradient. Either random, or with a linear trend.
 #' @param angle [\code{numerical(1)}]\cr
@@ -25,16 +31,12 @@
 #' @export
 #'
 
-
-# Unconditional Gaussian simulation
-
-# range:  range parameter in the variogram model it is possible to control the degree of spatial correlation
-# Psill:  Magnitude of variation
-# beta: mean NDVI over the field
-# Nugget=3  // Small-scale variations
 nlm_gaussianfield <- function(nCol,
                               nRow,
-                              autocorr_range,
+                              autocorr_range = 10,
+                              mag_var = 0.025,
+                              beta = c(1,0.01,0.005),
+                              nug = 1,
                               direction = "random",
                               angle = 1,
                               rescale = TRUE){
@@ -49,10 +51,11 @@ nlm_gaussianfield <- function(nCol,
     spatial_sim <- gstat::gstat(formula = z~1,
                                 locations = ~x+y,
                                 dummy = TRUE,
-                                beta = 1,
-                                model = gstat::vgm(psill=0.025,
-                                                 model="Exp",
-                                                 range=autocorr_range),
+                                beta = beta,
+                                model = gstat::vgm(psill=mag_var,
+                                                   nugget = nug,
+                                                   model="Exp",
+                                                   range=autocorr_range),
                                 nmax = 20)
   }
 
@@ -60,8 +63,8 @@ nlm_gaussianfield <- function(nCol,
     spatial_sim <- gstat::gstat(formula = z~1+x+y,
                                 locations = ~x+y,
                                 dummy = TRUE,
-                                beta = c(1,0.01,0.005),
-                                model = gstat::vgm(psill=0.025,
+                                beta = beta,
+                                model = gstat::vgm(psill=mag_var,
                                                  range=autocorr_range,
                                                  model='Exp'),
                                 nmax = 20)
@@ -96,52 +99,3 @@ nlm_gaussianfield <- function(nCol,
   return(pred_raster)
 
 }
-
-
-# random_rast <- nlm_gaussianfield(30, 30, 15, direction = "random")
-# rasterVis::levelplot(random_rast)
-#
-# random_rast <- nlm_gaussianfield(100, 100, 5, direction = "linear", angle = 3)
-# rasterVis::levelplot(random_rast)
-#
-#
-#
-# library(microbenchmark)
-# benchm <- microbenchmark(
-#
-#   not_own = gaussian_field(r, 15, beta = c(1, 0, 0)) %>%  stretch(0, 1),
-#   own = nlm_gaussianfields() %>% stretch(0, 1),
-#   times = 9999
-# )
-#
-# autoplot(benchm)
-
-
-#
-# library(gstat)
-#
-# ## Create a square field of side 100. The field can be seen as a grid of regularly spaced pixels
-# Field = expand.grid(1:100, 1:100)
-# ## Set the name of the spatial coordinates within the field
-# names(Field)=c('x','y')
-#
-# ## Define the NDVI spatial structure inside the field
-# ## Set the parameters of the semi-variogram
-# Psill=15  // Magnitude of variation
-# Range=30  // Maximal distance of autocorrelation
-# Nugget=3  // Small-scale variations
-# ## Set the semi-variogram model
-# Beta=60   // mean NDVI over the field
-# NDVI_modelling=gstat(formula=z~1, // We assume that there is a constant trend in the data (that could exist with regard to the coordinates for instance)
-#                      locations=~x+y,
-#                      dummy=T,    // Logical value to set to True for unconditional simulation
-#                      beta=Beta,  // Necessity to set the average value over the field
-#                      model=vgm(psill=Psill,
-#                                range=Range ,
-#                                nugget=Nugget,
-#                                model='Sph'), // Spherical semi-variogram model
-#                      nmax=40) // number of nearest observations used for each new prediction
-#
-# ## Simulate the NDVI spatial structure within the field
-# NDVI_gaussian_field=predict(NDVI_modelling, newdata=Field, nsim=1) // nsim : number of simulations
-

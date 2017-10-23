@@ -121,8 +121,9 @@
     <p>Create an edge gradient neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>autocorr_range</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>,
-  <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -141,6 +142,21 @@ Number of rows for the raster.</p></td>
       <th>autocorr_range</th>
       <td><p>[<code>numerical(1)</code>]
 Maximal distance of spatial autocorrelation</p></td>
+    </tr>
+    <tr>
+      <th>mag_var</th>
+      <td><p>[<code>numerical(1)</code>]
+Magnitude of variation</p></td>
+    </tr>
+    <tr>
+      <th>beta</th>
+      <td><p>[<code>numerical(1)</code>]
+mean value over the field</p></td>
+    </tr>
+    <tr>
+      <th>nug</th>
+      <td><p>[<code>numerical(1)</code>]
+Small-scale variations</p></td>
     </tr>
     <tr>
       <th>direction</th>

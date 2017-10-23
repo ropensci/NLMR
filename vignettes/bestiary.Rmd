@@ -30,8 +30,8 @@ planary <- nlm_planargradient(50,50)
 randomRecClustery <- nlm_randomrectangularcluster(50, 50, 8, 16, rescale = FALSE)
 randomElementy <- nlm_randomelement(50,50, 90)
 randomClustery <- nlm_randomcluster(50,50, p = 0.5, neighbourhood = 4)
-randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
-
+randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.7)
+gaussian <- nlm_gaussianfield(nCol = 100, nRow = 100, 5)
 # transform rasters to long data frame to use facets
 
 ## first transform to SpatialPixelsDataFrame to have a transformation to long format
@@ -44,6 +44,7 @@ randomRecClustery_spdf <- as(randomRecClustery, "SpatialPixelsDataFrame")
 randomElementy_spdf    <- as(randomElementy, "SpatialPixelsDataFrame")
 randomClustery_spdf    <- as(randomClustery, "SpatialPixelsDataFrame")
 randomMPD_spdf         <- as(randomMPD, "SpatialPixelsDataFrame")
+gaussian_spdf          <- as(gaussian, "SpatialPixelsDataFrame")
 
 ## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
 percolation_df <- as.data.frame(percolation_spdf)
@@ -73,6 +74,11 @@ randomClustery_df[,4] <- "Random cluster"
 randomMPD_df <- as.data.frame(randomMPD_spdf)
 randomMPD_df[,4] <- "Midpoint displacement"
 
+gaussian_df <- as.data.frame(gaussian_spdf)
+gaussian_df[,4] <- "Gaussian field"
+names(gaussian_df)[1] <- "layer"
+gaussian_df[,c(2,3)] <- gaussian_df[,c(2,3)] / 100
+
 ## bind all of them together
 nlm_df <- rbind(percolation_df,
                 random_df,
@@ -82,7 +88,8 @@ nlm_df <- rbind(percolation_df,
                 randomRecClustery_df,
                 randomClustery_df,
                 randomElementy_df,
-                randomMPD_df)
+                randomMPD_df,
+                gaussian_df)
 
 # nlm_df <- rbind(percolation_df,
 #                 random_df,
@@ -349,7 +356,7 @@ library(lemon)
 
 # create landscapes
 set.seed(5)
-randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
+randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.7)
 
 # transform rasters to long data frame to use facets
 
