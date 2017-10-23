@@ -9,6 +9,7 @@ reference:
     contents:
       - '`nlm_distancegradient`'
       - '`nlm_edgegradient`'
+      - '`nlm_gaussianfield`'
       - '`nlm_mpd`'
       - '`nlm_percolation`'
       - '`nlm_planargradient`'
@@ -19,12 +20,14 @@ reference:
   - title: Metrics
     desc: ~
     contents:
+      - '`metric_area`'
       - '`metric_fractaldim`'
   - title: Utility Functions
     desc: ~
     contents:
-      - '`util_plot`'
       - '`util_classify`'
+      - '`util_merge`'
+      - '`util_plot`'
       - '`util_rescale`'
 navbar:
   left:

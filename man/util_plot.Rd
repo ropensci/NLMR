@@ -4,10 +4,12 @@
 \alias{util_plot}
 \title{util_plot}
 \usage{
-util_plot(nlm_obj)
+util_plot(nlm_obj, viridis = "A")
 }
 \arguments{
 \item{nlm_obj}{[\code{Raster* object}]}
+
+\item{viridis}{[\code{character}(1)]  Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), and "viridis" (or "D", the default option).}
 }
 \value{
 visualization

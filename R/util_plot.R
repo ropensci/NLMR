@@ -3,6 +3,7 @@
 #' Plot a Raster* object with the NLMR default theme
 #'
 #' @param nlm_obj [\code{Raster* object}]
+#' @param viridis [\code{character}(1)]  Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), and "viridis" (or "D", the default option).
 #'
 #' @return visualization
 #'
@@ -17,7 +18,7 @@
 #' @export
 #'
 
-util_plot <- function(nlm_obj) {
+util_plot <- function(nlm_obj, viridis = "A") {
   rasterVis::gplot(nlm_obj) +
     ggplot2::geom_raster(ggplot2::aes_string(fill = "value")) +
     ggthemes::geom_rangeframe(data = data.frame(
@@ -39,7 +40,7 @@ util_plot <- function(nlm_obj) {
       panel.border = ggplot2::element_blank()
     ) +
     viridis::scale_fill_viridis(
-      option = "D",
+      option = viridis,
       direction = -1,
       na.value = "transparent",
       name = "Z",

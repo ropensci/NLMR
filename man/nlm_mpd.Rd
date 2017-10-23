@@ -4,15 +4,17 @@
 \alias{nlm_mpd}
 \title{nlm_mpd}
 \usage{
-nlm_mpd(nCol, nRow, h, rescale = TRUE)
+nlm_mpd(nCol, nRow, roughness = 0.5, rand_dev = NULL, rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
-\item{h}{[\code{numerical(1)}]\cr The h value controls the level of spatial
+\item{roughness}{[\code{numerical(1)}]\cr Controls the level of spatial
 autocorrelation in element values.}
+
+\item{rand_dev}{[\code{numerical(1)}]\cr Initial standard deviation for the displacement}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
@@ -24,7 +26,7 @@ RasterLayer with random values ranging from 0-1.
 Create a midpoint displacement neutral landscape model with values ranging 0-1.
 }
 \examples{
-nlm_mpd(nCol = 100, nRow = 100, h = 0.2)
+nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
 
 }

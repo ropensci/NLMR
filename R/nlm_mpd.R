@@ -1,61 +1,12 @@
-# Returns a random displacement between -0.5 * disheight and 0.5 * disheight
-
-.randomdisplace <- function(disheight) {
-  # Returns a random displacement between -0.5 * disheight and 0.5 * disheight
-  displacement <-
-    stats::runif(1, 0, 1) * disheight - 0.5 * disheight
-  return(displacement)
-}
-
-# Calculate the average value of the 4 corners of a square (3 if up
-# against a corner) and displace at random.
-.displacevals <- function(p, disheight) {
-  if (length(p) == 4) {
-    pcentre <-  0.25 * sum(p) + .randomdisplace(disheight)
-  } else{
-    pcentre <-  sum(p) / 3 + .randomdisplace(disheight)
-  }
-  return(pcentre)
-
-}
-
-# Get the coordinates of the diamond centred on diax, diay with radius i2
-# if it fits inside the study area
-
-.check_diamond_coords <- function(diax, diay, dim, i2) {
-  if (diax < 0 | diax > dim | diay < 0 | diay > dim) {
-    return(NULL)
-  } else if (diax - i2 < 0) {
-    coords <- list(c(diax + i2, diay), c(diax, diay - i2), c(diax, diay + i2))
-    return(lapply(coords, as.integer))
-  } else if (diax + i2 >= dim) {
-    coords <- list(c(diax - i2, diay), c(diax, diay - i2), c(diax, diay + i2))
-    return(lapply(coords, as.integer))
-  } else if (diay - i2 < 0) {
-    coords <- list(c(diax + i2, diay), c(diax - i2, diay), c(diax, diay + i2))
-    return(lapply(coords, as.integer))
-  } else if (diay + i2 >= dim) {
-    coords <- list(c(diax + i2, diay), c(diax - i2, diay), c(diax, diay - i2))
-    return(lapply(coords, as.integer))
-  } else {
-    coords <-
-      list(c(diax + i2, diay),
-           c(diax - i2, diay),
-           c(diax, diay - i2),
-           c(diax, diay + i2))
-    return(lapply(coords, as.integer))
-  }
-}
-
-
 #' nlm_mpd
 #'
 #' Create a midpoint displacement neutral landscape model with values ranging 0-1.
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param h [\code{numerical(1)}]\cr The h value controls the level of spatial
+#' @param roughness [\code{numerical(1)}]\cr Controls the level of spatial
 #'          autocorrelation in element values.
+#' @param rand_dev [\code{numerical(1)}]\cr Initial standard deviation for the displacement
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #'
@@ -63,7 +14,7 @@
 #'
 #'
 #' @examples
-#' nlm_mpd(nCol = 100, nRow = 100, h = 0.2)
+#' nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 #'
 #'
 #' @aliases nlm_mpd
@@ -72,105 +23,85 @@
 #' @export
 #'
 
-nlm_mpd  <-  function(nCol, nRow, h, rescale = TRUE) {
+nlm_mpd  <-  function(nCol, nRow, roughness = 0.5,  rand_dev = NULL, rescale = TRUE){
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_numeric(h)
-  checkmate::assert_true(h <= 1.0 || h >= 0)
+  checkmate::assert_numeric(roughness)
+  checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
   checkmate::assert_logical(rescale)
 
-  # Determine the dimension of the smallest square
+  # Init size of matrix (width and height 2n + 1) and the corresponding matrix
   max_dim <-  max(nRow, nCol)
-  N      <- as.integer(ceiling(log(max_dim - 1, 2)))
-  dim    <-  2 ** N + 1
+  N      <- as.integer(ceiling(base::log(max_dim - 1, 2)))
+  size    <-  2 ** N + 1
 
-  # Create a surface consisting of random displacement heights average value
-  # 0, range from [-0.5, 0.5] x displacementheight
-  disheight <-  2.0
-  surface <-
-    matrix(stats::runif(dim * dim, 0, 1), dim, dim) * disheight - 0.5 * disheight
+  mpd_raster <- matrix(0, nrow = size, ncol = size)
 
-  # Set square size to cover the whole array
-  inc <-  dim - 1
-  while (inc > 1) {
-    # while considering a square/diamond at least 2x2 in size
-
-    i2 <- inc / 2 # what is half the width (i.e. where is the centre?)
-    # SQUARE step
-    for (x in seq(1, dim - 1, inc)) {
-      for (y in seq(1, dim - 1, inc)) {
-        # this adjusts the centre of the square
-        surface[x + i2, y + i2]  <-
-          .displacevals(c(surface[x, y],
-                          surface[x + inc, y],
-                          surface[x + inc, y + inc],
-                          surface[x, y + inc]),
-                        disheight)
-      }
-    }
-    # DIAMOND step
-    for (x in seq(0, dim - 2, inc)) {
-      for (y in seq(0, dim - 2, inc)) {
-        #
-        diaco <- .check_diamond_coords(x + i2, y, dim, i2)
-        diavals <- numeric()
-
-        for (co in diaco) {
-          coord_temp <-
-            surface[ifelse(co[1] == 0, 1, co[1]), ifelse(co[2] == 0, 1, co[2])]
-          diavals <- append(diavals, coord_temp)
-        }
-
-        surface[x + i2, y] <- .displacevals(diavals, disheight)
-
-        #
-        diaco <- .check_diamond_coords(x, y + i2, dim, i2)
-        diavals <- numeric()
-        for (co in diaco) {
-          coord_temp <-
-            surface[ifelse(co[1] == 0, 1, co[1]), ifelse(co[2] == 0, 1, co[2])]
-          diavals <- append(diavals, coord_temp)
-        }
-
-        surface[x, y + i2] <- .displacevals(diavals, disheight)
-
-        #
-        diaco <- .check_diamond_coords(x + inc, y + i2, dim, i2)
-        diavals <- numeric()
-        for (co in diaco) {
-          coord_temp <-
-            surface[ifelse(co[1] == 0, 1, co[1]), ifelse(co[2] == 0, 1, co[2])]
-          diavals <- append(diavals, coord_temp)
-        }
-        surface[x + inc, y + i2]  <-
-          .displacevals(diavals, disheight)
-
-        #
-        diaco   <- .check_diamond_coords(x + i2, y + inc, dim, i2)
-        diavals <- numeric()
-        for (co in diaco) {
-          coord_temp <-
-            surface[ifelse(co[1] == 0, 1, co[1]), ifelse(co[2] == 0, 1, co[2])]
-          diavals <- append(diavals, coord_temp)
-        }
-        surface[x + i2, y + inc]  <-
-          .displacevals(diavals, disheight)
-      }
-    }
-    # Reduce displacement height
-    disheight <- disheight * 2 ** (-h)
-    inc <- inc / 2
+  # Init initial standard dev for the displacement (if not specified byt the user)
+  if (missing(rand_dev)){
+    rand_dev <- stats::runif(1, min = 0, max = 1)
   }
 
-  mpd_Raster <- raster::raster(surface)
+
+  # Main loop
+  for (side.length in 2^(N:1)) {
+    half.side <- side.length / 2
+
+    # Square step
+    for (col in seq(1, size - 1, by=side.length)) {
+      for (row in seq(1, size - 1, by=side.length)) {
+        avg <- mean(c(
+          mpd_raster[row, col],                            # upper left
+          mpd_raster[row + side.length, col],              # lower left
+          mpd_raster[row, col + side.length],              # upper right
+          mpd_raster[row + side.length, col + side.length] # lower right
+        ))
+        avg <- avg + stats::rnorm(1, 0, rand_dev)
+
+        mpd_raster[row + half.side, col + half.side] <- avg
+      }
+    }
+
+    # Diamond step
+    for (row in seq(1, size, by=half.side)) {
+      for (col in seq((col+half.side) %% side.length, size, side.length)) {
+
+        avg <- mean(c(
+          mpd_raster[(row - half.side + size) %% size, col],# above
+          mpd_raster[(row + half.side) %% size, col],       # below
+          mpd_raster[row, (col + half.side) %% size],       # right
+          mpd_raster[row, (col - half.side) %% size]        # left
+        ))
+        mpd_raster[row, col] <- avg + stats::rnorm(1, 0, rand_dev)
+
+        if (row == 0) { mpd_raster[size - 1, col] = avg }
+        if (col == 0) { mpd_raster[row, size - 1] = avg }
+      }
+    }
+
+    # Redudce value for displacement by roughness
+    rand_dev <- rand_dev * roughness
+
+  }
+
+  # Remove artificial boundaries
+  mpd_raster <- mpd_raster[-1,]
+  mpd_raster <- mpd_raster[,-1]
+  mpd_raster <- mpd_raster[,-max(ncol(mpd_raster))]
+  mpd_raster <- mpd_raster[-max(nrow(mpd_raster)),]
+
+  # Convert matrix to raster
+  mpd_raster <- raster::raster(mpd_raster)
+
 
   # Rescale values to 0-1
   if (rescale == TRUE) {
-    mpd_Raster <- util_rescale(mpd_Raster)
+    mpd_raster <- util_rescale(mpd_raster)
   }
 
-  return(mpd_Raster)
+  return(mpd_raster)
 
 }
+

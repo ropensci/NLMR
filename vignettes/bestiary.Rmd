@@ -30,7 +30,7 @@ planary <- nlm_planargradient(50,50)
 randomRecClustery <- nlm_randomrectangularcluster(50, 50, 8, 16, rescale = FALSE)
 randomElementy <- nlm_randomelement(50,50, 90)
 randomClustery <- nlm_randomcluster(50,50, p = 0.5, neighbourhood = 4)
-randomMPD <- nlm_mpd(50,50, h=0.5)
+randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
 # transform rasters to long data frame to use facets
 
@@ -349,7 +349,7 @@ library(lemon)
 
 # create landscapes
 set.seed(5)
-randomMPD <- nlm_mpd(50,50, h=0.5)
+randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
 # transform rasters to long data frame to use facets
 
