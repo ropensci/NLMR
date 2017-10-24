@@ -4,12 +4,17 @@
 \alias{util_plot}
 \title{util_plot}
 \usage{
-util_plot(nlm_obj, viridis = "A")
+util_plot(nlm_obj, scale = "A")
 }
 \arguments{
 \item{nlm_obj}{[\code{Raster* object}]}
 
-\item{viridis}{[\code{character}(1)]  Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), and "viridis" (or "D", the default option).}
+\item{scale}{[\code{character}(1)]
+Five options are available: "viridis - magma" (= "A"),
+                            "viridis - inferno" (= "B"),
+                            "viridis - plasma" (= "C"),
+                            "viridis - viridis" (= "D", the default option),
+                            and "greyscale" (= "E")}
 }
 \value{
 visualization

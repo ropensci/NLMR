@@ -1,26 +1,31 @@
 #' nlm_gaussianfield
 #'
-#' Create an edge gradient neutral landscape model with values ranging 0-1.
+#' Create spatially correlated random fields (Gaussian random fields).
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr
 #'  Number of rows for the raster.
 #' @param autocorr_range [\code{numerical(1)}]\cr
-#' Maximal distance of spatial autocorrelation
+#'  Maximal distance of spatial autocorrelation
 #' @param mag_var [\code{numerical(1)}]\cr
-#' Magnitude of variation
+#'  Magnitude of variation in the field
 #' @param beta [\code{numerical(1)}]\cr
-#' mean value over the field
+#'  Mean value over the field.
 #' @param nug [\code{numerical(1)}]\cr
-#' Small-scale variations
+#'  Small-scale variations in the field.
 #' @param direction [\code{character("random" | "linear")}]\cr
-#' Direction of the gradient. Either random, or with a linear trend.
+#'  Direction of the gradient. Either random, or with a linear trend (with standard argument settings).
 #' @param angle [\code{numerical(1)}]\cr
-#' Maximal distance of spatial autocorrelation
-#' @param rescale [\code{numeric(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#'  Maximal distance of spatial autocorrelation
+#' @param rescale [\code{numeric(1)}]\cr
+#'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with xxxxxxx.
+#' @details
+#' If only the arguments \code{nCol} and \code{nRow} are given, the function
+#' fits with the argument \code{direction = "linear"} a linear trend.
+#'
+#' @return RasterLayer
 #'
 #' @examples
 #' nlm_gaussianfield(nCol = 100, nRow = 100, 5)
@@ -77,6 +82,7 @@ nlm_gaussianfield <- function(nCol,
   # convert prediction to raster
   sp::gridded(spatial_pred) <- ~x+y
   pred_raster <- raster::raster(spatial_pred)
+  extent(pred_raster) <- c(0,1,0,1)
 
   if (direction == "linear" & angle == 2) {
     pred_raster <- raster::flip(pred_raster, 2)
@@ -99,3 +105,5 @@ nlm_gaussianfield <- function(nCol,
   return(pred_raster)
 
 }
+
+# d ran- dom fields constrained by a particular semivariogram (Cressie 1993)

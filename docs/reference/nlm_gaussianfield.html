@@ -118,11 +118,11 @@
     </div>
 
     
-    <p>Create an edge gradient neutral landscape model with values ranging 0-1.</p>
+    <p>Create spatially correlated random fields (Gaussian random fields).</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
+  <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0.01</span>, <span class='fl'>0.005</span>), <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -146,22 +146,22 @@ Maximal distance of spatial autocorrelation</p></td>
     <tr>
       <th>mag_var</th>
       <td><p>[<code>numerical(1)</code>]
-Magnitude of variation</p></td>
+Magnitude of variation in the field</p></td>
     </tr>
     <tr>
       <th>beta</th>
       <td><p>[<code>numerical(1)</code>]
-mean value over the field</p></td>
+Mean value over the field.</p></td>
     </tr>
     <tr>
       <th>nug</th>
       <td><p>[<code>numerical(1)</code>]
-Small-scale variations</p></td>
+Small-scale variations in the field.</p></td>
     </tr>
     <tr>
       <th>direction</th>
       <td><p>[<code>character("random" | "linear")</code>]
-Direction of the gradient. Either random, or with a linear trend.</p></td>
+Direction of the gradient. Either random, or with a linear trend (with standard argument settings).</p></td>
     </tr>
     <tr>
       <th>angle</th>
@@ -170,13 +170,19 @@ Maximal distance of spatial autocorrelation</p></td>
     </tr>
     <tr>
       <th>rescale</th>
-      <td><p>[<code>numeric(1)</code>] If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
+      <td><p>[<code>numeric(1)</code>]
+If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RasterLayer with xxxxxxx.</p>
+    <p>RasterLayer</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If only the arguments <code>nCol</code> and <code>nRow</code> are given, the function
+fits with the argument <code>direction = "linear"</code> a linear trend.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -197,6 +203,8 @@ Maximal distance of spatial autocorrelation</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

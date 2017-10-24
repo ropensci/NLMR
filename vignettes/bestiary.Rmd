@@ -32,6 +32,8 @@ randomElementy <- nlm_randomelement(50,50, 90)
 randomClustery <- nlm_randomcluster(50,50, p = 0.5, neighbourhood = 4)
 randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.7)
 gaussian <- nlm_gaussianfield(nCol = 100, nRow = 100, 5)
+gaussian_linear <- nlm_gaussianfield(nCol = 100, nRow = 100, 5, direction = "linear")
+
 # transform rasters to long data frame to use facets
 
 ## first transform to SpatialPixelsDataFrame to have a transformation to long format
@@ -45,6 +47,7 @@ randomElementy_spdf    <- as(randomElementy, "SpatialPixelsDataFrame")
 randomClustery_spdf    <- as(randomClustery, "SpatialPixelsDataFrame")
 randomMPD_spdf         <- as(randomMPD, "SpatialPixelsDataFrame")
 gaussian_spdf          <- as(gaussian, "SpatialPixelsDataFrame")
+gaussian_linear_spdf          <- as(gaussian_linear, "SpatialPixelsDataFrame")
 
 ## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
 percolation_df <- as.data.frame(percolation_spdf)
@@ -79,6 +82,12 @@ gaussian_df[,4] <- "Gaussian field"
 names(gaussian_df)[1] <- "layer"
 gaussian_df[,c(2,3)] <- gaussian_df[,c(2,3)] / 100
 
+
+gaussian_linear_df <- as.data.frame(gaussian_linear_spdf)
+gaussian_linear_df[,4] <- "Gaussian field - linear trend"
+names(gaussian_linear_df)[1] <- "layer"
+gaussian_linear_df[,c(2,3)] <- gaussian_linear_df[,c(2,3)] / 100
+
 ## bind all of them together
 nlm_df <- rbind(percolation_df,
                 random_df,
@@ -89,7 +98,8 @@ nlm_df <- rbind(percolation_df,
                 randomClustery_df,
                 randomElementy_df,
                 randomMPD_df,
-                gaussian_df)
+                gaussian_df,
+                gaussian_linear_df)
 
 # nlm_df <- rbind(percolation_df,
 #                 random_df,
@@ -120,7 +130,7 @@ nlmr_bestiary <- ggplot(nlm_df, aes(x=x, y=y)) +
     aspect.ratio=1
   ) +
   viridis::scale_fill_viridis(
-    option = "D",
+    option = "A",
     direction = -1,
     na.value = "transparent",
     name = "Z",
@@ -142,290 +152,3 @@ nlmr_bestiary <- nlmr_bestiary + theme(text = element_text(size = 17),
 print(nlmr_bestiary)
 ```
 
-### Random landscapes
-```{r echo=FALSE, fig.height=12, fig.width=12, message=FALSE, results='hide'}
-# load packages ----
-library(NLMR)
-library(ggplot2)
-library(reshape2)
-library(viridis)
-library(lemon)
-
-# create landscapes
-set.seed(5)
-percolation <- nlm_percolation(50,50,0.4)
-random <- nlm_random(50,50)
-distagrad <- nlm_distancegradient(50, 50, c(10,15,10,15))
-edgy <- nlm_edgegradient(50,50, 90)
-planary <- nlm_planargradient(50,50)
-
-# transform rasters to long data frame to use facets
-
-## first transform to SpatialPixelsDataFrame to have a transformation to long format
-percolation_spdf       <- as(percolation, "SpatialPixelsDataFrame")
-random_spdf            <- as(random, "SpatialPixelsDataFrame")
-distagrad_spdf         <- as(distagrad, "SpatialPixelsDataFrame")
-edgy_spdf              <- as(edgy, "SpatialPixelsDataFrame")
-planary_spdf           <- as(planary, "SpatialPixelsDataFrame")
-
-## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
-percolation_df <- as.data.frame(percolation_spdf)
-percolation_df[,4] <- "Percolation"
-
-random_df <- as.data.frame(random_spdf)
-random_df[,4] <- "Random"
-
-edgy_df <- as.data.frame(edgy_spdf)
-edgy_df[,4] <- "Edge gradient"
-
-distagrad_df <- as.data.frame(distagrad_spdf)
-distagrad_df[,4] <- "Distance gradient"
-
-planary_df <- as.data.frame(planary_spdf)
-planary_df[,4] <- "Planar gradient"
-
-## bind all of them together
-random_df <- rbind(percolation_df,
-                random_df,
-                edgy_df,
-                distagrad_df,
-                planary_df)
-
-
-## rename columns
-colnames(random_df) <- c("value", "x", "y", "Type")
-
-
-
-
-# Plot the rasters as facets
-
-
-r_bestiary <- ggplot(random_df, aes(x=x, y=y)) +
-  geom_raster(aes(fill=value), alpha=0.8) +
-  facet_wrap( ~ Type, ncol = 3, scales = "fixed") +
-  ggplot2::coord_equal() +
-  ggplot2::labs(x = "Easting",
-                y = "Northing") +
-  ggplot2::theme(
-    legend.position = "bottom",
-    text = ggplot2::element_text(color = "#22211d"),
-    axis.line = ggplot2::element_line(),
-    axis.ticks.length = ggplot2::unit(.15, "cm"),
-    axis.ticks = ggplot2::element_line(),
-    panel.background=element_blank(),
-    panel.border=element_blank(), # bg of the panel
-    plot.background = element_rect(fill = "transparent"), # bg of the plot
-    panel.grid.major = element_blank(), # get rid of major grid
-    panel.grid.minor = element_blank(), # get rid of minor grid
-    legend.background = element_rect(fill = "transparent"), # get rid of legend bg
-    legend.box.background = element_rect(fill = "transparent", color = NA), # get rid of legend panel bg
-    strip.background = element_rect(colour = NA, fill = "grey45"),
-    aspect.ratio=1
-  ) +
-  viridis::scale_fill_viridis(
-    option = "D",
-    direction = -1,
-    na.value = "transparent",
-    name = "Z",
-    guide = ggplot2::guide_colorbar(
-      direction = "horizontal",
-      barheight = ggplot2::unit(2, units = "mm"),
-      barwidth = ggplot2::unit(50, units = "mm"),
-      draw.ulim = FALSE,
-      title.position = "top",
-      title.hjust = 0.5,
-      label.hjust = 0.5
-    )) +
-  coord_capped_cart(
-    xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
-
-r_bestiary <- r_bestiary + theme(text = element_text(size = 17),
-                                       axis.text.x = element_text(size = 15, angle = 70, vjust=-1.2, hjust = -1.2))
-
-print(r_bestiary)
-```
-
-### Hierarchical landscapes
-```{r echo=FALSE, fig.height=12, fig.width=12, message=FALSE, results='hide'}
-# load packages ----
-library(NLMR)
-library(ggplot2)
-library(reshape2)
-library(viridis)
-library(lemon)
-
-# create landscapes
-set.seed(5)
-randomRecClustery <- nlm_randomrectangularcluster(50, 50, 8, 16, rescale = FALSE)
-randomElementy <- nlm_randomelement(50,50, 90)
-randomClustery <- nlm_randomcluster(50,50, p = 0.5, neighbourhood = 4)
-# transform rasters to long data frame to use facets
-
-## first transform to SpatialPixelsDataFrame to have a transformation to long format
-randomRecClustery_spdf <- as(randomRecClustery, "SpatialPixelsDataFrame")
-randomElementy_spdf    <- as(randomElementy, "SpatialPixelsDataFrame")
-randomClustery_spdf    <- as(randomClustery, "SpatialPixelsDataFrame")
-
-## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
-randomRecClustery_df <- as.data.frame(randomRecClustery_spdf)
-randomRecClustery_df[,4] <- "Random-rectangalur cluster"
-
-randomElementy_df <- as.data.frame(randomElementy_spdf)
-randomElementy_df[,4] <- "Random elements"
-
-randomClustery_df <- as.data.frame(randomClustery_spdf)
-randomClustery_df[,4] <- "Random cluster"
-
-
-## bind all of them together
-h_df <- rbind(  randomRecClustery_df,
-                randomClustery_df,
-                randomElementy_df)
-
-# nlm_df <- rbind(percolation_df,
-#                 random_df,
-#                 edgy_df,
-#                 distagrad_df,
-#                 planary_df)
-
-## rename columns
-colnames(h_df) <- c("value", "x", "y", "Type")
-
-
-
-
-# Plot the rasters as facets
-
-
-h_bestiary <- ggplot(h_df, aes(x=x, y=y)) +
-  geom_raster(aes(fill=value), alpha=0.8) +
-  facet_wrap( ~ Type, ncol = 3, scales = "fixed") +
-  ggplot2::coord_equal() +
-  ggplot2::labs(x = "Easting",
-                y = "Northing") +
-  ggplot2::theme(
-    legend.position = "bottom",
-    text = ggplot2::element_text(color = "#22211d"),
-    axis.line = ggplot2::element_line(),
-    axis.ticks.length = ggplot2::unit(.15, "cm"),
-    axis.ticks = ggplot2::element_line(),
-    panel.background=element_blank(),
-    panel.border=element_blank(), # bg of the panel
-    plot.background = element_rect(fill = "transparent"), # bg of the plot
-    panel.grid.major = element_blank(), # get rid of major grid
-    panel.grid.minor = element_blank(), # get rid of minor grid
-    legend.background = element_rect(fill = "transparent"), # get rid of legend bg
-    legend.box.background = element_rect(fill = "transparent", color = NA), # get rid of legend panel bg
-    strip.background = element_rect(colour = NA, fill = "grey45"),
-    aspect.ratio=1
-  ) +
-  viridis::scale_fill_viridis(
-    option = "D",
-    direction = -1,
-    na.value = "transparent",
-    name = "Z",
-    guide = ggplot2::guide_colorbar(
-      direction = "horizontal",
-      barheight = ggplot2::unit(2, units = "mm"),
-      barwidth = ggplot2::unit(50, units = "mm"),
-      draw.ulim = FALSE,
-      title.position = "top",
-      title.hjust = 0.5,
-      label.hjust = 0.5
-    )) +
-  coord_capped_cart(
-    xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
-
-h_bestiary <- h_bestiary + theme(text = element_text(size = 17),
-                                       axis.text.x = element_text(size = 15, angle = 70, vjust=-1.2, hjust = -1.2))
-
-print(h_bestiary)
-
-```
-
-### Fractal landscapes
-
-```{r echo=FALSE, fig.height=12, fig.width=12, message=FALSE, results='hide'}
-# load packages ----
-library(NLMR)
-library(ggplot2)
-library(reshape2)
-library(viridis)
-library(lemon)
-
-# create landscapes
-set.seed(5)
-randomMPD <- nlm_mpd(nCol = 100, nRow = 100, roughness = 0.7)
-
-# transform rasters to long data frame to use facets
-
-## first transform to SpatialPixelsDataFrame to have a transformation to long format
-randomMPD_spdf         <- as(randomMPD, "SpatialPixelsDataFrame")
-
-## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
-randomMPD_df <- as.data.frame(randomMPD_spdf)
-randomMPD_df[,4] <- "Midpoint displacement"
-
-## bind all of them together
-f_df <- randomMPD_df
-
-# nlm_df <- rbind(percolation_df,
-#                 random_df,
-#                 edgy_df,
-#                 distagrad_df,
-#                 planary_df)
-
-## rename columns
-colnames(f_df) <- c("value", "x", "y", "Type")
-
-
-
-
-# Plot the rasters as facets
-
-
-f_bestiary <- ggplot(f_df, aes(x=x, y=y)) +
-  geom_raster(aes(fill=value), alpha=0.8) +
-  facet_wrap( ~ Type, ncol = 3, scales = "fixed") +
-  ggplot2::coord_equal() +
-  ggplot2::labs(x = "Easting",
-                y = "Northing") +
-  ggplot2::theme(
-    legend.position = "bottom",
-    text = ggplot2::element_text(color = "#22211d"),
-    axis.line = ggplot2::element_line(),
-    axis.ticks.length = ggplot2::unit(.15, "cm"),
-    axis.ticks = ggplot2::element_line(),
-    panel.background=element_blank(),
-    panel.border=element_blank(), # bg of the panel
-    plot.background = element_rect(fill = "transparent"), # bg of the plot
-    panel.grid.major = element_blank(), # get rid of major grid
-    panel.grid.minor = element_blank(), # get rid of minor grid
-    legend.background = element_rect(fill = "transparent"), # get rid of legend bg
-    legend.box.background = element_rect(fill = "transparent", color = NA), # get rid of legend panel bg
-    strip.background = element_rect(colour = NA, fill = "grey45"),
-    aspect.ratio=1
-  ) +
-  viridis::scale_fill_viridis(
-    option = "D",
-    direction = -1,
-    na.value = "transparent",
-    name = "Z",
-    guide = ggplot2::guide_colorbar(
-      direction = "horizontal",
-      barheight = ggplot2::unit(2, units = "mm"),
-      barwidth = ggplot2::unit(50, units = "mm"),
-      draw.ulim = FALSE,
-      title.position = "top",
-      title.hjust = 0.5,
-      label.hjust = 0.5
-    )) +
-  coord_capped_cart(
-    xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
-
-f_bestiary <- f_bestiary + theme(text = element_text(size = 17),
-                                 axis.text.x = element_text(size = 15, angle = 70, vjust=-1.2, hjust = -1.2))
-
-print(f_bestiary)
-```

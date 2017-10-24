@@ -4,8 +4,8 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(nCol, nRow, autocorr_range = 10, mag_var = 0.5,
-  beta = 0.5, nug = 3, direction = "random", angle = 1,
+nlm_gaussianfield(nCol, nRow, autocorr_range = 10, mag_var = 0.025,
+  beta = c(1, 0.01, 0.005), nug = 1, direction = "random", angle = 1,
   rescale = TRUE)
 }
 \arguments{
@@ -19,27 +19,32 @@ Number of rows for the raster.}
 Maximal distance of spatial autocorrelation}
 
 \item{mag_var}{[\code{numerical(1)}]\cr
-Magnitude of variation}
+Magnitude of variation in the field}
 
 \item{beta}{[\code{numerical(1)}]\cr
-mean value over the field}
+Mean value over the field.}
 
 \item{nug}{[\code{numerical(1)}]\cr
-Small-scale variations}
+Small-scale variations in the field.}
 
 \item{direction}{[\code{character("random" | "linear")}]\cr
-Direction of the gradient. Either random, or with a linear trend.}
+Direction of the gradient. Either random, or with a linear trend (with standard argument settings).}
 
 \item{angle}{[\code{numerical(1)}]\cr
 Maximal distance of spatial autocorrelation}
 
-\item{rescale}{[\code{numeric(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
+\item{rescale}{[\code{numeric(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer with xxxxxxx.
+RasterLayer
 }
 \description{
-Create an edge gradient neutral landscape model with values ranging 0-1.
+Create spatially correlated random fields (Gaussian random fields).
+}
+\details{
+If only the arguments \code{nCol} and \code{nRow} are given, the function
+fits with the argument \code{direction = "linear"} a linear trend.
 }
 \examples{
 nlm_gaussianfield(nCol = 100, nRow = 100, 5)
