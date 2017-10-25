@@ -82,7 +82,7 @@ nlm_gaussianfield <- function(nCol,
   # convert prediction to raster
   sp::gridded(spatial_pred) <- ~x+y
   pred_raster <- raster::raster(spatial_pred)
-  extent(pred_raster) <- c(0,1,0,1)
+  raster::extent(pred_raster) <- c(0,1,0,1)
 
   if (direction == "linear" & angle == 2) {
     pred_raster <- raster::flip(pred_raster, 2)
