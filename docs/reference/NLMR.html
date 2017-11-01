@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_percolation — nlm_percolation • NLMR</title>
+<title>NLMR — NLMR • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -117,59 +117,43 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlm_percolation</h1>
+    <h1>NLMR</h1>
     </div>
 
     
-    <p>Create a simple neutral landscape model with either 0 or 1 as values.</p>
+    <p><em>NLMR</em> is an R package for simulating neutral landscape models (NLM).
+By using</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_percolation</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>nCol</th>
-      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
-    </tr>
-    <tr>
-      <th>nRow</th>
-      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
-    </tr>
-    <tr>
-      <th>prob</th>
-      <td><p>[<code>numerical(1)</code>] Probability value for setting a cell either to 0 or 1.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>RasterLayer with random values 0 amd 1.</p>
+    <p>This package contains vignettes that introduce NLM and basic usage
+of the <em>NLMR</em> package. The supplemental
+<a href='https://github.com/prioritizr/nlmrdata'><em>nlmrdata</em></a>
+package contains a comprehensive database of simulated NLM. The vignettes
+in this package are listed below.</p><dl class='dl-horizontal'>
+<dt><a href='https://marcosci.github.io/NLMR/articles/background.html'>NLM Concepts + Terminology</a></dt><dd><p>Background information
+ on the concepts and terminology that underpin the simulation of neutral landscape models.</p></dd>
+<dt><a href='https://prioritizr.github.io/prioritizr/articles/bestiary.html'>NLMR Bestiary</a></dt><dd><p>Bestiary of the available neutral landscape models.</p></dd>
+<dt><a href='https://prioritizr.github.io/prioritizr/articles/BasicUsageVignette.html'>Quickstart Guide</a></dt><dd><p>Short walk-through of the
+  <em>NLMR</em> package and how to handle the simulations.</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Gardner RH, Milne BT, Turnei MG, O’Neill R V. 1987. Neutral models for the analysis of broad-scale landscape pattern. <em>Landscape Ecology</em> 1:19–28.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_percolation</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>p</span><span class='kw'>=</span><span class='fl'>0.5</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 0.01, 0.01  (x, y)
-#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+          </ul>
 
   </div>
 </div>

@@ -80,13 +80,13 @@ randomMPD_df[,4] <- "Midpoint displacement"
 gaussian_df <- as.data.frame(gaussian_spdf)
 gaussian_df[,4] <- "Gaussian field"
 names(gaussian_df)[1] <- "layer"
-gaussian_df[,c(2,3)] <- gaussian_df[,c(2,3)] / 100
+# gaussian_df[,c(2,3)] <- gaussian_df[,c(2,3)] / 100
 
 
 gaussian_linear_df <- as.data.frame(gaussian_linear_spdf)
 gaussian_linear_df[,4] <- "Gaussian field - linear trend"
 names(gaussian_linear_df)[1] <- "layer"
-gaussian_linear_df[,c(2,3)] <- gaussian_linear_df[,c(2,3)] / 100
+# gaussian_linear_df[,c(2,3)] <- gaussian_linear_df[,c(2,3)] / 100
 
 ## bind all of them together
 nlm_df <- rbind(percolation_df,

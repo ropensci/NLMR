@@ -35,9 +35,11 @@ navbar:
       href: index.html
     - text: "How To"
       menu:
-      -  text: Overview
+      -  text: NLM Concepts + Terminology
+         href: articles/background.html
+      -  text: NLMR Bestiary
          href: articles/bestiary.html
-      -  text: Basic Usage of NLMR
+      -  text: Quickstart Guide
          href: articles/BasicUsageVignette.html
   right:
     - text: "faq"

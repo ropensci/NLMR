@@ -65,10 +65,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/bestiary.html">Overview</a>
+      <a href="../articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/BasicUsageVignette.html">Basic Usage of NLMR</a>
+      <a href="../articles/bestiary.html">NLMR Bestiary</a>
+    </li>
+    <li>
+      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -121,7 +124,7 @@
     <p>Plot a Raster* object with the NLMR default theme</p>
     
 
-    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>nlm_obj</span>, <span class='kw'>viridis</span> <span class='kw'>=</span> <span class='st'>"A"</span>)</pre>
+    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>nlm_obj</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"A"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -131,8 +134,13 @@
       <td><p>[<code>Raster* object</code>]</p></td>
     </tr>
     <tr>
-      <th>viridis</th>
-      <td><p>[<code>character</code>(1)]  Four options are available: "magma" (or "A"), "inferno" (or "B"), "plasma" (or "C"), and "viridis" (or "D", the default option).</p></td>
+      <th>scale</th>
+      <td><p>[<code>character</code>(1)]
+Five options are available: "viridis - magma" (= "A"),
+                            "viridis - inferno" (= "B"),
+                            "viridis - plasma" (= "C"),
+                            "viridis - viridis" (= "D", the default option),
+                            and "greyscale" (= "E")</p></td>
     </tr>
     </table>
     
