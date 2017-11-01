@@ -40,3 +40,16 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 ## basic example code
 ```
+
+## Citation
+
+To cite package '_NLMR_' in publications please use:
+
+```{r, echo  = FALSE, result = "asis", comment = ""}
+cat(paste0("Sciaini M and Simpkins, CE (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
+```
+
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use _NLMR_.
+Hence, if you used _NLMR_ please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
+
+

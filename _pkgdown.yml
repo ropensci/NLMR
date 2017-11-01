@@ -41,6 +41,9 @@ navbar:
          href: articles/bestiary.html
       -  text: Quickstart Guide
          href: articles/BasicUsageVignette.html
+    - text: "Publication Record"
+      icon: fa-file-text-o
+      href: articles/publication_record.html
   right:
     - text: "faq"
       icon: fa-question-circle-o

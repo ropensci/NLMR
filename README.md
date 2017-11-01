@@ -25,3 +25,12 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 ## basic example code
 ```
+
+Citation
+--------
+
+To cite package '*NLMR*' in publications please use:
+
+    Sciaini M and Simpkins, CE (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
+
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use *NLMR*. Hence, if you used *NLMR* please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
