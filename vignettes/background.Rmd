@@ -9,3 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+## Neutral landscape models
+
+### Concept
+
+### Terminology

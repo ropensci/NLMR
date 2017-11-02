@@ -9,6 +9,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Creating NLMS
+# Basics
 
+## Structure
+
+* Class
+* Dimensions
+* Resolution
+* Extent
+* Coord. ref.
 

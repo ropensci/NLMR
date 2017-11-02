@@ -89,9 +89,10 @@ nlm_randomelement <- function(nCol, nRow, n, rescale = TRUE) {
 
 
   randomelement_raster <- raster::crop(randomelement_raster, raster::extent(0,1,0,1))
+  raster::extent(randomelement_raster) <-  raster::extent(0,1,0,1)
 
 
-  # Rescale values to 0-1
+   # Rescale values to 0-1
   if (rescale == TRUE) {
     randomelement_raster <- util_rescale(randomelement_raster)
   }
