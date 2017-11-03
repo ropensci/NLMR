@@ -41,4 +41,3 @@ Suggests:
     reshape2
 VignetteBuilder:
     knitr
-LinkingTo: Rcpp
