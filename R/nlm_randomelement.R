@@ -1,23 +1,29 @@
 #' nlm_randomelement
 #'
-#' Create a random rectangular cluster neutral landscape model with values
-#' ranging 0-1.
+#' @description Simulates a random rectangular cluster neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param n [\code{numerical(1)}]\cr The number of elements randomly selected
-#'          to form the basis of nearest-neighbour clusters.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default),
-#'                the values are rescaled between 0-1.
+#' @param nCol [\code{numerical(1)}]\cr
+#' Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr
+#' Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param n [\code{numerical(1)}]\cr
+#' The number of elements randomly selected to form the basis of
+#' nearest-neighbour clusters.
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with random values ranging from 0-1.
+#' @return RasterLayer
 #'
 #' @examples
 #' \donttest{
 #' nlm_randomelement(nCol = 50, nRow = 50, n = 40)
 #' }
 #'
+#' @references
+#' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
+#' networks. \emph{Ecological Modelling}, 219, 39–48.
 #' @aliases nlm_randomelement
 #' @rdname nlm_randomelement
 #'
@@ -65,11 +71,15 @@ nlm_randomelement <- function(nCol,
 
   randomelement_raster <-
     raster::rasterize(randomelement_spdf,
-                      raster::raster(nrow = nRow, ncol = nCol, resolution = c(1/nCol, 1/nRow), ext = raster::extent(randomelement_spdf)),
-                      field = randomelement_spdf@data[, 1])
+                      raster::raster(nrow = nRow,
+                                     ncol = nCol,
+                                     resolution = c(1/nCol, 1/nRow),
+                                     ext = raster::extent(randomelement_spdf)),
+                                     field = randomelement_spdf@data[, 1])
 
 
-  randomelement_raster <- raster::crop(randomelement_raster, raster::extent(0,1,0,1))
+  randomelement_raster <- raster::crop(randomelement_raster,
+                                       raster::extent(0,1,0,1))
 
   # specify resolution ----
   raster::extent(randomelement_raster) <- c(0,

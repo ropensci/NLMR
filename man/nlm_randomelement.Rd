@@ -7,28 +7,35 @@
 nlm_randomelement(nCol, nRow, resolution = 1, n, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{nCol}{[\code{numerical(1)}]\cr
+Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nRow}{[\code{numerical(1)}]\cr
+Number of rows for the raster.}
 
-\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
-\item{n}{[\code{numerical(1)}]\cr The number of elements randomly selected
-to form the basis of nearest-neighbour clusters.}
+\item{n}{[\code{numerical(1)}]\cr
+The number of elements randomly selected to form the basis of
+nearest-neighbour clusters.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default),
-the values are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer with random values ranging from 0-1.
+RasterLayer
 }
 \description{
-Create a random rectangular cluster neutral landscape model with values
-ranging 0-1.
+Simulates a random rectangular cluster neutral landscape model.
 }
 \examples{
 \donttest{
 nlm_randomelement(nCol = 50, nRow = 50, n = 40)
 }
 
+}
+\references{
+Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
+networks. \emph{Ecological Modelling}, 219, 39–48.
 }
