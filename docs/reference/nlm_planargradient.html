@@ -128,7 +128,7 @@
     </div>
 
     
-    <p>Create a planar gradient neutral landscape model with values ranging 0-1.</p>
+    <p>Create a planar gradient neutral landscape model.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_planargradient</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
@@ -139,29 +139,43 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>nCol</th>
-      <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>]
+Number of columns for the raster.</p></td>
     </tr>
     <tr>
       <th>nRow</th>
-      <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>]
+Number of rows for the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>[<code>numerical(1)</code>] Resolution of the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>]
+Resolution of the raster.</p></td>
     </tr>
     <tr>
       <th>direction</th>
-      <td><p>[<code>numerical(1)</code>] Direction of the gradient, if unspecified the direction is randomly determined.</p></td>
+      <td><p>[<code>numerical(1)</code>]
+Direction of the gradient, if unspecified the direction is randomly
+determined.</p></td>
     </tr>
     <tr>
       <th>rescale</th>
-      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
+      <td><p>[<code>logical(1)</code>]
+If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RasterLayer with random values ranging from 0-1.</p>
+    <p>RasterLayer</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Simulates a linear gradient sloping in a specified or random direction.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Palmer, M.W. (1992) The coexistence of species in fractal landscapes. The American Naturalist, 139, 375–397.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -174,7 +188,6 @@
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -183,6 +196,10 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

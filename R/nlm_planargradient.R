@@ -1,19 +1,30 @@
 #' nlm_planargradient
 #'
-#' Create a planar gradient neutral landscape model with values ranging 0-1.
+#' @description Create a planar gradient neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param direction [\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param nCol [\code{numerical(1)}]\cr
+#' Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr
+#' Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param direction [\code{numerical(1)}]\cr
+#' Direction of the gradient, if unspecified the direction is randomly
+#' determined.
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with random values ranging from 0-1.
+#' @return RasterLayer
 #'
+#' @details
+#' Simulates a linear gradient sloping in a specified or random direction.
 #'
 #' @examples
 #' nlm_planargradient(nCol = 100, nRow = 100)
 #'
+#' @references
+#' Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
+#' \emph{The American Naturalist}, 139, 375–397.
 #'
 #' @aliases nlm_planargradient
 #' @rdname nlm_planargradient

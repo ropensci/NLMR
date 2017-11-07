@@ -43,5 +43,10 @@ nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
 
 }
 \references{
-Gardner RH, O’Neill R V, Turner MG, Dale VH. 1989. Quantifying scale-dependent effects of animal movement with simple percolation models. Landscape Ecology 3:217–227.
+1. Gardner RH, O’Neill R V, Turner MG, Dale VH. 1989. Quantifying
+scale-dependent effects of animal movement with simple percolation models.
+\emph{ Landscape Ecology} 3:217–227.
+2. Gustafson, E.J. & Parker, G.R. (1992) Relationships between landcover
+proportion and indices of landscape spatial pattern. \emph{Landscape Ecology}
+, 7, 101–110.
 }

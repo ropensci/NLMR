@@ -1,17 +1,32 @@
 #' nlm_edgegradient
 #'
-#' Create an edge gradient neutral landscape model with values ranging 0-1.
+#' @description Simulates an edge gradient neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param direction [\code{numerical(1)}]\cr Direction of the gradient (between 0 and 360 dec), if unspecified the direction is randomly determined.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param nCol [\code{numerical(1)}]\cr
+#' Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr
+#' Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param direction [\code{numerical(1)}]\cr
+#' Direction of the gradient (between 0 and 360 dec), if unspecified the
+#' direction is randomly determined.
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with xxxxxxx.
+#' @return RasterLayer
+#'
+#' @details
+#' Simulates a linear gradient orientated on a specified or random direction
+#' that has a central peak that runs perpendicular to the gradient direction.
 #'
 #' @examples
 #' nlm_edgegradient(nCol = 100, nRow = 100, direction = 80)
+#'
+#' @references
+#' Travis, J.M.J. & Dytham, C. (2004) A method for simulating patterns of
+#' habitat availability at static and dynamic range margins. \emph{Oikos}, 104,
+#' 410–416.
 #'
 #' @aliases nlm_edgegradient
 #' @rdname nlm_edgegradient
@@ -58,6 +73,7 @@ nlm_edgegradient <- function(nCol,
 }
 
 #####
-# Sebastians comment: Make transformation to planar gradient adjustable by the user
+# Sebastians comment: Make transformation to planar gradient adjustable
+#                     by the user
 #####
 

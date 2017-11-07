@@ -8,30 +8,52 @@ nlm_randomcluster(nCol, nRow, resolution = 1, neighbourhood = 8, p,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{integer(1)}]\cr Number of columns in the raster.}
+\item{nCol}{[\code{integer(1)}]\cr
+Number of columns in the raster.}
 
-\item{nRow}{[\code{integer(1)}]\cr Number of rows in the raster.}
+\item{nRow}{[\code{integer(1)}]\cr
+Number of rows in the raster.}
 
-\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
-\item{neighbourhood}{[\code{numerical(1)}]\cr Clusters are defined using a
-set of neighbourhood structures, 4 (Rook's case),
-8 (Queen's case).}
+\item{neighbourhood}{[\code{numerical(1)}]\cr
+Clusters are defined using a set of neighbourhood structures,
+ 4 (Rook's case), 8 (Queen's case).}
 
-\item{p}{[\code{numerical(1)}]\cr The p value controls the proportion of
-elements randomly selected to form clusters.}
+\item{p}{[\code{numerical(1)}]\cr
+The p value controls the proportion of   elements randomly selected to form
+clusters.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
-are rescaled between 0-1.}
+\item{rescale}{[\code{logical(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
 Raster with random values ranging from 0-1.
 }
 \description{
-Create a random cluster nearest-neighbour neutral landscape model with values
-ranging 0-1.
+Simulates the random cluster nearest-neighbour algorithm.
+}
+\details{
+The algorithm (Etherington et al. 2014) is an adoption of the MRC algorithm
+ by Saura & Martínez-Millán (2000)
+The algorithm simulates a percolation map, which defines random clusters by
+running a connected labellign algorithm which detects clusters and gives them
+a unique ID.
+It controls the size and directional bias of the cluster with the proportion
+of the matrix that is within a cluster and with specifying a specific
+neighbourhood rule.
+Each cluster is than given a random value and non-cluster cells are assigned
+values by performing a nearest neighbour interpolation.
 }
 \examples{
 nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
 
+}
+\references{
+Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
+modified random clusters method. \emph{Landscape Ecology}, 15, 661–678.
+Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
+package for the creation of neutral landscape models within a general
+numerical framework. \emph{Methods in Ecology and Evolution} 6:164–168.
 }

@@ -1,25 +1,45 @@
 #' nlm_randomcluster
 #'
-#' Create a random cluster nearest-neighbour neutral landscape model with values
-#' ranging 0-1.
+#' Simulates the random cluster nearest-neighbour algorithm.
 #'
-#' @param nCol [\code{integer(1)}]\cr Number of columns in the raster.
-#' @param nRow  [\code{integer(1)}]\cr Number of rows in the raster.
-#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
-#'                      set of neighbourhood structures, 4 (Rook's case),
-#'                      8 (Queen's case).
-#' @param p [\code{numerical(1)}]\cr The p value controls the proportion of
-#'          elements randomly selected to form clusters.
-#' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
-#'                are rescaled between 0-1.
+#' @param nCol [\code{integer(1)}]\cr
+#' Number of columns in the raster.
+#' @param nRow  [\code{integer(1)}]\cr
+#' Number of rows in the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param neighbourhood [\code{numerical(1)}]\cr
+#' Clusters are defined using a set of neighbourhood structures,
+#'  4 (Rook's case), 8 (Queen's case).
+#' @param p [\code{numerical(1)}]\cr
+#' The p value controls the proportion of   elements randomly selected to form
+#' clusters.
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
+#' @details
+#' The algorithm (Etherington et al. 2014) is an adoption of the MRC algorithm
+#'  by Saura & Martínez-Millán (2000)
+#' The algorithm simulates a percolation map, which defines random clusters by
+#' running a connected labellign algorithm which detects clusters and gives them
+#' a unique ID.
+#' It controls the size and directional bias of the cluster with the proportion
+#' of the matrix that is within a cluster and with specifying a specific
+#' neighbourhood rule.
+#' Each cluster is than given a random value and non-cluster cells are assigned
+#' values by performing a nearest neighbour interpolation.
 #'
 #' @examples
 #' nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
 #'
+#' @references
+#' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
+#' modified random clusters method. \emph{Landscape Ecology}, 15, 661–678.
+#' Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
+#' package for the creation of neutral landscape models within a general
+#' numerical framework. \emph{Methods in Ecology and Evolution} 6:164–168.
 #' @aliases nlm_randomcluster
 #' @rdname nlm_randomcluster
 #'
@@ -31,7 +51,8 @@ nlm_randomcluster  <-
            nRow,
            resolution = 1,
            neighbourhood = 8,
-           p, rescale = TRUE) {
+           p,
+           rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
@@ -40,12 +61,8 @@ nlm_randomcluster  <-
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_logical(rescale)
 
-    # Create a random raster
-    random_raster <- nlm_random(nCol, nRow)
-
     # Create percolation array
-    random_raster <- util_classify(matrix(random_raster[], nCol, nRow),
-                                         c(1 - p, p))
+    random_raster <- matrix(nlm_percolation(nCol, nRow, p)[], nCol, nRow)
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
@@ -81,7 +98,10 @@ nlm_randomcluster  <-
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(ncol=nCol, nrow=nRow, ext = raster::extent(randomcluster_spdf), resolution = c(1/nCol, 1/nRow)),
+      raster::raster(ncol=nCol,
+                     nrow=nRow,
+                     ext = raster::extent(randomcluster_spdf),
+                     resolution = c(1/nCol, 1/nRow)),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
@@ -89,7 +109,8 @@ nlm_randomcluster  <-
       na.rm = TRUE
     )
 
-    randomcluster_raster <- raster::crop(randomcluster_raster, raster::extent(0,1,0,1))
+    randomcluster_raster <- raster::crop(randomcluster_raster,
+                                         raster::extent(0,1,0,1))
 
 
     # specify resolution ----
