@@ -7,22 +7,41 @@
 nlm_percolation(nCol, nRow, resolution = 1, prob = 0.5)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{nCol}{[\code{numerical(1)}]\cr
+Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nRow}{[\code{numerical(1)}]\cr
+Number of rows for the raster.}
 
-\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
-\item{prob}{[\code{numerical(1)}]\cr Probability value for setting a cell either to 0 or 1.}
+\item{prob}{[\code{numerical(1)}]\cr
+Probability value for setting a cell either to 0 or 1.}
 }
 \value{
-RasterLayer with random values 0 amd 1.
+RasterLayer
 }
 \description{
 Create a random percolation map.
 }
+\details{
+The simulation of a random percolation map is accomplished in two steps:
+
+\itemize{
+ \item{Initialization: }{ Setup matrix of size (\code{nCol}*\code{nRow})}
+ \item{Map generation: }{ For each cell in the matrix a single uniformly
+ distributed random number is generated and tested against a probability
+ \code{p}. If the random number is smaller than \code{p}, the cell is set to
+ 1 - if it is higher the cell is set to 0.}
+}
+
+The proportion of 0 and 1 is thus controlled with the argument \code{p}.
+}
 \examples{
 nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
 
-
+}
+\references{
+Gardner RH, O’Neill R V, Turner MG, Dale VH. 1989. Quantifying scale-dependent effects of animal movement with simple percolation models. Landscape Ecology 3:217–227.
 }

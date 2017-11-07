@@ -42,6 +42,9 @@
 #' Initial standard deviation for the displacement step (default == 1)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
+#' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
+#' a warning that the functions changes the dimensions to an appropriate one for
+#' the algorithm.
 #'
 #' @return RasterLayer
 #'

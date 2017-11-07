@@ -12,6 +12,7 @@ r_packages:
   - rasterVis
   - igraph
   - lemon
+  - dismo
   - deldir
 
 after_success:
