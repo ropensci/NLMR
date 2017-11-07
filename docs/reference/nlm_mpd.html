@@ -184,9 +184,10 @@ the algorithm.</p></td>
     <p>The algorithm is a direct implementation of the midpoint displacement
 algorithm.
 It performs the following steps:</p><ul>
-<li><p>Initialization:  Setup matrix of size (n^2 + 1)*(n^2 + 1), where n
- is <code>max(nCol, nRow)</code> and assign a random value to the four corners
- of the matrix.</p></li>
+<li><p>Initialization:  Determine the smallest fit of
+ <code>max(nCol, nRow)</code> in <em>n^2 + 1</em> and assign value to n.
+ Setup matrix of size (n^2 + 1)*(n^2 + 1).
+ Afterwards, assign a random value to the four corners of the matrix.</p></li>
 <li><p>Diamond Step:  For each square in the matrix, assign the average of
  the four corner points plus a random value to the midpoint of that square.</p></li>
 <li><p>Diamond Step:  For each diamond in the matrix, assign the average
@@ -206,7 +207,7 @@ algorithm on a 5 × 5 matrix:
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_mpd</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: nlm_mpd returns RasterLayer with the dimension of 2^max(nCol, nRow)+1</span></div><div class='output co'>#&gt; class       : RasterLayer 
+    <pre class="examples"><div class='input'><span class='fu'>nlm_mpd</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: nlm_mpd returns RasterLayer with that fits in the dimension 2^n+1</span></div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 127, 127, 16129  (nrow, ncol, ncell)
 #&gt; resolution  : 1, 1  (x, y)
 #&gt; extent      : 0, 127, 0, 127  (xmin, xmax, ymin, ymax)
