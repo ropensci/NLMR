@@ -26,7 +26,8 @@ Imports:
     checkmate,
     dplyr,
     gstat,
-    dismo
+    dismo,
+    deldir
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:

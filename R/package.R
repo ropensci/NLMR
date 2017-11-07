@@ -10,16 +10,21 @@
 #' in this package are listed below.
 #'
 #' \describe{
-#' \item{\href{https://marcosci.github.io/NLMR/articles/background.html}{NLM Concepts + Terminology}}{Background information
-#'  on the concepts and terminology that underpin the simulation of neutral landscape models.}
-#' \item{\href{https://marcosci.github.io/NLMR/articles/bestiary.html}{NLMR Bestiary}}{Bestiary of the available neutral landscape models.}
-#' \item{\href{https://marcosci.github.io/NLMR/articles/BasicUsageVignette.html}{Quickstart Guide}}{Short walk-through of the
-#'   \emph{NLMR} package and how to handle the simulations.}
+#' \item{\href{https://marcosci.github.io/NLMR/articles/background.html}{NLM
+#' Concepts + Terminology}}{Background information on the concepts and
+#' terminology that underpin the simulation of neutral landscape models.}
+#' \item{\href{https://marcosci.github.io/NLMR/articles/bestiary.html}{NLMR
+#' Bestiary}}{Bestiary of the available neutral landscape models.}
+#' \item{\href{https://marcosci.github.io/NLMR/articles/BasicUsageVignette.html}{
+#' Quickstart Guide}}{Short walk-through of the \emph{NLMR} package and how to
+#' handle the simulations.}
 #' }
 #'
 #' @references
-#' Gardner RH, Milne BT, Turnei MG, O’Neill R V. 1987. Neutral models for the analysis of broad-scale landscape pattern. \emph{Landscape Ecology} 1:19–28.
+#' Gardner RH, Milne BT, Turnei MG, O’Neill R V. 1987. Neutral models for the
+#'  analysis of broad-scale landscape pattern. \emph{Landscape Ecology} 1:19–28.
 #'
-#' @name NLMR
 #' @docType package
+#' @name NLMR
+
 NULL

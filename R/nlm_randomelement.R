@@ -14,6 +14,11 @@
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
+#' @details
+#' The algorithm selects \code{n} random cell of the matrix and assigns them a
+#' uniformly distributed random value. The cells are then converted to a point
+#' pattern and interpolated by voronoi tesselation.
+#'
 #' @return RasterLayer
 #'
 #' @examples

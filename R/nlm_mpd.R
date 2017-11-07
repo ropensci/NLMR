@@ -25,7 +25,7 @@
 #' The image below shows the steps involved in running the diamond-square
 #' algorithm on a 5 × 5 matrix:
 #'
-#' \if{html}{\figure{Diamond_Square.png}{options: width=950 alt=""}}
+#' \if{html}{\figure{Diamond_Square.png}{options: width=1200 height=400 alt=""}}
 #' \if{latex}{\figure{Diamond_Square.png}{options: width=0.5in}}
 #'
 #' (From Wikimedia Commons)

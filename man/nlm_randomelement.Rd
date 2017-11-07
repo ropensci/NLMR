@@ -29,6 +29,11 @@ RasterLayer
 \description{
 Simulates a random rectangular cluster neutral landscape model.
 }
+\details{
+The algorithm selects \code{n} random cell of the matrix and assigns them a
+uniformly distributed random value. The cells are then converted to a point
+pattern and interpolated by voronoi tesselation.
+}
 \examples{
 \donttest{
 nlm_randomelement(nCol = 50, nRow = 50, n = 40)

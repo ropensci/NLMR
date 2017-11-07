@@ -168,6 +168,12 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
     <p>RasterLayer</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The algorithm selects <code>n</code> random cell of the matrix and assigns them a
+uniformly distributed random value. The cells are then converted to a point
+pattern and interpolated by voronoi tesselation.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
@@ -192,6 +198,8 @@ networks. <em>Ecological Modelling</em>, 219, 39–48.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       
