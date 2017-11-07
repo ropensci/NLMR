@@ -23,8 +23,8 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Create a spatially random neutral landscape model with values
-from a uniform distribution.
+Simulate a spatially random neutral landscape model with values
+drawn a uniform distribution.
 }
 \details{
 The function takes the number of columns and rows as input and creates a

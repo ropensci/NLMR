@@ -2,10 +2,14 @@
 #'
 #' @description Create a random percolation map.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param prob [\code{numerical(1)}]\cr Probability value for setting a cell either to 0 or 1.
+#' @param nCol [\code{numerical(1)}]\cr
+#' Number of columns for the raster.
+#' @param nRow [\code{numerical(1)}]\cr
+#' Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param prob [\code{numerical(1)}]\cr
+#' Probability value for setting a cell either to 0 or 1.
 #'
 #' @return RasterLayer with random values 0 amd 1.
 #'

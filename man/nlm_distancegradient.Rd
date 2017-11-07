@@ -27,8 +27,7 @@ Otherwise, the distance in raster units is calculated.}
 RasterLayer
 }
 \description{
-Create a distance gradient neutral landscape model with values
-ranging between 0-1.
+Simulate a distance gradient neutral landscape model..
 }
 \details{
 The function takes the number of columns and rows as input and creates a

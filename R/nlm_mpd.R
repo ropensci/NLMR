@@ -60,7 +60,8 @@ nlm_mpd  <-  function(nCol,
                       resolution = 1,
                       roughness = 0.5,
                       rand_dev = 1,
-                      rescale = TRUE){
+                      rescale = TRUE,
+                      verbose = TRUE){
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -136,6 +137,10 @@ nlm_mpd  <-  function(nCol,
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
     mpd_raster <- util_rescale(mpd_raster)
+  }
+
+  if (verbose == TRUE) {
+  warning("nlm_mpd returns RasterLayer with the dimension of 2^max(nCol, nRow)+1")
   }
 
   return(mpd_raster)

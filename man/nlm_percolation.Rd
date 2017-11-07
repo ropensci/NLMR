@@ -19,7 +19,7 @@ nlm_percolation(nCol, nRow, resolution = 1, prob = 0.5)
 RasterLayer with random values 0 amd 1.
 }
 \description{
-Create a simple neutral landscape model with either 0 or 1 as values.
+Create a random percolation map.
 }
 \examples{
 nlm_percolation(nCol = 100, nRow = 100, prob=0.5)

@@ -12,8 +12,8 @@
 #' \describe{
 #' \item{\href{https://marcosci.github.io/NLMR/articles/background.html}{NLM Concepts + Terminology}}{Background information
 #'  on the concepts and terminology that underpin the simulation of neutral landscape models.}
-#' \item{\href{https://prioritizr.github.io/prioritizr/articles/bestiary.html}{NLMR Bestiary}}{Bestiary of the available neutral landscape models.}
-#' \item{\href{https://prioritizr.github.io/prioritizr/articles/BasicUsageVignette.html}{Quickstart Guide}}{Short walk-through of the
+#' \item{\href{https://marcosci.github.io/NLMR/articles/bestiary.html}{NLMR Bestiary}}{Bestiary of the available neutral landscape models.}
+#' \item{\href{https://marcosci.github.io/NLMR/articles/BasicUsageVignette.html}{Quickstart Guide}}{Short walk-through of the
 #'   \emph{NLMR} package and how to handle the simulations.}
 #' }
 #'
