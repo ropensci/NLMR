@@ -7,5 +7,5 @@ man-roxygen
 ^docs$
 ^codecov\.yml$
 ^_pkgdown\.yml$
-^_appveyor\.yml$
+^appveyor\.yml$
 ^index\.Rmd$
