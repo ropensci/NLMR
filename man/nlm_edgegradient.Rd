@@ -4,12 +4,15 @@
 \alias{nlm_edgegradient}
 \title{nlm_edgegradient}
 \usage{
-nlm_edgegradient(nCol, nRow, direction = NA, rescale = TRUE)
+nlm_edgegradient(nCol, nRow, resolution = 1, direction = NA,
+  rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{direction}{[\code{numerical(1)}]\cr Direction of the gradient (between 0 and 360 dec), if unspecified the direction is randomly determined.}
 

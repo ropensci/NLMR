@@ -4,25 +4,37 @@
 \alias{nlm_distancegradient}
 \title{nlm_distancegradient}
 \usage{
-nlm_distancegradient(nCol, nRow, origin, rescale = TRUE)
+nlm_distancegradient(nCol, nRow, resolution = 1, origin, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{nCol}{[\code{numerical(1)}]\cr
+Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nRow}{[\code{numerical(1)}]\cr
+Number of rows for the raster.}
 
-\item{origin}{[\code{numerical(4)}]\cr Edge coordinates of the origin of the distance measurement.}
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
-\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1. Otherwise, the distance in raster units is calculated.}
+\item{origin}{[\code{numerical(4)}]\cr
+Edge coordinates of the origin of the distance measurement.}
+
+\item{rescale}{[\code{logical(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.
+Otherwise, the distance in raster units is calculated.}
 }
 \value{
-RasterLayer with distance measurements starting in a predefined origin.
+RasterLayer
 }
 \description{
-Create a distance gradient neutral landscape model with values ranging 0-1.
+Create a distance gradient neutral landscape model with values
+ranging between 0-1.
 }
 \details{
-origin is a numeric vector of xmin, xmax, ymin, ymax for a square inside the raster from which the distance is measured.
+The function takes the number of columns and rows as input and creates a
+RasterLayer with the same extent. \code{Origin} is a numeric vector of
+xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
+distance is measured.
 }
 \examples{
 nlm_distancegradient(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))

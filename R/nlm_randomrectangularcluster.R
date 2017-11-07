@@ -4,6 +4,7 @@
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param minL [\code{numerical(1)}]\cr The minimum possible length of width and height for each random rectangular cluster.
 #' @param maxL [\code{numerical(1)}]\cr The maximum possible length of width and height for each random rectangular cluster.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
@@ -22,7 +23,12 @@
 #'
 
 nlm_randomrectangularcluster <-
-  function(nCol, nRow, minL, maxL, rescale = TRUE) {
+  function(nCol,
+           nRow,
+           resolution = 1,
+           minL,
+           maxL,
+           rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
@@ -58,6 +64,12 @@ nlm_randomrectangularcluster <-
 
     # Transform to raster ----
     randomrectangularcluster_raster <- raster::raster(matrix)
+
+    # specify resolution ----
+    raster::extent(randomrectangularcluster_raster) <- c(0,
+                                         ncol(randomrectangularcluster_raster)*resolution,
+                                         0,
+                                         nrow(randomrectangularcluster_raster)*resolution)
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {

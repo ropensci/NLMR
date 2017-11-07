@@ -4,12 +4,15 @@
 \alias{nlm_planargradient}
 \title{nlm_planargradient}
 \usage{
-nlm_planargradient(nCol, nRow, direction = NA, rescale = TRUE)
+nlm_planargradient(nCol, nRow, resolution = 1, direction = NA,
+  rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{direction}{[\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.}
 

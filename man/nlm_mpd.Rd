@@ -4,29 +4,66 @@
 \alias{nlm_mpd}
 \title{nlm_mpd}
 \usage{
-nlm_mpd(nCol, nRow, roughness = 0.5, rand_dev = NULL, rescale = TRUE)
+nlm_mpd(nCol, nRow, resolution = 1, roughness = 0.5, rand_dev = 1,
+  rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{nCol}{[\code{numerical(1)}]\cr
+Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nRow}{[\code{numerical(1)}]\cr
+Number of rows for the raster.}
 
-\item{roughness}{[\code{numerical(1)}]\cr Controls the level of spatial
-autocorrelation in element values.}
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
-\item{rand_dev}{[\code{numerical(1)}]\cr Initial standard deviation for the displacement}
+\item{roughness}{[\code{numerical(1)}]\cr
+Controls the level of spatial autocorrelation (!= hurst index)}
+
+\item{rand_dev}{[\code{numerical(1)}]\cr
+Initial standard deviation for the displacement step (default == 1)}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
 }
 \value{
-RasterLayer with random values ranging from 0-1.
+RasterLayer
 }
 \description{
-Create a midpoint displacement neutral landscape model with values ranging 0-1.
+Create a midpoint displacement neutral landscape model with
+values ranging 0-1.
+}
+\details{
+The algorithm is a direct implementation of the midpoint displacement
+algorithm.
+It performs the following steps:
+
+\itemize{
+ \item{Initialization: }{ Setup matrix of size (n^2 + 1)*(n^2 + 1_, where n
+ is \code{max(nCol, nRow)} and assigning a random value to the four corners
+ of the matrix.}
+ \item{Diamond Step: }{ For each square in the matrix, assign the average of
+ the four corner points plus a random value to the midpoint of that square.}
+ \item{Diamond Step: }{ For each diamond in the matrix, assign the average
+  of the four corner points plus a random value to the midpoint of that
+  diamond.}
+}
+
+At each iteration the roughness, an approximation to common hurst index,
+is reduced.
+
+The image below shows the steps involved in running the diamond-square
+algorithm on a 5 × 5 matrix:
+
+\if{html}{\figure{Diamond_Square.png}{options: width=950 alt=""}}
+\if{latex}{\figure{Diamond_Square.png}{options: width=0.5in}}
+
+(From Wikimedia Commons)
 }
 \examples{
 nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
-
+}
+\references{
+\url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}
 }

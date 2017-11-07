@@ -131,7 +131,8 @@
     <p>Create a planar gradient neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_planargradient</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_planargradient</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -143,6 +144,10 @@
     <tr>
       <th>nRow</th>
       <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
+    </tr>
+    <tr>
+      <th>resolution</th>
+      <td><p>[<code>numerical(1)</code>] Resolution of the raster.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -162,8 +167,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>nlm_planargradient</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 0.01, 0.01  (x, y)
-#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 

@@ -1,28 +1,3 @@
-# Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
-.voronoipolygons <- function(x) {
-  crds <- x@coords
-
-  z <- deldir::deldir(crds[, 1], crds[, 2])
-  w <- deldir::tile.list(z)
-  polys <- vector(mode = "list", length = length(w))
-  for (i in seq(along = polys)) {
-    pcrds <- cbind(w[[i]]$x, w[[i]]$y)
-    pcrds <- rbind(pcrds, pcrds[1, ])
-    polys[[i]] <-
-      sp::Polygons(list(sp::Polygon(pcrds)), ID = as.character(i))
-  }
-  SP <-  sp::SpatialPolygons(polys)
-  voronoi <- sp::SpatialPolygonsDataFrame(SP,
-                                          data = data.frame(
-                                            x = crds[, 1],
-                                            y = crds[, 2],
-                                            row.names = lapply(
-                                              methods::slot(SP, "polygons"),
-                                              function(x)methods::slot(x, "ID"))
-                                          ))
-}
-
-
 #' nlm_randomcluster
 #'
 #' Create a random cluster nearest-neighbour neutral landscape model with values
@@ -30,6 +5,7 @@
 #'
 #' @param nCol [\code{integer(1)}]\cr Number of columns in the raster.
 #' @param nRow  [\code{integer(1)}]\cr Number of rows in the raster.
+#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr Clusters are defined using a
 #'                      set of neighbourhood structures, 4 (Rook's case),
 #'                      8 (Queen's case).
@@ -51,7 +27,11 @@
 #'
 
 nlm_randomcluster  <-
-  function(nCol, nRow, neighbourhood, p, rescale = TRUE) {
+  function(nCol,
+           nRow,
+           resolution = 1,
+           neighbourhood = 8,
+           p, rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
@@ -90,7 +70,7 @@ nlm_randomcluster  <-
       raster::rasterToPoints(clusters, spatial = TRUE)
 
     # Create a tessellated surface ---
-    randomcluster_tess <- .voronoipolygons(randomcluster_point)
+    randomcluster_tess <- dismo::voronoi(randomcluster_point)
 
     # Fill tessellated surface with values from points ----
     randomcluster_values <-
@@ -110,7 +90,13 @@ nlm_randomcluster  <-
     )
 
     randomcluster_raster <- raster::crop(randomcluster_raster, raster::extent(0,1,0,1))
-    raster::extent(randomcluster_raster) <-  raster::extent(0,1,0,1)
+
+
+    # specify resolution ----
+    raster::extent(randomcluster_raster) <- c(0,
+                                         ncol(randomcluster_raster)*resolution,
+                                         0,
+                                         nrow(randomcluster_raster)*resolution)
 
 
     # Rescale values to 0-1 ----
@@ -122,7 +108,3 @@ nlm_randomcluster  <-
 
   }
 
-
-#####
-## cut rasterized object to ectent of 0,1,0,1
-#####

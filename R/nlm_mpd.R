@@ -1,29 +1,66 @@
 #' nlm_mpd
 #'
-#' Create a midpoint displacement neutral landscape model with values ranging 0-1.
+#' @description Create a midpoint displacement neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
-#' @param roughness [\code{numerical(1)}]\cr Controls the level of spatial
-#'          autocorrelation in element values.
-#' @param rand_dev [\code{numerical(1)}]\cr Initial standard deviation for the displacement
+#' @details
+#' The algorithm is a direct implementation of the midpoint displacement
+#' algorithm.
+#' It performs the following steps:
+#'
+#' \itemize{
+#'  \item{Initialization: }{ Setup matrix of size (n^2 + 1)*(n^2 + 1), where n
+#'  is \code{max(nCol, nRow)} and assign a random value to the four corners
+#'  of the matrix.}
+#'  \item{Diamond Step: }{ For each square in the matrix, assign the average of
+#'  the four corner points plus a random value to the midpoint of that square.}
+#'  \item{Diamond Step: }{ For each diamond in the matrix, assign the average
+#'   of the four corner points plus a random value to the midpoint of that
+#'   diamond.}
+#' }
+#'
+#' At each iteration the roughness, an approximation to common hurst index,
+#' is reduced.
+#'
+#' The image below shows the steps involved in running the diamond-square
+#' algorithm on a 5 × 5 matrix:
+#'
+#' \if{html}{\figure{Diamond_Square.png}{options: width=950 alt=""}}
+#' \if{latex}{\figure{Diamond_Square.png}{options: width=0.5in}}
+#'
+#' (From Wikimedia Commons)
+#'
+#'
+#' @param nCol [\code{numerical(1)}]\cr
+#' Number of columns for the raster.
+#' @param nRow  [\code{numerical(1)}]\cr
+#' Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
+#' @param roughness [\code{numerical(1)}]\cr
+#' Controls the level of spatial autocorrelation (!= hurst index)
+#' @param rand_dev [\code{numerical(1)}]\cr
+#' Initial standard deviation for the displacement step (default == 1)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #'
-#' @return RasterLayer with random values ranging from 0-1.
+#' @return RasterLayer
 #'
+#' @references  \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}
 #'
 #' @examples
 #' nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
-#'
 #'
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
 #'
 #' @export
-#'
 
-nlm_mpd  <-  function(nCol, nRow, roughness = 0.5,  rand_dev = NULL, rescale = TRUE){
+nlm_mpd  <-  function(nCol,
+                      nRow,
+                      resolution = 1,
+                      roughness = 0.5,
+                      rand_dev = 1,
+                      rescale = TRUE){
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -32,24 +69,19 @@ nlm_mpd  <-  function(nCol, nRow, roughness = 0.5,  rand_dev = NULL, rescale = T
   checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
   checkmate::assert_logical(rescale)
 
-  # Init size of matrix (width and height 2n + 1) and the corresponding matrix
+  # Init size of matrix (width and height 2^n + 1) and the corresponding matrix
   max_dim <-  max(nRow, nCol)
-  N      <- as.integer(ceiling(base::log(max_dim - 1, 2)))
+  N       <- as.integer(ceiling(base::log(max_dim - 1, 2)))
   size    <-  2 ** N + 1
 
+  # setup matrix ----
   mpd_raster <- matrix(0, nrow = size, ncol = size)
 
-  # Init initial standard dev for the displacement (if not specified byt the user)
-  if (missing(rand_dev)){
-    rand_dev <- stats::runif(1, min = 0, max = 1)
-  }
-
-
-  # Main loop
+  # Main loop  ----
   for (side.length in 2^(N:1)) {
     half.side <- side.length / 2
 
-    # Square step
+    # Square step  ----
     for (col in seq(1, size - 1, by=side.length)) {
       for (row in seq(1, size - 1, by=side.length)) {
         avg <- mean(c(
@@ -64,7 +96,7 @@ nlm_mpd  <-  function(nCol, nRow, roughness = 0.5,  rand_dev = NULL, rescale = T
       }
     }
 
-    # Diamond step
+    # Diamond step  ----
     for (row in seq(1, size, by=half.side)) {
       for (col in seq((col+half.side) %% side.length, size, side.length)) {
 
@@ -81,22 +113,27 @@ nlm_mpd  <-  function(nCol, nRow, roughness = 0.5,  rand_dev = NULL, rescale = T
       }
     }
 
-    # Redudce value for displacement by roughness
+    # Redudce value for displacement by roughness ----
     rand_dev <- rand_dev * roughness
 
   }
 
-  # Remove artificial boundaries
+  # Remove artificial boundaries ----
   mpd_raster <- mpd_raster[-1,]
   mpd_raster <- mpd_raster[,-1]
   mpd_raster <- mpd_raster[,-max(ncol(mpd_raster))]
   mpd_raster <- mpd_raster[-max(nrow(mpd_raster)),]
 
-  # Convert matrix to raster
+  # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)
 
+  # specify resolution ----
+  raster::extent(mpd_raster) <- c(0,
+                                        ncol(mpd_raster)*resolution,
+                                        0,
+                                        nrow(mpd_raster)*resolution)
 
-  # Rescale values to 0-1
+  # Rescale values to 0-1 ----
   if (rescale == TRUE) {
     mpd_raster <- util_rescale(mpd_raster)
   }

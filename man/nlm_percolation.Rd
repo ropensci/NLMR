@@ -4,12 +4,14 @@
 \alias{nlm_percolation}
 \title{nlm_percolation}
 \usage{
-nlm_percolation(nCol, nRow, prob = 0.5)
+nlm_percolation(nCol, nRow, resolution = 1, prob = 0.5)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{prob}{[\code{numerical(1)}]\cr Probability value for setting a cell either to 0 or 1.}
 }
@@ -20,7 +22,7 @@ RasterLayer with random values 0 amd 1.
 Create a simple neutral landscape model with either 0 or 1 as values.
 }
 \examples{
-nlm_percolation(nCol = 100, nRow = 100, p=0.5)
+nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
 
 
 }

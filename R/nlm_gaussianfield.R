@@ -6,6 +6,8 @@
 #'  Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr
 #'  Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr
+#' Resolution of the raster.
 #' @param autocorr_range [\code{numerical(1)}]\cr
 #'  Maximal distance of spatial autocorrelation
 #' @param mag_var [\code{numerical(1)}]\cr
@@ -38,6 +40,7 @@
 
 nlm_gaussianfield <- function(nCol,
                               nRow,
+                              resolution = 1,
                               autocorr_range = 10,
                               mag_var = 0.025,
                               beta = c(1,0.01,0.005),
@@ -96,6 +99,12 @@ nlm_gaussianfield <- function(nCol,
   if (direction == "linear" & angle == 4) {
     pred_raster <- raster::flip(pred_raster, 1)
   }
+
+  # specify resolution ----
+  raster::extent(pred_raster) <- c(0,
+                                     ncol(pred_raster)*resolution,
+                                     0,
+                                     nrow(pred_raster)*resolution)
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {

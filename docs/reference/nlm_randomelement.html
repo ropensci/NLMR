@@ -132,7 +132,7 @@
 ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_randomelement</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='no'>n</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_randomelement</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>n</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -144,6 +144,10 @@ ranging 0-1.</p>
     <tr>
       <th>nRow</th>
       <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
+    </tr>
+    <tr>
+      <th>resolution</th>
+      <td><p>[<code>numerical(1)</code>] Resolution of the raster.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -165,8 +169,8 @@ the values are rescaled between 0-1.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>nlm_randomelement</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>40</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 50, 50, 2500  (nrow, ncol, ncell)
-#&gt; resolution  : 0.02, 0.02  (x, y)
-#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 50, 0, 50  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
 #&gt; data source : in memory
 #&gt; names       : layer 

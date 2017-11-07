@@ -43,6 +43,7 @@ nlm_edgegradient <- function(nCol,
   edgegradient_raster <-
     (abs(0.5 - gradient_raster) * -2) + 1
 
+  # specify resolution ----
   raster::extent(edgegradient_raster) <- c(0,
                                            ncol(edgegradient_raster)*resolution,
                                            0,

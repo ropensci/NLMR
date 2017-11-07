@@ -4,12 +4,15 @@
 \alias{nlm_randomrectangularcluster}
 \title{nlm_randomrectangularcluster}
 \usage{
-nlm_randomrectangularcluster(nCol, nRow, minL, maxL, rescale = TRUE)
+nlm_randomrectangularcluster(nCol, nRow, resolution = 1, minL, maxL,
+  rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{minL}{[\code{numerical(1)}]\cr The minimum possible length of width and height for each random rectangular cluster.}
 

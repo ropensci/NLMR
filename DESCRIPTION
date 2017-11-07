@@ -24,11 +24,9 @@ Imports:
     ggthemes,
     viridis,
     checkmate,
-    deldir,
-    SDMTools,
     dplyr,
     gstat,
-    Rcpp
+    dismo
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:

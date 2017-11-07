@@ -21,7 +21,6 @@ reference:
     desc: ~
     contents:
       - '`metric_area`'
-      - '`metric_fractaldim`'
   - title: Utility Functions
     desc: ~
     contents:

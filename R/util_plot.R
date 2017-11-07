@@ -50,7 +50,7 @@ util_plot <- function(nlm_obj, scale = "A") {
         aspect.ratio=1
       ) +
       lemon::coord_capped_cart(
-        xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
+        xlim = c(0, ncol(nlm_obj)), ylim = c(0, nrow(nlm_obj)), left = "both", bottom = "both")
 
 
   } else {
@@ -91,7 +91,7 @@ util_plot <- function(nlm_obj, scale = "A") {
           label.hjust = 0.5
         )) +
       lemon::coord_capped_cart(
-        xlim = c(0, 1), ylim = c(0, 1), left = "both", bottom = "both")
+        xlim = c(0, ncol(nlm_obj)), ylim = c(0, nrow(nlm_obj)), left = "both", bottom = "both")
 
 
   }

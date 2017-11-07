@@ -4,6 +4,7 @@
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param direction [\code{numerical(1)}]\cr Direction of the gradient, if unspecified the direction is randomly determined.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -22,9 +23,10 @@
 
 
 nlm_planargradient  <- function(nCol,
-                              nRow,
-                              direction = NA,
-                              rescale = TRUE) {
+                                nRow,
+                                resolution = 1,
+                                direction = NA,
+                                rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -51,6 +53,12 @@ nlm_planargradient  <- function(nCol,
 
   # Transform to raster ----
   gradient_raster <- raster::raster(gradient_matrix)
+
+  # specify resolution ----
+  raster::extent(gradient_raster) <- c(0,
+                                  ncol(gradient_raster)*resolution,
+                                  0,
+                                  nrow(gradient_raster)*resolution)
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {

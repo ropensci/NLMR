@@ -4,9 +4,9 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(nCol, nRow, autocorr_range = 10, mag_var = 0.025,
-  beta = c(1, 0.01, 0.005), nug = 1, direction = "random", angle = 1,
-  rescale = TRUE)
+nlm_gaussianfield(nCol, nRow, resolution = 1, autocorr_range = 10,
+  mag_var = 0.025, beta = c(1, 0.01, 0.005), nug = 1,
+  direction = "random", angle = 1, rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr
@@ -14,6 +14,9 @@ Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the raster.}
 
 \item{autocorr_range}{[\code{numerical(1)}]\cr
 Maximal distance of spatial autocorrelation}

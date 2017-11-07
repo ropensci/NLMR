@@ -1,16 +1,17 @@
 #' nlm_percolation
 #'
-#' Create a simple neutral landscape model with either 0 or 1 as values.
+#' @description Create a random percolation map.
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param prob [\code{numerical(1)}]\cr Probability value for setting a cell either to 0 or 1.
 #'
 #' @return RasterLayer with random values 0 amd 1.
 #'
 #'
 #' @examples
-#' nlm_percolation(nCol = 100, nRow = 100, p=0.5)
+#' nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
 #'
 #'
 #' @aliases nlm_percolation
@@ -21,6 +22,7 @@
 
 nlm_percolation  <- function(nCol,
                              nRow,
+                             resolution = 1,
                              prob = 0.5) {
 
   # Check function arguments ----
@@ -39,6 +41,12 @@ nlm_percolation  <- function(nCol,
 
   percolation_raster <-
     raster::raster(percolation_matrix)
+
+  # specify resolution ----
+  raster::extent(percolation_raster) <- c(0,
+                                  ncol(percolation_raster)*resolution,
+                                  0,
+                                  nrow(percolation_raster)*resolution)
 
   return(percolation_raster)
 

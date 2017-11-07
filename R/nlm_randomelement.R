@@ -1,27 +1,3 @@
-# Function to create voronoi pylygons, kindly borrowed from https://stackoverflow.com/a/9405831
-.voronoipolygons <- function(x) {
-  crds <- x@coords
-
-  z <- deldir::deldir(crds[, 1], crds[, 2])
-  w <- deldir::tile.list(z)
-  polys <- vector(mode = "list", length = length(w))
-  for (i in seq(along = polys)) {
-    pcrds <- cbind(w[[i]]$x, w[[i]]$y)
-    pcrds <- rbind(pcrds, pcrds[1, ])
-    polys[[i]] <-
-      sp::Polygons(list(sp::Polygon(pcrds)), ID = as.character(i))
-  }
-  SP <-  sp::SpatialPolygons(polys)
-  voronoi <- sp::SpatialPolygonsDataFrame(SP,
-                                          data = data.frame(
-                                            x = crds[, 1],
-                                            y = crds[, 2],
-                                            row.names = lapply(
-                                              methods::slot(SP, "polygons"),
-                                              function(x)methods::slot(x, "ID"))
-                                          ))
-}
-
 #' nlm_randomelement
 #'
 #' Create a random rectangular cluster neutral landscape model with values
@@ -29,6 +5,7 @@
 #'
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param n [\code{numerical(1)}]\cr The number of elements randomly selected
 #'          to form the basis of nearest-neighbour clusters.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default),
@@ -47,7 +24,11 @@
 #' @export
 #'
 
-nlm_randomelement <- function(nCol, nRow, n, rescale = TRUE) {
+nlm_randomelement <- function(nCol,
+                              nRow,
+                              resolution = 1,
+                              n,
+                              rescale = TRUE) {
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
@@ -74,7 +55,7 @@ nlm_randomelement <- function(nCol, nRow, n, rescale = TRUE) {
     raster::rasterToPoints(raster::raster(matrix), spatial = TRUE)
 
   # Create a tessellated surface
-  randomelement_tess <- .voronoipolygons(randomelement_point)
+  randomelement_tess <- dismo::voronoi(randomelement_point)
 
   # Fill tessellated surface with values from points
   randomelement_values <-
@@ -89,7 +70,12 @@ nlm_randomelement <- function(nCol, nRow, n, rescale = TRUE) {
 
 
   randomelement_raster <- raster::crop(randomelement_raster, raster::extent(0,1,0,1))
-  raster::extent(randomelement_raster) <-  raster::extent(0,1,0,1)
+
+  # specify resolution ----
+  raster::extent(randomelement_raster) <- c(0,
+                                       ncol(randomelement_raster)*resolution,
+                                       0,
+                                       nrow(randomelement_raster)*resolution)
 
 
    # Rescale values to 0-1

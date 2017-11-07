@@ -4,12 +4,15 @@
 \alias{nlm_randomcluster}
 \title{nlm_randomcluster}
 \usage{
-nlm_randomcluster(nCol, nRow, neighbourhood, p, rescale = TRUE)
+nlm_randomcluster(nCol, nRow, resolution = 1, neighbourhood = 8, p,
+  rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{integer(1)}]\cr Number of columns in the raster.}
 
 \item{nRow}{[\code{integer(1)}]\cr Number of rows in the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{neighbourhood}{[\code{numerical(1)}]\cr Clusters are defined using a
 set of neighbourhood structures, 4 (Rook's case),

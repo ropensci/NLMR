@@ -4,12 +4,14 @@
 \alias{nlm_randomelement}
 \title{nlm_randomelement}
 \usage{
-nlm_randomelement(nCol, nRow, n, rescale = TRUE)
+nlm_randomelement(nCol, nRow, resolution = 1, n, rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
 \item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+
+\item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
 \item{n}{[\code{numerical(1)}]\cr The number of elements randomly selected
 to form the basis of nearest-neighbour clusters.}
