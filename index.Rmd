@@ -34,6 +34,12 @@ For no particular reason ...    **but**:
    
 * It is so far the only library of NLM in ``R``
     * R is the <small>programming</small> lingua franca for ecologists
+    * Open-source + cross-platform
+* Most comprehensive collection of algorithms to simulate NLM
+* Embedded in a native GIS framework(
+* Variety of utility functions (classification, merging, visualization, ...)
+* Openly developed on [github](https://github.com/marcosci/NLMR)
+    * If something is missing or annoys you - [get in touch](https://github.com/marcosci/NLMR/issues/new)
  
 
 ------------------------------------------------------------------------
