@@ -9,3 +9,4 @@ man-roxygen
 ^_pkgdown\.yml$
 ^appveyor\.yml$
 ^index\.Rmd$
+^pkgdown$

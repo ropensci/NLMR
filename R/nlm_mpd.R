@@ -22,9 +22,14 @@
 #' At each iteration the roughness, an approximation to common hurst index,
 #' is reduced.
 #'
-#' \if{html}{The image below shows the steps involved in running the diamond-square
+#' The image below shows the steps involved in running the diamond-square
 #' algorithm on a 5 × 5 matrix:
-#' \figure{Diamond_Square.png}{options: width=1200 height=400 alt=""}}
+#'
+#' \if{html}{\figure{Diamond_Square.png}{options: width="300\%" alt=""}}
+#'
+#' (By Christopher Ewin - Own work, CC BY-SA 4.0,
+#' https://commons.wikimedia.org/w/index.php?curid=42510593)
+#'
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.

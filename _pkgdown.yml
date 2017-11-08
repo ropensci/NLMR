@@ -1,8 +1,6 @@
-title: NLMR
-url: https://marcosci.github.io/NLMR/
 template:
   params:
-    bootswatch: sandstone
+    bootswatch: yeti
 reference:
   - title: Neutral Landscape Models
     desc: ~
@@ -29,10 +27,10 @@ reference:
       - '`util_plot`'
       - '`util_rescale`'
 navbar:
+  title: NLMR | Neutral landscape models with R
   left:
-    - icon: fa-home
-      href: index.html
     - text: "How To"
+      icon: fa-graduation-cap
       menu:
       -  text: NLM Concepts + Terminology
          href: articles/background.html
@@ -50,7 +48,7 @@ navbar:
     - icon: fa-newspaper-o
       text: "news"
       href: news/index.html
-    - icon: fa-file-code-o
+    - icon: fa-gears
       text: "functions"
       href: reference/index.html
     - icon: fa-github fa-lg

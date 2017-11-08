@@ -3,46 +3,79 @@ output: github_document
 ---
 
 
+
 [![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) 
 [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) 
 [![Join the chat at  https://gitter.im/NLMR_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) 
+[![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<i class="fa fa-code" aria-hidden="true"></i> **NLMR** <img src="man/figures/logo.png" align="right" height="150" />
+<i class="fa fa-code" aria-hidden="true"></i> **NLMR** <img src="vignettes/logo.png" align="right" height="150" />
 ------------------------------------------------------------
 
 **N**eutral **L**andscape **M**odels with **R**
 
+------------------------------------------------------------------------
+
+**NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
+``NLMR`` exploits the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+
 
 ------------------------------------------------------------------------
 
-<i class="fa fa-paperclip" aria-hidden="true"></i> Background
+<i class="fa fa-cubes" aria-hidden="true"></i> Why NLMR?  <small> ... and not one of the other software tools<a href="https://marcosci.github.io/NLMR/articles/faq.html"><sup>\*</sup></a></small>
 ------------------------------------------------------------
 
-Neutral landscape models, originally developed as a null model against which to compare anthropogenic landscape fragmentation patterns. Today these models are mostly applied in the field of landscape ecology to test the effect of landscape patterns on spatial ecological processes. In contrast to many other landscape models (process-based, agent-based), neutral landscape models produce patterns that are not grounded in ecological reasoning. By doing so, we construct a simple standard for landscape patterns and thus the basis for testing differences between landscapes.
-
-A series of such neutral landscape patterns can be simulated in which concerned variables are changed while other variables are kept constant. With this approach, the influence of the concerned variable on the object of study can be determined. In addition to empirical data, the simulation of landscapes with extreme configurations is possible, thus allowing us to find thresholds for conservation related landscape processes such as fragmentation. 
-
-So far, most of the software available to generate neutral landscapes only perform a limited set of algorithms or are implemented in programming languages that are not widely used in the field of computational ecology. Our R package, NLMR, aims to be a broad library of neutral landscape models that can easily extend in existing landscape analyses. NLMR combines a large number of algorithms from published software for simulating neutral landscapes and includes utility functions to classify and combine the landscapes. The simulation results are obtained in a geospatial data format (raster* objects from the raster package) and can, therefore, be used in any sort of raster data operation that is performed with standard observation data. Furthermore, the data format allows ecologists to use their simulations in most GIS software programs allowing for easy communication of their research.
+For no particular reason ...    **but**:
+   
+* It is so far the only library of NLM in ``R``
+    * R is the <small>programming</small> lingua franca for ecologists
+ 
 
 ------------------------------------------------------------------------
 
 <i class="fa fa-cog" aria-hidden="true"></i> Getting Started
 ------------------------------------------------------------
 
-- To install `NLMR`, please follow instructions reported here
+Install the release version from CRAN:
 
+```{r eval = FALSE}
+install.packages("NLMR")
+```
+
+To install the developmental version of ``NLMR``, use the following R code:
+
+```{r eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("marcosci/NLMR")
+```
+
+
+------------------------------------------------------------------------
+
+<i class="fa fa-book" aria-hidden="true"></i> Documentation
+------------------------------------------------------------
+
+Documentation is available at [NLMR/reference](https://marcosci.github.io/NLMR/reference). To get started, please explore our [vignettes online](https://marcosci.github.io/NLMR/articles/), or in R:
+
+```{r eval = FALSE}
+vignette(package = "NLMR")
+```
 
 ------------------------------------------------------------------------
 
 <i class="fa fa-newspaper-o" aria-hidden="true"></i> What's New
 ---------------------------------------------------------------
 
-xxx. See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. 
+We are currently on version `r packageVersion("NLMR")`. Major changes in this version are:
+
+* xxx
+
+See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. 
 
 ------------------------------------------------------------------------
 
