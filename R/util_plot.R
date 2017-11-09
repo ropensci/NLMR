@@ -49,7 +49,7 @@ util_plot <- function(nlm_obj, scale = "A") {
                                                       color = NA),
         strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
         aspect.ratio=1,
-        plot.title = element_text(hjust = 0.5)
+        plot.title = ggplot2::element_text(hjust = 0.5)
       ) +
       lemon::coord_capped_cart(
         xlim = c(raster::extent(nlm_obj)[1],
@@ -82,7 +82,7 @@ util_plot <- function(nlm_obj, scale = "A") {
                                                       color = NA),
         strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
         aspect.ratio=1,
-        plot.title = element_text(hjust = 0.5)
+        plot.title = ggplot2::element_text(hjust = 0.5)
       ) +
       viridis::scale_fill_viridis(
         option = scale,
