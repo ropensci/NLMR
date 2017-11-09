@@ -37,17 +37,26 @@ library(SDMTools) # to calculate basic landscape metrics
 # Simulate 50x50 rectangular cluster raster
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 5, minL = 3, maxL = 7)
 
+# Plot the NLM
+util_plot(nlm_raster, scale = "B") +
+  labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+```
+
+![](README-example-1.png)
+
+``` r
+
 # Classify into 4 categories
 nlm_raster <- as.matrix(nlm_raster) %>%
                  util_classify(., c(0.5, 0.25, 0.25)) %>% 
                  raster()
 
-# Plot the NLM
-util_plot(nlm_raster, scale = "C") +
+# Plot the classified NLM
+util_plot(nlm_raster, scale = "B") +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 ```
 
-![](README-example-1.png)
+![](README-example-2.png)
 
 ``` r
 
@@ -59,10 +68,10 @@ as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1218|          480|                840|              4032|  1218|        480|        840|         0.6896552|     6.000000|        1.505175|        0.3940887|
-|        1|     640|          181|                624|              1936|   640|        181|        624|         0.9750000|     6.117647|        1.563068|        0.2828125|
-|        2|     617|          201|                550|              1918|   617|        201|        550|         0.8914100|     5.500000|        1.532677|        0.3257699|
-|        3|      25|            9|                 20|                80|    25|          9|         20|         0.8000000|     1.000000|        1.000000|        0.3600000|
+|        0|    1247|          559|                786|              4202|  1247|        559|        786|         0.6303128|     5.535211|        1.481564|        0.4482759|
+|        1|     620|          160|                628|              1852|   620|        160|        628|         1.0129032|     6.280000|        1.572773|        0.2580645|
+|        2|     619|          227|                522|              1954|   619|        227|        522|         0.8432956|     5.220000|        1.515648|        0.3667205|
+|        3|      14|            0|                 24|                32|    14|          0|         24|         1.7142857|     1.500000|        1.357878|        0.0000000|
 
 Citation
 --------
