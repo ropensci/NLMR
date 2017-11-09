@@ -40,17 +40,23 @@ util_plot <- function(nlm_obj, scale = "A") {
         axis.ticks.length = ggplot2::unit(.15, "cm"),
         axis.ticks = ggplot2::element_line(),
         panel.background = ggplot2::element_blank(),
-        panel.border = ggplot2::element_blank(), # bg of the panel
-        plot.background = ggplot2::element_rect(fill = "transparent"), # bg of the plot
-        panel.grid.major = ggplot2::element_blank(), # get rid of major grid
-        panel.grid.minor = ggplot2::element_blank(), # get rid of minor grid
-        legend.background = ggplot2::element_rect(fill = "transparent"), # get rid of legend bg
-        legend.box.background = ggplot2::element_rect(fill = "transparent", color = NA), # get rid of legend panel bg
+        panel.border = ggplot2::element_blank(),
+        plot.background = ggplot2::element_rect(fill = "transparent"),
+        panel.grid.major = ggplot2::element_blank(),
+        panel.grid.minor = ggplot2::element_blank(),
+        legend.background = ggplot2::element_rect(fill = "transparent"),
+        legend.box.background = ggplot2::element_rect(fill = "transparent",
+                                                      color = NA),
         strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-        aspect.ratio=1
+        aspect.ratio=1,
+        plot.title = element_text(hjust = 0.5)
       ) +
       lemon::coord_capped_cart(
-        xlim = c(0, ncol(nlm_obj)), ylim = c(0, nrow(nlm_obj)), left = "both", bottom = "both")
+        xlim = c(raster::extent(nlm_obj)[1],
+                 raster::extent(nlm_obj)[2]),
+        ylim = c(raster::extent(nlm_obj)[3],
+                 raster::extent(nlm_obj)[4]),
+        left = "both", bottom = "both")
 
 
   } else {
@@ -68,13 +74,15 @@ util_plot <- function(nlm_obj, scale = "A") {
         axis.ticks = ggplot2::element_line(),
         panel.background = ggplot2::element_blank(),
         panel.border = ggplot2::element_blank(), # bg of the panel
-        plot.background = ggplot2::element_rect(fill = "transparent"), # bg of the plot
-        panel.grid.major = ggplot2::element_blank(), # get rid of major grid
-        panel.grid.minor = ggplot2::element_blank(), # get rid of minor grid
-        legend.background = ggplot2::element_rect(fill = "transparent"), # get rid of legend bg
-        legend.box.background = ggplot2::element_rect(fill = "transparent", color = NA), # get rid of legend panel bg
+        plot.background = ggplot2::element_rect(fill = "transparent"),
+        panel.grid.major = ggplot2::element_blank(),
+        panel.grid.minor = ggplot2::element_blank(),
+        legend.background = ggplot2::element_rect(fill = "transparent"),
+        legend.box.background = ggplot2::element_rect(fill = "transparent",
+                                                      color = NA),
         strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-        aspect.ratio=1
+        aspect.ratio=1,
+        plot.title = element_text(hjust = 0.5)
       ) +
       viridis::scale_fill_viridis(
         option = scale,
@@ -91,7 +99,11 @@ util_plot <- function(nlm_obj, scale = "A") {
           label.hjust = 0.5
         )) +
       lemon::coord_capped_cart(
-        xlim = c(0, ncol(nlm_obj)), ylim = c(0, nrow(nlm_obj)), left = "both", bottom = "both")
+        xlim = c(raster::extent(nlm_obj)[1],
+                 raster::extent(nlm_obj)[2]),
+        ylim = c(raster::extent(nlm_obj)[3],
+                 raster::extent(nlm_obj)[4]),
+        left = "both", bottom = "both")
 
 
   }
