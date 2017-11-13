@@ -1,21 +1,53 @@
 ---
 title: "Basic Usage of NLMR"
-author: "Craig E. Simpkins & Marco Sciaini"
+author: "Marco Sciaini & Craig E.Simpkins"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
+bibliography: Citations.bib
 vignette: >
   %\VignetteIndexEntry{Basic Usage of nlmR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-# Basics
+# Introduction to NLMR
 
-## Structure
+`NLMR` is a `R` package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The 'NLMR' package was designed with a similar philosophy to the Python package NLMpy [see @EtheringtonNLMR2015], offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. Additionally, NLMR allows users to blend multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the `raster` package
 
-* Class
-* Dimensions
-* Resolution
-* Extent
-* Coord. ref.
+## Basic landscape generation
+
+`NLMR` supplies 10 NLM algorithms. The algorithms differ from each other in spatial autocorrelation, from no autocorrelation (random NLM) to a constant gradient (planar gradients) [see @Palmer1992].  
+
+The 10 NLM algorithms are:  
+  1. random  
+  2. distance gradient  
+  3. edge gradient  
+  4. spatially correlated random fields (Gaussian random fields)  
+  5. midpoint displacement  
+  6. random percolation  
+  7. planar gradient  
+  8. random cluster nearest-neighbour  
+  9. random element  
+  10. random rectangular cluster  
+  
+The basic syntax used to produce a NLM landscape is:
+```
+nlm_modeltype(nCol, nRow, resolution)
+```
+For example ro produce a simple random neutral landscape one could use the following code:
+
+# ```{r}
+# x <- nlm_random(20,20)
+# plot(x)
+# ```
+
+## Blending landscapes
+
+## Classifying categories
+
+## Generating simple landscape metrics
+
+## Masking
+
+##References
 
