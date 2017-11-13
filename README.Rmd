@@ -55,7 +55,7 @@ library(ggplot2)  # to extent the plot functionality of NLMR
 library(SDMTools) # to calculate basic landscape metrics
 
 # Simulate 50x50 rectangular cluster raster
-nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 5, minL = 3, maxL = 7)
+nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minL = 3, maxL = 7)
 
 # Plot the NLM
 util_plot(nlm_raster, scale = "B") +

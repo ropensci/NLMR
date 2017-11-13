@@ -127,7 +127,8 @@
     <p>Plot a Raster* object with the NLMR default theme</p>
     
 
-    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>nlm_obj</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"A"</span>)</pre>
+    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>nlm_obj</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"A"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>legendposition</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>, <span class='kw'>legendtitle</span> <span class='kw'>=</span> <span class='st'>"Z"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -142,19 +143,40 @@
 Five options are available: "viridis - magma" (= "A"),
                             "viridis - inferno" (= "B"),
                             "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D", the default option),
-                            and "greyscale" (= "E")</p></td>
+                            "viridis - viridis" (= "D", the default option)</p></td>
+    </tr>
+    <tr>
+      <th>discrete</th>
+      <td><p>[<code>logical</code>(1)] If TRUE, the ...</p></td>
+    </tr>
+    <tr>
+      <th>legendposition</th>
+      <td><p>[<code>character</code>(1)] The position of legends
+("none", "left", "right", "bottom", "top")</p></td>
+    </tr>
+    <tr>
+      <th>legendtitle</th>
+      <td><p>[<code>character</code>(1)]
+Title for legend</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>visualization</p>
+    <p>ggplot2 Object</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
-<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>)</div><div class='img'><img src='util_plot-31.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+    <pre class="examples"><div class='input'>
+<span class='co'># With continuous data</span>
+<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
+<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>)</div><div class='img'><img src='util_plot-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='co'># With classified data</span>
+<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.15</span>, <span class='fl'>0.25</span>)
+<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>nlm_raster</span>, <span class='no'>y</span>, <span class='kw'>level_names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Land Use 1"</span>,
+<span class='st'>"Land Use 2"</span>, <span class='st'>"Land Use 3"</span>))
+<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='util_plot-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 
 </div></pre>
   </div>

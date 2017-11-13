@@ -15,6 +15,7 @@ RoxygenNote: 6.0.1
 Imports:
     ggplot2,
     methods,
+    plyr,
     pracma,
     rasterVis,
     R.utils,
@@ -27,7 +28,8 @@ Imports:
     dplyr,
     gstat,
     dismo,
-    deldir
+    deldir,
+    Rcpp
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
@@ -40,3 +42,4 @@ Suggests:
     reshape2
 VignetteBuilder:
     knitr
+LinkingTo: Rcpp

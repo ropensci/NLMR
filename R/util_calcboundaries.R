@@ -24,19 +24,16 @@ util_calc_boundaries <- function(x, cumulative_proportions) {
   # Check function arguments ----
   checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)
   checkmate::assert_numeric(cumulative_proportions)
-  checkmate::assert_true(utils::tail(cumulative_proportions, n = 1) == 1) #ensures cumulative proportion structure
+  # checkmate::assert_true(utils::tail(cumulative_proportions, n = 1) == 1) #ensures cumulative proportion structure
 
   # Get number of cells  ----
   n_cells <- length(x)
 
   # Use number of cells to find index of upper boundary element ----
-  boundary_indexes <- as.integer( (cumulative_proportions * n_cells) - 1)
+  boundary_indexes <- as.integer( (cumulative_proportions * n_cells))
 
   # Get boundary values ----
   boundary_values <- sort(as.vector(x))[boundary_indexes]
-
-  # Always set the maximum boundary value to 1 ----
-  boundary_values[max(length(boundary_values))] <-  1
 
   return(boundary_values)
 

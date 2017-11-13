@@ -8,7 +8,7 @@
 #'
 #'
 #' @examples
-#' util_w2cp(c(0.5, 0.4, 0.6))
+#' util_w2cp(c(0.2, 0.4, 0.6, 0.9))
 #'
 #'
 #' @keywords internal
@@ -19,7 +19,6 @@ util_w2cp <- function(weighting) {
   w <-  weighting
   proportions <- w / sum(w)
   cumulative_proportions <- cumsum(proportions)
-  cumulative_proportions[max(length(proportions))]  <- 1
   return(cumulative_proportions)
 
 }

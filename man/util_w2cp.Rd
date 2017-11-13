@@ -16,7 +16,7 @@ Rectangular matrix with values ranging from 0-1
 Convert a list of category  weighting  into a 1D array of cumulative proportions.
 }
 \examples{
-util_w2cp(c(0.5, 0.4, 0.6))
+util_w2cp(c(0.2, 0.4, 0.6, 0.9))
 
 
 }

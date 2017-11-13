@@ -124,47 +124,64 @@
     </div>
 
     
-    <p>Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.</p>
+    <p>Classify a raster into proportions based upon a vector of class
+weightings.</p>
     
 
-    <pre class="usage"><span class='fu'>util_classify</span>(<span class='no'>x</span>, <span class='no'>weighting</span>)</pre>
+    <pre class="usage"><span class='fu'>util_classify</span>(<span class='no'>x</span>, <span class='no'>weighting</span>, <span class='kw'>level_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>[<code>matrix(x,y)</code>] 2D matrix of data values.</p></td>
+      <td><p>[<code>matrix(x,y)</code>]
+2D matrix of data values.</p></td>
     </tr>
     <tr>
       <th>weighting</th>
-      <td><p>[<code>numerical</code>]  Vector of numeric values.</p></td>
+      <td><p>[<code>numerical</code>]
+Vector of numeric values.</p></td>
+    </tr>
+    <tr>
+      <th>level_names</th>
+      <td><p>[<code>character</code>] V
+ector of names for the factor levels.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Rectangular matrix reclassified values.</p>
+    <p>RasterLayer</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The length of the weighting vector determines the number of classes in the resulting matrix.</p>
+    <p>The length of the weighting vector determines the number of classes
+in the resulting matrix. The classes start with the value 1.
+If non-numerical levels are required, the user can specify a vector to turn the
+numerical factors for example into character strings (i.e. land uses).
+If the numerical vector of weightings does not sum up to 1, they sum of the
+weightings is divided by the number of weightings and this is then used as
+proportions for the classification.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(<span class='fu'>runif</span>(<span class='fl'>100</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fl'>10</span>, <span class='fl'>10</span>)
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>, <span class='fl'>10</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.25</span>, <span class='fl'>0.25</span>)
-<span class='fu'>util_classify</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-#&gt;  [1,]    0    1    2    2    0    2    0    1    0     2
-#&gt;  [2,]    2    0    0    1    2    0    1    2    0     1
-#&gt;  [3,]    0    2    0    0    0    1    1    0    2     0
-#&gt;  [4,]    0    0    2    0    0    0    0    1    0     0
-#&gt;  [5,]    0    0    0    0    0    1    1    2    2     0
-#&gt;  [6,]    0    2    1    2    2    2    0    0    1     2
-#&gt;  [7,]    2    0    1    2    0    2    0    0    0     1
-#&gt;  [8,]    1    1    0    1    0    2    1    1    0     2
-#&gt;  [9,]    2    1    0    0    2    1    0    0    2     0
-#&gt; [10,]    1    0    1    0    0    1    2    1    0     2</div><div class='input'>
+<span class='fu'>util_classify</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>level_names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Land Use 1"</span>, <span class='st'>"Land Use 2"</span>, <span class='st'>"Land Use 3"</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 10, 10, 100  (nrow, ncol, ncell)
+#&gt; resolution  : 0.1, 0.1  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 1, 3  (min, max)
+#&gt; attributes  :
+#&gt;  ID Categories
+#&gt;   1 Land Use 1
+#&gt;   2 Land Use 2
+#&gt;   3 Land Use 3
+#&gt; </div><div class='input'>
 
 </div></pre>
   </div>

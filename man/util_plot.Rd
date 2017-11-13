@@ -4,7 +4,8 @@
 \alias{util_plot}
 \title{util_plot}
 \usage{
-util_plot(nlm_obj, scale = "A")
+util_plot(nlm_obj, scale = "A", discrete = FALSE,
+  legendposition = "bottom", legendtitle = "Z")
 }
 \arguments{
 \item{nlm_obj}{[\code{Raster* object}]}
@@ -13,18 +14,34 @@ util_plot(nlm_obj, scale = "A")
 Five options are available: "viridis - magma" (= "A"),
                             "viridis - inferno" (= "B"),
                             "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D", the default option),
-                            and "greyscale" (= "E")}
+                            "viridis - viridis" (= "D", the default option)}
+
+\item{discrete}{[\code{logical}(1)] If TRUE, the ...}
+
+\item{legendposition}{[\code{character}(1)] The position of legends
+("none", "left", "right", "bottom", "top")}
+
+\item{legendtitle}{[\code{character}(1)]
+Title for legend}
 }
 \value{
-visualization
+ggplot2 Object
 }
 \description{
 Plot a Raster* object with the NLMR default theme
 }
 \examples{
+
+# With continuous data
 nlm_raster <- nlm_random(10,10)
-util_plot(nlm_raster)
+util_plot(nlm_raster, scale = "D")
+
+# With classified data
+nlm_raster <- nlm_random(10,10)
+y <- c(0.5, 0.15, 0.25)
+nlm_raster <- util_classify(nlm_raster, y, level_names = c("Land Use 1",
+"Land Use 2", "Land Use 3"))
+util_plot(nlm_raster, scale = "D", discrete = TRUE)
 
 
 }
