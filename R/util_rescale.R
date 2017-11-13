@@ -9,7 +9,9 @@
 #'
 #' @examples
 #'
-#' util_rescale(nlm_random(10,10))
+#' # since NLMR uses rescale as the default, one would use it like this
+#' # (or simply set the parameter to \code{FALSE})
+#' util_rescale(nlm_random(10, 10,  rescale = FALSE))
 #'
 #'
 #' @aliases util_rescale

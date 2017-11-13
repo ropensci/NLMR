@@ -43,7 +43,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Create spatially correlated random fields (Gaussian random fields).
+Simulate spatially correlated random fields (Gaussian random fields).
 }
 \details{
 If only the arguments \code{nCol} and \code{nRow} are given, the function

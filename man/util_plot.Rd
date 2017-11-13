@@ -16,7 +16,8 @@ Five options are available: "viridis - magma" (= "A"),
                             "viridis - plasma" (= "C"),
                             "viridis - viridis" (= "D", the default option)}
 
-\item{discrete}{[\code{logical}(1)] If TRUE, the ...}
+\item{discrete}{[\code{logical}(1)] If TRUE, the function plots a raster with
+a discrete legend.}
 
 \item{legendposition}{[\code{character}(1)] The position of legends
 ("none", "left", "right", "bottom", "top")}
@@ -47,7 +48,7 @@ nlm_1 <- nlm_random(100, 100, resolution = 10)
 nlm_2 <- nlm_percolation(100,100, 0.3, resolution = 10)
 nlm_3 <- nlm_edgegradient(100, 100, 0.3, resolution = 10)
 nlm_4 <- nlm_randomelement(100, 100, n = 150, resolution = 10)
-nlm_brick <- brick(nlm_1,nlm_2,nlm_3,nlm_4)
+nlm_brick <- raster::brick(nlm_1,nlm_2,nlm_3,nlm_4)
 rasterVis::levelplot(nlm_brick)
 
 

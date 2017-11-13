@@ -1,6 +1,6 @@
 #' nlm_gaussianfield
 #'
-#' Create spatially correlated random fields (Gaussian random fields).
+#' Simulate spatially correlated random fields (Gaussian random fields).
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.

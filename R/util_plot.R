@@ -33,7 +33,7 @@
 #' nlm_2 <- nlm_percolation(100,100, 0.3, resolution = 10)
 #' nlm_3 <- nlm_edgegradient(100, 100, 0.3, resolution = 10)
 #' nlm_4 <- nlm_randomelement(100, 100, n = 150, resolution = 10)
-#' nlm_brick <- brick(nlm_1,nlm_2,nlm_3,nlm_4)
+#' nlm_brick <- raster::brick(nlm_1,nlm_2,nlm_3,nlm_4)
 #' rasterVis::levelplot(nlm_brick)
 #'
 #'

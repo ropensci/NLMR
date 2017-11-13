@@ -29,7 +29,9 @@ Imports:
     gstat,
     dismo,
     deldir,
-    Rcpp
+    Rcpp,
+    lemon,
+    RandomFields
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
@@ -38,7 +40,6 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    lemon,
     reshape2
 VignetteBuilder:
     knitr
