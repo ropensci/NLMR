@@ -170,15 +170,14 @@ Title for legend</p></td>
     <pre class="examples"><div class='input'>
 <span class='co'># With continuous data</span>
 <span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
-<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>)</div><div class='img'><img src='util_plot-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>)</div><div class='img'><img src='util_plot-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># With classified data</span>
-<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.15</span>, <span class='fl'>0.25</span>)
 <span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>nlm_raster</span>, <span class='no'>y</span>, <span class='kw'>level_names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"Land Use 1"</span>,
 <span class='st'>"Land Use 2"</span>, <span class='st'>"Land Use 3"</span>))
-<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='util_plot-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
-
-</div></pre>
+<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='util_plot-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='co'># for rasterstacks or bricks, use:</span>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>nlm_raster</span>)</div><div class='img'><img src='util_plot-5.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
