@@ -30,7 +30,8 @@ Imports:
     dismo,
     deldir,
     lemon,
-    RandomFields
+    RandomFields,
+    igraph
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
