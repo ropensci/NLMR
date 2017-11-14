@@ -33,7 +33,7 @@ RasterLayer
 Simulate two-dimensional fractional brownian motion model.
 }
 \details{
-
+xxx
 }
 \examples{
 nlm_fBm(nCol = 40, nRow = 40, H = 0.5)

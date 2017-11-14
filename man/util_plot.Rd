@@ -39,8 +39,7 @@ util_plot(nlm_raster, scale = "D")
 
 # With classified data
 y <- c(0.5, 0.15, 0.25)
-nlm_raster <- util_classify(nlm_raster, y, level_names = c("Land Use 1",
-"Land Use 2", "Land Use 3"))
+nlm_raster <- util_classify(nlm_raster, y)
 util_plot(nlm_raster, scale = "D", discrete = TRUE)
 
 # for rasterstacks or bricks, use:
