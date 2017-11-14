@@ -32,7 +32,7 @@
 #' values by performing a nearest neighbour interpolation.
 #'
 #' @examples
-#' nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
+#' nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
 #'
 #' @references
 #' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
@@ -62,11 +62,11 @@ nlm_randomcluster  <-
     checkmate::assert_logical(rescale)
 
     # Create percolation array
-    random_raster <- matrix(nlm_percolation(nCol, nRow, p)[], nCol, nRow)
+    random_matrix <- matrix(nlm_percolation(nCol, nRow, p)[], nCol, nRow)
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-      raster::clump(raster::raster(random_raster),
+      raster::clump(raster::raster(random_matrix),
                     direction = neighbourhood))
 
     # Number of individual clusters ----

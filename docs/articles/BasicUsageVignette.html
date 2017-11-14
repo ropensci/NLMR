@@ -98,7 +98,7 @@
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>Basic Usage of NLMR</h1>
-                        <h4 class="author">Craig E. Simpkins &amp; Marco Sciaini</h4>
+                        <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
             <h4 class="date">2017-11-14</h4>
           </div>
@@ -106,19 +106,61 @@
     
     
 <div class="contents">
-<div id="basics" class="section level1">
+<div id="introduction-to-nlmr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#basics" class="anchor"></a>Basics</h1>
-<div id="structure" class="section level2">
+<a href="#introduction-to-nlmr" class="anchor"></a>Introduction to NLMR</h1>
+<p><code>NLMR</code> is a <code>R</code> package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The ‘NLMR’ package was designed with a similar philosophy to the Python package NLMpy <span class="citation">(see Etherington, Holland, and O’Sullivan 2014)</span>, offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. Additionally, NLMR allows users to blend multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the <code>raster</code> package</p>
+<div id="basic-landscape-generation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#structure" class="anchor"></a>Structure</h2>
-<ul>
-<li>Class</li>
-<li>Dimensions</li>
-<li>Resolution</li>
-<li>Extent</li>
-<li>Coord. ref.</li>
-</ul>
+<a href="#basic-landscape-generation" class="anchor"></a>Basic landscape generation</h2>
+<p><code>NLMR</code> supplies 10 NLM algorithms. The algorithms differ from each other in spatial autocorrelation, from no autocorrelation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
+<p>The 10 NLM algorithms are:<br>
+1. random<br>
+2. distance gradient<br>
+3. edge gradient<br>
+4. spatially correlated random fields (Gaussian random fields)<br>
+5. midpoint displacement<br>
+6. random percolation<br>
+7. planar gradient<br>
+8. random cluster nearest-neighbour<br>
+9. random element<br>
+10. random rectangular cluster</p>
+<p>The basic syntax used to produce a NLM landscape is:</p>
+<pre><code>nlm_modeltype(nCol, nRow, resolution)</code></pre>
+<p>For example ro produce a simple random neutral landscape one could use the following code:</p>
+</div>
+</div>
+<div id="r-x---nlm_random2020-plotx" class="section level1">
+<h1 class="hasAnchor">
+<a href="#r-x---nlm_random2020-plotx" class="anchor"></a><code>{r} # x &lt;- nlm_random(20,20) # plot(x) #</code>
+</h1>
+<div id="blending-landscapes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#blending-landscapes" class="anchor"></a>Blending landscapes</h2>
+</div>
+<div id="classifying-categories" class="section level2">
+<h2 class="hasAnchor">
+<a href="#classifying-categories" class="anchor"></a>Classifying categories</h2>
+</div>
+<div id="generating-simple-landscape-metrics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generating-simple-landscape-metrics" class="anchor"></a>Generating simple landscape metrics</h2>
+</div>
+<div id="masking" class="section level2">
+<h2 class="hasAnchor">
+<a href="#masking" class="anchor"></a>Masking</h2>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-EtheringtonNLMR2015">
+<p>Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2014. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” <em>Methods in Ecology and Evolution</em> 6 (2): 164–68. doi:<a href="https://doi.org/10.1111/2041-210X.12308">10.1111/2041-210X.12308</a>.</p>
+</div>
+<div id="ref-Palmer1992">
+<p>Palmer, Michael W. 1992. “The Coexistence of Species in Fractal Landscapes.” <em>The American Naturalist</em> 139 (2): 375–97. doi:<a href="https://doi.org/10.1086/285332">10.1086/285332</a>.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,8 +172,17 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li>
-<a href="#basics">Basics</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#structure">Structure</a></li>
+<a href="#introduction-to-nlmr">Introduction to NLMR</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#basic-landscape-generation">Basic landscape generation</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#r-x---nlm_random2020-plotx"><code>{r} # x &lt;- nlm_random(20,20) # plot(x) #</code></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#blending-landscapes">Blending landscapes</a></li>
+      <li><a href="#classifying-categories">Classifying categories</a></li>
+      <li><a href="#generating-simple-landscape-metrics">Generating simple landscape metrics</a></li>
+      <li><a href="#masking">Masking</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </li>
       </ul>
