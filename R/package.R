@@ -24,8 +24,6 @@
 #' Gardner RH, Milne BT, Turnei MG, O’Neill R V. 1987. Neutral models for the
 #'  analysis of broad-scale landscape pattern. \emph{Landscape Ecology} 1:19–28.
 #'
-#' @useDynLib NLMR
-#' @importFrom Rcpp sourceCpp
 #'
 #' @docType package
 #' @name NLMR
