@@ -53,10 +53,10 @@ util_classify <- function(x, weighting, level_names = NULL) {
            dim(x_mat)[2])
 
   # Transform matrix to raster and let categories start with 1 ----
-  classified_raster <- raster::raster(classified_matrix) + 1
+  x[] <- classified_matrix  + 1
 
   # Turn raster values into factors ----
-  classified_raster <- raster::as.factor(classified_raster)
+  classified_raster <- raster::as.factor(x)
 
   # If level_names are not NULL, add them as specified ----
   if (!is.null(level_names)) {

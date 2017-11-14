@@ -66,7 +66,7 @@ nlm_raster <- nlm_raster %>%
                  util_classify(., c(0.5, 0.25, 0.25))
 
 # Plot the classified NLM
-util_plot(nlm_raster, scale = "D") +
+util_plot(nlm_raster, scale = "D", discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 
 # Calculate basic landscape metrics
