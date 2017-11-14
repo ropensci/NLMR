@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_gaussianfield — nlm_gaussianfield • NLMR</title>
+<title>nlm_fBM — nlm_fBm • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -120,16 +120,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlm_gaussianfield</h1>
+    <h1>nlm_fBM</h1>
     </div>
 
     
-    <p>Simulate spatially correlated random fields (Gaussian random fields).</p>
+    <p>Simulate two-dimensional fractional brownian motion model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0.01</span>, <span class='fl'>0.005</span>), <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -150,34 +149,14 @@ Number of rows for the raster.</p></td>
 Resolution of the raster.</p></td>
     </tr>
     <tr>
-      <th>autocorr_range</th>
+      <th>H</th>
       <td><p>[<code>numerical(1)</code>]
-Maximal distance of spatial autocorrelation</p></td>
+Hurst coefficient</p></td>
     </tr>
     <tr>
-      <th>mag_var</th>
+      <th>user_seed</th>
       <td><p>[<code>numerical(1)</code>]
-Magnitude of variation in the field</p></td>
-    </tr>
-    <tr>
-      <th>beta</th>
-      <td><p>[<code>numerical(1)</code>]
-Mean value over the field.</p></td>
-    </tr>
-    <tr>
-      <th>nug</th>
-      <td><p>[<code>numerical(1)</code>]
-Small-scale variations in the field.</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>[<code>character("random" | "linear")</code>]
-Direction of the gradient. Either random, or with a linear trend (with standard argument settings).</p></td>
-    </tr>
-    <tr>
-      <th>angle</th>
-      <td><p>[<code>numerical(1)</code>]
-Maximal distance of spatial autocorrelation</p></td>
+Set Seed for simulation</p></td>
     </tr>
     <tr>
       <th>rescale</th>
@@ -192,18 +171,17 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If only the arguments <code>nCol</code> and <code>nRow</code> are given, the function
-fits with the argument <code>direction = "linear"</code> a linear trend.</p>
+    <p>xxx</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_gaussianfield</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [using unconditional Gaussian simulation]</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 5, 5  (x, y)
-#&gt; extent      : 0, 500, 0, 500  (xmin, xmax, ymin, ymax)
+    <pre class="examples"><div class='input'><span class='fu'>nlm_fBm</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 40, 40, 1600  (nrow, ncol, ncell)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 40, 0, 40  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
-#&gt; names       : sim1 
+#&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
 </div></pre>
