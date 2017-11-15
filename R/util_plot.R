@@ -51,13 +51,14 @@ util_plot <- function(nlm_obj,
 
   if (isTRUE(discrete)) {
 
-    check_levelnames <- try(nlm_obj@data@attributes[[1]][,2], silent = TRUE)
 
-    if (class(check_levelnames) == "try-error"){
-      raster_labels <- nlm_obj@data@attributes[[1]][,1]
-    } else {
-      raster_labels <- nlm_obj@data@attributes[[1]][,2]
-    }
+    raster_labels = tryCatch({
+      nlm_obj@data@attributes[[1]][,2]
+    }, error = function(e) {
+      nlm_obj <- raster::as.factor(nlm_obj)
+      levels <- raster::unique(nlm_obj)
+      nlm_obj@data@attributes[[1]][,2] <- levels
+    })
 
     rasterVis::gplot(nlm_obj) +
       ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +

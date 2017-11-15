@@ -38,7 +38,6 @@ util_classify <- function(x, weighting, level_names = NULL) {
   checkmate::assert_class(x, "RasterLayer")
   checkmate::assert_numeric(weighting)
 
-
   # transform raster to matrix
   x_mat <- raster::as.matrix(x)
 
@@ -53,18 +52,19 @@ util_classify <- function(x, weighting, level_names = NULL) {
            dim(x_mat)[2])
 
   # Transform matrix to raster and let categories start with 1 ----
-  x[] <- classified_matrix  + 1
-
-  # Turn raster values into factors ----
-  classified_raster <- raster::as.factor(x)
+  x@data@values <- as.vector(classified_matrix)
 
   # If level_names are not NULL, add them as specified ----
   if (!is.null(level_names)) {
-  c_r_levels <- raster::levels(classified_raster)[[1]]
+
+  # Turn raster values into factors ----
+  x <- raster::as.factor(x)
+
+  c_r_levels <- raster::levels(x)[[1]]
   c_r_levels[["Categories"]] <- level_names
-  levels(classified_raster) <- c_r_levels
+  levels(x) <- c_r_levels
   }
 
-  return(classified_raster)
+  return(x)
 }
 
