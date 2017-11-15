@@ -19,19 +19,21 @@ vignette: >
 `NLMR` supplies 11 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) [see @Palmer1992].  
 
 The 11 NLM algorithms are:  
-  1. distance gradient
-  2. edge gradient  
-  3. midpoint displacement  
-  4. planar gradient  
-  5. random  
-  6. random cluster nearest-neighbour 
-  7. random element 
-  8. random percolation  
-  9. random rectangular cluster 
-  10. spatially correlated random fields (Gaussian random fields)  
-  11. two-dimensional fractional Brownian motion  
+  
+1. distance gradient
+1. edge gradient  
+1. midpoint displacement  
+1. planar gradient  
+1. random  
+1. random cluster nearest-neighbour 
+1. random element 
+1. random percolation  
+1. random rectangular cluster 
+1. spatially correlated random fields (Gaussian random fields)  
+1. two-dimensional fractional Brownian motion  
   
 The basic syntax used to produce a NLM landscape is:
+
 ```
 nlm_modeltype(nCol, nRow, resolution, ...)
 ```
