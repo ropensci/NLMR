@@ -47,7 +47,7 @@ Each cluster is than given a random value and non-cluster cells are assigned
 values by performing a nearest neighbour interpolation.
 }
 \examples{
-nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 8, p = 0.4)
+nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
 
 }
 \references{
