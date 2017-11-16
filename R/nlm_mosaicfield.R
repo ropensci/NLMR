@@ -25,7 +25,7 @@
 #'
 #' @references
 #' Schwab, Dimitri, Martin Schlather, and Jürgen Potthoff. "A general class of
-#' mosaic random fields." arXiv preprint arXiv:1709.01441 (2017).
+#' mosaic random fields." arXiv preprint arXiv:1709.01441 (2017). \cr
 #' Baddeley, Adrian, Ege Rubak, and Rolf Turner. Spatial point patterns:
 #' methodology and applications with R. CRC Press, 2015.
 #'
