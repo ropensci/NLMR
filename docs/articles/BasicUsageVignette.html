@@ -113,7 +113,7 @@
 <div id="basic-landscape-generation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-landscape-generation" class="anchor"></a>Basic landscape generation</h2>
-<p><code>NLMR</code> supplies 12 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream <code>NLMR</code> supplies 12 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
 <p>The 11 NLM algorithms are:</p>
 <ol style="list-style-type: decimal">
 <li>distance gradient</li>
@@ -136,59 +136,56 @@
 </li>
 <li>random fault lines</li>
 </ol>
-<p>The basic syntax used to produce a NLM landscape is:</p>
-<pre><code>nlm_modeltype(nCol, nRow, resolution, ...)</code></pre>
-<p>For example, to produce a simple random neutral landscape one could use the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
- NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(x)</code></pre></div>
-<p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
+<p>======= <code>NLMR</code> supplies 10 NLM algorithms. The algorithms differ from each other in spatial autocorrelation, from no autocorrelation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
+<p>The 10 NLM algorithms are:<br>
+1. random<br>
+2. distance gradient<br>
+3. edge gradient<br>
+4. spatially correlated random fields (Gaussian random fields)<br>
+5. midpoint displacement<br>
+6. random percolation<br>
+7. planar gradient<br>
+8. random cluster nearest-neighbour<br>
+9. random element<br>
+10. random rectangular cluster</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Stashed changes The basic syntax used to produce a NLM landscape is:</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre><code>nlm_modeltype(nCol, nRow, resolution)</code></pre>
+<p>For example ro produce a simple random neutral landscape one could use the following code:</p>
 </div>
+</div>
+<div id="r-x---nlm_random2020-plotx" class="section level1">
+<h1 class="hasAnchor">
+<a href="#r-x---nlm_random2020-plotx" class="anchor"></a><code>{r} # x &lt;- nlm_random(20,20) # plot(x) #</code>
+</h1>
 <div id="blending-landscapes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#blending-landscapes" class="anchor"></a>Blending landscapes</h2>
-<p>Multiple NLM rasters can be blended or merged together to create new landscape patterns. A single primary or base raster can be blended with any number of additional secondary rasters, with optional scaling factors used to control the influence of the secondary rasters.</p>
-<p>The <code>util_merge</code> function is used to blend the rasters as in the example below:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create primary landscape raster</span>
-  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>, <span class="dt">nRow =</span> <span class="dv">100</span>)
-
-  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(pL)</code></pre></div>
-<p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create secondary landscape rasters</span>
-  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>, <span class="dt">nRow =</span> <span class="dv">100</span>, <span class="dt">origin =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>))
-  sL2 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>, <span class="dt">nRow =</span> <span class="dv">100</span>)
-
-  mL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_merge">util_merge</a></span>(pL, <span class="kw">c</span>(sL1, sL2), <span class="dt">scalingfactor =</span> <span class="dv">1</span>)
-  mL2 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_merge">util_merge</a></span>(pL, <span class="kw">c</span>(sL1, sL2), <span class="dt">scalingfactor =</span> <span class="dv">2</span>)
-  
-  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(mL1)</code></pre></div>
-<p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
 </div>
 <div id="classifying-categories" class="section level2">
 <h2 class="hasAnchor">
 <a href="#classifying-categories" class="anchor"></a>Classifying categories</h2>
-<p>Landscape rasters generated by <code>NLMR</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code>. The number of classes and the proportion of the NLM raster assigned to each class is determined using a <code>weighting</code> vector. If the weighting vector does not sum to 1, the sum of the weightings is divided by the number of vector elements and these are used to define the class proportions. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>. The number of cells contained by each class can be calculated using <code>metric_area</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dv">50</span>, <span class="dv">50</span>, <span class="dt">neighbourhood =</span> <span class="dv">4</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre></div>
-<pre><code>## Loading required namespace: deldir</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weighting &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>)
-cr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_classify">util_classify</a></span>(nr, <span class="dt">weighting =</span> weighting, <span class="dt">level_names =</span> <span class="kw">c</span>(<span class="st">"L1"</span>, <span class="st">"L2"</span>, <span class="st">"L3"</span>))
-NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
-<pre><code>## $Total_Area
-## # A tibble: 3 x 2
-##   count class
-##   &lt;dbl&gt; &lt;int&gt;
-## 1  1195     0
-## 2   676     1
-## 3   629     2
-## 
-## $Percentage_Area
-## # A tibble: 3 x 2
-##    count class
-##    &lt;dbl&gt; &lt;int&gt;
-## 1 0.4780     0
-## 2 0.2704     1
-## 3 0.2516     2</code></pre>
+</div>
+<div id="generating-simple-landscape-metrics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#generating-simple-landscape-metrics" class="anchor"></a>Generating simple landscape metrics</h2>
+</div>
+<div id="masking" class="section level2">
+<h2 class="hasAnchor">
+<a href="#masking" class="anchor"></a>Masking</h2>
 </div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
@@ -214,8 +211,14 @@ NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentatio
 <li>
 <a href="#introduction-to-nlmr">Introduction to NLMR</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#basic-landscape-generation">Basic landscape generation</a></li>
-      <li><a href="#blending-landscapes">Blending landscapes</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#r-x---nlm_random2020-plotx"><code>{r} # x &lt;- nlm_random(20,20) # plot(x) #</code></a><ul class="nav nav-pills nav-stacked">
+<li><a href="#blending-landscapes">Blending landscapes</a></li>
       <li><a href="#classifying-categories">Classifying categories</a></li>
+      <li><a href="#generating-simple-landscape-metrics">Generating simple landscape metrics</a></li>
+      <li><a href="#masking">Masking</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </li>

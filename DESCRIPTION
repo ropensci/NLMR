@@ -32,7 +32,8 @@ Imports:
     lemon,
     RandomFields,
     igraph,
-    spatstat
+    spatstat,
+    purrr
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
