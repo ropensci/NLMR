@@ -72,6 +72,7 @@
 #                         field = strauss_spdf@data[, 1])
 #
 #
+#
 #     polylands_raster <- raster::crop(polylands_raster,
 #                                          raster::extent(0,1,0,1))
 #

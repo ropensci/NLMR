@@ -83,7 +83,7 @@ as.matrix(nlm_raster) %>%
 To cite package '_NLMR_' in publications please use:
 
 ```{r, echo  = FALSE, result = "asis", comment = ""}
-cat(paste0("Sciaini M and Simpkins, CE (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
+cat(paste0("Sciaini M; Simpkins, CE; Fritsch, M (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
 ```
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use _NLMR_.

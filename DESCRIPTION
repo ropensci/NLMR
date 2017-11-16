@@ -31,7 +31,8 @@ Imports:
     deldir,
     lemon,
     RandomFields,
-    igraph
+    igraph,
+    spatstat
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:

@@ -144,7 +144,7 @@ nlm_mpd  <-  function(nCol,
   }
 
   if (verbose == TRUE) {
-  warning("nlm_mpd returns RasterLayer with that fits in the dimension 2^n+1")
+  message("nlm_mpd returns RasterLayer with that fits in the dimension 2^n+1")
   }
 
   return(mpd_raster)

@@ -16,7 +16,7 @@ vignette: >
 
 ## Basic landscape generation
 
-`NLMR` supplies 11 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) [see @Palmer1992].  
+`NLMR` supplies 12 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) [see @Palmer1992].  
 
 The 11 NLM algorithms are:  
   
@@ -31,7 +31,8 @@ The 11 NLM algorithms are:
 1. random rectangular cluster 
 1. spatially correlated random fields (Gaussian random fields)  
 1. two-dimensional fractional Brownian motion  
-  
+1. random fault lines
+
 The basic syntax used to produce a NLM landscape is:
 
 ```
