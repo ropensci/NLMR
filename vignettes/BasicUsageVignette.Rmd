@@ -81,7 +81,7 @@ NLMR::metric_area(cr)
 
 ## Handling Raster* Objects in R
 
-## Visualizing neutral landscapes
+## Visualizing neutral landscape models
 
 ### The `base` way
 
@@ -90,12 +90,11 @@ NLMR::metric_area(cr)
 ### Interactive Graphs
 
 ```{r}
-require(NLMR)
 require(highcharter)
 library(magrittr)
 
 # create a NLM to work with
-pL <- nlm_mosaicfield(nCol = 100, nRow = 100, n = 20)
+pL <- NLMR::nlm_mosaicfield(nCol = 100, nRow = 100, n = 20)
 
 # coerce to matrix
 pL_matrix <- raster::as.matrix(pL)
