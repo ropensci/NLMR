@@ -51,7 +51,7 @@ nlm_raster <- nlm_raster %>%
                  util_classify(., c(0.5, 0.25, 0.25))
 
 # Plot the classified NLM
-util_plot(nlm_raster, scale = "D") +
+util_plot(nlm_raster, scale = "D", discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 ```
 
@@ -67,15 +67,15 @@ as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        1|    1239|          512|                846|              4110|  1239|        512|        846|         0.6828087|     5.957746|        1.503561|        0.4132365|
-|        2|     626|          212|                564|              1940|   626|        212|        564|         0.9009585|     5.529412|        1.537037|        0.3386581|
-|        3|     635|          238|                512|              2028|   635|        238|        512|         0.8062992|     5.019608|        1.503660|        0.3748031|
+|        0|    1246|          586|                782|              4202|  1246|        586|        782|         0.6276083|     5.507042|        1.480299|        0.4703050|
+|        1|     621|          223|                514|              1970|   621|        223|        514|         0.8276973|     5.140000|        1.510085|        0.3590982|
+|        2|     633|          216|                574|              1958|   633|        216|        574|         0.9067930|     5.627451|        1.539837|        0.3412322|
 
 Citation
 --------
 
 To cite package '*NLMR*' in publications please use:
 
-    Sciaini M and Simpkins, CE (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
+    Sciaini, M; Simpkins, CE; Fritsch, M (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use *NLMR*. Hence, if you used *NLMR* please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
