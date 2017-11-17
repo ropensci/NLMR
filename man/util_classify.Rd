@@ -14,7 +14,7 @@ util_classify(x, weighting, level_names = NULL)
 Vector of numeric values.}
 
 \item{level_names}{[\code{character}]\cr V
-ector of names for the factor levels.}
+Vector of names for the factor levels.}
 }
 \value{
 RasterLayer
@@ -24,13 +24,12 @@ Classify a raster into proportions based upon a vector of class
 weightings.
 }
 \details{
-The length of the weighting vector determines the number of classes
+The number of elements in the weighting vector determines the number of classes
 in the resulting matrix. The classes start with the value 1.
 If non-numerical levels are required, the user can specify a vector to turn the
-numerical factors for example into character strings (i.e. land uses).
-If the numerical vector of weightings does not sum up to 1, they sum of the
-weightings is divided by the number of weightings and this is then used as
-proportions for the classification.
+numerical factors into other data types, for example into character strings (i.e. class labels).
+If the numerical vector of weightings does not sum up to 1, the sum of the
+weightings is divided by the number of elements in the weightings vector and this is then used for the classification.
 }
 \examples{
 x <- nlm_random(10, 10)
