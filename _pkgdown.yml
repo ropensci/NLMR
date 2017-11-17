@@ -8,6 +8,7 @@ reference:
       - '`nlm_distancegradient`'
       - '`nlm_edgegradient`'
       - '`nlm_gaussianfield`'
+      - '`nlm_mosaicfield`'
       - '`nlm_mpd`'
       - '`nlm_percolation`'
       - '`nlm_planargradient`'

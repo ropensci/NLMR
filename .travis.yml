@@ -1,7 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: true
 cache: packages
 warnings_are_errors: false
 r_packages:
@@ -14,6 +14,8 @@ r_packages:
   - lemon
   - dismo
   - deldir
+  - highcharter
+  - magrittr
 
 after_success:
   - Rscript -e 'covr::codecov(token = '67be45c9-fe6c-4d3a-95ad-fd3d6131409c')'

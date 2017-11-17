@@ -18,10 +18,10 @@ Number of rows for the raster.}
 Resolution of the raster.}
 
 \item{roughness}{[\code{numerical(1)}]\cr
-Controls the level of spatial autocorrelation in element values (!= hurst index)}
+Controls the level of spatial autocorrelation (!= hurst index)}
 
 \item{rand_dev}{[\code{numerical(1)}]\cr
-Initial standard deviation for displacement step (default == 1)}
+Initial standard deviation for the displacement step (default == 1)}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
@@ -57,7 +57,7 @@ At each iteration the roughness, an approximation to common hurst index,
 is reduced.
 
 The image below shows the steps involved in running the diamond-square
-algorithm on a 5x5 matrix:
+algorithm on a 5 × 5 matrix:
 
 \if{html}{\figure{Diamond_Square.png}{options: width="300\%" alt=""}}
 

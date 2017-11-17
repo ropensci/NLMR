@@ -31,7 +31,9 @@ Imports:
     deldir,
     lemon,
     RandomFields,
-    igraph
+    igraph,
+    spatstat,
+    purrr
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
@@ -40,6 +42,9 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    reshape2
+    highcharter,
+    magrittr,
+    rgl,
+    plotly
 VignetteBuilder:
     knitr
