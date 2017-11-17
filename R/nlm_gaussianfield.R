@@ -1,6 +1,6 @@
 #' nlm_gaussianfield
 #'
-#' Simulate spatially correlated random fields (Gaussian random fields).
+#' Simulate spatially correlated random fields (Gaussian random fields) model.
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
@@ -17,15 +17,11 @@
 #' @param nug [\code{numerical(1)}]\cr
 #'  Small-scale variations in the field.
 #' @param direction [\code{character("random" | "linear")}]\cr
-#'  Direction of the gradient. Either random, or with a linear trend (with standard argument settings).
+#'  Direction of the gradient. Either random, or with a linear trend (default).
 #' @param angle [\code{numerical(1)}]\cr
 #'  Maximal distance of spatial autocorrelation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
-#'
-#' @details
-#' If only the arguments \code{nCol} and \code{nRow} are given, the function
-#' fits with the argument \code{direction = "linear"} a linear trend.
 #'
 #' @return RasterLayer
 #'

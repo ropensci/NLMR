@@ -18,7 +18,7 @@ Number of rows for the raster.}
 Resolution of the raster.}
 
 \item{direction}{[\code{numerical(1)}]\cr
-Direction of the gradient (between 0 and 360 dec), if unspecified the
+Direction of the gradient (between 0 and 360 degrees), if unspecified the
 direction is randomly determined.}
 
 \item{rescale}{[\code{logical(1)}]\cr

@@ -9,14 +9,22 @@ metric_area(nlm, poi = NULL)
 \arguments{
 \item{nlm}{[\code{matrix(x,y)}]\cr 2D matrix of data values.}
 
-\item{poi}{[\code{numerical}]\cr  Vector of numeric values.}
+\item{poi}{[\code{numerical}]\cr  Vector of numeric values indicating classes to be reported.}
 }
 \value{
-Rectangular matrix reclassified values.
+List of tibbles
 }
 \description{
-Classify a matrix with values ranging 0-1 into proportions based upon a vector of class weightings.
+Report area for each of the constituent values making up a matrix
 }
 \details{
-The length of the weighting vector determines the number of classes in the resulting matrix.
+Function reports the number of cells and the proportion of total cells made up by each unique class value
+}
+\examples{
+x <- nlm_random(100, 100)
+y <- c(0.5, 0.25, 0.25)
+z <- util_classify(x, y)
+
+metric_area(z)
+
 }

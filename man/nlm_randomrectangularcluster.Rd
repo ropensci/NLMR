@@ -14,9 +14,9 @@ nlm_randomrectangularcluster(nCol, nRow, resolution = 1, minL, maxL,
 
 \item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
-\item{minL}{[\code{numerical(1)}]\cr The minimum possible length of width and height for each random rectangular cluster.}
+\item{minL}{[\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.}
 
-\item{maxL}{[\code{numerical(1)}]\cr The maximum possible length of width and height for each random rectangular cluster.}
+\item{maxL}{[\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }

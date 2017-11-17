@@ -7,7 +7,6 @@
 \title{NLMR}
 \description{
 \emph{NLMR} is an R package for simulating neutral landscape models (NLM).
-By using
 }
 \details{
 This package contains vignettes that introduce NLM and basic usage

@@ -31,7 +31,7 @@ Mean value over the field.}
 Small-scale variations in the field.}
 
 \item{direction}{[\code{character("random" | "linear")}]\cr
-Direction of the gradient. Either random, or with a linear trend (with standard argument settings).}
+Direction of the gradient. Either random, or with a linear trend (default).}
 
 \item{angle}{[\code{numerical(1)}]\cr
 Maximal distance of spatial autocorrelation}
@@ -43,11 +43,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate spatially correlated random fields (Gaussian random fields).
-}
-\details{
-If only the arguments \code{nCol} and \code{nRow} are given, the function
-fits with the argument \code{direction = "linear"} a linear trend.
+Simulate spatially correlated random fields (Gaussian random fields) model.
 }
 \examples{
 nlm_gaussianfield(nCol = 100, nRow = 100, 5)

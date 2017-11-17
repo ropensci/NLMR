@@ -23,7 +23,7 @@ Probability value for setting a cell either to 0 or 1.}
 RasterLayer
 }
 \description{
-Create a random percolation map.
+Create a random percolation neutral landscape model.
 }
 \details{
 The simulation of a random percolation map is accomplished in two steps:
@@ -32,21 +32,22 @@ The simulation of a random percolation map is accomplished in two steps:
  \item{Initialization: }{ Setup matrix of size (\code{nCol}*\code{nRow})}
  \item{Map generation: }{ For each cell in the matrix a single uniformly
  distributed random number is generated and tested against a probability
- \code{p}. If the random number is smaller than \code{p}, the cell is set to
+ \code{prob}. If the random number is smaller than \code{prob}, the cell is set to
  1 - if it is higher the cell is set to 0.}
 }
 
-The proportion of 0 and 1 is thus controlled with the argument \code{p}.
+The proportion of 0 and 1 is thus controlled with the argument \code{prob}.
 }
 \examples{
 nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
 
 }
 \references{
-1. Gardner RH, O’Neill R V, Turner MG, Dale VH. 1989. Quantifying
+1. Gardner RH, O'Neill R V, Turner MG, Dale VH. 1989. Quantifying
 scale-dependent effects of animal movement with simple percolation models.
-\emph{ Landscape Ecology} 3:217–227.
+\emph{ Landscape Ecology} 3:217 - 227.
+
 2. Gustafson, E.J. & Parker, G.R. (1992) Relationships between landcover
 proportion and indices of landscape spatial pattern. \emph{Landscape Ecology}
-, 7, 101–110.
+, 7, 101 - 110.
 }

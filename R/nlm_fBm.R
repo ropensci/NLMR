@@ -16,7 +16,7 @@
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @details
-#' xxx
+#' Neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient H. An H of 1 produces a relatively smooth surface while an H of 0 produces a rough, uncorrelated, surface. Implementation of this method is limited to landscapes with extents less than 90 by 90 cells.
 #'
 #' @return RasterLayer
 #'

@@ -18,7 +18,7 @@ Number of rows for the raster.}
 Resolution of the raster.}
 
 \item{direction}{[\code{numerical(1)}]\cr
-Direction of the gradient, if unspecified the direction is randomly
+Direction of the gradient in degrees, if unspecified the direction is randomly
 determined.}
 
 \item{rescale}{[\code{logical(1)}]\cr
@@ -39,5 +39,5 @@ nlm_planargradient(nCol = 100, nRow = 100)
 }
 \references{
 Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
-\emph{The American Naturalist}, 139, 375–397.
+\emph{The American Naturalist}, 139, 375 - 397.
 }

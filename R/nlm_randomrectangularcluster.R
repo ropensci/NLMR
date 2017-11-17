@@ -5,8 +5,8 @@
 #' @param nCol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nRow  [\code{numerical(1)}]\cr Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
-#' @param minL [\code{numerical(1)}]\cr The minimum possible length of width and height for each random rectangular cluster.
-#' @param maxL [\code{numerical(1)}]\cr The maximum possible length of width and height for each random rectangular cluster.
+#' @param minL [\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.
+#' @param maxL [\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return RasterLayer with random values ranging from 0-1.
