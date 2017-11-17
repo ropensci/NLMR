@@ -84,6 +84,17 @@ NLMR::metric_area(cr)
 ## Visualizing neutral landscape models
 
 ### Contour plot
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("rasterVis")
+pL <- NLMR::nlm_mpd(nCol = 50, nRow = 50, roughness = 0.6)
+
+
+contourplot(pL)
+
+levelplot(pL,
+          contour = TRUE,
+          pretty = TRUE)
+```
 
 ### 3D Graphs
 
@@ -141,7 +152,7 @@ hchart(pL_matrix) %>%
   hc_colorAxis(stops = color_stops(colors = viridis::inferno(10)))
   
 # With plotly we can combine the interactive approach with the 3D Visualization
-plot_ly(z = as.matrix(pL_matrix), type = "surface")
+plot_ly(z = as.matrix(pL_matrix), type = "surface", colors = viridis::magma(8))
 ```
 
 ### RasterStacks/Bricks
