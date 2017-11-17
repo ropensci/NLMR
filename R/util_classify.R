@@ -15,8 +15,8 @@
 #' 2D matrix of data values.
 #' @param weighting [\code{numerical}]\cr
 #' Vector of numeric values.
-#' @param level_names [\code{character}]\cr V
-#' ector of names for the factor levels.
+#' @param level_names [\code{character}]\cr
+#' Vector of names for the factor levels.
 #'
 #' @return RasterLayer
 #'
