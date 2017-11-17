@@ -13,7 +13,7 @@ util_classify(x, weighting, level_names = NULL)
 \item{weighting}{[\code{numerical}]\cr
 Vector of numeric values.}
 
-\item{level_names}{[\code{character}]\cr V
+\item{level_names}{[\code{character}]\cr
 Vector of names for the factor levels.}
 }
 \value{
