@@ -126,7 +126,7 @@ nlm_mosaicfield <- function(nCol        = 50,
       })
 
       mosaicfields_brick <- raster::brick(mosaicfield_list)
-      names(map.stack) <- paste("Step: ", seq_along(mosaicfield_list))
+      names(mosaicfields_brick) <- paste("Step: ", seq_along(mosaicfield_list))
 
       # Rescale values to 0-1
       if (rescale == TRUE) {
