@@ -43,6 +43,8 @@ Suggests:
     rmarkdown,
     lintr,
     highcharter,
-    magrittr
+    magrittr,
+    rgl,
+    plotly
 VignetteBuilder:
     knitr

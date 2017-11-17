@@ -24,7 +24,7 @@ nearest-neighbour clusters.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+Raster layer with values between 0 and 1
 }
 \description{
 Simulates a random rectangular cluster neutral landscape model.
@@ -42,5 +42,5 @@ nlm_randomelement(nCol = 50, nRow = 50, n = 40)
 }
 \references{
 Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
-networks. \emph{Ecological Modelling}, 219, 39–48.
+networks. \emph{Ecological Modelling}, 219, 39 - 48.
 }

@@ -9,7 +9,7 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param direction [\code{numerical(1)}]\cr
-#' Direction of the gradient (between 0 and 360 dec), if unspecified the
+#' Direction of the gradient (between 0 and 360 degrees), if unspecified the
 #' direction is randomly determined.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.

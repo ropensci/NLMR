@@ -9,7 +9,7 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param direction [\code{numerical(1)}]\cr
-#' Direction of the gradient, if unspecified the direction is randomly
+#' Direction of the gradient in degrees, if unspecified the direction is randomly
 #' determined.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
@@ -24,7 +24,7 @@
 #'
 #' @references
 #' Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
-#' \emph{The American Naturalist}, 139, 375–397.
+#' \emph{The American Naturalist}, 139, 375 - 397.
 #'
 #' @aliases nlm_planargradient
 #' @rdname nlm_planargradient

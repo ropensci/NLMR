@@ -19,7 +19,7 @@
 #' uniformly distributed random value. The cells are then converted to a point
 #' pattern and interpolated by voronoi tesselation.
 #'
-#' @return RasterLayer
+#' @return Raster layer with values between 0 and 1
 #'
 #' @examples
 #' \donttest{
@@ -28,7 +28,7 @@
 #'
 #' @references
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
-#' networks. \emph{Ecological Modelling}, 219, 39–48.
+#' networks. \emph{Ecological Modelling}, 219, 39 - 48.
 #' @aliases nlm_randomelement
 #' @rdname nlm_randomelement
 #'
