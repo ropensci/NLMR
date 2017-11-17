@@ -127,6 +127,7 @@ rglwidget()
 ```{r message=FALSE, warning=FALSE}
 library(highcharter)
 library(magrittr)
+library(plotly)
 
 # create a NLM to work with
 pL <- NLMR::nlm_mosaicfield(nCol = 100, nRow = 100, n = 20)
@@ -138,6 +139,9 @@ pL_matrix <- raster::as.matrix(pL)
 hchart(pL_matrix) %>% 
   # changing default color
   hc_colorAxis(stops = color_stops(colors = viridis::inferno(10)))
+  
+# With plotly we can combine the interactive approach with the 3D Visualization
+plot_ly(z = as.matrix(pL_matrix), type = "surface")
 ```
 
 ### RasterStacks/Bricks
