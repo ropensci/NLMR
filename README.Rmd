@@ -94,7 +94,7 @@ Hence, if you used _NLMR_ please [file an issue on GitHub](https://marcosci.gith
 
 **NLMR** imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-```{r}
+```{r, echo  = FALSE, result = "asis", comment = ""}
 desc = read.dcf("DESCRIPTION")
 headings = dimnames(desc)[[2]]
 fields = which(headings %in% c("Depends", "Imports", "Suggests"))

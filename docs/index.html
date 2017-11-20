@@ -174,20 +174,14 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a><i class="fa fa-shopping-basket" aria-hidden="true"></i> Dependencies</h2>
 <p><strong>NLMR</strong> imports many great packages that it depends on. Many thanks to the developers of these tools:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">desc =<span class="st"> </span><span class="kw">read.dcf</span>(<span class="st">"/home/marco/PhD_Cloud/7_Code/NLMR/DESCRIPTION"</span>)
-headings =<span class="st"> </span><span class="kw">dimnames</span>(desc)[[<span class="dv">2</span>]]
-fields =<span class="st"> </span><span class="kw">which</span>(headings <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"Depends"</span>, <span class="st">"Imports"</span>, <span class="st">"Suggests"</span>))
-pkgs =<span class="st"> </span><span class="kw">paste</span>(desc[fields], <span class="dt">collapse =</span> <span class="st">", "</span>)
-pkgs =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, <span class="st">" "</span>, pkgs)
-<span class="kw">strsplit</span>(pkgs, <span class="st">","</span>)[[<span class="dv">1</span>]]
-<span class="co">#&gt;  [1] "R (&gt;= 3.1.0)"  " ggplot2"      " methods"      " plyr"        </span>
-<span class="co">#&gt;  [5] " pracma"       " rasterVis"    " R.utils"      " raster"      </span>
-<span class="co">#&gt;  [9] " sp"           " stats"        " ggthemes"     " viridis"     </span>
-<span class="co">#&gt; [13] " checkmate"    " dplyr"        " gstat"        " dismo"       </span>
-<span class="co">#&gt; [17] " deldir"       " lemon"        " RandomFields" " igraph"      </span>
-<span class="co">#&gt; [21] " spatstat"     " purrr"        " testthat"     " covr"        </span>
-<span class="co">#&gt; [25] " knitr"        " rmarkdown"    " lintr"        " highcharter" </span>
-<span class="co">#&gt; [29] " magrittr"     " rgl"          " plotly"</span></code></pre></div>
+<pre><code> [1] "R (&gt;= 3.1.0)"  " ggplot2"      " methods"      " plyr"        
+ [5] " pracma"       " rasterVis"    " R.utils"      " raster"      
+ [9] " sp"           " stats"        " ggthemes"     " viridis"     
+[13] " checkmate"    " dplyr"        " gstat"        " dismo"       
+[17] " deldir"       " lemon"        " RandomFields" " igraph"      
+[21] " spatstat"     " purrr"        " testthat"     " covr"        
+[25] " knitr"        " rmarkdown"    " lintr"        " highcharter" 
+[29] " magrittr"     " rgl"          " plotly"      </code></pre>
 </div>
 </div>
   </div>
