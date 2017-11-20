@@ -22,7 +22,6 @@ Imports:
     raster,
     sp,
     stats,
-    ggthemes,
     viridis,
     checkmate,
     dplyr,

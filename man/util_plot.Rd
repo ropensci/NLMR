@@ -4,11 +4,11 @@
 \alias{util_plot}
 \title{util_plot}
 \usage{
-util_plot(nlm_obj, scale = "A", discrete = FALSE,
-  legendposition = "bottom", legendtitle = "Z")
+util_plot(x, scale = "A", discrete = FALSE, legendposition = "bottom",
+  legendtitle = "Z")
 }
 \arguments{
-\item{nlm_obj}{[\code{Raster* object}]}
+\item{x}{[\code{Raster* object}]}
 
 \item{scale}{[\code{character}(1)]
 Five options are available: "viridis - magma" (= "A"),

@@ -2,7 +2,7 @@
 #'
 #' Plot a Raster* object with the NLMR default theme
 #'
-#' @param nlm_obj [\code{Raster* object}]
+#' @param x [\code{Raster* object}]
 #' @param scale [\code{character}(1)]
 #' Five options are available: "viridis - magma" (= "A"),
 #'                             "viridis - inferno" (= "B"),
@@ -42,26 +42,26 @@
 #' @export
 #'
 
-util_plot <- function(nlm_obj,
+util_plot <- function(x,
                       scale = "A",
                       discrete = FALSE,
                       legendposition = "bottom",
                       legendtitle = "Z") {
 
-  if(raster::nlayers(nlm_obj) == 1){
+  if(raster::nlayers(x) == 1){
 
     if (isTRUE(discrete)) {
 
 
       raster_labels = tryCatch({
-        nlm_obj@data@attributes[[1]][,2]
+        x@data@attributes[[1]][,2]
       }, error = function(e) {
-        nlm_obj <- raster::as.factor(nlm_obj)
-        levels <- raster::unique(nlm_obj)
-        nlm_obj@data@attributes[[1]][,2] <- levels
+        x <- raster::as.factor(x)
+        levels <- raster::unique(x)
+        x@data@attributes[[1]][,2] <- levels
       })
 
-      rasterVis::gplot(nlm_obj) +
+      rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +
         ggplot2::coord_equal() +
         ggplot2::labs(x = "Easting",
@@ -101,13 +101,13 @@ util_plot <- function(nlm_obj,
             label.hjust = 0.5
           )) +
         lemon::coord_capped_cart(
-          xlim = c(raster::extent(nlm_obj)[1],
-                   raster::extent(nlm_obj)[2]),
-          ylim = c(raster::extent(nlm_obj)[3],
-                   raster::extent(nlm_obj)[4]),
+          xlim = c(raster::extent(x)[1],
+                   raster::extent(x)[2]),
+          ylim = c(raster::extent(x)[3],
+                   raster::extent(x)[4]),
           left = "both", bottom = "both")
     } else {
-      rasterVis::gplot(nlm_obj) +
+      rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = value)) +
         ggplot2::coord_equal() +
         ggplot2::labs(x = "Easting",
@@ -145,15 +145,15 @@ util_plot <- function(nlm_obj,
             label.hjust = 0.5
           )) +
         lemon::coord_capped_cart(
-          xlim = c(raster::extent(nlm_obj)[1],
-                   raster::extent(nlm_obj)[2]),
-          ylim = c(raster::extent(nlm_obj)[3],
-                   raster::extent(nlm_obj)[4]),
+          xlim = c(raster::extent(x)[1],
+                   raster::extent(x)[2]),
+          ylim = c(raster::extent(x)[3],
+                   raster::extent(x)[4]),
           left = "both", bottom = "both")
     }
 
   } else {
-    rasterVis::levelplot(nlm_obj)
+    rasterVis::levelplot(x)
   }
 
 }

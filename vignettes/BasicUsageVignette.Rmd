@@ -88,7 +88,8 @@ library("rasterVis")
 pL <- NLMR::nlm_mpd(nCol = 50, nRow = 50, roughness = 0.6)
 
 
-contourplot(pL)
+contourplot(pL,
+            pretty = TRUE)
 
 levelplot(pL,
           contour = TRUE,
@@ -148,7 +149,10 @@ pL_matrix <- raster::as.matrix(pL)
 # plot interactive graph
 hchart(pL_matrix) %>% 
   # changing default color
-  hc_colorAxis(stops = color_stops(colors = viridis::inferno(10)))
+  hc_colorAxis(stops = color_stops(colors = viridis::inferno(10))) %>% 
+  hc_exporting(
+    enabled = TRUE
+  )
   
 # With plotly we can combine the interactive approach with the 3D Visualization
 plot_ly(z = as.matrix(pL_matrix), type = "surface", colors = viridis::magma(8))

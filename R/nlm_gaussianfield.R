@@ -45,6 +45,19 @@ nlm_gaussianfield <- function(nCol,
                               angle = 1,
                               rescale = TRUE){
 
+
+  # Check function arguments ----
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_count(autocorr_range, positive = TRUE)
+  checkmate::assert_numeric(mag_var)
+  checkmate::assert_numeric(beta)
+  checkmate::assert_numeric(nug)
+  checkmate::assert_character(direction)
+  checkmate::assert_count(angle, positive = TRUE)
+  checkmate::assert_logical(rescale)
+
   # create data structure for spatial model
   xy <- expand.grid(1:nCol, 1:nRow)
   # Set the name of the spatial coordinates within the field

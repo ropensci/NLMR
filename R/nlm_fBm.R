@@ -36,6 +36,14 @@ nlm_fBm <- function(nCol,
                     user_seed = NULL,
                     rescale = TRUE){
 
+  # Check function arguments ----
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_numeric(H)
+  checkmate::assert_true(H <= 1)
+  checkmate::assert_logical(rescale)
+
   # specify RandomFields options ----
   RandomFields::RFoptions(cPrintlevel=0)
   RandomFields::RFoptions(spConform=FALSE)

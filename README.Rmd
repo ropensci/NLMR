@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "vignettes/README-"
 )
 ```
 
@@ -89,4 +89,17 @@ cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M (2017). NLMR: Simulating neutra
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use _NLMR_.
 Hence, if you used _NLMR_ please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
 
+
+## Dependencies
+
+**NLMR** imports many great packages that it depends on. Many thanks to the developers of these tools:
+
+```{r}
+desc = read.dcf("DESCRIPTION")
+headings = dimnames(desc)[[2]]
+fields = which(headings %in% c("Depends", "Imports", "Suggests"))
+pkgs = paste(desc[fields], collapse = ", ")
+pkgs = gsub("\n", " ", pkgs)
+strsplit(pkgs, ",")[[1]]
+```
 

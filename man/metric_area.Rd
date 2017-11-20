@@ -4,10 +4,10 @@
 \alias{metric_area}
 \title{metric_area}
 \usage{
-metric_area(nlm, poi = NULL)
+metric_area(x, poi = NA)
 }
 \arguments{
-\item{nlm}{[\code{matrix(x,y)}]\cr 2D matrix of data values.}
+\item{x}{[\code{Raster* object}]}
 
 \item{poi}{[\code{numerical}]\cr  Vector of numeric values indicating classes to be reported.}
 }

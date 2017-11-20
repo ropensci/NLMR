@@ -4,10 +4,10 @@
 \alias{util_binarize}
 \title{Binarize continuous raster values}
 \usage{
-util_binarize(nlm_obj, breaks)
+util_binarize(x, breaks)
 }
 \arguments{
-\item{nlm_obj}{[\code{Raster* object}]}
+\item{x}{[\code{Raster* object}]}
 
 \item{breaks}{a vector with one or more break percentages}
 }
@@ -24,8 +24,8 @@ one percentage is given multiple layers are written in the same brick.
 }
 \examples{
 rndMap <- nlm_random(10, 10)
-brks <- c(0.3, 0.5, 0.7)
-util_binarize(rndMap, brks)
-
+breaks <- c(0.3, 0.5, 0.7, 0.9)
+rnd_bin <- util_binarize(rndMap, breaks)
+util_plot(rnd_bin)
 
 }

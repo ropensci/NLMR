@@ -45,11 +45,11 @@ nlm_randomrectangularcluster <-
 
     # Keep applying random clusters until all elements have a value -----
     while (any(is.na(matrix))) {
-      width <- sample(c(minL:maxL), 1)
-      height <- sample(c(minL:maxL), 1)
+      width  <- sample(minL:maxL, 1)
+      height <- sample(minL:maxL, 1)
 
-      row <- sample(c(1:nRow), 1)
-      col <- sample(c(1:nCol), 1)
+      row <- sample(1:nRow, 1)
+      col <- sample(1:nCol, 1)
 
       matrix[if ( (row + width) < nRow)
         row:(row + width)

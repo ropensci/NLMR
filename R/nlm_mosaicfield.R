@@ -52,6 +52,17 @@ nlm_mosaicfield <- function(nCol        = 50,
                             infinit     = FALSE,
                             rescale     = TRUE){
 
+  # Check function arguments ----
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_count(n, positive = TRUE)
+  checkmate::assert_numeric(mosaic_mean)
+  checkmate::assert_numeric(mosaic_sd)
+  checkmate::assert_logical(collect)
+  checkmate::assert_logical(infinit)
+  checkmate::assert_logical(rescale)
+
   mosaicfields_return <- list()
 
   if (!is.na(n)) {
