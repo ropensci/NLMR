@@ -32,6 +32,7 @@ nlm_randomrectangularcluster <-
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
+    checkmate::assert_numeric(resolution)
     checkmate::assert_count(minL, positive = TRUE)
     checkmate::assert_count(maxL, positive = TRUE)
     checkmate::assert_true(minL <= nCol)

@@ -51,8 +51,8 @@ nlm_planargradient  <- function(nCol,
   }
 
   # Determine the eastness and southness of the direction ----
-  eastness   <- sin(pracma::deg2rad(direction))
-  southness  <- cos(pracma::deg2rad(direction)) * -1
+  eastness   <- sin( (pi/180) * direction )
+  southness  <- cos( (pi/180) * direction  ) * -1
 
   # Create arrays of row and column index ----
   col_index <- matrix(0:(nCol - 1), nCol, nRow)

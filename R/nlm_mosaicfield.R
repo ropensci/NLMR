@@ -30,8 +30,8 @@
 #' methodology and applications with R. CRC Press, 2015.
 #'
 #' @examples
-#' nlm_mosaicfield(nCol = 100,
-#'                 nRow = 100,
+#' nlm_mosaicfield(nCol = 10,
+#'                 nRow = 10,
 #'                 n = 5,
 #'                 infinit = FALSE,
 #'                 collect = FALSE)
@@ -42,8 +42,8 @@
 #' @export
 
 
-nlm_mosaicfield <- function(nCol        = 50,
-                            nRow        = 50,
+nlm_mosaicfield <- function(nCol,
+                            nRow,
                             resolution  = 1,
                             n           = 20,
                             mosaic_mean = 0.5,
@@ -55,7 +55,7 @@ nlm_mosaicfield <- function(nCol        = 50,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_count(n, positive = TRUE)
   checkmate::assert_numeric(mosaic_mean)
   checkmate::assert_numeric(mosaic_sd)

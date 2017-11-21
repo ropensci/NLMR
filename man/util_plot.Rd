@@ -42,13 +42,4 @@ y <- c(0.5, 0.15, 0.25)
 nlm_raster <- util_classify(nlm_raster, y)
 util_plot(nlm_raster, scale = "D", discrete = TRUE)
 
-# for rasterstacks or bricks, use:
-nlm_1 <- nlm_random(100, 100, resolution = 10)
-nlm_2 <- nlm_percolation(100,100, 0.3, resolution = 10)
-nlm_3 <- nlm_edgegradient(100, 100, 0.3, resolution = 10)
-nlm_4 <- nlm_randomelement(100, 100, n = 150, resolution = 10)
-nlm_brick <- raster::brick(nlm_1,nlm_2,nlm_3,nlm_4)
-util_plot(nlm_brick)
-
-
 }

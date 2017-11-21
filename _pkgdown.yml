@@ -11,6 +11,7 @@ reference:
       - '`nlm_gaussianfield`'
       - '`nlm_mosaicfield`'
       - '`nlm_mpd`'
+      - '`nlm_neigh`'
       - '`nlm_percolation`'
       - '`nlm_planargradient`'
       - '`nlm_randomcluster`'
@@ -24,6 +25,7 @@ reference:
   - title: Utility Functions
     desc: ~
     contents:
+      - '`util_binarize`'
       - '`util_classify`'
       - '`util_merge`'
       - '`util_plot`'

@@ -22,9 +22,8 @@
 #' @return Raster layer with values between 0 and 1
 #'
 #' @examples
-#' \donttest{
-#' nlm_randomelement(nCol = 50, nRow = 50, n = 40)
-#' }
+#' nlm_randomelement(nCol = 10, nRow = 10, n = 10)
+#'
 #'
 #' @references
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
@@ -43,6 +42,7 @@ nlm_randomelement <- function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_count(n, positive = TRUE)
   checkmate::assert_true(n < nRow * nCol)
   checkmate::assert_logical(rescale)

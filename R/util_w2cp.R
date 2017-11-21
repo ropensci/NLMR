@@ -22,8 +22,3 @@ util_w2cp <- function(weighting) {
   return(cumulative_proportions)
 
 }
-
-
-#####
-# Sebastians comment: Test cumsum if always 1, get rid of manual placement of 1
-#####

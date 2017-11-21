@@ -23,7 +23,7 @@
 #' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labellign algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
 #'
 #' @examples
-#' nlm_randomcluster(nCol = 10, nRow = 10, neighbourhood = 4, p = 0.4)
+#' nlm_randomcluster(nCol = 10, nRow = 10, resolution = 10, neighbourhood = 4, p = 0.4)
 #'
 #' @references
 #' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
@@ -32,11 +32,13 @@
 #' Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
 #' package for the creation of neutral landscape models within a general
 #' numerical framework. \emph{Methods in Ecology and Evolution} 6:164 – 168.
+#'
 #' @aliases nlm_randomcluster
 #' @rdname nlm_randomcluster
 #'
 #' @export
 #'
+
 
 nlm_randomcluster  <-
   function(nCol,
@@ -45,21 +47,23 @@ nlm_randomcluster  <-
            neighbourhood = 4,
            p,
            rescale = TRUE) {
+
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
+    checkmate::assert_numeric(resolution)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_logical(rescale)
 
     # Create percolation array
-    random_matrix <- matrix(nlm_percolation(nCol, nRow, p)[], nCol, nRow)
+    random_matrix <- raster::as.matrix(nlm_percolation(nCol, nRow, p, resolution = resolution))
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-      raster::clump(raster::raster(random_matrix),
-                    direction = neighbourhood))
+                       raster::clump(raster::raster(random_matrix),
+                                     direction = neighbourhood))
 
     # Number of individual clusters ----
     n_clusters <- max(raster::values(clusters), na.rm = TRUE)
@@ -107,9 +111,9 @@ nlm_randomcluster  <-
 
     # specify resolution ----
     raster::extent(randomcluster_raster) <- c(0,
-                                         ncol(randomcluster_raster)*resolution,
-                                         0,
-                                         nrow(randomcluster_raster)*resolution)
+                                              ncol(randomcluster_raster)*resolution,
+                                              0,
+                                              nrow(randomcluster_raster)*resolution)
 
 
     # Rescale values to 0-1 ----

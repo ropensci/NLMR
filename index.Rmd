@@ -96,7 +96,7 @@ See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.ht
 To cite package '_NLMR_' in publications please use:
 
 ```{r, echo  = FALSE, result = "asis", comment = ""}
-cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
+cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
 ```
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use _NLMR_.
@@ -113,7 +113,7 @@ Hence, if you used _NLMR_ please [file an issue on GitHub](https://marcosci.gith
 ```{r, echo  = FALSE, result = "asis", comment = ""}
 desc = read.dcf("/home/marco/PhD_Cloud/7_Code/NLMR/DESCRIPTION")
 headings = dimnames(desc)[[2]]
-fields = which(headings %in% c("Depends", "Imports", "Suggests"))
+fields = which(headings %in% c("Depends"))
 pkgs = paste(desc[fields], collapse = ", ")
 pkgs = gsub("\n", " ", pkgs)
 strsplit(pkgs, ",")[[1]]

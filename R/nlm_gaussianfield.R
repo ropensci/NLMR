@@ -49,7 +49,7 @@ nlm_gaussianfield <- function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_count(autocorr_range, positive = TRUE)
   checkmate::assert_numeric(mag_var)
   checkmate::assert_numeric(beta)

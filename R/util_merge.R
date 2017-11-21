@@ -18,6 +18,10 @@
 
 util_merge <- function(primary_nlm, secondary_nlm, scalingfactor = 1, rescale = TRUE){
 
+  # Check function arguments ----
+  checkmate::assert_count(scalingfactor)
+  checkmate::assert_logical(rescale)
+
   if(class(secondary_nlm) != "RasterStack"){
     secondary_nlm <- raster::stack(secondary_nlm)
   }

@@ -39,7 +39,7 @@ nlm_fBm <- function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(H)
   checkmate::assert_true(H <= 1)
   checkmate::assert_logical(rescale)

@@ -4,10 +4,10 @@
 \alias{util_rescale}
 \title{util_rescale}
 \usage{
-util_rescale(r)
+util_rescale(x)
 }
 \arguments{
-\item{r}{[\code{Raster* object}]}
+\item{x}{[\code{Raster* object}]}
 }
 \value{
 Raster* object with values ranging from 0-1

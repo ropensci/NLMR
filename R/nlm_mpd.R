@@ -70,6 +70,7 @@ nlm_mpd  <-  function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(roughness)
   checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
   checkmate::assert_logical(rescale)

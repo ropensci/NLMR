@@ -2,7 +2,7 @@
 #'
 #' Linearly rescale element values in a raster to a range between 0 and 1
 #'
-#' @param r [\code{Raster* object}]
+#' @param x [\code{Raster* object}]
 #'
 #' @return Raster* object with values ranging from 0-1
 #'
@@ -19,10 +19,11 @@
 #' @export
 #'
 
-util_rescale <- function(r) {
-    rescaled_NLM <-
-      (r - raster::cellStats(r, "min")) /
-                   (raster::cellStats(r, "max") - raster::cellStats(r, "min"))
+util_rescale <- function(x) {
+
+  rescaled_NLM <-
+      (x - raster::cellStats(x, "min")) /
+                   (raster::cellStats(x, "max") - raster::cellStats(x, "min"))
 
     return(rescaled_NLM)
 

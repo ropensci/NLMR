@@ -52,6 +52,7 @@ nlm_percolation  <- function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_true(prob <= 1, na.ok = FALSE)
   checkmate::assert_true(prob >= 0, na.ok = FALSE)
 

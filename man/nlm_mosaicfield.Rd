@@ -4,9 +4,8 @@
 \alias{nlm_mosaicfield}
 \title{nlm_mosaicfield}
 \usage{
-nlm_mosaicfield(nCol = 50, nRow = 50, resolution = 1, n = 20,
-  mosaic_mean = 0.5, mosaic_sd = 0.5, collect = FALSE, infinit = FALSE,
-  rescale = TRUE)
+nlm_mosaicfield(nCol, nRow, resolution = 1, n = 20, mosaic_mean = 0.5,
+  mosaic_sd = 0.5, collect = FALSE, infinit = FALSE, rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr
@@ -43,8 +42,8 @@ RasterLayer or List with RasterLayer(s) and/or RasterBrick
 Create a mosaic random field neutral landscape model.
 }
 \examples{
-nlm_mosaicfield(nCol = 100,
-                nRow = 100,
+nlm_mosaicfield(nCol = 10,
+                nRow = 10,
                 n = 5,
                 infinit = FALSE,
                 collect = FALSE)

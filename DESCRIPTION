@@ -14,24 +14,18 @@ Depends:
 RoxygenNote: 6.0.1
 Imports:
     ggplot2,
-    methods,
-    plyr,
-    pracma,
     rasterVis,
     R.utils,
     raster,
     sp,
     stats,
-    ggthemes,
     viridis,
     checkmate,
     dplyr,
     gstat,
     dismo,
-    deldir,
     lemon,
     RandomFields,
-    igraph,
     spatstat,
     purrr
 URL: https://github.com/marcosci/NLMR

@@ -41,4 +41,3 @@ util_binarize <- function(x, breaks) {
   raster::brick(map.stack)
 
 }
-

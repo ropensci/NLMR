@@ -38,7 +38,7 @@ nlm_random  <-  function(nCol,
     # Check function arguments ----
     checkmate::assert_count(nCol, positive = TRUE)
     checkmate::assert_count(nRow, positive = TRUE)
-    checkmate::assert_count(resolution, positive = TRUE)
+    checkmate::assert_numeric(resolution)
     checkmate::assert_logical(rescale)
 
     # Assign random values to raster cells ----

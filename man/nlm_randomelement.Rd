@@ -35,9 +35,8 @@ uniformly distributed random value. The cells are then converted to a point
 pattern and interpolated by voronoi tesselation.
 }
 \examples{
-\donttest{
-nlm_randomelement(nCol = 50, nRow = 50, n = 40)
-}
+nlm_randomelement(nCol = 10, nRow = 10, n = 10)
+
 
 }
 \references{

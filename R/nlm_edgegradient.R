@@ -43,7 +43,7 @@ nlm_edgegradient <- function(nCol,
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
-  checkmate::assert_count(resolution, positive = TRUE)
+  checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(direction)
   checkmate::assert_logical(rescale)
 
