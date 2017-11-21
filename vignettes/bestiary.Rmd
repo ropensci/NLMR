@@ -36,7 +36,7 @@ neighboorcluster <- nlm_neigh(nCol = 50, nRow = 50, p_neigh = 0.75, categories =
 
 ## Core models
 
-```{r dependson='nlmr_bestiary', echo=FALSE, message=FALSE, results='hide', fig.width = 20, fig.height=20, dpi = 300, fig.align='center'}
+```{r dependson='nlmr_bestiary', echo=FALSE, message=FALSE, results='hide', fig.width = 20, fig.height=22, dpi = 300, fig.align='center'}
 library(NLMR)
 library(ggplot2)
 library(viridis)
@@ -170,9 +170,7 @@ print(nlmr_bestiary)
 ```
 
 ## NLMR Merges
-
-
-```{r dependson='nlmr_bestiary', echo=FALSE, message=FALSE, results='hide', fig.width = 15, fig.height=12, dpi = 300, fig.align='center'}
+```{r dependson='nlmr_bestiary', echo=FALSE, message=FALSE, results='hide', fig.width = 20, fig.height=7, dpi = 300, fig.align='center'}
 library(NLMR)
 library(ggplot2)
 library(viridis)
@@ -216,7 +214,7 @@ colnames(nlm_df) <- c("value", "x", "y", "Type")
 # Plot the rasters as facets
 nlmr_merges <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
   ggplot2::geom_raster(aes(fill=value), alpha=0.8) +
-  facet_wrap( ~ Type, ncol = 3, scales = "fixed") +
+  facet_wrap( ~ Type, ncol = 4, scales = "fixed") +
   ggplot2::coord_equal() +
   ggplot2::labs(x = "Easting",
                 y = "Northing") +

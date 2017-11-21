@@ -67,9 +67,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1245|          494|                840|              4140|  1245|        494|        840|         0.6746988|     5.915493|        1.500544|        0.3967871|
-|        1|     620|          182|                622|              1858|   620|        182|        622|         1.0032258|     6.220000|        1.569787|        0.2935484|
-|        2|     635|          170|                598|              1942|   635|        170|        598|         0.9417323|     5.862745|        1.551778|        0.2677165|
+|        0|    1246|          551|                812|              4172|  1246|        551|        812|         0.6516854|     5.718310|        1.490863|        0.4422151|
+|        1|     625|          233|                524|              1976|   625|        233|        524|         0.8384000|     5.240000|        1.514565|        0.3728000|
+|        2|     629|          168|                610|              1906|   629|        168|        610|         0.9697933|     5.980392|        1.560230|        0.2670906|
 
 Citation
 --------
@@ -85,4 +85,7 @@ Dependencies
 
 `**NLMR**` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-    [1] "R (>= 3.1.0)"
+     [1] "R (>= 3.1.0)"  " ggplot2"      " rasterVis"    " R.utils"     
+     [5] " raster"       " sp"           " stats"        " viridis"     
+     [9] " checkmate"    " dplyr"        " gstat"        " dismo"       
+    [13] " lemon"        " RandomFields" " spatstat"     " purrr"
