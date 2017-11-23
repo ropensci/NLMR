@@ -25,7 +25,7 @@
 #' Probability to turn into a value if there is any neighbor with the same or a
 #'  higher value.
 #' @param p_empty [\code{numerical(1)}]\cr
-#' Probability to turn into a value if all neighbors have a lower value (i.e.
+#' Probability to turn into a value if all neighbors have no value (i.e.
 #' zero).
 #' @param categories [\code{numerical(1)}]\cr
 #' Number of categories used.
@@ -49,8 +49,8 @@
 #' \emph{Ecological Modelling} 326 (2016): 75-89.
 #'
 #' @examples
-#' nlm_neigh(nCol = 10, nRow = 10, p_neigh = 0.1, categories = 5,
-#'                     p_empty = 0.3, neighborhood = "Von-Neumann")
+#' nlm_neigh(nCol = 10, nRow = 10, p_neigh = 0.1, p_empty = 0.3,
+#'                     categories = 5, neighborhood = "Von-Neumann")
 #'
 #' @aliases nlm_neigh
 #' @rdname nlm_neigh
