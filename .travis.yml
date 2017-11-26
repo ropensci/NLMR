@@ -8,27 +8,9 @@ r_check_args: --no-build-vignettes --no-manual
 warnings_are_errors: false
 r_packages:
   - covr
-  - gridExtra
-  - ggthemes
-  - viridis
-  - rasterVis
-  - igraph
-  - lemon
-  - dismo
-  - deldir
-  - highcharter
-  - magrittr
 
 after_success:
-  - Rscript -e 'covr::codecov(token = '67be45c9-fe6c-4d3a-95ad-fd3d6131409c')'
-
-env:
-  global:
-    - CODECOV_TOKEN="67be45c9-fe6c-4d3a-95ad-fd3d6131409c"
-    - R_CHECK_ARGS="--no-build-vignettes --no-manual --timings --no-vignettes"
-    - R_CHECK_TIME="TRUE"
-    - R_CHECK_TESTS="TRUE"
-    - _R_CHECK_TIMINGS_="0"
+  - Rscript -e 'covr::codecov()'
 
 notifications:
   email:
