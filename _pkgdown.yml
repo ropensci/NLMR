@@ -5,6 +5,7 @@ reference:
   - title: Neutral Landscape Models
     desc: ~
     contents:
+      - '`nlm_curds`'
       - '`nlm_distancegradient`'
       - '`nlm_edgegradient`'
       - '`nlm_fBm`'

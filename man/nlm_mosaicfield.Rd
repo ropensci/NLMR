@@ -42,10 +42,10 @@ RasterLayer or List with RasterLayer(s) and/or RasterBrick
 Create a mosaic random field neutral landscape model.
 }
 \examples{
-nlm_mosaicfield(nCol = 10,
-                nRow = 10,
-                n = 5,
-                infinit = FALSE,
+nlm_mosaicfield(nCol = 200,
+                nRow = 200,
+                n = NA,
+                infinit = TRUE,
                 collect = FALSE)
 
 }

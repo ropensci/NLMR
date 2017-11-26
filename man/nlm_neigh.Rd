@@ -22,7 +22,7 @@ Probability to turn into a value if there is any neighbor with the same or a
  higher value.}
 
 \item{p_empty}{[\code{numerical(1)}]\cr
-Probability to turn into a value if all neighbors have a lower value (i.e.
+Probability to turn into a value if all neighbors have no value (i.e.
 zero).}
 
 \item{categories}{[\code{numerical(1)}]\cr
@@ -61,8 +61,8 @@ The algorithm draws a random cell and turns it into a given category based on
  applied.
 }
 \examples{
-nlm_neigh(nCol = 10, nRow = 10, p_neigh = 0.1, categories = 5,
-                    p_empty = 0.3, neighborhood = "Von-Neumann")
+nlm_neigh(nCol = 10, nRow = 10, p_neigh = 0.1, p_empty = 0.3,
+                    categories = 5, neighborhood = "Von-Neumann")
 
 }
 \references{

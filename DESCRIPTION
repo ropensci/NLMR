@@ -3,6 +3,8 @@ Type: Package
 Title: NLMR - Neutral Landscape Models with R
 Version: 0.1.0
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")),
+            person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
+            person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("aut")),
             person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")))
 Description: R package to create neutral landscape models (NLM).
 License: GPL-3
@@ -13,21 +15,23 @@ Depends:
     R (>= 3.1.0)
 RoxygenNote: 6.0.1
 Imports:
+    checkmate,
+    dismo,
+    dplyr,
     ggplot2,
+    gstat,
+    lemon,
+    magrittr,
+    purrr,
+    RandomFields,
+    raster,
     rasterVis,
     R.utils,
-    raster,
     sp,
-    stats,
-    viridis,
-    checkmate,
-    dplyr,
-    gstat,
-    dismo,
-    lemon,
-    RandomFields,
     spatstat,
-    purrr
+    stats,
+    tibble,
+    viridis
 URL: https://github.com/marcosci/NLMR
 BugReports: https://github.com/marcosci/NLMR/issues
 Suggests:
@@ -35,10 +39,6 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    lintr,
-    highcharter,
-    magrittr,
-    rgl,
-    plotly
+    lintr
 VignetteBuilder:
     knitr

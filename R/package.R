@@ -29,4 +29,4 @@
 
 NULL
 
-globalVariables(c("value"))
+globalVariables(c("value", "."))

@@ -67,25 +67,26 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1246|          551|                812|              4172|  1246|        551|        812|         0.6516854|     5.718310|        1.490863|        0.4422151|
-|        1|     625|          233|                524|              1976|   625|        233|        524|         0.8384000|     5.240000|        1.514565|        0.3728000|
-|        2|     629|          168|                610|              1906|   629|        168|        610|         0.9697933|     5.980392|        1.560230|        0.2670906|
+|        0|    1249|          563|                798|              4198|  1249|        563|        798|         0.6389111|     5.619718|        1.485481|        0.4507606|
+|        1|     624|          214|                534|              1962|   624|        214|        534|         0.8557692|     5.340000|        1.520816|        0.3429487|
+|        2|     627|          186|                604|              1904|   627|        186|        604|         0.9633174|     5.921569|        1.557932|        0.2966507|
 
 Citation
 --------
 
-To cite package `**NLMR**` in publications please use:
+To cite package `NLMR` in publications please use:
 
     Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
 
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use`**NLMR**`. Hence, if you used `**NLMR**` please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
 
 Dependencies
 ------------
 
-`**NLMR**` imports many great packages that it depends on. Many thanks to the developers of these tools:
+`NLMR` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-     [1] "R (>= 3.1.0)"  " ggplot2"      " rasterVis"    " R.utils"     
-     [5] " raster"       " sp"           " stats"        " viridis"     
-     [9] " checkmate"    " dplyr"        " gstat"        " dismo"       
-    [13] " lemon"        " RandomFields" " spatstat"     " purrr"
+     [1] "R (>= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
+     [5] " ggplot2"      " gstat"        " lemon"        " magrittr"    
+     [9] " purrr"        " RandomFields" " raster"       " rasterVis"   
+    [13] " R.utils"      " sp"           " spatstat"     " stats"       
+    [17] " tibble"       " viridis"

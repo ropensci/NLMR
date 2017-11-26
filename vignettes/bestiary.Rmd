@@ -32,6 +32,7 @@ gaussian_linear <- nlm_gaussianfield(nCol = 100, nRow = 100, 35, direction = "li
 fBm <- nlm_fBm(nCol = 50, nRow = 50, H = 0.7, resolution = 20)
 mosaic <- nlm_mosaicfield(nCol = 100, nRow = 100, n = 20, resolution = 10)
 neighboorcluster <- nlm_neigh(nCol = 50, nRow = 50, p_neigh = 0.75, categories = 5, p_empty = 0.01, neighborhood = "Von-Neumann", resolution = 20, proportions =c(0.25, 0.05, 0.1, 0.3, 0.3))
+curds <- nlm_curds(p = c(0.33, 0.33, 0.33), s = c(16, 16, 16), resolution = 10)
 ```
 
 ## Core models
@@ -58,6 +59,8 @@ gaussian_linear_spdf          <- as(gaussian_linear, "SpatialPixelsDataFrame")
 fBm_spdf          <- as(fBm, "SpatialPixelsDataFrame")
 mosaic_spdf          <- as(mosaic, "SpatialPixelsDataFrame")
 neigh_spdf          <- as(neighboorcluster, "SpatialPixelsDataFrame")
+curds_spdf          <- as(curds, "SpatialPixelsDataFrame")
+
 
 ## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
 percolation_df <- as.data.frame(percolation_spdf)
@@ -108,6 +111,12 @@ names(mosaic_df)[1] <- "layer"
 neigh_df <- as.data.frame(neigh_spdf)
 neigh_df[,4] <- "Random Neighborhood"
 
+curds_df <- as.data.frame(curds_spdf)
+curds_df[,4] <- "Hierarchical curdling"
+
+
+
+
 ## bind all of them together
 nlm_df <- rbind(percolation_df,
                 random_df,
@@ -122,7 +131,8 @@ nlm_df <- rbind(percolation_df,
                 gaussian_linear_df,
                 fbm_df,
                 mosaic_df,
-                neigh_df)
+                neigh_df, 
+                curds_df)
 
 ## rename columns
 colnames(nlm_df) <- c("value", "x", "y", "Type")
