@@ -5,7 +5,7 @@
 NLMR <img src="vignettes/logo.png" align="right"  height="150" />
 =================================================================
 
-`**NLMR**` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `**NLMR**` he advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+`NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builts on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
 
 Installation
 ------------
@@ -42,7 +42,7 @@ util_plot(nlm_raster, scale = "A") +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 ```
 
-![](vignettes/README-example-1.png)
+<img src="vignettes/README-example-1.png" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -55,7 +55,7 @@ util_plot(nlm_raster, scale = "A", discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 ```
 
-![](vignettes/README-example-2.png)
+<img src="vignettes/README-example-2.png" style="display: block; margin: auto;" />
 
 ``` r
 
