@@ -124,10 +124,10 @@
     </div>
 
     
-    <p>desc.</p>
+    <p>Simulates a curdled neutral landscape model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_curds</span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_curds</span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -135,17 +135,18 @@
     <tr>
       <th>p</th>
       <td><p>[<code>numerical(x)</code>]
-Vector with percentage(s) to cut of (fill with zeroes)</p></td>
+Vector with percentage(s) to cut of (fill with matrix (zeroes)).</p></td>
     </tr>
     <tr>
       <th>s</th>
       <td><p>[<code>numerical(x)</code>]
-Vector of successive cutting steps (split 1 cell into x cells)</p></td>
+Vector of successive cutting steps for the blocks (split 1 block into x
+blocks).</p></td>
     </tr>
     <tr>
-      <th>resolution</th>
+      <th>ext</th>
       <td><p>[<code>numerical(1)</code>]
-Resolution of the raster.</p></td>
+Extent of the resulting raster (0,x,0,x).</p></td>
     </tr>
     </table>
     
@@ -155,19 +156,27 @@ Resolution of the raster.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>detail.</p>
+    <p>Random curdling recursively subdivides the plane into blocks.
+At each level of the recursion, a fraction of the this block is declared as
+habitat (1) while the remaing stays matrix (0).</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Keitt TH. 2000. Spectral representation of neutral landscapes.
+<em>Landscape Ecology</em> 15:479-493.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>nlm_curds</span>(<span class='fu'>c</span>(<span class='fl'>0.25</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>), <span class='fu'>c</span>(<span class='fl'>64</span>, <span class='fl'>8</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 512, 512, 262144  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 512, 0, 512  (xmin, xmax, ymin, ymax)
+#&gt; resolution  : 0.001953125, 0.001953125  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -178,6 +187,8 @@ Resolution of the raster.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

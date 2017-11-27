@@ -120,7 +120,7 @@ curds_df[,4] <- "Hierarchical Curdling"
 
 poly_df <- as.data.frame(poly_spdf)
 poly_df[,4] <- "Polygonal landscapes"
-
+names(poly_df)[1] <- "layer"
 
 ## bind all of them together
 nlm_df <- rbind(percolation_df,
@@ -137,7 +137,8 @@ nlm_df <- rbind(percolation_df,
                 fbm_df,
                 mosaic_df,
                 neigh_df, 
-                curds_df)
+                curds_df,
+                poly_df)
 
 ## rename columns
 colnames(nlm_df) <- c("value", "x", "y", "Type")

@@ -4,28 +4,36 @@
 \alias{nlm_curds}
 \title{nlm_curds}
 \usage{
-nlm_curds(p, s, resolution = 1)
+nlm_curds(p, s, ext = 1)
 }
 \arguments{
 \item{p}{[\code{numerical(x)}]\cr
-Vector with percentage(s) to cut of (fill with zeroes)}
+Vector with percentage(s) to cut of (fill with matrix (zeroes)).}
 
 \item{s}{[\code{numerical(x)}]\cr
-Vector of successive cutting steps (split 1 cell into x cells)}
+Vector of successive cutting steps for the blocks (split 1 block into x
+blocks).}
 
-\item{resolution}{[\code{numerical(1)}]\cr
-Resolution of the raster.}
+\item{ext}{[\code{numerical(1)}]\cr
+Extent of the resulting raster (0,x,0,x).}
 }
 \value{
 raster
 }
 \description{
-desc.
+Simulates a curdled neutral landscape model.
 }
 \details{
-detail.
+Random curdling recursively subdivides the plane into blocks.
+At each level of the recursion, a fraction of the this block is declared as
+habitat (1) while the remaing stays matrix (0).
 }
 \examples{
 nlm_curds(c(0.25, 0.25, 0.5), c(64, 8, 1))
 
+
+}
+\references{
+Keitt TH. 2000. Spectral representation of neutral landscapes.
+\emph{Landscape Ecology} 15:479-493.
 }

@@ -5,7 +5,7 @@
 \title{nlm_polylands}
 \usage{
 nlm_polylands(nCol, nRow, resolution = 1, option = 1, germs, g, R,
-  patch_classes)
+  patch_classes, rescale = TRUE)
 }
 \arguments{
 \item{nCol}{[\code{numerical(1)}]\cr
@@ -22,7 +22,7 @@ If \code{1} (default), the Tessellation method is used to simulate the NLM.
 If \code{2}, the Gibbs algorithm method is used to simulate the NLM.}
 
 \item{germs}{[\code{numerical(1)}]\cr
-Intensity parameter (a positive number)}
+Intensity parameter (a positive number).}
 
 \item{g}{[\code{numerical(1)}]\cr
 Interaction parameter (a number between 0 and 1, inclusive - only used when \code{option = 2}).}
@@ -31,19 +31,31 @@ Interaction parameter (a number between 0 and 1, inclusive - only used when \cod
 Interaction radius (a non-negative number).}
 
 \item{patch_classes}{[\code{numerical(1)}]\cr
-Number of classes for germs}
+Number of classes for germs.}
+
+\item{rescale}{[\code{logical(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.
+Otherwise, the distance in raster units is calculated.}
 }
 \value{
 RasterLayer
 }
 \description{
-Simulate a spatially random neutral landscape model with values
-drawn a uniform distribution.
+Simulate the NLM introduced in Gaucherel 2008.
 }
 \details{
-The function takes the number of columns and rows as input and creates a
-RasterLayer with the same extent. Each raster cell is randomly assigned a
-value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
+The function offers 2 of the 3 NLM described in Gaucheral.
+The first one (\code{option = 1}) is a tesselation method.
+It generates a random point pattern (the germs) with an indepentend
+distribution and uses the voronoi tesselation to simulate the patchy
+landscapes.
+The second one (\code{option = 2}) is the gibbs alorithm method.
+The method works in principal like the tesselation method, but instead of
+a random point pattern one fits a simulated realisation of the Strauss
+process. The Strauss process starts with a given number of points and
+uses a minimization approach to fit a point pattern with a given interaction
+parameter (0 - hardcore proces;, 1 - poission process) and interaction radius
+(distance of points/germs being apart).
 }
 \examples{
 nlm_polylands(nCol = 50, nRow = 50, germs = 20)
