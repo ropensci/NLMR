@@ -25,18 +25,20 @@ analysis packages, notably the `raster` package.
 
 ## Basic landscape generation
 
-`NLMR` supplies 12 NLM algorithms. The algorithms differ from each other in 
+`NLMR` supplies 14 NLM algorithms. The algorithms differ from each other in 
 spatial auto-correlation, from no auto-correlation (random NLM) to a constant 
 gradient (planar gradients) [see @Palmer1992].  
 
-The 12 NLM algorithms are:  
+The 14 NLM algorithms are:  
 
 1. distance gradient
 1. edge gradient  
-1. midpoint displacement  
+1. midpoint displacement 
+1. neighbourhood clustering
 1. planar gradient  
 1. random  
 1. random cluster nearest-neighbour 
+1. random curdling
 1. random element 
 1. random percolation  
 1. random rectangular cluster 
@@ -123,16 +125,14 @@ NLMR::metric_area(cr)
 ## Handling Raster* Objects in R
 
 ### Basics
-The `raster` package, the major framework for `**NLMR**`,  is built around a 
-number of classes of which the `RasterLayer`, `RasterBrick`, and `RasterStack` classes
-are the most important. The two latter ones are basically just a collection of 
-multiple `RasterLayer` with the same spatial extent and resolution.
+The `raster` package, the major framework for `NLMR`,  is built around a 
+number of classes, most importantly the `RasterLayer`, `RasterBrick`, and `RasterStack` classes. The latter two basically comprising collections of multiple `RasterLayers` with the same spatial extent and resolution.
 
-A RasterLayer is defined by its spatial dimions (number of rows, number of 
+A `RasterLayer` is defined by its spatial dimensions (number of rows, number of 
 columns and resulting number of cells) and its spatial extent. These two
-parameters define another important property, the spatial resolution.
+parameters define the spatial resolution of the layer.
 
-A raster from scratch looks like this:
+A `RasterLayer` can be manually created as follows:
 
 ```{r raster-example, message=FALSE, warning=FALSE}
 library(raster)
@@ -140,33 +140,30 @@ r <- raster(ncol=10, nrow=10, xmn=0, xmx=100, ymn=0, ymx=100)
 r
 ```
 
-However, this raster lacks a fundamental thing to be of interest: values.
+However, the raster created is empty, the cells containing no values. We can add values using the following code:
 
 ```{r raster-example2, dependson='raster-example', message=FALSE, warning=FALSE}
 values(r) <- runif(ncell(r))
 r
 ```
 
-... and by doing so, we just created one of the most simple NLM - a complete
+By running the above code we have just created one of the most simple NLMs - a completely
 random landscape.
 
-To have a look at this, we can use the `raster` built-in plotting function (
-<small> but recommend to use NLMR::util_plot, for aesthetic and viridis reasons
+To have visually examine the created `RasterLayer`, we can use `raster`'s built-in plotting function (
+<small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons
 </small>):
 
 ```{r dependson='raster-example2', message=FALSE, warning=FALSE, fig.height=7, fig.width=7, fig.align='center'}
 plot(r)
 ```
 
-In landscape ecology it is quite usual that we try to infer ecological dynamics
-from multiple environmental datasets that are from the same geographical realm.
-The `raster` packages uses for this kind of multi-layer data the classes 
-`RasterStack` and `RasterBrick`.
+In landscape ecology it is quite usual to try and infer ecological dynamics using multiple environmental datasets derived from the same geographical area.
+The `raster` packages uses `RasterStack` and `RasterBrick` for this kind of multi-layer data.
 
 `RasterStack` is basically a list of `RasterLayer` with the same spatial extent 
 and resolution. `RasterBrick`, however, is a truly multi-layered object. This 
-means that all layer share a single reference for dimensions and extent (why it 
-can be more efficient to process a `RasterBrick` than `RasterStack`).
+means that all layer share a single reference for dimensions and extent (which often results in it being more efficient to process a `RasterBrick` than a `RasterStack`).
 
 ```{r dependson='raster-example2', message=FALSE, warning=FALSE, fig.height=7, fig.width=7, fig.align='center'}
 r2 <- r * (abs(0.5 - r) * -2) + 1
@@ -225,7 +222,7 @@ r
 
 
 #### ‘High-level’ raster functions
-`raster` provides all functions that you would expect from a typical GIS 
+The `raster` package provides all the functions that would expected from a typical GIS 
 software.
 
 Some examples are:

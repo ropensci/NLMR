@@ -11,10 +11,10 @@ util_plot(x, scale = "A", discrete = FALSE, legendposition = "bottom",
 \item{x}{[\code{Raster* object}]}
 
 \item{scale}{[\code{character}(1)]
-Five options are available: "viridis - magma" (= "A"),
+Five options are available: "viridis - magma" (= "A",  the default option),
                             "viridis - inferno" (= "B"),
                             "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D", the default option)}
+                            "viridis - viridis" (= "D")}
 
 \item{discrete}{[\code{logical}(1)] If TRUE, the function plots a raster with
 a discrete legend.}

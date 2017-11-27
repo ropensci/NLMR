@@ -4,10 +4,10 @@
 #'
 #' @param x [\code{Raster* object}]
 #' @param scale [\code{character}(1)]
-#' Five options are available: "viridis - magma" (= "A"),
+#' Five options are available: "viridis - magma" (= "A",  the default option),
 #'                             "viridis - inferno" (= "B"),
 #'                             "viridis - plasma" (= "C"),
-#'                             "viridis - viridis" (= "D", the default option)
+#'                             "viridis - viridis" (= "D")
 #' @param discrete [\code{logical}(1)] If TRUE, the function plots a raster with
 #' a discrete legend.
 #' @param legendposition [\code{character}(1)] The position of legends
