@@ -83,7 +83,7 @@ nlm_polylands <- function(nCol,
     tess_surface <- spatstat::dirichlet(X)
 
     # whole bunch of conversions to get a raster in the end ----
-    tess_im <- spatstat::as.im(tess_surface)
+    tess_im <- spatstat::as.im(tess_surface, dimyx=c(nCol, nRow))
     tess_data <- raster::as.data.frame(tess_im)
     sp::coordinates(tess_data) <- ~ x + y
     sp::gridded(tess_data) <- TRUE
