@@ -33,6 +33,7 @@ fBm <- nlm_fBm(nCol = 50, nRow = 50, H = 0.7, resolution = 20)
 mosaic <- nlm_mosaicfield(nCol = 100, nRow = 100, n = 20, resolution = 10)
 neighboorcluster <- nlm_neigh(nCol = 50, nRow = 50, p_neigh = 0.75, categories = 5, p_empty = 0.01, neighborhood = "Von-Neumann", resolution = 20, proportions =c(0.25, 0.05, 0.1, 0.3, 0.3))
 curds <- nlm_curds(p = c(0.33, 0.33, 0.33), s = c(32, 16, 8), resolution = 10)
+poly_scapes <- nlm_polylands(nCol = 50, nRow = 50, germs = 20, resolution = 10)
 ```
 
 ## Core models
@@ -60,6 +61,8 @@ fBm_spdf          <- as(fBm, "SpatialPixelsDataFrame")
 mosaic_spdf          <- as(mosaic, "SpatialPixelsDataFrame")
 neigh_spdf          <- as(neighboorcluster, "SpatialPixelsDataFrame")
 curds_spdf          <- as(curds, "SpatialPixelsDataFrame")
+poly_spdf          <- as(poly_scapes, "SpatialPixelsDataFrame")
+
 
 
 ## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
@@ -112,9 +115,11 @@ neigh_df <- as.data.frame(neigh_spdf)
 neigh_df[,4] <- "Random Neighborhood"
 
 curds_df <- as.data.frame(curds_spdf)
-curds_df[,4] <- "Hierarchical curdling"
+curds_df[,4] <- "Hierarchical Curdling"
 
 
+poly_df <- as.data.frame(poly_spdf)
+poly_df[,4] <- "Polygonal landscapes"
 
 
 ## bind all of them together

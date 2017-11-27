@@ -25,11 +25,11 @@ analysis packages, notably the `raster` package.
 
 ## Basic landscape generation
 
-`NLMR` supplies 12 NLM algorithms. The algorithms differ from each other in 
+`NLMR` supplies 15 NLM algorithms. The algorithms differ from each other in 
 spatial auto-correlation, from no auto-correlation (random NLM) to a constant 
 gradient (planar gradients) [see @Palmer1992].  
 
-The 12 NLM algorithms are:  
+The 15 NLM algorithms are:  
 
 1. distance gradient
 1. edge gradient  
@@ -38,11 +38,13 @@ The 12 NLM algorithms are:
 1. random  
 1. random cluster nearest-neighbour 
 1. random element 
+1. random polygonal landscapes
 1. random percolation  
 1. random rectangular cluster 
 1. spatially correlated random fields (Gaussian random fields)  
 1. two-dimensional fractional Brownian motion  
 1. random mosaic fields
+1. hierarchical curdling
 
 The basic syntax used to produce a NLM landscape is:
 ```
