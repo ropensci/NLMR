@@ -38,7 +38,3 @@ util_calc_boundaries <- function(x, cumulative_proportions) {
   return(boundary_values)
 
 }
-
-#####
-# Sebastians comment: Maybe set the maximum boundary value to the max value of the matrix to have a more flexible classification
-#####

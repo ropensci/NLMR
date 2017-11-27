@@ -37,9 +37,9 @@ pattern and interpolated by voronoi tesselation.
 \examples{
 nlm_randomelement(nCol = 10, nRow = 10, n = 10)
 
-
 }
 \references{
-Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
-networks. \emph{Ecological Modelling}, 219, 39 - 48.
+Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
+package for the creation of neutral landscape models within a general
+numerical framework. \emph{Methods in Ecology and Evolution} 6:164 – 168.
 }

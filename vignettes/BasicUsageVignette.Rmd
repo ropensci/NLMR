@@ -25,14 +25,15 @@ analysis packages, notably the `raster` package.
 
 ## Basic landscape generation
 
-`NLMR` supplies 14 NLM algorithms. The algorithms differ from each other in 
+`NLMR` supplies 16 NLM algorithms. The algorithms differ from each other in 
 spatial auto-correlation, from no auto-correlation (random NLM) to a constant 
 gradient (planar gradients) [see @Palmer1992].  
 
-The 14 NLM algorithms are:  
+The 16 NLM algorithms are:
 
 1. distance gradient
 1. edge gradient  
+1. hierarchical curdling
 1. midpoint displacement 
 1. neighbourhood clustering
 1. planar gradient  
@@ -40,11 +41,12 @@ The 14 NLM algorithms are:
 1. random cluster nearest-neighbour 
 1. random curdling
 1. random element 
+1. random mosaic fields
+1. random polygonal landscapes
 1. random percolation  
 1. random rectangular cluster 
 1. spatially correlated random fields (Gaussian random fields)  
-1. two-dimensional fractional Brownian motion  
-1. random mosaic fields
+1. two-dimensional fractional Brownian motion
 
 The basic syntax used to produce a NLM landscape is:
 ```
@@ -150,7 +152,7 @@ r
 By running the above code we have just created one of the most simple NLMs - a completely
 random landscape.
 
-To have visually examine the created `RasterLayer`, we can use `raster`'s built-in plotting function (
+To visually examine the created `RasterLayer`, we can use `raster`'s built-in plotting function (
 <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons
 </small>):
 
