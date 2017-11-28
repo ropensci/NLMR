@@ -110,30 +110,30 @@
 <div id="basic-landscape-generation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-landscape-generation" class="anchor"></a>Basic landscape generation</h2>
-<p><code>NLMR</code> supplies 15 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
-<p>The 15 NLM algorithms are:</p>
+<p><code>NLMR</code> supplies 16 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
+<p>The 16 NLM algorithms are:</p>
 <ol style="list-style-type: decimal">
 <li>distance gradient</li>
 <li>edge gradient<br>
 </li>
-<li>midpoint displacement<br>
-</li>
+<li>hierarchical curdling</li>
+<li>midpoint displacement</li>
+<li>neighbourhood clustering</li>
 <li>planar gradient<br>
 </li>
 <li>random<br>
 </li>
 <li>random cluster nearest-neighbour</li>
+<li>random curdling</li>
 <li>random element</li>
+<li>random mosaic fields</li>
 <li>random polygonal landscapes</li>
 <li>random percolation<br>
 </li>
 <li>random rectangular cluster</li>
 <li>spatially correlated random fields (Gaussian random fields)<br>
 </li>
-<li>two-dimensional fractional Brownian motion<br>
-</li>
-<li>random mosaic fields</li>
-<li>hierarchical curdling</li>
+<li>two-dimensional fractional Brownian motion</li>
 </ol>
 <p>The basic syntax used to produce a NLM landscape is:</p>
 <pre><code>nlm_modeltype(nCol, nRow, resolution, ...)</code></pre>
@@ -212,9 +212,9 @@ NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentatio
 <div id="basics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#basics" class="anchor"></a>Basics</h3>
-<p>The <code>raster</code> package, the major framework for <code>**NLMR**</code>, is built around a number of classes of which the <code>RasterLayer</code>, <code>RasterBrick</code>, and <code>RasterStack</code> classes are the most important. The two latter ones are basically just a collection of multiple <code>RasterLayer</code> with the same spatial extent and resolution.</p>
-<p>A RasterLayer is defined by its spatial dimions (number of rows, number of columns and resulting number of cells) and its spatial extent. These two parameters define another important property, the spatial resolution.</p>
-<p>A raster from scratch looks like this:</p>
+<p>The <code>raster</code> package, the major framework for <code>NLMR</code>, is built around a number of classes, most importantly the <code>RasterLayer</code>, <code>RasterBrick</code>, and <code>RasterStack</code> classes. The latter two basically comprising collections of multiple <code>RasterLayers</code> with the same spatial extent and resolution.</p>
+<p>A <code>RasterLayer</code> is defined by its spatial dimensions (number of rows, number of columns and resulting number of cells) and its spatial extent. These two parameters define the spatial resolution of the layer.</p>
+<p>A <code>RasterLayer</code> can be manually created as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
 r &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(<span class="dt">ncol=</span><span class="dv">10</span>, <span class="dt">nrow=</span><span class="dv">10</span>, <span class="dt">xmn=</span><span class="dv">0</span>, <span class="dt">xmx=</span><span class="dv">100</span>, <span class="dt">ymn=</span><span class="dv">0</span>, <span class="dt">ymx=</span><span class="dv">100</span>)
 r</code></pre></div>
@@ -223,7 +223,7 @@ r</code></pre></div>
 ## resolution  : 10, 10  (x, y)
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA</code></pre>
-<p>However, this raster lacks a fundamental thing to be of interest: values.</p>
+<p>However, the raster created is empty, the cells containing no values. We can add values using the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getValues">values</a></span>(r) &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/ncell">ncell</a></span>(r))
 r</code></pre></div>
 <pre><code>## class       : RasterLayer 
@@ -233,13 +233,13 @@ r</code></pre></div>
 ## coord. ref. : NA 
 ## data source : in memory
 ## names       : layer 
-## values      : 0.0216373, 0.9772263  (min, max)</code></pre>
-<p>… and by doing so, we just created one of the most simple NLM - a complete random landscape.</p>
-<p>To have a look at this, we can use the <code>raster</code> built-in plotting function ( <small> but recommend to use NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
+## values      : 0.02051585, 0.9919584  (min, max)</code></pre>
+<p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
+<p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;"></p>
-<p>In landscape ecology it is quite usual that we try to infer ecological dynamics from multiple environmental datasets that are from the same geographical realm. The <code>raster</code> packages uses for this kind of multi-layer data the classes <code>RasterStack</code> and <code>RasterBrick</code>.</p>
-<p><code>RasterStack</code> is basically a list of <code>RasterLayer</code> with the same spatial extent and resolution. <code>RasterBrick</code>, however, is a truly multi-layered object. This means that all layer share a single reference for dimensions and extent (why it can be more efficient to process a <code>RasterBrick</code> than <code>RasterStack</code>).</p>
+<p>In landscape ecology it is quite usual to try and infer ecological dynamics using multiple environmental datasets derived from the same geographical area. The <code>raster</code> packages uses <code>RasterStack</code> and <code>RasterBrick</code> for this kind of multi-layer data.</p>
+<p><code>RasterStack</code> is basically a list of <code>RasterLayer</code> with the same spatial extent and resolution. <code>RasterBrick</code>, however, is a truly multi-layered object. This means that all layer share a single reference for dimensions and extent (which often results in it being more efficient to process a <code>RasterBrick</code> than a <code>RasterStack</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r2 &lt;-<span class="st"> </span>r <span class="op">*</span><span class="st"> </span>(<span class="kw">abs</span>(<span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span>r) <span class="op">*</span><span class="st"> </span><span class="op">-</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 r3  &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_classify">util_classify</a></span>(r, <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))
 s &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(r, r2, r3)
@@ -249,9 +249,9 @@ s</code></pre></div>
 ## resolution  : 10, 10  (x, y)
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## names       :   layer.1,   layer.2,   layer.3 
-## min values  : 0.0216373, 0.0672839, 0.0216373 
-## max values  : 0.9772263, 0.9925721, 0.9772263</code></pre>
+## names       :    layer.1,    layer.2,    layer.3 
+## min values  : 0.02051585, 0.02399552, 0.02051585 
+## max values  :  0.9919584,  0.9981730,  0.9919584</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
@@ -317,7 +317,7 @@ r</code></pre></div>
 <div id="high-level-raster-functions" class="section level4">
 <h4 class="hasAnchor">
 <a href="#high-level-raster-functions" class="anchor"></a>‘High-level’ raster functions</h4>
-<p><code>raster</code> provides all functions that you would expect from a typical GIS software.</p>
+<p>The <code>raster</code> package provides all the functions that would expected from a typical GIS software.</p>
 <p>Some examples are:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(<span class="dt">ncol=</span><span class="dv">100</span>, <span class="dt">nrow=</span><span class="dv">100</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getValues">values</a></span>(r) &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/ncell">ncell</a></span>(r)

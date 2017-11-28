@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) 
 [![Join the chat at  https://gitter.im/NLMR_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) 
-[![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html)
+<!-- [![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html) -->
 
-# NLMR <img src="vignettes/logo.png" align="right"  height="150" />
+# NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 
 `NLMR` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
 `NLMR` builts on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
@@ -86,8 +86,8 @@ To cite package `NLMR` in publications please use:
 cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
 ```
 
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/iarticles/publication_record.html) that use`NLMR`.
-Hence, if you used `NLMR` please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add it to the list.
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html) that use`NLMR`.
+Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new) so we can add it to the list.
 
 
 ## Dependencies
