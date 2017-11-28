@@ -1,9 +1,9 @@
 ____________________________________________________________________________________
 
 
-## NLMR 1.0.0 Release Notes
+## NLMR 0.1.0 Release Notes
 
-v1.0.0 was released on xx/xx/2017
+v0.1.0 was released on xx/xx/2017
 
 ### Major changes
 

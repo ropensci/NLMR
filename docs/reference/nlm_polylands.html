@@ -157,17 +157,17 @@ If <code>2</code>, the Gibbs algorithm method is used to simulate the NLM.</p></
     <tr>
       <th>germs</th>
       <td><p>[<code>numerical(1)</code>]
-Intensity parameter (a positive number).</p></td>
+Intensity parameter (non-negative integer).</p></td>
     </tr>
     <tr>
       <th>g</th>
       <td><p>[<code>numerical(1)</code>]
-Interaction parameter (a number between 0 and 1, inclusive - only used when <code>option = 2</code>).</p></td>
+Interaction parameter (a value between 0 and 1, inclusive - only used when <code>option = 2</code>).</p></td>
     </tr>
     <tr>
       <th>R</th>
       <td><p>[<code>numerical(1)</code>]
-Interaction radius (a non-negative number).</p></td>
+Interaction radius (non-negative integer).</p></td>
     </tr>
     <tr>
       <th>patch_classes</th>
@@ -193,12 +193,12 @@ The first one (<code>option = 1</code>) is a tesselation method.
 It generates a random point pattern (the germs) with an indepentend
 distribution and uses the voronoi tesselation to simulate the patchy
 landscapes.
-The second one (<code>option = 2</code>) is the gibbs alorithm method.
+The second one (<code>option = 2</code>) is the Gibbs alorithm method.
 The method works in principal like the tesselation method, but instead of
 a random point pattern one fits a simulated realisation of the Strauss
 process. The Strauss process starts with a given number of points and
 uses a minimization approach to fit a point pattern with a given interaction
-parameter (0 - hardcore proces;, 1 - poission process) and interaction radius
+parameter (0 - hardcore process; 1 - poission process) and interaction radius
 (distance of points/germs being apart).</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
