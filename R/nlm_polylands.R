@@ -8,12 +8,12 @@
 #' It generates a random point pattern (the germs) with an indepentend
 #' distribution and uses the voronoi tesselation to simulate the patchy
 #' landscapes.
-#' The second one (\code{option = 2}) is the gibbs alorithm method.
+#' The second one (\code{option = 2}) is the Gibbs alorithm method.
 #' The method works in principal like the tesselation method, but instead of
 #' a random point pattern one fits a simulated realisation of the Strauss
 #' process. The Strauss process starts with a given number of points and
 #' uses a minimization approach to fit a point pattern with a given interaction
-#' parameter (0 - hardcore proces;, 1 - poission process) and interaction radius
+#' parameter (0 - hardcore process; 1 - poission process) and interaction radius
 #' (distance of points/germs being apart).
 #'
 #' @param nCol [\code{numerical(1)}]\cr
@@ -26,11 +26,11 @@
 #' If \code{1} (default), the Tessellation method is used to simulate the NLM.
 #' If \code{2}, the Gibbs algorithm method is used to simulate the NLM.
 #' @param germs [\code{numerical(1)}]\cr
-#' Intensity parameter (a positive number).
+#' Intensity parameter (non-negative integer).
 #' @param g [\code{numerical(1)}]\cr
-#' Interaction parameter (a number between 0 and 1, inclusive - only used when \code{option = 2}).
+#' Interaction parameter (a value between 0 and 1, inclusive - only used when \code{option = 2}).
 #' @param R [\code{numerical(1)}]\cr
-#' Interaction radius (a non-negative number).
+#' Interaction radius (non-negative integer).
 #' @param patch_classes [\code{numerical(1)}]\cr
 #' Number of classes for germs.
 #' @param rescale [\code{logical(1)}]\cr

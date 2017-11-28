@@ -22,7 +22,7 @@ Probability to turn into a value if there is any neighbor with the same or a
  higher value.}
 
 \item{p_empty}{[\code{numerical(1)}]\cr
-Probability to turn into a value if all neighbors have no value (i.e.
+Probability a cell receives a value if all neighbors have no value (i.e.
 zero).}
 
 \item{categories}{[\code{numerical(1)}]\cr
@@ -50,11 +50,11 @@ Create a neutral landscape model with categories and clustering
 }
 \details{
 The algorithm draws a random cell and turns it into a given category based on
- the probabilities \code{p_neigh} and \code{p_empty}, respectively. The decisions is
- based on the probability \code{p_neigh} if there is any cell in the Moore- or
+ the probabilities \code{p_neigh} and \code{p_empty}, respectively. The decision is
+ based on the probability \code{p_neigh}, if there is any cell in the Moore- or
  Von-Neumann-neighborhood, otherwise it is based on \code{p_empty}. To create
- clustered neutral landscape models, \code{p_empty} should be (much) smaller than
- \code{p_neigh}. By default, Von-Neumann-neighborhood is used to check adjacent
+ clustered neutral landscape models, \code{p_empty} should be (significantly) smaller than
+ \code{p_neigh}. By default, the Von-Neumann-neighborhood is used to check adjacent
  cells. The algorithm starts with the highest categorial value. If the
  proportion of cells with this value is reached, the categorial value is
  reduced by 1. By default, a uniform distribution of the categories is
