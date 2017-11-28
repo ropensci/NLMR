@@ -10,7 +10,7 @@
 #' Resolution of the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr
 #' Clusters are defined using a set of neighbourhood structures,
-#'  4 (Rook's or von Neumann neighourhood) (default), 8 (Queen's or Moore neighbourhood).
+#'  4 (Rook's or von Neumann neighbourhood) (default), 8 (Queen's or Moore neighbourhood).
 #' @param p [\code{numerical(1)}]\cr
 #' The p value defines the proportion of   elements randomly selected to form
 #' clusters.
@@ -20,7 +20,7 @@
 #' @return Raster with random values ranging from 0-1.
 #'
 #' @details
-#' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labellign algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
+#' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labelling algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
 #'
 #' @examples
 #' nlm_randomcluster(nCol = 10, nRow = 10, resolution = 10, neighbourhood = 4, p = 0.4)

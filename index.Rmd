@@ -101,8 +101,8 @@ cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simul
 ```
 
 
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html) that use`NLMR`.
-Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new) so we can add it to the list.
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`.
+Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 
 
 ------------------------------------------------------------------------

@@ -45,13 +45,13 @@ Simulate the NLM introduced in Gaucherel 2008.
 }
 \details{
 The function offers 2 of the 3 NLM described in Gaucheral.
-The first one (\code{option = 1}) is a tesselation method.
-It generates a random point pattern (the germs) with an indepentend
-distribution and uses the voronoi tesselation to simulate the patchy
+The first one (\code{option = 1}) is a tessellation method.
+It generates a random point pattern (the germs) with an independent
+distribution and uses the voronoi tessellation to simulate the patchy
 landscapes.
-The second one (\code{option = 2}) is the Gibbs alorithm method.
-The method works in principal like the tesselation method, but instead of
-a random point pattern one fits a simulated realisation of the Strauss
+The second one (\code{option = 2}) is the Gibbs algorithm method.
+The method works in principal like the tessellation method, but instead of
+a random point pattern one fits a simulated realization of the Strauss
 process. The Strauss process starts with a given number of points and
 uses a minimization approach to fit a point pattern with a given interaction
 parameter (0 - hardcore process; 1 - poission process) and interaction radius

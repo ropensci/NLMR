@@ -32,7 +32,7 @@ Simulates a random rectangular cluster neutral landscape model.
 \details{
 The algorithm selects \code{n} random cell of the matrix and assigns them a
 uniformly distributed random value. The cells are then converted to a point
-pattern and interpolated by voronoi tesselation.
+pattern and interpolated by voronoi tessellation.
 }
 \examples{
 nlm_randomelement(nCol = 10, nRow = 10, n = 10)

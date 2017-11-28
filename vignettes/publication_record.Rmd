@@ -6,4 +6,4 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-We try to maintain a list here of publications that have used the _NLMR_ package. If you have used _NLMR_ in your own work, we would love to hear from you. Please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new) so we can add your work to this list.
+We try to maintain a list here of publications that have used the `NLMR` package. If you have used `NLMR` in your own work, we would love to hear from you. Please [file an issue on GitHub](https://marcosci.github.io/NLMR/issues/new/) so we can add your work to this list.
