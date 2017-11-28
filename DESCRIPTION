@@ -1,12 +1,12 @@
 Package: NLMR
 Type: Package
-Title: NLMR - Neutral Landscape Models with R
+Title: Simulating neutral Landscape Models with R
 Version: 0.1.0
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")),
             person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
             person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("aut")),
             person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")))
-Description: R package to create neutral landscape models (NLM).
+Description: Simulates more than 16 neutral landscape models and offers utility funtions to work with them.                                                                                              
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

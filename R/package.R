@@ -3,10 +3,7 @@
 #' \emph{NLMR} is an R package for simulating neutral landscape models (NLM).
 #'
 #' @details This package contains vignettes that introduce NLM and basic usage
-#' of the \emph{NLMR} package. The supplemental
-#' \href{https://github.com/prioritizr/nlmrdata}{\emph{nlmrdata}}
-#' package contains a comprehensive database of simulated NLM. The vignettes
-#' in this package are listed below.
+#' of the \emph{NLMR} package. The vignettes in this package are listed below.
 #'
 #' \describe{
 #' \item{\href{https://marcosci.github.io/NLMR/articles/background.html}{NLM

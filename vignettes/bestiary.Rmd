@@ -163,14 +163,14 @@ nlmr_bestiary <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
     aspect.ratio=1
   ) +
   viridis::scale_fill_viridis(
-    option = "A",
+    option = "D",
     direction = -1,
     na.value = "transparent",
     name = "Z",
     guide = ggplot2::guide_colorbar(
       direction = "horizontal",
-      barheight = ggplot2::unit(2, units = "mm"),
-      barwidth = ggplot2::unit(50, units = "mm"),
+      barheight = ggplot2::unit(5, units = "mm"),
+      barwidth = ggplot2::unit(100, units = "mm"),
       draw.ulim = FALSE,
       title.position = "top",
       title.hjust = 0.5,
@@ -179,8 +179,8 @@ nlmr_bestiary <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
   coord_capped_cart(
     xlim = c(0, 1000), ylim = c(0, 1000), left = "both", bottom = "both")
 
-nlmr_bestiary <- nlmr_bestiary + theme(text = element_text(size = 17),
-                                       axis.text.x = element_text(size = 15))
+nlmr_bestiary <- nlmr_bestiary + theme(text = element_text(size = 27),
+                                       axis.text.x = element_text(size = 25))
 
 print(nlmr_bestiary)
 ```

@@ -11,3 +11,4 @@ man-roxygen
 ^index\.Rmd$
 ^pkgdown$
 ^revdep$
+^cran-comments\.md$

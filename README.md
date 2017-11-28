@@ -1,8 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html)
+[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) <!-- [![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html) -->
 
-NLMR <img src="vignettes/logo.png" align="right"  height="150" />
+NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
 
 `NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builts on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
@@ -67,9 +67,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1249|          605|                726|              4270|  1249|        605|        726|         0.5812650|     5.112676|        1.458958|        0.4843875|
-|        1|     613|          231|                506|              1946|   613|        231|        506|         0.8254486|     5.060000|        1.508248|        0.3768352|
-|        2|     638|          196|                572|              1980|   638|        196|        572|         0.8965517|     5.607843|        1.536880|        0.3072100|
+|        0|    1245|          580|                764|              4216|  1245|        580|        764|         0.6136546|     5.380282|        1.473931|        0.4658635|
+|        1|     600|          215|                518|              1882|   600|        215|        518|         0.8633333|     5.285714|        1.520630|        0.3583333|
+|        2|     655|          215|                558|              2062|   655|        215|        558|         0.8519084|     5.365385|        1.523005|        0.3282443|
 
 Citation
 --------

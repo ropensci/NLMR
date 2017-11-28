@@ -33,6 +33,8 @@
 #' package for the creation of neutral landscape models within a general
 #' numerical framework. \emph{Methods in Ecology and Evolution} 6:164 – 168.
 #'
+#' @importFrom igraph components
+#'
 #' @aliases nlm_randomcluster
 #' @rdname nlm_randomcluster
 #'
