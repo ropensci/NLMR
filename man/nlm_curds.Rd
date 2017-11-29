@@ -26,7 +26,7 @@ Simulates a curdled neutral landscape model.
 \details{
 Random curdling recursively subdivides the plane into blocks.
 At each level of the recursion, a fraction of the this block is declared as
-habitat (1) while the remaing stays matrix (0).
+habitat (1) while the remaining stays matrix (0).
 }
 \examples{
 nlm_curds(c(0.25, 0.25, 0.5), c(64, 8, 1))

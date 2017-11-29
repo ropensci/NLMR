@@ -1,9 +1,9 @@
 #' nlm_polylands
 #'
-#' @description Simulate the NLM introduced in Gaucherel 2008.
+#' @description Simulate the NLM introduced in Gaucherel (2008).
 #'
 #' @details
-#' The function offers 2 of the 3 NLM described in Gaucheral.
+#' The function offers 2 of the 3 NLM described in Gaucherel (2008).
 #' The first one (\code{option = 1}) is a tessellation method.
 #' It generates a random point pattern (the germs) with an independent
 #' distribution and uses the voronoi tessellation to simulate the patchy
