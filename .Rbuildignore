@@ -12,5 +12,4 @@ man-roxygen
 ^pkgdown$
 ^revdep$
 ^cran-comments\.md$
-^NEWS\.md$
 ^README\.md$
