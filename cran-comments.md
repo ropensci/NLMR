@@ -1,4 +1,11 @@
-New submission
+## Resubmission
+
+This is a resubmission. In this submission I've fixed:
+
+* Added a reference for neutral landscape models to the 'Description' field
+  * And one for the raster package, as we heavily built on it
+* Short description of neutral landscape models added to the 'Description' field
+* Omitted the redundant "with R" in our title
 
 ## Test environments
 
