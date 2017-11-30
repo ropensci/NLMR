@@ -18,7 +18,7 @@ Description: Provides neutral landscape models
     al. 2015 <doi:10.1111/2041-210X.12308>) for simulating neutral landscapes and
     includes utility functions to classify and combine the landscapes. The 
     simulation results are obtained in a geospatial data format (raster* objects 
-    from the 'raster' package and can, therefore, be used 
+    from the 'raster' package) and can, therefore, be used 
     in any sort of raster data operation that is performed with standard 
     observation data.                                                                                            
 License: GPL-3
