@@ -11,7 +11,7 @@
 #' @param breaks a vector with one or more break percentages
 #'
 #'
-#' @return RasterBrick
+#' @return RasterLayer / RasterBrick
 #'
 #' @examples
 #' rndMap <- nlm_random(10, 10)
@@ -26,18 +26,26 @@
 #'
 
 util_binarize <- function(x, breaks) {
-
+  
   # Check function arguments ----
   checkmate::assert_class(x, "RasterLayer")
   checkmate::assert_atomic_vector(breaks)
-
-  map.stack <- raster::stack()
-  for (i in seq_along(breaks)) {
-    map.stack <- raster::stack(map.stack,
-                       util_classify(x, c(breaks[i], 1 - breaks[i]), c("Habitat", "Matrix")))
+  
+  if (length(breaks) > 1) {
+    map.stack <- raster::stack()
+    for (i in seq_along(breaks)) {
+      map.stack <- raster::stack(map.stack,
+                                 util_classify(x, 
+                                               c(breaks[i], 1 - breaks[i]), 
+                                               c("Habitat", "Matrix")))
+    }
+    names(map.stack) <- paste("p", breaks)
+    r <- raster::brick(map.stack)
+  }else{
+    r <- util_classify(x, 
+                       c(breaks, 1 - breaks), 
+                       c("Habitat", "Matrix"))
   }
-
-  names(map.stack) <- paste("p ", breaks, sep = " ")
-  raster::brick(map.stack)
-
+  
+  return(r)
 }
