@@ -36,15 +36,15 @@ util_binarize <- function(x, breaks) {
     for (i in seq_along(breaks)) {
       map.stack <- raster::stack(map.stack,
                                  util_classify(x, 
-                                               c(breaks[i], 1 - breaks[i]), 
-                                               c("Habitat", "Matrix")))
+                                               c(1 - breaks[i], breaks[i]), 
+                                               c("Matrix", "Habitat")))
     }
     names(map.stack) <- paste("p", breaks)
     r <- raster::brick(map.stack)
   }else{
     r <- util_classify(x, 
-                       c(breaks, 1 - breaks), 
-                       c("Habitat", "Matrix"))
+                       c(1 - breaks, breaks), 
+                       c("Matrix", "Habitat"))
   }
   
   return(r)
