@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/eNLMR)](https://cran.r-project.org/package=eNLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) <!-- [![](http://cranlogs.r-pkg.org/badges/ggplot2)](http://cran.rstudio.com/web/packages/ggplot2/index.html) -->
+[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
 
 NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
@@ -20,7 +20,7 @@ To install the developmental version of `NLMR`, use the following R code:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("marcosci/NLMR")
+devtools::install_github("marcosci/NLMR", ref = "develop")
 ```
 
 Example
@@ -31,6 +31,11 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
+#> 
+#> Attaching package: 'magrittr'
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
 library(ggplot2)  # to extent the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
@@ -67,9 +72,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1246|          583|                766|              4218|  1246|        583|        766|         0.6147673|     5.394366|        1.474499|        0.4678973|
-|        1|     621|          215|                526|              1958|   621|        215|        526|         0.8470209|     5.260000|        1.517262|        0.3462158|
-|        2|     633|          171|                636|              1896|   633|        171|        636|         1.0047393|     6.235294|        1.571639|        0.2701422|
+|        0|    1237|          548|                796|              4152|  1237|        548|        796|         0.6434923|     5.605634|        1.486791|        0.4430073|
+|        1|     629|          179|                616|              1900|   629|        179|        616|         0.9793323|     6.039216|        1.563268|        0.2845787|
+|        2|     634|          205|                564|              1972|   634|        205|        564|         0.8895899|     5.529412|        1.534012|        0.3233438|
 
 Citation
 --------
@@ -78,7 +83,7 @@ To cite package `NLMR` in publications please use:
 
     Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
 
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new) so we can add it to the list.
+Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 
 Dependencies
 ------------

@@ -1,6 +1,6 @@
 #' Binarize continuous raster values
 #'
-#' @description Reclassify continuous raster values into binary map cells based upon given
+#' @description Classify continuous raster values into binary map cells based upon given
 #' break(s).
 #'
 #' @details Breaks are considered to be habitat percentages (p). If more than

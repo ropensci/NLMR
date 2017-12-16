@@ -2,9 +2,7 @@
 
 This is a resubmission. In this submission I've fixed:
 
-* Rewrote introduction of description 
-* Put single quotes around package names
-* Removed URL from description
+* Placed missing closing bracket
 
 ## Test environments
 

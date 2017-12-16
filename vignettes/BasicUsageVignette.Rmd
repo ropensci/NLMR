@@ -16,7 +16,7 @@ processes. The `NLMR` package was designed with a similar philosophy to the
 Python package `NLMpy` [see @EtheringtonNLMR2015], offering a general numeric 
 framework allowing for a high degree of flexibility. Most of the common NLMs, 
 as described by the relevant literature, can be produced using NLMR. 
-Additionally, NLMR allows users to blend multiple landscapes, classify landscape
+Additionally, NLMR allows users to merge multiple landscapes, classify landscape
 elements categorically and measure basic landscape level metrics. All NLMs 
 produced take the form of two-dimensional raster arrays with specified row and 
 column dimensions and cell values ranging between 0 and 1. By returning raster 
@@ -63,14 +63,14 @@ following code:
 
 
 
-## Blending landscapes
+## Merging landscapes
 
-Multiple NLM rasters can be blended or merged together to create new landscape 
-patterns. A single primary or base raster can be blended with any number of 
+Multiple NLM rasters can be merged or merged together to create new landscape 
+patterns. A single primary or base raster can be merged with any number of 
 additional secondary rasters, with optional scaling factors used to control the 
 influence of the secondary rasters.  
 
-The `util_merge` function is used to blend the rasters as in the example below:
+The `util_merge` function is used to merge the rasters as in the example below:
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
   #Create primary landscape raster

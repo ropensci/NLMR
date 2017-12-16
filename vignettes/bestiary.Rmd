@@ -163,7 +163,7 @@ nlmr_bestiary <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
     aspect.ratio=1
   ) +
   viridis::scale_fill_viridis(
-    option = "A",
+    option = "D",
     direction = -1,
     na.value = "transparent",
     name = "Z",
@@ -247,7 +247,7 @@ nlmr_merges <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
     aspect.ratio=1
   ) +
   viridis::scale_fill_viridis(
-    option = "A",
+    option = "D",
     direction = -1,
     na.value = "transparent",
     name = "Z",
