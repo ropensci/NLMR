@@ -41,14 +41,16 @@ util_classify <- function(x, weighting, level_names = NULL) {
   x_mat <- raster::as.matrix(x)
 
   # Calculate cum. proportions and boundary values ----
-  cumulative_proportions  <- util_w2cp(weighting)
-  boundary_values  <- util_calc_boundaries(x_mat, cumulative_proportions)
+  cumulative_proportions <- util_w2cp(weighting)
+  boundary_values <- util_calc_boundaries(x_mat, cumulative_proportions)
 
   # Classify the matrix based on the boundary values ----
   classified_matrix <-
-    matrix(findInterval(x_mat, boundary_values, rightmost.closed = TRUE),
-           dim(x_mat)[1],
-           dim(x_mat)[2])
+    matrix(
+      findInterval(x_mat, boundary_values, rightmost.closed = TRUE),
+      dim(x_mat)[1],
+      dim(x_mat)[2]
+    )
 
   # Transform matrix to raster and let categories start with 1 ----
   x@data@values <- as.vector(classified_matrix)
@@ -56,14 +58,13 @@ util_classify <- function(x, weighting, level_names = NULL) {
   # If level_names are not NULL, add them as specified ----
   if (!is.null(level_names)) {
 
-  # Turn raster values into factors ----
-  x <- raster::as.factor(x)
+    # Turn raster values into factors ----
+    x <- raster::as.factor(x)
 
-  c_r_levels <- raster::levels(x)[[1]]
-  c_r_levels[["Categories"]] <- level_names
-  levels(x) <- c_r_levels
+    c_r_levels <- raster::levels(x)[[1]]
+    c_r_levels[["Categories"]] <- level_names
+    levels(x) <- c_r_levels
   }
 
   return(x)
 }
-

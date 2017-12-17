@@ -52,20 +52,22 @@ nlm_distancegradient <- function(nCol,
 
   # create empty raster ----
   distancegradient <-
-    raster::raster(ncol = nCol, nrow = nRow, ext = raster::extent(c(0,1,0,1)))
+    raster::raster(ncol = nCol, nrow = nRow, ext = raster::extent(c(0, 1, 0, 1)))
 
   # set origin to 1 ----
   distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1
 
   # measure distance to origin ----
   suppressWarnings(distancegradient <-
-                     raster::distance(distancegradient))
+    raster::distance(distancegradient))
 
   # specify resolution ----
-  raster::extent(distancegradient) <- c(0,
-                                     ncol(distancegradient)*resolution,
-                                     0,
-                                     nrow(distancegradient)*resolution)
+  raster::extent(distancegradient) <- c(
+    0,
+    ncol(distancegradient) * resolution,
+    0,
+    nrow(distancegradient) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -73,6 +75,4 @@ nlm_distancegradient <- function(nCol,
   }
 
   return(distancegradient)
-
-
 }

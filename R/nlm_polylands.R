@@ -60,7 +60,7 @@ nlm_polylands <- function(nCol,
                           g,
                           R,
                           patch_classes,
-                          rescale = TRUE){
+                          rescale = TRUE) {
 
 
   # Check function arguments ----
@@ -74,7 +74,7 @@ nlm_polylands <- function(nCol,
   if (!missing(patch_classes)) checkmate::assert_count(patch_classes, positive = TRUE)
 
   # Tessellation method ----
-  if(option == 1){
+  if (option == 1) {
 
     # generate the germs from which the polygons are build ----
     X <- spatstat::runifpoint(germs)
@@ -83,24 +83,27 @@ nlm_polylands <- function(nCol,
     tess_surface <- spatstat::dirichlet(X)
 
     # whole bunch of conversions to get a raster in the end ----
-    tess_im <- spatstat::as.im(tess_surface, dimyx=c(nCol, nRow))
+    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nCol, nRow))
     tess_data <- raster::as.data.frame(tess_im)
     sp::coordinates(tess_data) <- ~ x + y
     sp::gridded(tess_data) <- TRUE
     polylands_raster <- raster::deratify(raster::raster(tess_data))
-    polylands_raster <- raster::crop(polylands_raster,
-                                     raster::extent(0,1,0,1))
+    polylands_raster <- raster::crop(
+      polylands_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
     # specify resolution ----
-    raster::extent(polylands_raster) <- c(0,
-                                          ncol(polylands_raster)*resolution,
-                                          0,
-                                          nrow(polylands_raster)*resolution)
-
+    raster::extent(polylands_raster) <- c(
+      0,
+      ncol(polylands_raster) * resolution,
+      0,
+      nrow(polylands_raster) * resolution
+    )
   }
 
   # Gibbs algorithm method  ----
-  if(option == 2){
+  if (option == 2) {
 
     # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
     ## INFO: the Strauss process starts with a given Number of points and
@@ -108,10 +111,10 @@ nlm_polylands <- function(nCol,
     ##       given interaction parameter (0 - hardcore proces;, 1 - poission
     ##       process) and interaction radius (distance of points/germs being
     ##       apart).
-    X <- spatstat::rStrauss(200, gamma = g, R= R)
+    X <- spatstat::rStrauss(200, gamma = g, R = R)
 
     # ... and randomly allocate attribute class (here point pattern mark)
-    m <- sample(1:patch_classes, X$n, replace=TRUE)
+    m <- sample(1:patch_classes, X$n, replace = TRUE)
     spatstat::marks(X) <- m
 
     # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
@@ -125,28 +128,35 @@ nlm_polylands <- function(nCol,
       sp::over(strauss_tess, strauss_points, fn = mean)
 
     # Coerce to raster  ----
-    strauss_spdf   <-
+    strauss_spdf <-
       sp::SpatialPolygonsDataFrame(strauss_tess, strauss_values)
 
     polylands_raster <-
-      raster::rasterize(strauss_spdf,
-                        raster::raster(nrow = nRow,
-                                       ncol = nCol,
-                                       resolution = c(1/nCol, 1/nRow),
-                                       ext = raster::extent(strauss_spdf)),
-                        field = strauss_spdf@data[, 1])
+      raster::rasterize(
+        strauss_spdf,
+        raster::raster(
+          nrow = nRow,
+          ncol = nCol,
+          resolution = c(1 / nCol, 1 / nRow),
+          ext = raster::extent(strauss_spdf)
+        ),
+        field = strauss_spdf@data[, 1]
+      )
 
 
 
-    polylands_raster <- raster::crop(polylands_raster,
-                                     raster::extent(0,1,0,1))
+    polylands_raster <- raster::crop(
+      polylands_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
     # specify resolution ----
-    raster::extent(polylands_raster) <- c(0,
-                                          ncol(polylands_raster)*resolution,
-                                          0,
-                                          nrow(polylands_raster)*resolution)
-
+    raster::extent(polylands_raster) <- c(
+      0,
+      ncol(polylands_raster) * resolution,
+      0,
+      nrow(polylands_raster) * resolution
+    )
   }
 
   # Rescale values to 0-1 ----
@@ -156,4 +166,3 @@ nlm_polylands <- function(nCol,
 
   return(polylands_raster)
 }
-

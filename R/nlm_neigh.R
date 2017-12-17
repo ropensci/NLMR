@@ -79,7 +79,7 @@ nlm_neigh <-
     checkmate::assert_logical(rescale)
 
     # Determine cells per categorie
-    cat <- categories - 1  ## -1 because remaining cells are category
+    cat <- categories - 1 ## -1 because remaining cells are category
     if (is.double(proportions)) {
       no_cat <- rev(proportions) * nRow * nCol
     } else {
@@ -92,7 +92,6 @@ nlm_neigh <-
 
     # Keep applying random clusters until all elements have a value -----
     while (cat > 0) {
-
       j <- 0
 
       while (j < no_cat[cat + 1]) {
@@ -105,23 +104,27 @@ nlm_neigh <-
 
         # Check neighborhood of that cell ----
         if (neighborhood == "Von-Neumann") {
-          adjacent <- c(matrix[row - 1, col    ],  # upper
-                        matrix[row,     col - 1],  # left
-                        matrix[row,     col + 1],  # right
-                        matrix[row + 1, col    ])  # lower
+          adjacent <- c(
+            matrix[row - 1, col    ], # upper
+            matrix[row, col - 1], # left
+            matrix[row, col + 1], # right
+            matrix[row + 1, col    ]
+          ) # lower
         }
         if (neighborhood == "Moore") {
-          adjacent <- c(matrix[row - 1, col - 1],  # upper left
-                        matrix[row - 1, col    ],  # upper
-                        matrix[row - 1, col + 1],  # upper right
-                        matrix[row,     col - 1],  # left
-                        matrix[row,     col + 1],  # right
-                        matrix[row + 1, col - 1],  # lower left
-                        matrix[row + 1, col    ],  # lower
-                        matrix[row + 1, col + 1])  # lower right
+          adjacent <- c(
+            matrix[row - 1, col - 1], # upper left
+            matrix[row - 1, col    ], # upper
+            matrix[row - 1, col + 1], # upper right
+            matrix[row, col - 1], # left
+            matrix[row, col + 1], # right
+            matrix[row + 1, col - 1], # lower left
+            matrix[row + 1, col    ], # lower
+            matrix[row + 1, col + 1]
+          ) # lower right
         }
 
-        if (sum(adjacent, na.rm=TRUE) > 0) {
+        if (sum(adjacent, na.rm = TRUE) > 0) {
           if (stats::runif(1, 0, 1) < p_neigh) {
             matrix[row, col] <- cat
             j <- j + 1
@@ -134,24 +137,28 @@ nlm_neigh <-
         }
 
         # Update boundary conditions
-        matrix[1,] <- matrix[nRow + 1,]
-        matrix[nRow + 2,] <- matrix[2,]
-        matrix[,1] <- matrix[,nCol + 1]
-        matrix[,nCol + 2] <- matrix[,2]
-      }  # close while j
+        matrix[1, ] <- matrix[nRow + 1, ]
+        matrix[nRow + 2, ] <- matrix[2, ]
+        matrix[, 1] <- matrix[, nCol + 1]
+        matrix[, nCol + 2] <- matrix[, 2]
+      } # close while j
 
       cat <- cat - 1
-    }  # close while i
+    } # close while i
 
     # Cut additional cells and transform to raster ----
-    randomneighborhoodcluster_raster <- raster::raster(matrix[1:nRow + 1,
-                                                              1:nCol + 1] )
+    randomneighborhoodcluster_raster <- raster::raster(matrix[
+      1:nRow + 1,
+      1:nCol + 1
+    ])
 
     # specify resolution ----
-    raster::extent(randomneighborhoodcluster_raster) <- c(0,
-                                                          ncol(randomneighborhoodcluster_raster)*resolution,
-                                                          0,
-                                                          nrow(randomneighborhoodcluster_raster)*resolution)
+    raster::extent(randomneighborhoodcluster_raster) <- c(
+      0,
+      ncol(randomneighborhoodcluster_raster) * resolution,
+      0,
+      nrow(randomneighborhoodcluster_raster) * resolution
+    )
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
@@ -161,4 +168,3 @@ nlm_neigh <-
 
     return(randomneighborhoodcluster_raster)
   }
-

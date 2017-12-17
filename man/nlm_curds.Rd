@@ -8,7 +8,8 @@ nlm_curds(p, s, ext = 1)
 }
 \arguments{
 \item{p}{[\code{numerical(x)}]\cr
-Vector with percentage(s) to cut of (fill with matrix (zeroes)).}
+Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+TRUE)).}
 
 \item{s}{[\code{numerical(x)}]\cr
 Vector of successive cutting steps for the blocks (split 1 block into x
@@ -29,11 +30,13 @@ At each level of the recursion, a fraction of the this block is declared as
 habitat (1) while the remaining stays matrix (0).
 }
 \examples{
-nlm_curds(c(0.25, 0.25, 0.5), c(64, 8, 1))
-
+nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
 
 }
 \references{
 Keitt TH. 2000. Spectral representation of neutral landscapes.
 \emph{Landscape Ecology} 15:479-493.
+}
+\seealso{
+\code{\link{nlm_wheys}}
 }
