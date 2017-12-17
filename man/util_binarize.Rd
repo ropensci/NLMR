@@ -12,10 +12,10 @@ util_binarize(x, breaks)
 \item{breaks}{a vector with one or more break percentages}
 }
 \value{
-RasterBrick
+RasterLayer / RasterBrick
 }
 \description{
-Reclassify continuous raster values into binary map cells based upon given
+Classify continuous raster values into binary map cells based upon given
 break(s).
 }
 \details{

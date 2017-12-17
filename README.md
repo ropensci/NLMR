@@ -31,20 +31,26 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 library(ggplot2)  # to extent the plot functionality of NLMR 
+#> 
+#> Attaching package: 'ggplot2'
+#> The following object is masked from 'package:raster':
+#> 
+#>     calc
 library(SDMTools) # to calculate basic landscape metrics
+#> 
+#> Attaching package: 'SDMTools'
+#> The following object is masked from 'package:raster':
+#> 
+#>     distance
 
 # Simulate 50x50 rectangular cluster raster
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minL = 3, maxL = 7)
 
 # Plot the NLM
-util_plot(nlm_raster, scale = "A") +
+util_plot(nlm_raster, scale = "D") +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+#> Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="vignettes/README-example-1.png" style="display: block; margin: auto;" />
@@ -56,8 +62,9 @@ nlm_raster <- nlm_raster %>%
                  util_classify(., c(0.5, 0.25, 0.25))
 
 # Plot the classified NLM
-util_plot(nlm_raster, scale = "A", discrete = TRUE) +
+util_plot(nlm_raster, scale = "D", discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+#> Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="vignettes/README-example-2.png" style="display: block; margin: auto;" />
@@ -72,9 +79,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1237|          548|                796|              4152|  1237|        548|        796|         0.6434923|     5.605634|        1.486791|        0.4430073|
-|        1|     629|          179|                616|              1900|   629|        179|        616|         0.9793323|     6.039216|        1.563268|        0.2845787|
-|        2|     634|          205|                564|              1972|   634|        205|        564|         0.8895899|     5.529412|        1.534012|        0.3233438|
+|        0|    1249|          588|                768|              4228|  1249|        588|        768|         0.6148919|     5.408451|        1.474733|        0.4707766|
+|        1|     607|          193|                540|              1888|   607|        193|        540|         0.8896211|     5.400000|        1.530858|        0.3179572|
+|        2|     644|          193|                582|              1994|   644|        193|        582|         0.9037267|     5.705882|        1.540015|        0.2996894|
 
 Citation
 --------

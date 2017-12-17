@@ -50,7 +50,7 @@ nlm_mosaicfield <- function(nCol,
                             mosaic_sd   = 0.5,
                             collect     = FALSE,
                             infinit     = FALSE,
-                            rescale     = TRUE){
+                            rescale     = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -66,12 +66,15 @@ nlm_mosaicfield <- function(nCol,
   mosaicfields_return <- list()
 
   if (!is.na(n)) {
-
-    mosaicfield_result <- spatstat::rMosaicField(spatstat::rpoislinetess(4),
-                                                 stats::rnorm,
-                                                 dimyx=c(nCol,nRow),
-                                                 rgenargs=list(mean=mosaic_mean,
-                                                               sd=mosaic_sd))
+    mosaicfield_result <- spatstat::rMosaicField(
+      spatstat::rpoislinetess(4),
+      stats::rnorm,
+      dimyx = c(nCol, nRow),
+      rgenargs = list(
+        mean = mosaic_mean,
+        sd = mosaic_sd
+      )
+    )
 
     if (isTRUE(collect)) {
       i <- 2
@@ -80,11 +83,15 @@ nlm_mosaicfield <- function(nCol,
     }
 
     for (i in 1:n) {
-      mosaicfield_n <- spatstat::rMosaicField(spatstat::rpoislinetess(4),
-                                              stats::rnorm,
-                                              dimyx=c(nCol,nRow),
-                                              rgenargs=list(mean=mosaic_mean,
-                                                            sd=mosaic_sd))
+      mosaicfield_n <- spatstat::rMosaicField(
+        spatstat::rpoislinetess(4),
+        stats::rnorm,
+        dimyx = c(nCol, nRow),
+        rgenargs = list(
+          mean = mosaic_mean,
+          sd = mosaic_sd
+        )
+      )
 
       mosaicfield_result <- mosaicfield_result + mosaicfield_n
 
@@ -100,10 +107,12 @@ nlm_mosaicfield <- function(nCol,
     sp::coordinates(mosaicfield_df) <- ~ x + y
     sp::gridded(mosaicfield_df) <- TRUE
     mosaicfield_raster <- raster::raster(mosaicfield_df)
-    raster::extent(mosaicfield_raster) <- c(0,
-                                            ncol(mosaicfield_raster)*resolution,
-                                            0,
-                                            nrow(mosaicfield_raster)*resolution)
+    raster::extent(mosaicfield_raster) <- c(
+      0,
+      ncol(mosaicfield_raster) * resolution,
+      0,
+      nrow(mosaicfield_raster) * resolution
+    )
 
     # Rescale values to 0-1
     if (rescale == TRUE) {
@@ -113,12 +122,9 @@ nlm_mosaicfield <- function(nCol,
     mosaicfields_return$mosaicfield_raster <- mosaicfield_raster
 
     if (isTRUE(collect)) {
-
       names(mosaicfield_list) <- 1:length(mosaicfield_list)
       mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
-
-        mosaicfield_list[[i]] <- mosaicfield_list[[i]]/sqrt(i)
-
+        mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
       })
 
       mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
@@ -128,10 +134,12 @@ nlm_mosaicfield <- function(nCol,
         sp::coordinates(mosaicfield_list[[i]]) <- ~ x + y
         sp::gridded(mosaicfield_list[[i]]) <- TRUE
         mosaicfield_list[[i]] <- raster::raster(mosaicfield_list[[i]])
-        raster::extent(mosaicfield_list[[i]]) <- c(0,
-                                                   ncol(mosaicfield_list[[i]])*resolution,
-                                                   0,
-                                                   nrow(mosaicfield_list[[i]])*resolution)
+        raster::extent(mosaicfield_list[[i]]) <- c(
+          0,
+          ncol(mosaicfield_list[[i]]) * resolution,
+          0,
+          nrow(mosaicfield_list[[i]]) * resolution
+        )
 
         mosaicfield_list[[i]]
       })
@@ -146,16 +154,13 @@ nlm_mosaicfield <- function(nCol,
 
 
       mosaicfields_return$steps <- mosaicfields_brick
-
     }
-
-
   }
 
   if (isTRUE(infinit)) {
 
     # INFINITE STEPS:
-    X <- spatstat::rLGCP("exp", 4, var=1, scale=.2, saveLambda=TRUE)
+    X <- spatstat::rLGCP("exp", 4, var = 1, scale = .2, saveLambda = TRUE)
     mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
 
     # coerce spatstat image to raster and set proper resolution ----
@@ -163,10 +168,12 @@ nlm_mosaicfield <- function(nCol,
     sp::coordinates(mosaicfield_df) <- ~ x + y
     sp::gridded(mosaicfield_df) <- TRUE
     mosaicfield_raster <- raster::raster(mosaicfield_df)
-    raster::extent(mosaicfield_raster) <- c(0,
-                                            ncol(mosaicfield_raster)*resolution,
-                                            0,
-                                            nrow(mosaicfield_raster)*resolution)
+    raster::extent(mosaicfield_raster) <- c(
+      0,
+      ncol(mosaicfield_raster) * resolution,
+      0,
+      nrow(mosaicfield_raster) * resolution
+    )
 
     # Rescale values to 0-1
     if (rescale == TRUE) {
@@ -178,11 +185,9 @@ nlm_mosaicfield <- function(nCol,
   }
 
 
-  if(length(mosaicfields_return) == 1)  mosaicfields_return <- mosaicfields_return[[1]]
+  if (length(mosaicfields_return) == 1) mosaicfields_return <- mosaicfields_return[[1]]
 
   return(mosaicfields_return)
-
-
 }
 
 # TEST STUFF

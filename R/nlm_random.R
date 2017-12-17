@@ -30,32 +30,33 @@
 #' @export
 #'
 
-nlm_random  <-  function(nCol,
-                         nRow,
-                         resolution = 1,
-                         rescale = TRUE) {
+nlm_random <- function(nCol,
+                       nRow,
+                       resolution = 1,
+                       rescale = TRUE) {
 
-    # Check function arguments ----
-    checkmate::assert_count(nCol, positive = TRUE)
-    checkmate::assert_count(nRow, positive = TRUE)
-    checkmate::assert_numeric(resolution)
-    checkmate::assert_logical(rescale)
+  # Check function arguments ----
+  checkmate::assert_count(nCol, positive = TRUE)
+  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_numeric(resolution)
+  checkmate::assert_logical(rescale)
 
-    # Assign random values to raster cells ----
-    random_raster <-
-      raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
+  # Assign random values to raster cells ----
+  random_raster <-
+    raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
 
-    # specify resolution ----
-    raster::extent(random_raster) <- c(0,
-                                             ncol(random_raster)*resolution,
-                                             0,
-                                             nrow(random_raster)*resolution)
+  # specify resolution ----
+  raster::extent(random_raster) <- c(
+    0,
+    ncol(random_raster) * resolution,
+    0,
+    nrow(random_raster) * resolution
+  )
 
-    # Rescale values to 0-1 ----
-    if (rescale == TRUE) {
-      random_raster <- util_rescale(random_raster)
-    }
+  # Rescale values to 0-1 ----
+  if (rescale == TRUE) {
+    random_raster <- util_rescale(random_raster)
+  }
 
-    return(random_raster)
-
+  return(random_raster)
 }

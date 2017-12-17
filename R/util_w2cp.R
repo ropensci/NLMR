@@ -15,10 +15,8 @@
 #' @export
 
 util_w2cp <- function(weighting) {
-
-  w <-  weighting
+  w <- weighting
   proportions <- w / sum(w)
   cumulative_proportions <- cumsum(proportions)
   return(cumulative_proportions)
-
 }

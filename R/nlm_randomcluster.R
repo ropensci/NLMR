@@ -42,7 +42,7 @@
 #'
 
 
-nlm_randomcluster  <-
+nlm_randomcluster <-
   function(nCol,
            nRow,
            resolution = 1,
@@ -64,8 +64,10 @@ nlm_randomcluster  <-
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-                       raster::clump(raster::raster(random_matrix),
-                                     direction = neighbourhood))
+      raster::clump(
+        raster::raster(random_matrix),
+        direction = neighbourhood
+      ))
 
     # Number of individual clusters ----
     n_clusters <- max(raster::values(clusters), na.rm = TRUE)
@@ -73,7 +75,7 @@ nlm_randomcluster  <-
     # Create random set of values for each the clusters ----
     types <- factor(stats::runif(n_clusters, 0, 1))
     num_types <- as.numeric(types)
-    num_types <-  R.utils::insert(num_types, 1, 0)
+    num_types <- R.utils::insert(num_types, 1, 0)
 
     # Apply values by indexing by cluster ----
     clustertype <- sample(num_types, n_clusters, replace = TRUE)
@@ -90,16 +92,18 @@ nlm_randomcluster  <-
     # Fill tessellated surface with values from points ----
     randomcluster_values <-
       sp::over(randomcluster_tess, randomcluster_point, fn = mean)
-    randomcluster_spdf   <-
+    randomcluster_spdf <-
       sp::SpatialPolygonsDataFrame(randomcluster_tess, randomcluster_values)
 
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(ncol=nCol,
-                     nrow=nRow,
-                     ext = raster::extent(randomcluster_spdf),
-                     resolution = c(1/nCol, 1/nRow)),
+      raster::raster(
+        ncol = nCol,
+        nrow = nRow,
+        ext = raster::extent(randomcluster_spdf),
+        resolution = c(1 / nCol, 1 / nRow)
+      ),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
@@ -107,15 +111,19 @@ nlm_randomcluster  <-
       na.rm = TRUE
     )
 
-    randomcluster_raster <- raster::crop(randomcluster_raster,
-                                         raster::extent(0,1,0,1))
+    randomcluster_raster <- raster::crop(
+      randomcluster_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
 
     # specify resolution ----
-    raster::extent(randomcluster_raster) <- c(0,
-                                              ncol(randomcluster_raster)*resolution,
-                                              0,
-                                              nrow(randomcluster_raster)*resolution)
+    raster::extent(randomcluster_raster) <- c(
+      0,
+      ncol(randomcluster_raster) * resolution,
+      0,
+      nrow(randomcluster_raster) * resolution
+    )
 
 
     # Rescale values to 0-1 ----
@@ -124,6 +132,4 @@ nlm_randomcluster  <-
     }
 
     return(randomcluster_raster)
-
   }
-

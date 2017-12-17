@@ -33,11 +33,11 @@
 #'
 
 
-nlm_planargradient  <- function(nCol,
-                                nRow,
-                                resolution = 1,
-                                direction = NA,
-                                rescale = TRUE) {
+nlm_planargradient <- function(nCol,
+                               nRow,
+                               resolution = 1,
+                               direction = NA,
+                               rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -51,25 +51,27 @@ nlm_planargradient  <- function(nCol,
   }
 
   # Determine the eastness and southness of the direction ----
-  eastness   <- sin( (pi/180) * direction )
-  southness  <- cos( (pi/180) * direction  ) * -1
+  eastness <- sin((pi / 180) * direction)
+  southness <- cos((pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
   col_index <- matrix(0:(nCol - 1), nCol, nRow)
   row_index <- matrix(0:(nRow - 1), nCol, nRow, byrow = TRUE)
 
   # Create gradient matrix ----
-  gradient_matrix  <-
+  gradient_matrix <-
     (southness * row_index + eastness * col_index)
 
   # Transform to raster ----
   gradient_raster <- raster::raster(gradient_matrix)
 
   # specify resolution ----
-  raster::extent(gradient_raster) <- c(0,
-                                  ncol(gradient_raster)*resolution,
-                                  0,
-                                  nrow(gradient_raster)*resolution)
+  raster::extent(gradient_raster) <- c(
+    0,
+    ncol(gradient_raster) * resolution,
+    0,
+    nrow(gradient_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -77,5 +79,4 @@ nlm_planargradient  <- function(nCol,
   }
 
   return(gradient_raster)
-
 }

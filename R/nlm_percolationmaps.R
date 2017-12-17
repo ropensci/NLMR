@@ -44,10 +44,10 @@
 #' @export
 #'
 
-nlm_percolation  <- function(nCol,
-                             nRow,
-                             resolution = 1,
-                             prob = 0.5) {
+nlm_percolation <- function(nCol,
+                            nRow,
+                            resolution = 1,
+                            prob = 0.5) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -58,21 +58,24 @@ nlm_percolation  <- function(nCol,
 
   percolation_matrix <- matrix(NA, nrow = nRow, ncol = nCol)
 
-  percolation_matrix[] <- vapply(percolation_matrix,
-                                 function(x){
-                                   ifelse(stats::runif(1,0,1) < prob, 1, 0)
-                                   },
-                                 numeric(1))
+  percolation_matrix[] <- vapply(
+    percolation_matrix,
+    function(x) {
+      ifelse(stats::runif(1, 0, 1) < prob, 1, 0)
+    },
+    numeric(1)
+  )
 
   percolation_raster <-
     raster::raster(percolation_matrix)
 
   # specify resolution ----
-  raster::extent(percolation_raster) <- c(0,
-                                  ncol(percolation_raster)*resolution,
-                                  0,
-                                  nrow(percolation_raster)*resolution)
+  raster::extent(percolation_raster) <- c(
+    0,
+    ncol(percolation_raster) * resolution,
+    0,
+    nrow(percolation_raster) * resolution
+  )
 
   return(percolation_raster)
-
 }

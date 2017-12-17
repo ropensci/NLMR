@@ -42,35 +42,40 @@ nlm_randomrectangularcluster <-
     checkmate::assert_logical(rescale)
 
     # Create an empty matrix of correct dimensions ----
-    matrix  <-  matrix(NA, nCol, nRow)
+    matrix <- matrix(NA, nCol, nRow)
 
     # Keep applying random clusters until all elements have a value -----
     while (any(is.na(matrix))) {
-      width  <- sample(minL:maxL, 1)
+      width <- sample(minL:maxL, 1)
       height <- sample(minL:maxL, 1)
 
       row <- sample(1:nRow, 1)
       col <- sample(1:nCol, 1)
 
-      matrix[if ( (row + width) < nRow)
-        row:(row + width)
-        else
-          row:nRow,
-        if ( (col + height) < nCol)
+      matrix[
+        if ((row + width) < nRow) {
+          row:(row + width)
+        } else {
+          row:nRow
+        },
+        if ((col + height) < nCol) {
           col:(col + height)
-        else
-          col:nCol] <- stats::runif(1, 0, 1)
-
+        } else {
+          col:nCol
+        }
+      ] <- stats::runif(1, 0, 1)
     }
 
     # Transform to raster ----
     randomrectangularcluster_raster <- raster::raster(matrix)
 
     # specify resolution ----
-    raster::extent(randomrectangularcluster_raster) <- c(0,
-                                         ncol(randomrectangularcluster_raster)*resolution,
-                                         0,
-                                         nrow(randomrectangularcluster_raster)*resolution)
+    raster::extent(randomrectangularcluster_raster) <- c(
+      0,
+      ncol(randomrectangularcluster_raster) * resolution,
+      0,
+      nrow(randomrectangularcluster_raster) * resolution
+    )
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
@@ -79,7 +84,6 @@ nlm_randomrectangularcluster <-
     }
 
     return(randomrectangularcluster_raster)
-
   }
 
 

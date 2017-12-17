@@ -57,9 +57,8 @@ nlm_randomelement <- function(nCol,
     random_row <- sample(c(1:nRow), 1)
 
     if (is.na(matrix[random_row, random_col])) {
-      matrix[random_row, random_col]  <- stats::runif(1, 0, 1)
+      matrix[random_row, random_col] <- stats::runif(1, 0, 1)
     }
-
   }
 
   # Convert matrix cells with values to Points, NA = empty space ----
@@ -72,33 +71,40 @@ nlm_randomelement <- function(nCol,
   # Fill tessellated surface with values from points
   randomelement_values <-
     sp::over(randomelement_tess, randomelement_point, fn = mean)
-  randomelement_spdf   <-
+  randomelement_spdf <-
     sp::SpatialPolygonsDataFrame(randomelement_tess, randomelement_values)
 
   randomelement_raster <-
-    raster::rasterize(randomelement_spdf,
-                      raster::raster(nrow = nRow,
-                                     ncol = nCol,
-                                     resolution = c(1/nCol, 1/nRow),
-                                     ext = raster::extent(randomelement_spdf)),
-                                     field = randomelement_spdf@data[, 1])
+    raster::rasterize(
+      randomelement_spdf,
+      raster::raster(
+        nrow = nRow,
+        ncol = nCol,
+        resolution = c(1 / nCol, 1 / nRow),
+        ext = raster::extent(randomelement_spdf)
+      ),
+      field = randomelement_spdf@data[, 1]
+    )
 
 
-  randomelement_raster <- raster::crop(randomelement_raster,
-                                       raster::extent(0,1,0,1))
+  randomelement_raster <- raster::crop(
+    randomelement_raster,
+    raster::extent(0, 1, 0, 1)
+  )
 
   # specify resolution ----
-  raster::extent(randomelement_raster) <- c(0,
-                                       ncol(randomelement_raster)*resolution,
-                                       0,
-                                       nrow(randomelement_raster)*resolution)
+  raster::extent(randomelement_raster) <- c(
+    0,
+    ncol(randomelement_raster) * resolution,
+    0,
+    nrow(randomelement_raster) * resolution
+  )
 
 
-   # Rescale values to 0-1
+  # Rescale values to 0-1
   if (rescale == TRUE) {
     randomelement_raster <- util_rescale(randomelement_raster)
   }
 
   return(randomelement_raster)
-
 }

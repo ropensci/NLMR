@@ -53,17 +53,19 @@ nlm_edgegradient <- function(nCol,
   }
 
   # Create planar gradient ----
-  gradient_raster <-  nlm_planargradient(nCol, nRow, direction)
+  gradient_raster <- nlm_planargradient(nCol, nRow, direction)
 
   # Transform to a central gradient ----
   edgegradient_raster <-
     (abs(0.5 - gradient_raster) * -2) + 1
 
   # specify resolution ----
-  raster::extent(edgegradient_raster) <- c(0,
-                                           ncol(edgegradient_raster)*resolution,
-                                           0,
-                                           nrow(edgegradient_raster)*resolution)
+  raster::extent(edgegradient_raster) <- c(
+    0,
+    ncol(edgegradient_raster) * resolution,
+    0,
+    nrow(edgegradient_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -77,4 +79,3 @@ nlm_edgegradient <- function(nCol,
 # Sebastians comment: Make transformation to planar gradient adjustable
 #                     by the user
 #####
-

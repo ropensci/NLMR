@@ -39,11 +39,11 @@ nlm_gaussianfield <- function(nCol,
                               resolution = 1,
                               autocorr_range = 10,
                               mag_var = 0.025,
-                              beta = c(1,0.01,0.005),
+                              beta = c(1, 0.01, 0.005),
                               nug = 1,
                               direction = "random",
                               angle = 1,
-                              rescale = TRUE){
+                              rescale = TRUE) {
 
 
   # Check function arguments ----
@@ -61,40 +61,47 @@ nlm_gaussianfield <- function(nCol,
   # create data structure for spatial model
   xy <- expand.grid(1:nCol, 1:nRow)
   # Set the name of the spatial coordinates within the field
-  names(xy) <- c("x","y")
+  names(xy) <- c("x", "y")
 
   # define the spatial model
   if (direction == "random") {
-    spatial_sim <- gstat::gstat(formula = z~1,
-                                locations = ~x+y,
-                                dummy = TRUE,
-                                beta = beta,
-                                model = gstat::vgm(psill=mag_var,
-                                                   nugget = nug,
-                                                   model="Exp",
-                                                   range=autocorr_range),
-                                nmax = 20)
+    spatial_sim <- gstat::gstat(
+      formula = z~1,
+      locations = ~x + y,
+      dummy = TRUE,
+      beta = beta,
+      model = gstat::vgm(
+        psill = mag_var,
+        nugget = nug,
+        model = "Exp",
+        range = autocorr_range
+      ),
+      nmax = 20
+    )
   }
 
   if (direction == "linear") {
-    spatial_sim <- gstat::gstat(formula = z~1+x+y,
-                                locations = ~x+y,
-                                dummy = TRUE,
-                                beta = beta,
-                                model = gstat::vgm(psill=mag_var,
-                                                 range=autocorr_range,
-                                                 model='Exp'),
-                                nmax = 20)
-
+    spatial_sim <- gstat::gstat(
+      formula = z~1 + x + y,
+      locations = ~x + y,
+      dummy = TRUE,
+      beta = beta,
+      model = gstat::vgm(
+        psill = mag_var,
+        range = autocorr_range,
+        model = "Exp"
+      ),
+      nmax = 20
+    )
   }
 
   # make four simulations based on the stat object
-  spatial_pred <- stats::predict(spatial_sim, newdata=xy, nsim=1, messages = FALSE)
+  spatial_pred <- stats::predict(spatial_sim, newdata = xy, nsim = 1, messages = FALSE)
 
   # convert prediction to raster
-  sp::gridded(spatial_pred) <- ~x+y
+  sp::gridded(spatial_pred) <- ~x + y
   pred_raster <- raster::raster(spatial_pred)
-  raster::extent(pred_raster) <- c(0,1,0,1)
+  raster::extent(pred_raster) <- c(0, 1, 0, 1)
 
   if (direction == "linear" & angle == 2) {
     pred_raster <- raster::flip(pred_raster, 2)
@@ -110,10 +117,12 @@ nlm_gaussianfield <- function(nCol,
   }
 
   # specify resolution ----
-  raster::extent(pred_raster) <- c(0,
-                                     ncol(pred_raster)*resolution,
-                                     0,
-                                     nrow(pred_raster)*resolution)
+  raster::extent(pred_raster) <- c(
+    0,
+    ncol(pred_raster) * resolution,
+    0,
+    nrow(pred_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -121,7 +130,6 @@ nlm_gaussianfield <- function(nCol,
   }
 
   return(pred_raster)
-
 }
 
 # d ran- dom fields constrained by a particular semivariogram (Cressie 1993)

@@ -20,6 +20,7 @@ reference:
       - '`nlm_randomelement`'
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
+      - '`nlm_wheys`'
   - title: Metrics
     desc: ~
     contents:

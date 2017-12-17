@@ -34,7 +34,7 @@ nlm_fBm <- function(nCol,
                     resolution = 1,
                     H = 0.5,
                     user_seed = NULL,
-                    rescale = TRUE){
+                    rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(nCol, positive = TRUE)
@@ -45,22 +45,24 @@ nlm_fBm <- function(nCol,
   checkmate::assert_logical(rescale)
 
   # specify RandomFields options ----
-  RandomFields::RFoptions(cPrintlevel=0)
-  RandomFields::RFoptions(spConform=FALSE)
+  RandomFields::RFoptions(cPrintlevel = 0)
+  RandomFields::RFoptions(spConform = FALSE)
 
   # set RF seed ----
-  if(!is.null(user_seed)){
-    RandomFields::RFoptions(seed=user_seed)
+  if (!is.null(user_seed)) {
+    RandomFields::RFoptions(seed = user_seed)
   }
 
   # specify spatial extent for simulation ----
-  x <- seq(0,1, len=nCol)
-  y <- seq(0,1, len=nRow)
+  x <- seq(0, 1, len = nCol)
+  y <- seq(0, 1, len = nRow)
 
   # formulate and simulate fBm model
-  fBm_model <- RandomFields::RMgenfbm(alpha=H * 2,
-                                      beta=0.5)
-  fBm_simu  <- RandomFields::RFsimulate(fBm_model, x, y)
+  fBm_model <- RandomFields::RMgenfbm(
+    alpha = H * 2,
+    beta = 0.5
+  )
+  fBm_simu <- RandomFields::RFsimulate(fBm_model, x, y)
 
 
   # transform simulation into raster ----
@@ -68,10 +70,12 @@ nlm_fBm <- function(nCol,
 
 
   # specify extent and resolution ----
-  raster::extent(fbm_raster) <- c(0,
-                                  ncol(fbm_raster)*resolution,
-                                  0,
-                                  nrow(fbm_raster)*resolution)
+  raster::extent(fbm_raster) <- c(
+    0,
+    ncol(fbm_raster) * resolution,
+    0,
+    nrow(fbm_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -79,5 +83,4 @@ nlm_fBm <- function(nCol,
   }
 
   return(fbm_raster)
-
 }

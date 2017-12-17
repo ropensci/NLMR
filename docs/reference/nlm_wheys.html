@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • NLMR</title>
+<title>nlm_wheys — nlm_wheys • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -118,60 +118,98 @@
       </header>
 
       <div class="row">
-
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+    <h1>nlm_wheys</h1>
     </div>
 
-    <div class="contents">
-    <div id="nlmr-0-1-5-release-notes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#nlmr-0-1-5-release-notes" class="anchor"></a>NLMR 0.1.5 Release Notes</h2>
-<p>v0.1.5 was released on xx/xx/2017</p>
-<div id="major-changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
-<ul>
-<li>New neutral landscape models
-<ul>
-<li>
-<code>nlm_wheys</code>: Simulates a wheyed neutral landscape model</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="minor-changes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
-<ul>
-<li>Parameter <code>p</code> in <code>nlm_curds</code> now controls the proportion of habitat instead of the amount of matrix</li>
-</ul>
-</div>
-</div>
-    <div id="nlmr-0-1-0-release-notes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#nlmr-0-1-0-release-notes" class="anchor"></a>NLMR 0.1.0 Release Notes</h2>
-<p>v0.1.0 was released on 30/11/2017</p>
-<div id="major-changes-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
-<p>First stable release of NLMR</p>
-</div>
-</div>
-    </div>
+    
+    <p>Simulates a wheyed neutral landscape model.</p>
+    
+
+    <pre class="usage"><span class='fu'>nlm_wheys</span>(<span class='no'>p</span>, <span class='no'>s</span>, <span class='no'>q</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>p</th>
+      <td><p>[<code>numerical(x)</code>]
+Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+TRUE)).</p></td>
+    </tr>
+    <tr>
+      <th>s</th>
+      <td><p>[<code>numerical(x)</code>]
+Vector of successive cutting steps for the blocks (split 1 block into x
+blocks).</p></td>
+    </tr>
+    <tr>
+      <th>q</th>
+      <td><p>[<code>numerical(x)</code>]
+Vector of with percentage(s) to fill with wheys (fill with Habitat (value ==
+TRUE)).</p></td>
+    </tr>
+    <tr>
+      <th>ext</th>
+      <td><p>[<code>numerical(1)</code>]
+Extent of the resulting raster (0,x,0,x).</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>raster</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Wheyed landscape models builts on landscapes derived from random
+curdling (<code><a href='nlm_curds.html'>nlm_curds()</a></code>), by adding "wheye" on the "curds". Wheye is
+hereby an additional step after the first recursion, where previously
+selected cells that were declared matrix (value == FALSE) are now considered
+to contain a proportion (<code>q</code>) of habitat.</p>
+<p>If $$p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}$$ the models converges
+to a random map.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Szaro, Robert C., and David W. Johnston, eds. Biodiversity in managed
+landscapes: theory and practice. <em>Oxford University Press</em>, USA, 1996.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='nlm_curds.html'>nlm_curds</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>nlm_wheys</span>(<span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.3</span>, <span class='fl'>0.6</span>), <span class='fu'>c</span>(<span class='fl'>32</span>, <span class='fl'>6</span>, <span class='fl'>2</span>), <span class='fu'>c</span>(<span class='fl'>0.1</span>, <span class='fl'>0.05</span>, <span class='fl'>0.2</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 384, 384, 147456  (nrow, ncol, ncell)
+#&gt; resolution  : 0.002604167, 0.002604167  (x, y)
+#&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#nlmr-0-1-5-release-notes">0.1.5</a></li>
-        <li><a href="#nlmr-0-1-0-release-notes">0.1.0</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
 
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
+  </div>
 </div>
 
       <footer>

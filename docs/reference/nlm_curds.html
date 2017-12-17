@@ -135,7 +135,8 @@
     <tr>
       <th>p</th>
       <td><p>[<code>numerical(x)</code>]
-Vector with percentage(s) to cut of (fill with matrix (zeroes)).</p></td>
+Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+TRUE)).</p></td>
     </tr>
     <tr>
       <th>s</th>
@@ -165,18 +166,21 @@ habitat (1) while the remaining stays matrix (0).</p>
     <p>Keitt TH. 2000. Spectral representation of neutral landscapes.
 <em>Landscape Ecology</em> 15:479-493.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='nlm_wheys.html'>nlm_wheys</a></code></p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_curds</span>(<span class='fu'>c</span>(<span class='fl'>0.25</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>), <span class='fu'>c</span>(<span class='fl'>64</span>, <span class='fl'>8</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 512, 512, 262144  (nrow, ncol, ncell)
-#&gt; resolution  : 0.001953125, 0.001953125  (x, y)
+    <pre class="examples"><div class='input'><span class='fu'>nlm_curds</span>(<span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.3</span>, <span class='fl'>0.6</span>), <span class='fu'>c</span>(<span class='fl'>32</span>, <span class='fl'>6</span>, <span class='fl'>2</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 384, 384, 147456  (nrow, ncol, ncell)
+#&gt; resolution  : 0.002604167, 0.002604167  (x, y)
 #&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -189,6 +193,8 @@ habitat (1) while the remaining stays matrix (0).</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

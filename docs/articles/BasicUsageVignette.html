@@ -100,13 +100,13 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2017-12-04</h4>
+            <h4 class="date">2017-12-17</h4>
           </div>
 
     
     
 <div class="contents">
-<p><code>NLMR</code> is a <code>R</code> package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The <code>NLMR</code> package was designed with a similar philosophy to the Python package <code>NLMpy</code> <span class="citation">(see Etherington, Holland, and O’Sullivan 2014)</span>, offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. Additionally, NLMR allows users to blend multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the <code>raster</code> package.</p>
+<p><code>NLMR</code> is a <code>R</code> package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The <code>NLMR</code> package was designed with a similar philosophy to the Python package <code>NLMpy</code> <span class="citation">(see Etherington, Holland, and O’Sullivan 2014)</span>, offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. Additionally, NLMR allows users to merge multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the <code>raster</code> package.</p>
 <div id="basic-landscape-generation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-landscape-generation" class="anchor"></a>Basic landscape generation</h2>
@@ -140,18 +140,20 @@
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(x)</code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
-<div id="blending-landscapes" class="section level2">
+<div id="merging-landscapes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#blending-landscapes" class="anchor"></a>Blending landscapes</h2>
-<p>Multiple NLM rasters can be blended or merged together to create new landscape patterns. A single primary or base raster can be blended with any number of additional secondary rasters, with optional scaling factors used to control the influence of the secondary rasters.</p>
-<p>The <code>util_merge</code> function is used to blend the rasters as in the example below:</p>
+<a href="#merging-landscapes" class="anchor"></a>Merging landscapes</h2>
+<p>Multiple NLM rasters can be merged or merged together to create new landscape patterns. A single primary or base raster can be merged with any number of additional secondary rasters, with optional scaling factors used to control the influence of the secondary rasters.</p>
+<p>The <code>util_merge</code> function is used to merge the rasters as in the example below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create primary landscape raster</span>
   pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
                               <span class="dt">nRow =</span> <span class="dv">100</span>)
 
   NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(pL)</code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create secondary landscape rasters</span>
   sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
@@ -165,6 +167,7 @@
                           <span class="dt">scalingfactor =</span> <span class="dv">1</span>)
   
   NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(mL1)</code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
@@ -184,6 +187,7 @@ cr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw">
                           <span class="dt">level_names =</span> <span class="kw">c</span>(<span class="st">"L1"</span>, <span class="st">"L2"</span>, <span class="st">"L3"</span>))
 
 NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
 <pre><code>## $Total_Area
@@ -233,7 +237,7 @@ r</code></pre></div>
 ## coord. ref. : NA 
 ## data source : in memory
 ## names       : layer 
-## values      : 0.002658622, 0.9974238  (min, max)</code></pre>
+## values      : 0.001296512, 0.9965827  (min, max)</code></pre>
 <p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
 <p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
@@ -250,8 +254,8 @@ s</code></pre></div>
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
 ## names       :     layer.1,     layer.2,     layer.3 
-## min values  : 0.002658622, 0.007715336, 0.002658622 
-## max values  :   0.9974238,   0.9973555,   0.9974238</code></pre>
+## min values  : 0.001296512, 0.010228693, 0.001296512 
+## max values  :   0.9965827,   0.9987068,   0.9965827</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
@@ -402,7 +406,7 @@ r[]</code></pre></div>
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#basic-landscape-generation">Basic landscape generation</a></li>
-      <li><a href="#blending-landscapes">Blending landscapes</a></li>
+      <li><a href="#merging-landscapes">Merging landscapes</a></li>
       <li><a href="#classifying-categories">Classifying categories</a></li>
       <li><a href="#handling-raster-objects-in-r">Handling Raster* Objects in R</a></li>
       <li><a href="#references">References</a></li>
