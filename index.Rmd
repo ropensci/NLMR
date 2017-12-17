@@ -83,7 +83,7 @@ vignette(package = "NLMR")
 
 We are currently on version `r packageVersion("NLMR")`. Major changes in this version are:
 
-* xxx
+* v0.1.0 was released on 30/11/2017
 
 See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. 
 

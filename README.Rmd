@@ -59,7 +59,7 @@ library(SDMTools) # to calculate basic landscape metrics
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minL = 3, maxL = 7)
 
 # Plot the NLM
-util_plot(nlm_raster, scale = "A") +
+util_plot(nlm_raster, scale = "D") +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 
 # Classify into 3 categories
@@ -67,7 +67,7 @@ nlm_raster <- nlm_raster %>%
                  util_classify(., c(0.5, 0.25, 0.25))
 
 # Plot the classified NLM
-util_plot(nlm_raster, scale = "A", discrete = TRUE) +
+util_plot(nlm_raster, scale = "D", discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 
 # Calculate basic landscape metrics
