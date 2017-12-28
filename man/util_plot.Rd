@@ -4,17 +4,17 @@
 \alias{util_plot}
 \title{util_plot}
 \usage{
-util_plot(x, scale = "A", discrete = FALSE, legendposition = "bottom",
+util_plot(x, scale = "D", discrete = FALSE, legendposition = "bottom",
   legendtitle = "Z")
 }
 \arguments{
 \item{x}{[\code{Raster* object}]}
 
 \item{scale}{[\code{character}(1)]
-Five options are available: "viridis - magma" (= "A",  the default option),
+Five options are available: "viridis - magma" (= "A"),
                             "viridis - inferno" (= "B"),
                             "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D")}
+                            "viridis - viridis" (= "D",  the default option)}
 
 \item{discrete}{[\code{logical}(1)] If TRUE, the function plots a raster with
 a discrete legend.}

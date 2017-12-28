@@ -35,8 +35,8 @@ hereby an additional step after the first recursion, where previously
 selected cells that were declared matrix (value == FALSE) are now considered
 to contain a proportion (\code{q}) of habitat.
 
-If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models converges
-to a random map.
+If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models resembles
+a binary random map.
 }
 \examples{
 nlm_wheys(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))

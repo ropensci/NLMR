@@ -4,10 +4,10 @@
 #'
 #' @param x [\code{Raster* object}]
 #' @param scale [\code{character}(1)]
-#' Five options are available: "viridis - magma" (= "A",  the default option),
+#' Five options are available: "viridis - magma" (= "A"),
 #'                             "viridis - inferno" (= "B"),
 #'                             "viridis - plasma" (= "C"),
-#'                             "viridis - viridis" (= "D")
+#'                             "viridis - viridis" (= "D",  the default option)
 #' @param discrete [\code{logical}(1)] If TRUE, the function plots a raster with
 #' a discrete legend.
 #' @param legendposition [\code{character}(1)] The position of legends
@@ -34,10 +34,17 @@
 #'
 
 util_plot <- function(x,
-                      scale = "A",
+                      scale = "D",
                       discrete = FALSE,
                       legendposition = "bottom",
                       legendtitle = "Z") {
+
+  if ( raster::ncol(x) == raster::nrow(x) ) {
+    ratio <- 1
+  } else {
+    ratio <- raster::nrow(x) / raster::ncol(x)
+  }
+
   if (raster::nlayers(x) == 1) {
     if (isTRUE(discrete)) {
       raster_labels <- tryCatch({
@@ -50,7 +57,6 @@ util_plot <- function(x,
 
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +
-        ggplot2::coord_equal() +
         ggplot2::labs(
           x = "Easting",
           y = "Northing"
@@ -72,7 +78,7 @@ util_plot <- function(x,
             color = NA
           ),
           strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-          aspect.ratio = 1,
+          aspect.ratio = ratio,
           plot.title = ggplot2::element_text(hjust = 0.5)
         ) +
         viridis::scale_fill_viridis(
@@ -106,7 +112,6 @@ util_plot <- function(x,
     } else {
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = value)) +
-        ggplot2::coord_equal() +
         ggplot2::labs(
           x = "Easting",
           y = "Northing"
@@ -128,12 +133,12 @@ util_plot <- function(x,
             color = NA
           ),
           strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-          aspect.ratio = 1,
+          aspect.ratio = ratio,
           plot.title = ggplot2::element_text(hjust = 0.5)
         ) +
         viridis::scale_fill_viridis(
           option = scale,
-          direction = -1,
+          direction = 1,
           na.value = "transparent",
           name = "Z",
           guide = ggplot2::guide_colorbar(

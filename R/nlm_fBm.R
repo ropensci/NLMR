@@ -1,6 +1,6 @@
-#' nlm_fBM
+#' nlm_fBm
 #'
-#' Simulate two-dimensional fractional brownian motion model.
+#' @description Simulates two-dimensional fractional brownian motion model.
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
@@ -16,12 +16,27 @@
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @details
-#' Neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient H. An H of 1 produces a relatively smooth surface while an H of 0 produces a rough, uncorrelated, surface. Implementation of this method is limited to landscapes with extents less than 90 by 90 cells.
+#' Neutral landscapes are generated using fractional Brownian motion,
+#'  an extension of Brownian motion in which the amount of correlation between
+#'   steps is controlled by the Hurst coefficient H. An H of 1 produces a
+#'    relatively smooth surface while an H of 0 produces a rough, uncorrelated,
+#'     surface. Implementation of this method is limited to landscapes with
+#'      extents less than 90 by 90 cells.
 #'
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_fBm(nCol = 40, nRow = 40, H = 0.5)
+#' # simulate fractional brownian motion
+#' (fBm_raster  <- nlm_fBm(nCol = 20, nRow = 30, H = 0.5))
+#'
+#' # visualize the NLM
+#' util_plot(fBm_raster)
+#'
+#' @references
+#' Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
+#' Kirstin Strokorb (2015). Analysis, Simulation and Prediction of Multivariate
+#' Random Fields with Package RandomFields. \emph{Journal of Statistical
+#' Software}, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.
 #'
 #' @aliases nlm_fBm
 #' @rdname nlm_fBm
@@ -62,7 +77,7 @@ nlm_fBm <- function(nCol,
     alpha = H * 2,
     beta = 0.5
   )
-  fBm_simu <- RandomFields::RFsimulate(fBm_model, x, y)
+  fBm_simu <- RandomFields::RFsimulate(fBm_model, y, x)
 
 
   # transform simulation into raster ----

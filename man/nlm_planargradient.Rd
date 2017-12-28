@@ -41,3 +41,7 @@ nlm_planargradient(nCol = 100, nRow = 100)
 Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
 \emph{The American Naturalist}, 139, 375 - 397.
 }
+\seealso{
+\code{\link{nlm_distancegradient}},
+\code{\link{nlm_edgegradient}}
+}

@@ -22,6 +22,9 @@
 #' @examples
 #' nlm_planargradient(nCol = 100, nRow = 100)
 #'
+#' @seealso \code{\link{nlm_distancegradient}},
+#' \code{\link{nlm_edgegradient}}
+#'
 #' @references
 #' Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
 #' \emph{The American Naturalist}, 139, 375 - 397.
@@ -55,8 +58,8 @@ nlm_planargradient <- function(nCol,
   southness <- cos((pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
-  col_index <- matrix(0:(nCol - 1), nCol, nRow)
-  row_index <- matrix(0:(nRow - 1), nCol, nRow, byrow = TRUE)
+  col_index <- matrix(0:(nCol - 1), nRow, nCol)
+  row_index <- matrix(0:(nRow - 1), nRow, nCol, byrow = TRUE)
 
   # Create gradient matrix ----
   gradient_matrix <-

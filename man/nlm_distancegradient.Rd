@@ -27,7 +27,7 @@ Otherwise, the distance in raster units is calculated.}
 RasterLayer
 }
 \description{
-Simulate a distance gradient neutral landscape model..
+Simulate a distance gradient neutral landscape model.
 }
 \details{
 The function takes the number of columns and rows as input and creates a
@@ -36,6 +36,16 @@ xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
 distance is measured.
 }
 \examples{
-nlm_distancegradient(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))
 
+# simulate a distance gradient
+(distance_gradient <- nlm_distancegradient(nCol = 500, nRow = 100,
+                                           origin = c(20, 30, 10, 15)))
+
+# visualize the NLM
+util_plot(distance_gradient)
+
+}
+\seealso{
+\code{\link{nlm_edgegradient}},
+\code{\link{nlm_planargradient}}
 }

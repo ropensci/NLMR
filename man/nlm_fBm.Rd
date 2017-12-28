@@ -2,7 +2,7 @@
 % Please edit documentation in R/nlm_fBm.R
 \name{nlm_fBm}
 \alias{nlm_fBm}
-\title{nlm_fBM}
+\title{nlm_fBm}
 \usage{
 nlm_fBm(nCol, nRow, resolution = 1, H = 0.5, user_seed = NULL,
   rescale = TRUE)
@@ -30,12 +30,27 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate two-dimensional fractional brownian motion model.
+Simulates two-dimensional fractional brownian motion model.
 }
 \details{
-Neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient H. An H of 1 produces a relatively smooth surface while an H of 0 produces a rough, uncorrelated, surface. Implementation of this method is limited to landscapes with extents less than 90 by 90 cells.
+Neutral landscapes are generated using fractional Brownian motion,
+ an extension of Brownian motion in which the amount of correlation between
+  steps is controlled by the Hurst coefficient H. An H of 1 produces a
+   relatively smooth surface while an H of 0 produces a rough, uncorrelated,
+    surface. Implementation of this method is limited to landscapes with
+     extents less than 90 by 90 cells.
 }
 \examples{
-nlm_fBm(nCol = 40, nRow = 40, H = 0.5)
+# simulate fractional brownian motion
+(fBm_raster  <- nlm_fBm(nCol = 40, nRow = 10, H = 0.5))
 
+# visualize the NLM
+util_plot(fBm_raster)
+
+}
+\references{
+Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
+Kirstin Strokorb (2015). Analysis, Simulation and Prediction of Multivariate
+Random Fields with Package RandomFields. \emph{Journal of Statistical
+Software}, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.
 }
