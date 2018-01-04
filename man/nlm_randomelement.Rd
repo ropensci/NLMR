@@ -35,8 +35,12 @@ uniformly distributed random value. The cells are then converted to a point
 pattern and interpolated by voronoi tessellation.
 }
 \examples{
-nlm_randomelement(nCol = 10, nRow = 10, n = 10)
-
+# simulate random elements
+random_element <- nlm_randomelement(nCol = 20, nRow = 20, n = 10)
+\dontrun{
+# visualize the NLM
+util_plot(random_element)
+}
 }
 \references{
 Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software

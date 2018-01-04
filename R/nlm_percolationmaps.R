@@ -19,7 +19,7 @@
 #'  \item{Map generation: }{ For each cell in the matrix a single uniformly
 #'  distributed random number is generated and tested against a probability
 #'  \code{prob}. If the random number is smaller than \code{prob}, the cell is set to
-#'  1 - if it is higher the cell is set to 0.}
+#'  TRUE - if it is higher the cell is set to FALSE.}
 #' }
 #'
 #' The proportion of 0 and 1 is thus controlled with the argument \code{prob}.
@@ -27,8 +27,12 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
-#'
+#' # simulate percolation model
+#' percolation <- nlm_percolation(nCol = 100, nRow = 100, prob=0.5)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(percolation, discrete = TRUE)
+#' }
 #' @references
 #' 1. Gardner RH, O'Neill R V, Turner MG, Dale VH. 1989. Quantifying
 #' scale-dependent effects of animal movement with simple percolation models.
@@ -61,9 +65,9 @@ nlm_percolation <- function(nCol,
   percolation_matrix[] <- vapply(
     percolation_matrix,
     function(x) {
-      ifelse(stats::runif(1, 0, 1) < prob, 1, 0)
+      ifelse(stats::runif(1, 0, 1) < prob, TRUE, FALSE)
     },
-    numeric(1)
+    logical(1)
   )
 
   percolation_raster <-

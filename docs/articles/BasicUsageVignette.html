@@ -100,7 +100,7 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2017-12-17</h4>
+            <h4 class="date">2018-01-04</h4>
           </div>
 
     
@@ -140,7 +140,6 @@
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(x)</code></pre></div>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="merging-landscapes" class="section level2">
@@ -153,7 +152,6 @@
                               <span class="dt">nRow =</span> <span class="dv">100</span>)
 
   NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(pL)</code></pre></div>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create secondary landscape rasters</span>
   sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
@@ -167,7 +165,6 @@
                           <span class="dt">scalingfactor =</span> <span class="dv">1</span>)
   
   NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(mL1)</code></pre></div>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
@@ -187,19 +184,19 @@ cr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw">
                           <span class="dt">level_names =</span> <span class="kw">c</span>(<span class="st">"L1"</span>, <span class="st">"L2"</span>, <span class="st">"L3"</span>))
 
 NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
+<pre><code>## Warning: Length of logical index must be 1 or 3, not 6</code></pre>
 <pre><code>## $Total_Area
 ## # A tibble: 6 x 2
 ##   count class
 ##   &lt;dbl&gt; &lt;lgl&gt;
-## 1    NA    NA
-## 2    NA    NA
-## 3    NA    NA
-## 4    NA    NA
-## 5    NA    NA
-## 6    NA    NA
+## 1    NA NA   
+## 2    NA NA   
+## 3    NA NA   
+## 4    NA NA   
+## 5    NA NA   
+## 6    NA NA   
 ## 
 ## $Proportion_Area
 ##   count class
@@ -237,7 +234,7 @@ r</code></pre></div>
 ## coord. ref. : NA 
 ## data source : in memory
 ## names       : layer 
-## values      : 0.001296512, 0.9965827  (min, max)</code></pre>
+## values      : 0.01521962, 0.9986817  (min, max)</code></pre>
 <p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
 <p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
@@ -254,8 +251,8 @@ s</code></pre></div>
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
 ## names       :     layer.1,     layer.2,     layer.3 
-## min values  : 0.001296512, 0.010228693, 0.001296512 
-## max values  :   0.9965827,   0.9987068,   0.9965827</code></pre>
+## min values  : 0.015219618, 0.003951434, 0.015219618 
+## max values  :   0.9986817,   0.9973132,   0.9986817</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
@@ -418,7 +415,7 @@ r[]</code></pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

@@ -1,11 +1,12 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.1.0
-Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = "Department of Ecosystem Modelling, University of Goettingen"), 
-    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut"), comment = "Department of Ecosystem Modelling, University of Goettingen"),
-    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("aut"), comment = "Leibniz Institute for Zoo and Wildlife Research, Berlin"),
-    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut"), comment = "Department of Ecosystem Modelling, University of Goettingen"))
+Version: 0.1.1
+Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
+    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
+    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
+    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
+Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
 Description: Provides neutral landscape models 
     (Gardner et al. 1987 <doi:10.1007/BF02275262>,
     With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
@@ -22,6 +23,7 @@ Description: Provides neutral landscape models
     in any sort of raster data operation that is performed with standard 
     observation data.                                                                                            
 License: GPL-3
+Copyright: file inst/COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -47,7 +49,8 @@ Imports:
     spatstat,
     stats,
     tibble,
-    viridis
+    viridis,
+    extrafont
 URL: https://marcosci.github.io/NLMR/
 BugReports: https://github.com/marcosci/NLMR/issues/
 Suggests:

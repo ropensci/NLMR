@@ -23,7 +23,13 @@
 #' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labelling algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
 #'
 #' @examples
-#' nlm_randomcluster(nCol = 10, nRow = 10, resolution = 10, neighbourhood = 4, p = 0.4)
+#' # simulate random clustering
+#' random_cluster <- nlm_randomcluster(nCol = 20, nRow = 10, resolution = 1,
+#'                                     neighbourhood = 4, p = 0.4)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(random_cluster)
+#' }
 #'
 #' @references
 #' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
@@ -60,7 +66,8 @@ nlm_randomcluster <-
     checkmate::assert_logical(rescale)
 
     # Create percolation array
-    random_matrix <- raster::as.matrix(nlm_percolation(nCol, nRow, p, resolution = resolution))
+    random_matrix <- raster::as.matrix(nlm_percolation(nCol, nRow, p,
+                                                       resolution = resolution))
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-

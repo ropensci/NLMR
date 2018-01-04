@@ -32,7 +32,12 @@ RasterLayer with the same extent. Each raster cell is randomly assigned a
 value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
-nlm_random(nCol = 100, nRow = 100)
+# simulate spatially random model
+random <- nlm_random(nCol = 200, nRow = 100)
 
+\dontrun{
+# visualize the NLM
+util_plot(random)
+}
 
 }

@@ -1,6 +1,6 @@
 #' nlm_mosaicfield
 #'
-#' @description Create a mosaic random field neutral landscape model.
+#' @description Simulate a mosaic random field neutral landscape model.
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
@@ -30,11 +30,17 @@
 #' methodology and applications with R. CRC Press, 2015.
 #'
 #' @examples
-#' nlm_mosaicfield(nCol = 200,
-#'                 nRow = 200,
-#'                 n = NA,
-#'                 infinit = TRUE,
-#'                 collect = FALSE)
+#'
+#' # simulate mosaic random field
+#' mosaic_field <- nlm_mosaicfield(nCol = 100,
+#'                                 nRow = 200,
+#'                                 n = NA,
+#'                                 infinit = TRUE,
+#'                                 collect = FALSE)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(mosaic_field)
+#' }
 #'
 #' @aliases nlm_mosaicfield
 #' @rdname nlm_mosaicfield
@@ -56,7 +62,7 @@ nlm_mosaicfield <- function(nCol,
   checkmate::assert_count(nCol, positive = TRUE)
   checkmate::assert_count(nRow, positive = TRUE)
   checkmate::assert_numeric(resolution)
-  # checkmate::assert_count(n, positive = TRUE)
+  checkmate::assert_count(n, positive = TRUE, na.ok = TRUE)
   checkmate::assert_numeric(mosaic_mean)
   checkmate::assert_numeric(mosaic_sd)
   checkmate::assert_logical(collect)
@@ -69,7 +75,7 @@ nlm_mosaicfield <- function(nCol,
     mosaicfield_result <- spatstat::rMosaicField(
       spatstat::rpoislinetess(4),
       stats::rnorm,
-      dimyx = c(nCol, nRow),
+      dimyx = c(nRow, nCol),
       rgenargs = list(
         mean = mosaic_mean,
         sd = mosaic_sd
@@ -86,7 +92,7 @@ nlm_mosaicfield <- function(nCol,
       mosaicfield_n <- spatstat::rMosaicField(
         spatstat::rpoislinetess(4),
         stats::rnorm,
-        dimyx = c(nCol, nRow),
+        dimyx = c(nRow, nCol),
         rgenargs = list(
           mean = mosaic_mean,
           sd = mosaic_sd
@@ -122,7 +128,7 @@ nlm_mosaicfield <- function(nCol,
     mosaicfields_return$mosaicfield_raster <- mosaicfield_raster
 
     if (isTRUE(collect)) {
-      names(mosaicfield_list) <- 1:length(mosaicfield_list)
+      names(mosaicfield_list) <- seq_along(mosaicfield_list)
       mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
         mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
       })
@@ -160,7 +166,8 @@ nlm_mosaicfield <- function(nCol,
   if (isTRUE(infinit)) {
 
     # INFINITE STEPS:
-    X <- spatstat::rLGCP("exp", 4, var = 1, scale = .2, saveLambda = TRUE)
+    X <- spatstat::rLGCP("exp", 4, var = 1, dimyx = c(nRow, nCol),
+                         scale = .2, saveLambda = TRUE)
     mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
 
     # coerce spatstat image to raster and set proper resolution ----
@@ -185,7 +192,9 @@ nlm_mosaicfield <- function(nCol,
   }
 
 
-  if (length(mosaicfields_return) == 1) mosaicfields_return <- mosaicfields_return[[1]]
+  if (length(mosaicfields_return) == 1) {
+    mosaicfields_return <- mosaicfields_return[[1]]
+  }
 
   return(mosaicfields_return)
 }

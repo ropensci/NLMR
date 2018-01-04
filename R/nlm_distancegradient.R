@@ -1,6 +1,6 @@
 #' nlm_distancegradient
 #'
-#' @description Simulate a distance gradient neutral landscape model..
+#' @description Simulate a distance gradient neutral landscape model.
 #'
 #' @details
 #' The function takes the number of columns and rows as input and creates a
@@ -23,7 +23,16 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_distancegradient(nCol = 100, nRow = 100, origin = c(20, 30, 10, 15))
+#'
+#' # simulate a distance gradient
+#' (distance_gradient <- nlm_distancegradient(nCol = 100, nRow = 100,
+#'                                            origin = c(20, 30, 10, 15)))
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(distance_gradient)
+#' }
+#' @seealso \code{\link{nlm_edgegradient}},
+#' \code{\link{nlm_planargradient}}
 #'
 #' @aliases nlm_distancegradient
 #' @rdname nlm_distancegradient
@@ -52,7 +61,8 @@ nlm_distancegradient <- function(nCol,
 
   # create empty raster ----
   distancegradient <-
-    raster::raster(ncol = nCol, nrow = nRow, ext = raster::extent(c(0, 1, 0, 1)))
+    raster::raster(ncol = nCol, nrow = nRow,
+                   ext = raster::extent(c(0, 1, 0, 1)))
 
   # set origin to 1 ----
   distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1

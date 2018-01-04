@@ -19,10 +19,14 @@
 #'
 #' @return RasterLayer
 #'
-#'
 #' @examples
-#' nlm_random(nCol = 100, nRow = 100)
+#' # simulate spatially random model
+#' random <- nlm_random(nCol = 200, nRow = 100)
 #'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(random)
+#' }
 #'
 #' @aliases nlm_random
 #' @rdname nlm_random
@@ -43,7 +47,7 @@ nlm_random <- function(nCol,
 
   # Assign random values to raster cells ----
   random_raster <-
-    raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nCol, nRow))
+    raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nRow, nCol))
 
   # specify resolution ----
   raster::extent(random_raster) <- c(

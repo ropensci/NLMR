@@ -32,14 +32,25 @@ Simulates an edge gradient neutral landscape model.
 }
 \details{
 Simulates a linear gradient orientated on a specified or random direction
-that has a central peak that runs perpendicular to the gradient direction.
+that has a central peak. which runs perpendicular to the gradient direction.
 }
 \examples{
-nlm_edgegradient(nCol = 100, nRow = 100, direction = 80)
+
+# simulate random curdling
+(edge_gradient <- nlm_edgegradient(nCol = 100, nRow = 100, direction = 80))
+
+\dontrun{
+# visualize the NLM
+util_plot(edge_gradient)
+}
 
 }
 \references{
 Travis, J.M.J. & Dytham, C. (2004) A method for simulating patterns of
 habitat availability at static and dynamic range margins. \emph{Oikos}, 104,
 410–416.
+}
+\seealso{
+\code{\link{nlm_distancegradient}},
+\code{\link{nlm_planargradient}}
 }

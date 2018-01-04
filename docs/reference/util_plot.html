@@ -127,8 +127,9 @@
     <p>Plot a Raster* object with the NLMR default theme</p>
     
 
-    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>x</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"A"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>legendposition</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>,
-  <span class='kw'>legendtitle</span> <span class='kw'>=</span> <span class='st'>"Z"</span>)</pre>
+    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>x</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='fu'>util_plot_grey</span>(<span class='no'>x</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -138,27 +139,21 @@
       <td><p>[<code>Raster* object</code>]</p></td>
     </tr>
     <tr>
-      <th>scale</th>
-      <td><p>[<code>character</code>(1)]
-Five options are available: "viridis - magma" (= "A",  the default option),
-                            "viridis - inferno" (= "B"),
-                            "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D")</p></td>
-    </tr>
-    <tr>
       <th>discrete</th>
       <td><p>[<code>logical</code>(1)] If TRUE, the function plots a raster with
 a discrete legend.</p></td>
     </tr>
     <tr>
-      <th>legendposition</th>
-      <td><p>[<code>character</code>(1)] The position of legends
-("none", "left", "right", "bottom", "top")</p></td>
+      <th>...</th>
+      <td><p>Arguments for  <code><a href='theme_nlm.html'>theme_nlm</a></code></p></td>
     </tr>
     <tr>
-      <th>legendtitle</th>
+      <th>scale</th>
       <td><p>[<code>character</code>(1)]
-Title for legend</p></td>
+Five options are available: "viridis - magma" (= "A"),
+                            "viridis - inferno" (= "B"),
+                            "viridis - plasma" (= "C"),
+                            "viridis - viridis" (= "D",  the default option)</p></td>
     </tr>
     </table>
     
@@ -168,14 +163,16 @@ Title for legend</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># With continuous data</span>
-<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>10</span>,<span class='fl'>10</span>)
-<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>)</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='util_plot-5.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
-<span class='co'># With classified data</span>
+    <pre class="examples"><div class='input'><span class='co'># simulate NLM</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>NLMR</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/NLMR/topics/nlm_random'>nlm_random</a></span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>75</span>,
+                      <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>75</span>)
+<span class='co'># classify</span>
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.15</span>, <span class='fl'>0.25</span>)
-<span class='no'>nlm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>nlm_raster</span>, <span class='no'>y</span>)
-<span class='fu'>util_plot</span>(<span class='no'>nlm_raster</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"D"</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Coordinate system already present. Adding new coordinate system, which will replace the existing one.</span></div><div class='img'><img src='util_plot-6.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>))
+
+<span class='fu'>util_plot</span>(<span class='no'>x</span>)</div><div class='img'><img src='util_plot-7.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='fu'>util_plot</span>(<span class='no'>y</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='util_plot-8.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>util_plot_grey</span>(<span class='no'>x</span>)</div><div class='img'><img src='util_plot-9.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='fu'>util_plot_grey</span>(<span class='no'>y</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='util_plot-10.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -193,7 +190,7 @@ Title for legend</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

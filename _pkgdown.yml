@@ -25,11 +25,16 @@ reference:
     desc: ~
     contents:
       - '`metric_area`'
+  - title: Theme
+    desc: ~
+    contents:
+      - '`theme_nlm`'
   - title: Utility Functions
     desc: ~
     contents:
       - '`util_binarize`'
       - '`util_classify`'
+      - '`util_import_roboto_condensed`'
       - '`util_merge`'
       - '`util_plot`'
       - '`util_rescale`'

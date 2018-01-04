@@ -40,7 +40,13 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_polylands(nCol = 50, nRow = 50, germs = 20)
+#' # simulate polygonal landscapes
+#' poly_lands <- nlm_polylands(nCol = 30, nRow = 30, germs = 20)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(poly_lands)
+#' }
 #'
 #' @references
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
@@ -71,7 +77,8 @@ nlm_polylands <- function(nCol,
   checkmate::assert_numeric(germs)
   if (!missing(g)) checkmate::assert_numeric(g)
   if (!missing(R)) checkmate::assert_numeric(R)
-  if (!missing(patch_classes)) checkmate::assert_count(patch_classes, positive = TRUE)
+  if (!missing(patch_classes)) checkmate::assert_count(patch_classes,
+                                                       positive = TRUE)
 
   # Tessellation method ----
   if (option == 1) {
@@ -83,7 +90,7 @@ nlm_polylands <- function(nCol,
     tess_surface <- spatstat::dirichlet(X)
 
     # whole bunch of conversions to get a raster in the end ----
-    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nCol, nRow))
+    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nRow, nCol))
     tess_data <- raster::as.data.frame(tess_im)
     sp::coordinates(tess_data) <- ~ x + y
     sp::gridded(tess_data) <- TRUE

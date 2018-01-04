@@ -4,7 +4,7 @@
 #'
 #' @details Random curdling recursively subdivides the plane into blocks.
 #' At each level of the recursion, a fraction of the this block is declared as
-#' habitat (1) while the remaining stays matrix (0).
+#' habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
 #'
 #' @param p [\code{numerical(x)}]\cr
 #' Vector with percentage(s) to fill with curds (fill with Habitat (value ==
@@ -18,7 +18,13 @@
 #' @return raster
 #'
 #' @examples
-#' nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
+#'
+#' # simulate random curdling
+#' (random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2)))
+#' \dontrun{
+#' # Visualize the NLM
+#' util_plot(random_curdling, discrete = TRUE)
+#' }
 #'
 #' @seealso \code{\link{nlm_wheys}}
 #'

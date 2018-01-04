@@ -13,8 +13,15 @@
 #'
 #'
 #' @examples
-#' nlm_randomrectangularcluster(nCol = 100, nRow = 100, minL = 5, maxL = 40)
-#'
+#' # simulate random rectangular cluster
+#' randomrectangular_cluster <- nlm_randomrectangularcluster(nCol = 30,
+#'                                                           nRow = 30,
+#'                                                           minL = 5,
+#'                                                           maxL = 10)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(randomrectangular_cluster)
+#' }
 #'
 #' @aliases nlm_randomrectangularcluster
 #' @rdname nlm_randomrectangularcluster
@@ -87,4 +94,4 @@ nlm_randomrectangularcluster <-
   }
 
 
-##### Falling leaves algorithm? googlen or ask katrin
+##### Falling leaves algorithm?

@@ -1,6 +1,7 @@
 #' nlm_gaussianfield
 #'
-#' Simulate spatially correlated random fields (Gaussian random fields) model.
+#' @description Simulates a spatially correlated random fields (Gaussian random
+#' fields) model.
 #'
 #' @param nCol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
@@ -26,7 +27,14 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_gaussianfield(nCol = 100, nRow = 100, 5)
+#' # simulate random gaussian field
+#' gaussian_field <- nlm_gaussianfield(nCol = 90, nRow = 30,
+#'                                     autocorr_range = 75, mag_var = 0.4)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(gaussian_field)
+#' }
 #'
 #' @aliases nlm_gaussianfield
 #' @rdname nlm_gaussianfield
@@ -96,7 +104,10 @@ nlm_gaussianfield <- function(nCol,
   }
 
   # make four simulations based on the stat object
-  spatial_pred <- stats::predict(spatial_sim, newdata = xy, nsim = 1, messages = FALSE)
+  spatial_pred <- stats::predict(spatial_sim,
+                                 newdata = xy,
+                                 nsim = 1,
+                                 messages = FALSE)
 
   # convert prediction to raster
   sp::gridded(spatial_pred) <- ~x + y
@@ -131,5 +142,3 @@ nlm_gaussianfield <- function(nCol,
 
   return(pred_raster)
 }
-
-# d ran- dom fields constrained by a particular semivariogram (Cressie 1993)

@@ -124,7 +124,7 @@
     </div>
 
     
-    <p>Create a mosaic random field neutral landscape model.</p>
+    <p>Simulate a mosaic random field neutral landscape model.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_mosaicfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>mosaic_mean</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
@@ -193,19 +193,14 @@ methodology and applications with R. CRC Press, 2015.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_mosaicfield</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-                <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-                <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-                <span class='kw'>infinit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                <span class='kw'>collect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 128, 128, 16384  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 128, 0, 128  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : value 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
+    <pre class="examples"><div class='input'>
+<span class='co'># simulate mosaic random field</span>
+<span class='no'>mosaic_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mosaicfield</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                                <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>200</span>,
+                                <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+                                <span class='kw'>infinit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+                                <span class='kw'>collect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>mosaic_field</span>)</div><div class='img'><img src='nlm_mosaicfield-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -225,7 +220,7 @@ methodology and applications with R. CRC Press, 2015.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

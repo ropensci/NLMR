@@ -24,7 +24,6 @@ util_calc_boundaries <- function(x, cumulative_proportions) {
   # Check function arguments ----
   checkmate::assert_matrix(x, min.rows = 1, min.cols = 1)
   checkmate::assert_numeric(cumulative_proportions)
-  # checkmate::assert_true(utils::tail(cumulative_proportions, n = 1) == 1) #ensures cumulative proportion structure
 
   # Get number of cells  ----
   n_cells <- length(x)

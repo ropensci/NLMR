@@ -43,9 +43,17 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate spatially correlated random fields (Gaussian random fields) model.
+Simulates a spatially correlated random fields (Gaussian random
+fields) model.
 }
 \examples{
-nlm_gaussianfield(nCol = 100, nRow = 100, 5)
+# simulate random gaussian field
+gaussian_field <- nlm_gaussianfield(nCol = 90, nRow = 30,
+                                    autocorr_range = 75, mag_var = 0.4)
+
+\dontrun{
+# visualize the NLM
+util_plot(gaussian_field)
+}
 
 }

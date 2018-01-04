@@ -16,7 +16,10 @@
 #'
 
 
-util_merge <- function(primary_nlm, secondary_nlm, scalingfactor = 1, rescale = TRUE) {
+util_merge <- function(primary_nlm,
+                       secondary_nlm,
+                       scalingfactor = 1,
+                       rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(scalingfactor)

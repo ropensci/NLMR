@@ -26,8 +26,13 @@
 #' @return raster
 #'
 #' @examples
-#' nlm_wheys(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
+#' # simulate wheyed curdling
+#' wheyed_curdling <- nlm_wheys(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
 #'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(wheyed_curdling, discrete = TRUE)
+#' }
 #' @seealso \code{\link{nlm_curds}}
 #'
 #' @references
