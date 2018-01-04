@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
+[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
 
 NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
@@ -38,9 +38,8 @@ library(SDMTools) # to calculate basic landscape metrics
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minL = 3, maxL = 7)
 
 # Plot the NLM
-util_plot(nlm_raster, scale = "D") +
+util_plot(nlm_raster) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
-#> Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="vignettes/README-example-1.png" style="display: block; margin: auto;" />
@@ -52,9 +51,8 @@ nlm_raster <- nlm_raster %>%
                  util_classify(., c(0.5, 0.25, 0.25))
 
 # Plot the classified NLM
-util_plot(nlm_raster, scale = "D", discrete = TRUE) +
+util_plot(nlm_raster, discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
-#> Coordinate system already present. Adding new coordinate system, which will replace the existing one.
 ```
 
 <img src="vignettes/README-example-2.png" style="display: block; margin: auto;" />
@@ -69,16 +67,16 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1242|          565|                768|              4200|  1242|        565|        768|         0.6183575|     5.408451|        1.475896|        0.4549114|
-|        1|     629|          213|                566|              1950|   629|        213|        566|         0.8998410|     5.549020|        1.536995|        0.3386328|
-|        2|     629|          183|                588|              1928|   629|        183|        588|         0.9348172|     5.764706|        1.548830|        0.2909380|
+|        0|    1238|          541|                806|              4146|  1238|        541|        806|         0.6510501|     5.676056|        1.490128|        0.4369952|
+|        1|     618|          244|                522|              1950|   618|        244|        522|         0.8446602|     5.220000|        1.516030|        0.3948220|
+|        2|     644|          185|                630|              1946|   644|        185|        630|         0.9782609|     6.176471|        1.564521|        0.2872671|
 
 Citation
 --------
 
 To cite package `NLMR` in publications please use:
 
-    Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.0. https://github.com/marcosci/NLMR.
+    Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.1. https://github.com/marcosci/NLMR.
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 
@@ -96,4 +94,5 @@ Dependencies
      [5] " ggplot2"      " gstat"        " igraph"       " lemon"       
      [9] " magrittr"     " maptools"     " purrr"        " RandomFields"
     [13] " raster"       " rasterVis"    " R.utils"      " sp"          
-    [17] " spatstat"     " stats"        " tibble"       " viridis"
+    [17] " spatstat"     " stats"        " tibble"       " viridis"     
+    [21] " extrafont"
