@@ -30,7 +30,7 @@ theme_nlm_discrete(base_family = "Roboto Condensed", base_size = 11.5,
   strip_text_size = 12, strip_text_face = "plain", caption_family = if
   (.Platform$OS.type == "windows") "Roboto Condensed" else
   "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
-  caption_margin = 10, legend_title = "Z",
+  caption_margin = 10, legend_title = "Z", legend_labels = NULL,
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
 
@@ -56,7 +56,7 @@ theme_nlm_grey_discrete(base_family = "Roboto Condensed", base_size = 11.5,
   strip_text_size = 12, strip_text_face = "plain", caption_family = if
   (.Platform$OS.type == "windows") "Roboto Condensed" else
   "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
-  caption_margin = 10, legend_title = "Z",
+  caption_margin = 10, legend_title = "Z", legend_labels = NULL,
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
 }
@@ -111,18 +111,24 @@ Five options are available: "viridis - magma" (= "A"),
                             "viridis - inferno" (= "B"),
                             "viridis - plasma" (= "C"),
                             "viridis - viridis" (= "D",  the default option)}
+
+\item{legend_labels}{[\code{character}()] Labels for the legend ticks, if
+used with \code{\link{util_plot}} they are automatically derived.}
 }
 \description{
 Opinionated ggplot2 theme to visualize NLM raster.
 }
 \details{
 A focused theme to visualize raster data.
-Loads the Roboto Condensed font and sets a lot of defaults for the
+The theme makes use of the Roboto Condensed font (Open Source font from
+Google) and sets a lot of defaults for the
 \code{ggplot2::theme}.
-The function is setup in such a way that you can customize your own one by
+If your local font library does not contain Roboto as a font, you can
+import it via \code{\link{util_import_roboto_condensed}}.
+The functions are setup in such a way that you can customize your own one by
 just wrapping the call and changing the parameters.
-Heavily influenced by hrbrmstr and his great package hrbrthemes
-(\url{https://github.com/hrbrmstr/hrbrthemes/}).
+The theme itself is heavily influenced by hrbrmstr and his great package
+hrbrthemes (\url{https://github.com/hrbrmstr/hrbrthemes/}).
 }
 \examples{
 \dontrun{
@@ -177,5 +183,5 @@ rasterVis::gplot(y) +
 
 }
 \seealso{
-\code{\link{nlm_distancegradient}}
+\code{\link{util_import_roboto_condensed}}
 }

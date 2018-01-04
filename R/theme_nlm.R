@@ -24,6 +24,8 @@
 #' @param caption_size [\code{numeric}(1)] plot caption size
 #' @param caption_margin [\code{numeric}(1)] plot caption margin
 #' @param legend_title [\code{character}()] Title of the legend (default "Z")
+#' @param legend_labels [\code{character}()] Labels for the legend ticks, if
+#' used with \code{\link{util_plot}} they are automatically derived.
 #' @param ratio [\code{character}()]
 #' ratio for tiles (default 1, if your raster is not a square the ratio should
 #' be \code{raster::nrow(x) / raster::ncol(x)})
@@ -32,16 +34,20 @@
 #'                             "viridis - inferno" (= "B"),
 #'                             "viridis - plasma" (= "C"),
 #'                             "viridis - viridis" (= "D",  the default option)
+#'
 #' @details
 #' A focused theme to visualize raster data.
-#' Loads the Roboto Condensed font and sets a lot of defaults for the
+#' The theme makes use of the Roboto Condensed font (Open Source font from
+#' Google) and sets a lot of defaults for the
 #' \code{ggplot2::theme}.
-#' The function is setup in such a way that you can customize your own one by
+#' If your local font library does not contain Roboto as a font, you can
+#' import it via \code{\link{util_import_roboto_condensed}}.
+#' The functions are setup in such a way that you can customize your own one by
 #' just wrapping the call and changing the parameters.
-#' Heavily influenced by hrbrmstr and his great package hrbrthemes
-#' (\url{https://github.com/hrbrmstr/hrbrthemes/}).
+#' The theme itself is heavily influenced by hrbrmstr and his great package
+#' hrbrthemes (\url{https://github.com/hrbrmstr/hrbrthemes/}).
 #'
-#' @seealso \code{\link{nlm_distancegradient}}
+#' @seealso \code{\link{util_import_roboto_condensed}}
 #'
 #' @examples
 #' \dontrun{
@@ -217,6 +223,7 @@ theme_nlm_discrete <- function(base_family = "Roboto Condensed",
                                caption_face = "plain",
                                caption_margin = 10,
                                legend_title = "Z",
+                               legend_labels = NULL,
                                plot_margin = ggplot2::margin(30, 30, 30, 30),
                                ratio = 1,
                                viridis_scale = "D") {
@@ -266,6 +273,11 @@ theme_nlm_discrete <- function(base_family = "Roboto Condensed",
     direction = 1,
     discrete = TRUE,
     na.value = "transparent",
+    labels = if (is.null(legend_labels)) {
+      ggplot2::waiver()
+    } else {
+      legend_labels
+    },
     name = legend_title,
     guide = ggplot2::guide_legend(
       barheight = ggplot2::unit(40, units = "mm"),
@@ -401,6 +413,7 @@ theme_nlm_grey_discrete <-
            caption_face = "plain",
            caption_margin = 10,
            legend_title = "Z",
+           legend_labels = NULL,
            plot_margin = ggplot2::margin(30, 30, 30, 30),
            ratio = 1,
            viridis_scale = "D") {
@@ -449,6 +462,11 @@ theme_nlm_grey_discrete <-
       palette = "Greys",
       na.value = "transparent",
       name = legend_title,
+      labels = if (is.null(legend_labels)) {
+        ggplot2::waiver()
+      } else {
+        legend_labels
+      },
       guide = ggplot2::guide_legend(
         barheight = ggplot2::unit(40, units = "mm"),
         barwidth = ggplot2::unit(1, units = "mm"),
