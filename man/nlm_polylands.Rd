@@ -58,7 +58,13 @@ parameter (0 - hardcore process; 1 - poission process) and interaction radius
 (distance of points/germs being apart).
 }
 \examples{
-nlm_polylands(nCol = 50, nRow = 50, germs = 20)
+# simulate polygonal landscapes
+poly_lands <- nlm_polylands(nCol = 30, nRow = 30, germs = 20)
+
+\dontrun{
+# visualize the NLM
+util_plot(poly_lands)
+}
 
 }
 \references{

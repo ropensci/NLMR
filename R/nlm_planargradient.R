@@ -20,7 +20,13 @@
 #' Simulates a linear gradient sloping in a specified or random direction.
 #'
 #' @examples
-#' nlm_planargradient(nCol = 100, nRow = 100)
+#' # simulate planar gradient
+#' planar_gradient <- nlm_planargradient(nCol = 200, nRow = 200)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(planar_gradient)
+#' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
 #' \code{\link{nlm_edgegradient}}

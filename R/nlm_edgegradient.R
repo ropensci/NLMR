@@ -25,8 +25,10 @@
 #' # simulate random curdling
 #' (edge_gradient <- nlm_edgegradient(nCol = 100, nRow = 100, direction = 80))
 #'
+#' \dontrun{
 #' # visualize the NLM
 #' util_plot(edge_gradient)
+#' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
 #' \code{\link{nlm_planargradient}}

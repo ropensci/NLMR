@@ -27,7 +27,14 @@ RasterLayer with random values ranging from 0-1.
 Create a random rectangular cluster neutral landscape model with values ranging 0-1.
 }
 \examples{
-nlm_randomrectangularcluster(nCol = 100, nRow = 100, minL = 5, maxL = 40)
-
+# simulate random rectangular cluster
+randomrectangular_cluster <- nlm_randomrectangularcluster(nCol = 30,
+                                                          nRow = 30,
+                                                          minL = 5,
+                                                          maxL = 10)
+\dontrun{
+# visualize the NLM
+util_plot(randomrectangular_cluster)
+}
 
 }

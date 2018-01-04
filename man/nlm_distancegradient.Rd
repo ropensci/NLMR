@@ -38,12 +38,12 @@ distance is measured.
 \examples{
 
 # simulate a distance gradient
-(distance_gradient <- nlm_distancegradient(nCol = 500, nRow = 100,
+(distance_gradient <- nlm_distancegradient(nCol = 100, nRow = 100,
                                            origin = c(20, 30, 10, 15)))
-
+\dontrun{
 # visualize the NLM
 util_plot(distance_gradient)
-
+}
 }
 \seealso{
 \code{\link{nlm_edgegradient}},

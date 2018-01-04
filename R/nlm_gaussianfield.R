@@ -27,7 +27,14 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_gaussianfield(nCol = 100, nRow = 100, 5)
+#' # simulate random gaussian field
+#' gaussian_field <- nlm_gaussianfield(nCol = 90, nRow = 30,
+#'                                     autocorr_range = 75, mag_var = 0.4)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(gaussian_field)
+#' }
 #'
 #' @aliases nlm_gaussianfield
 #' @rdname nlm_gaussianfield

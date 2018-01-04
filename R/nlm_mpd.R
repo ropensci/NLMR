@@ -1,6 +1,6 @@
 #' nlm_mpd
 #'
-#' @description Create a midpoint displacement neutral landscape model.
+#' @description Simulate a midpoint displacement neutral landscape model.
 #'
 #' @details
 #' The algorithm is a direct implementation of the midpoint displacement
@@ -52,8 +52,15 @@
 #' @references  \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}
 #'
 #' @examples
-#' nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 #'
+#' # simulate midpoint displacement
+#' midpoint_displacememt <- nlm_mpd(nCol = 200,
+#'                                  nRow = 200,
+#'                                  roughness = 0.6)
+#'\dontrun{
+#' # visualize the NLM
+#' util_plot(midpoint_displacememt)
+#' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
 #'
@@ -149,7 +156,7 @@ nlm_mpd <- function(nCol,
   }
 
   if (verbose == TRUE) {
-    message("nlm_mpd returns RasterLayer with that fits in the dimension 2^n+1")
+    message("nlm_mpd returns RasterLayer that fits in the dimension 2^n-1")
   }
 
   return(mpd_raster)

@@ -39,14 +39,20 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer or List with RasterLayer(s) and/or RasterBrick
 }
 \description{
-Create a mosaic random field neutral landscape model.
+Simulate a mosaic random field neutral landscape model.
 }
 \examples{
-nlm_mosaicfield(nCol = 200,
-                nRow = 200,
-                n = NA,
-                infinit = TRUE,
-                collect = FALSE)
+
+# simulate mosaic random field
+mosaic_field <- nlm_mosaicfield(nCol = 100,
+                                nRow = 200,
+                                n = NA,
+                                infinit = TRUE,
+                                collect = FALSE)
+\dontrun{
+# visualize the NLM
+util_plot(mosaic_field)
+}
 
 }
 \references{

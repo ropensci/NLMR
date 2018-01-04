@@ -22,8 +22,12 @@
 #' @return Raster layer with values between 0 and 1
 #'
 #' @examples
-#' nlm_randomelement(nCol = 10, nRow = 10, n = 10)
-#'
+#' # simulate random elements
+#' random_element <- nlm_randomelement(nCol = 20, nRow = 20, n = 10)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(random_element)
+#' }
 #' @references
 #' Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
 #' package for the creation of neutral landscape models within a general

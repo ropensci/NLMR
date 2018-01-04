@@ -34,7 +34,7 @@ the algorithm.}
 RasterLayer
 }
 \description{
-Create a midpoint displacement neutral landscape model.
+Simulate a midpoint displacement neutral landscape model.
 }
 \details{
 The algorithm is a direct implementation of the midpoint displacement
@@ -65,8 +65,15 @@ algorithm on a 5 × 5 matrix:
 https://commons.wikimedia.org/w/index.php?curid=42510593)
 }
 \examples{
-nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
+# simulate midpoint displacement
+midpoint_displacememt <- nlm_mpd(nCol = 200,
+                                 nRow = 200,
+                                 roughness = 0.6)
+\dontrun{
+# visualize the NLM
+util_plot(midpoint_displacememt)
+}
 }
 \references{
 \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}

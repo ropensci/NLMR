@@ -33,9 +33,10 @@ habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
 
 # simulate random curdling
 (random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2)))
-
+\dontrun{
 # Visualize the NLM
 util_plot(random_curdling, discrete = TRUE)
+}
 
 }
 \references{

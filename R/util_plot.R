@@ -17,7 +17,7 @@
 #' @return ggplot2 Object
 #'
 #' @examples
-#'
+#' \dontrun{
 #' # With continuous data
 #' nlm_raster <- nlm_random(10,10)
 #' util_plot(nlm_raster, scale = "D")
@@ -26,6 +26,7 @@
 #' y <- c(0.5, 0.15, 0.25)
 #' nlm_raster <- util_classify(nlm_raster, y)
 #' util_plot(nlm_raster, scale = "D", discrete = TRUE)
+#' }
 #'
 #' @aliases util_plot
 #' @rdname util_plot
@@ -39,13 +40,14 @@ util_plot <- function(x,
                       legendposition = "bottom",
                       legendtitle = "Z") {
 
-  if ( raster::ncol(x) == raster::nrow(x) ) {
+  if (raster::ncol(x) == raster::nrow(x)) {
     ratio <- 1
   } else {
     ratio <- raster::nrow(x) / raster::ncol(x)
   }
 
   if (raster::nlayers(x) == 1) {
+
     if (isTRUE(discrete)) {
       raster_labels <- tryCatch({
         x@data@attributes[[1]][, 2]
@@ -57,30 +59,11 @@ util_plot <- function(x,
 
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +
-        ggplot2::labs(
-          x = "Easting",
-          y = "Northing"
-        ) +
-        ggplot2::theme(
-          legend.position = legendposition,
-          text = ggplot2::element_text(color = "#22211d"),
-          axis.line = ggplot2::element_line(),
-          axis.ticks.length = ggplot2::unit(.15, "cm"),
-          axis.ticks = ggplot2::element_line(),
-          panel.background = ggplot2::element_blank(),
-          panel.border = ggplot2::element_blank(), # bg of the panel
-          plot.background = ggplot2::element_rect(fill = "transparent"),
-          panel.grid.major = ggplot2::element_blank(),
-          panel.grid.minor = ggplot2::element_blank(),
-          legend.background = ggplot2::element_rect(fill = "transparent"),
-          legend.box.background = ggplot2::element_rect(
-            fill = "transparent",
-            color = NA
-          ),
-          strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-          aspect.ratio = ratio,
-          plot.title = ggplot2::element_text(hjust = 0.5)
-        ) +
+        ggplot2::labs(x = "Easting",
+                      y = "Northing") +
+
+
+
         viridis::scale_fill_viridis(
           option = scale,
           direction = 1,
@@ -90,8 +73,8 @@ util_plot <- function(x,
           name = legendtitle,
           guide = ggplot2::guide_legend(
             direction = "horizontal",
-            barheight = ggplot2::unit(2, units = "mm"),
-            barwidth = ggplot2::unit(50, units = "mm"),
+            barheight = ggplot2::unit(1, units = "mm"),
+            barwidth = ggplot2::unit(40, units = "mm"),
             draw.ulim = FALSE,
             title.position = "top",
             title.hjust = 0.5,
@@ -99,69 +82,19 @@ util_plot <- function(x,
           )
         ) +
         lemon::coord_capped_cart(
-          xlim = c(
-            raster::extent(x)[1],
-            raster::extent(x)[2]
-          ),
-          ylim = c(
-            raster::extent(x)[3],
-            raster::extent(x)[4]
-          ),
-          left = "both", bottom = "both"
+          xlim = c(raster::extent(x)[1],
+                   raster::extent(x)[2]),
+          ylim = c(raster::extent(x)[3],
+                   raster::extent(x)[4]),
+          left = "both",
+          bottom = "both"
         )
     } else {
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = value)) +
-        ggplot2::labs(
-          x = "Easting",
-          y = "Northing"
-        ) +
-        ggplot2::theme(
-          legend.position = legendposition,
-          text = ggplot2::element_text(color = "#22211d"),
-          axis.line = ggplot2::element_line(),
-          axis.ticks.length = ggplot2::unit(.15, "cm"),
-          axis.ticks = ggplot2::element_line(),
-          panel.background = ggplot2::element_blank(),
-          panel.border = ggplot2::element_blank(), # bg of the panel
-          plot.background = ggplot2::element_rect(fill = "transparent"),
-          panel.grid.major = ggplot2::element_blank(),
-          panel.grid.minor = ggplot2::element_blank(),
-          legend.background = ggplot2::element_rect(fill = "transparent"),
-          legend.box.background = ggplot2::element_rect(
-            fill = "transparent",
-            color = NA
-          ),
-          strip.background = ggplot2::element_rect(colour = NA, fill = "grey45"),
-          aspect.ratio = ratio,
-          plot.title = ggplot2::element_text(hjust = 0.5)
-        ) +
-        viridis::scale_fill_viridis(
-          option = scale,
-          direction = 1,
-          na.value = "transparent",
-          name = "Z",
-          guide = ggplot2::guide_colorbar(
-            direction = "horizontal",
-            barheight = ggplot2::unit(2, units = "mm"),
-            barwidth = ggplot2::unit(50, units = "mm"),
-            draw.ulim = FALSE,
-            title.position = "top",
-            title.hjust = 0.5,
-            label.hjust = 0.5
-          )
-        ) +
-        lemon::coord_capped_cart(
-          xlim = c(
-            raster::extent(x)[1],
-            raster::extent(x)[2]
-          ),
-          ylim = c(
-            raster::extent(x)[3],
-            raster::extent(x)[4]
-          ),
-          left = "both", bottom = "both"
-        )
+        ggplot2::labs(x = "Easting",
+                      y = "Northing") +
+        theme_nlm()
     }
   } else {
     rasterVis::levelplot(x)

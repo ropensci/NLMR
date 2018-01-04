@@ -32,7 +32,7 @@ ggplot2 Object
 Plot a Raster* object with the NLMR default theme
 }
 \examples{
-
+\dontrun{
 # With continuous data
 nlm_raster <- nlm_random(10,10)
 util_plot(nlm_raster, scale = "D")
@@ -41,5 +41,6 @@ util_plot(nlm_raster, scale = "D")
 y <- c(0.5, 0.15, 0.25)
 nlm_raster <- util_classify(nlm_raster, y)
 util_plot(nlm_raster, scale = "D", discrete = TRUE)
+}
 
 }

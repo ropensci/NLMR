@@ -42,11 +42,11 @@ Neutral landscapes are generated using fractional Brownian motion,
 }
 \examples{
 # simulate fractional brownian motion
-(fBm_raster  <- nlm_fBm(nCol = 40, nRow = 10, H = 0.5))
-
+(fBm_raster  <- nlm_fBm(nCol = 20, nRow = 30, H = 0.5))
+\dontrun{
 # visualize the NLM
 util_plot(fBm_raster)
-
+}
 }
 \references{
 Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,

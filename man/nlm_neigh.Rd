@@ -61,8 +61,14 @@ The algorithm draws a random cell and turns it into a given category based on
  applied.
 }
 \examples{
-nlm_neigh(nCol = 10, nRow = 10, p_neigh = 0.1, p_empty = 0.3,
+# simulate neighborhood model
+neigh_raster <- nlm_neigh(nCol = 20, nRow = 20, p_neigh = 0.1, p_empty = 0.3,
                     categories = 5, neighborhood = "Von-Neumann")
+
+\dontrun{
+# visualize the NLM
+util_plot(neigh_raster)
+}
 
 }
 \references{

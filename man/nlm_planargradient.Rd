@@ -34,7 +34,13 @@ Create a planar gradient neutral landscape model.
 Simulates a linear gradient sloping in a specified or random direction.
 }
 \examples{
-nlm_planargradient(nCol = 100, nRow = 100)
+# simulate planar gradient
+planar_gradient <- nlm_planargradient(nCol = 200, nRow = 200)
+
+\dontrun{
+# visualize the NLM
+util_plot(planar_gradient)
+}
 
 }
 \references{
