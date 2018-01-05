@@ -100,7 +100,7 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2018-01-04</h4>
+            <h4 class="date">2018-01-05</h4>
           </div>
 
     
@@ -136,10 +136,10 @@
 <li>two-dimensional fractional Brownian motion</li>
 </ol>
 <p>The basic syntax used to produce a NLM landscape is:</p>
-<pre><code>nlm_modeltype(nCol, nRow, resolution, ...)</code></pre>
+<pre><code>nlm_modeltype(ncol, nrow, resolution, ...)</code></pre>
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
- NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(x)</code></pre></div>
+ NLMR<span class="op">::</span><span class="kw">util_plot</span>(x)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="merging-landscapes" class="section level2">
@@ -148,31 +148,31 @@
 <p>Multiple NLM rasters can be merged or merged together to create new landscape patterns. A single primary or base raster can be merged with any number of additional secondary rasters, with optional scaling factors used to control the influence of the secondary rasters.</p>
 <p>The <code>util_merge</code> function is used to merge the rasters as in the example below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create primary landscape raster</span>
-  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
-                              <span class="dt">nRow =</span> <span class="dv">100</span>)
+  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+                              <span class="dt">nrow =</span> <span class="dv">100</span>)
 
-  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(pL)</code></pre></div>
+  NLMR<span class="op">::</span><span class="kw">util_plot</span>(pL)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create secondary landscape rasters</span>
-  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
-                                    <span class="dt">nRow =</span> <span class="dv">100</span>,
+  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+                                    <span class="dt">nrow =</span> <span class="dv">100</span>,
                                     <span class="dt">origin =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>))
-  sL2 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dt">nCol =</span> <span class="dv">100</span>,
-                          <span class="dt">nRow =</span> <span class="dv">100</span>)
+  sL2 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+                          <span class="dt">nrow =</span> <span class="dv">100</span>)
 
   mL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_merge">util_merge</a></span>(pL,
                           <span class="kw">c</span>(sL1, sL2),
                           <span class="dt">scalingfactor =</span> <span class="dv">1</span>)
   
-  NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(mL1)</code></pre></div>
+  NLMR<span class="op">::</span><span class="kw">util_plot</span>(mL1)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
 <h2 class="hasAnchor">
 <a href="#classifying-categories" class="anchor"></a>Classifying categories</h2>
 <p>Landscape rasters generated by <code>NLMR</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code>. The number of classes and the proportion of the NLM raster assigned to each class is determined using a <code>weighting</code> vector. If the weighting vector does not sum to 1, the sum of the weightings is divided by the number of vector elements and these are used to define the class proportions. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>. The number of cells contained by each class can be calculated using <code>metric_area</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dt">nCol =</span> <span class="dv">50</span>,
-                              <span class="dt">nRow =</span> <span class="dv">50</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dt">ncol =</span> <span class="dv">50</span>,
+                              <span class="dt">nrow =</span> <span class="dv">50</span>,
                               <span class="dt">resolution =</span> <span class="dv">1</span>,
                               <span class="dt">neighbourhood =</span> <span class="dv">4</span>,
                               <span class="dt">p =</span> <span class="fl">0.5</span>)</code></pre></div>
@@ -183,7 +183,7 @@ cr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw">
                           <span class="dt">weighting =</span> weighting,
                           <span class="dt">level_names =</span> <span class="kw">c</span>(<span class="st">"L1"</span>, <span class="st">"L2"</span>, <span class="st">"L3"</span>))
 
-NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_plot">util_plot</a></span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
+NLMR<span class="op">::</span><span class="kw">util_plot</span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
 <pre><code>## Warning: Length of logical index must be 1 or 3, not 6</code></pre>
@@ -234,7 +234,7 @@ r</code></pre></div>
 ## coord. ref. : NA 
 ## data source : in memory
 ## names       : layer 
-## values      : 0.01521962, 0.9986817  (min, max)</code></pre>
+## values      : 0.0285873, 0.9980681  (min, max)</code></pre>
 <p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
 <p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
@@ -250,9 +250,9 @@ s</code></pre></div>
 ## resolution  : 10, 10  (x, y)
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## names       :     layer.1,     layer.2,     layer.3 
-## min values  : 0.015219618, 0.003951434, 0.015219618 
-## max values  :   0.9986817,   0.9973132,   0.9986817</code></pre>
+## names       :   layer.1,   layer.2,   layer.3 
+## min values  : 0.0285873, 0.0057882, 0.0285873 
+## max values  : 0.9980681, 0.9910297, 0.9980681</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
 <p><img src="BasicUsageVignette_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>

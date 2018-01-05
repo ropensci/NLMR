@@ -4,14 +4,14 @@
 \alias{nlm_edgegradient}
 \title{nlm_edgegradient}
 \usage{
-nlm_edgegradient(nCol, nRow, resolution = 1, direction = NA,
+nlm_edgegradient(ncol, nrow, resolution = 1, direction = NA,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -37,7 +37,7 @@ that has a central peak. which runs perpendicular to the gradient direction.
 \examples{
 
 # simulate random curdling
-(edge_gradient <- nlm_edgegradient(nCol = 100, nRow = 100, direction = 80))
+(edge_gradient <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80))
 
 \dontrun{
 # visualize the NLM

@@ -127,18 +127,18 @@
     <p>Create a random rectangular cluster neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_randomrectangularcluster</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>minL</span>, <span class='no'>maxL</span>,
+    <pre class="usage"><span class='fu'>nlm_randomrectangularcluster</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>minL</span>, <span class='no'>maxL</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>] Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>] Number of rows for the raster.</p></td>
     </tr>
     <tr>
@@ -166,11 +166,13 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate random rectangular cluster</span>
-<span class='no'>randomrectangular_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomrectangularcluster</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-                                                          <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+<span class='no'>randomrectangular_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomrectangularcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+                                                          <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                                           <span class='kw'>minL</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                                                          <span class='kw'>maxL</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>randomrectangular_cluster</span>)</div><div class='img'><img src='nlm_randomrectangularcluster-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+                                                          <span class='kw'>maxL</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>randomrectangular_cluster</span>)
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

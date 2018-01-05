@@ -2,9 +2,9 @@
 #'
 #' Simulates a random cluster nearest-neighbour neutral landscape.
 #'
-#' @param nCol [\code{integer(1)}]\cr
+#' @param ncol [\code{integer(1)}]\cr
 #' Number of columns in the raster.
-#' @param nRow  [\code{integer(1)}]\cr
+#' @param nrow  [\code{integer(1)}]\cr
 #' Number of rows in the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -24,7 +24,7 @@
 #'
 #' @examples
 #' # simulate random clustering
-#' random_cluster <- nlm_randomcluster(nCol = 20, nRow = 10, resolution = 1,
+#' random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10, resolution = 1,
 #'                                     neighbourhood = 4, p = 0.4)
 #' \dontrun{
 #' # visualize the NLM
@@ -49,16 +49,16 @@
 
 
 nlm_randomcluster <-
-  function(nCol,
-           nRow,
+  function(ncol,
+           nrow,
            resolution = 1,
            neighbourhood = 4,
            p,
            rescale = TRUE) {
 
     # Check function arguments ----
-    checkmate::assert_count(nCol, positive = TRUE)
-    checkmate::assert_count(nRow, positive = TRUE)
+    checkmate::assert_count(ncol, positive = TRUE)
+    checkmate::assert_count(nrow, positive = TRUE)
     checkmate::assert_numeric(resolution)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
@@ -66,7 +66,7 @@ nlm_randomcluster <-
     checkmate::assert_logical(rescale)
 
     # Create percolation array
-    random_matrix <- raster::as.matrix(nlm_percolation(nCol, nRow, p,
+    random_matrix <- raster::as.matrix(nlm_percolation(ncol, nrow, p,
                                                        resolution = resolution))
 
     # Cluster identification (clustering of adjoining pixels) ----
@@ -106,10 +106,10 @@ nlm_randomcluster <-
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
       raster::raster(
-        ncol = nCol,
-        nrow = nRow,
+        ncol = ncol,
+        nrow = nrow,
         ext = raster::extent(randomcluster_spdf),
-        resolution = c(1 / nCol, 1 / nRow)
+        resolution = c(1 / ncol, 1 / nrow)
       ),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",

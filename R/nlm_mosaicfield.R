@@ -2,9 +2,9 @@
 #'
 #' @description Simulate a mosaic random field neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -32,8 +32,8 @@
 #' @examples
 #'
 #' # simulate mosaic random field
-#' mosaic_field <- nlm_mosaicfield(nCol = 100,
-#'                                 nRow = 200,
+#' mosaic_field <- nlm_mosaicfield(ncol = 100,
+#'                                 nrow = 200,
 #'                                 n = NA,
 #'                                 infinit = TRUE,
 #'                                 collect = FALSE)
@@ -48,8 +48,8 @@
 #' @export
 
 
-nlm_mosaicfield <- function(nCol,
-                            nRow,
+nlm_mosaicfield <- function(ncol,
+                            nrow,
                             resolution  = 1,
                             n           = 20,
                             mosaic_mean = 0.5,
@@ -59,8 +59,8 @@ nlm_mosaicfield <- function(nCol,
                             rescale     = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(n, positive = TRUE, na.ok = TRUE)
   checkmate::assert_numeric(mosaic_mean)
@@ -75,7 +75,7 @@ nlm_mosaicfield <- function(nCol,
     mosaicfield_result <- spatstat::rMosaicField(
       spatstat::rpoislinetess(4),
       stats::rnorm,
-      dimyx = c(nRow, nCol),
+      dimyx = c(nrow, ncol),
       rgenargs = list(
         mean = mosaic_mean,
         sd = mosaic_sd
@@ -92,7 +92,7 @@ nlm_mosaicfield <- function(nCol,
       mosaicfield_n <- spatstat::rMosaicField(
         spatstat::rpoislinetess(4),
         stats::rnorm,
-        dimyx = c(nRow, nCol),
+        dimyx = c(nrow, ncol),
         rgenargs = list(
           mean = mosaic_mean,
           sd = mosaic_sd
@@ -166,7 +166,7 @@ nlm_mosaicfield <- function(nCol,
   if (isTRUE(infinit)) {
 
     # INFINITE STEPS:
-    X <- spatstat::rLGCP("exp", 4, var = 1, dimyx = c(nRow, nCol),
+    X <- spatstat::rLGCP("exp", 4, var = 1, dimyx = c(nrow, ncol),
                          scale = .2, saveLambda = TRUE)
     mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
 
@@ -198,20 +198,3 @@ nlm_mosaicfield <- function(nCol,
 
   return(mosaicfields_return)
 }
-
-# TEST STUFF
-#
-# X <- runifpoint(2)
-# plot(dirichlet(X))
-# mosaicfield_result <- rMosaicField(dirichlet(X),
-#                                  rnorm, dimyx=c(nCol,nRow), rgenargs=list(mean=0.5, sd=0.5))
-#
-#
-#
-# for (i in 1:n) {
-#   mosaicfield_n <- rMosaicField(dirichlet(runifpoint(2)),
-#                               rnorm, dimyx=c(nCol,nRow), rgenargs=list(mean=0.5, sd=0.5))
-#   mosaicfield_result <- mosaicfield_result + mosaicfield_n
-#
-#   ### COLLECT STEPS IN LIST
-# }

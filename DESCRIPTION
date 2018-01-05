@@ -37,7 +37,6 @@ Imports:
     ggplot2,
     gstat,
     igraph,
-    lemon,
     magrittr,
     maptools,
     purrr,

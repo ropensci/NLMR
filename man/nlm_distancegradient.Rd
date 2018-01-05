@@ -4,13 +4,13 @@
 \alias{nlm_distancegradient}
 \title{nlm_distancegradient}
 \usage{
-nlm_distancegradient(nCol, nRow, resolution = 1, origin, rescale = TRUE)
+nlm_distancegradient(ncol, nrow, resolution = 1, origin, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -38,7 +38,7 @@ distance is measured.
 \examples{
 
 # simulate a distance gradient
-(distance_gradient <- nlm_distancegradient(nCol = 100, nRow = 100,
+(distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
                                            origin = c(20, 30, 10, 15)))
 \dontrun{
 # visualize the NLM

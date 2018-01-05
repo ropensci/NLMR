@@ -29,12 +29,11 @@ util_raster2tibble <- function(x) {
   checkmate::assert_class(x, "RasterLayer")
 
   # Create empty tibble with the same dimension as the raster ----
-  grd <- tibble::as_tibble(expand.grid(x = 1:raster::ncol(x),
-                                       y = raster::nrow(x):1))
+  grd <- tibble::as_tibble(expand.grid(x = seq(1, raster::ncol(x)),
+                                       y = seq(raster::nrow(x), 1)))
 
   # Fill with raster values ----
   grd <- dplyr::bind_cols(grd, z = raster::values(x))
 
   return(grd)
 }
-

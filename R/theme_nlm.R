@@ -50,10 +50,11 @@
 #' @seealso \code{\link{util_import_roboto_condensed}}
 #'
 #' @examples
+#' # nolint start
 #' \dontrun{
 #' # simulate NLM
-#' x <- NLMR::nlm_random(nCol = 75,
-#'                       nRow = 75)
+#' x <- NLMR::nlm_random(ncol = 75,
+#'                       nrow = 75)
 #' # classify
 #' y <- c(0.5, 0.15, 0.25)
 #' y <- util_classify(x, y, c("1", "2", "3"))
@@ -97,7 +98,7 @@
 #'   ggplot2::ggtitle("Random NLM with discrete grey color scale",
 #'                    subtitle = "75x75 cells") +
 #'   ggplot2::labs(caption = "Random map simulated with the R package NLMR.")
-#'
+#' # nolint end
 #' }
 #'
 #' @aliases theme_nlm
@@ -142,7 +143,8 @@ theme_nlm <- function(base_family = "Roboto Condensed",
   # extend it
   theme_base <- ret + ggplot2::theme(
     legend.background = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(size = 8, family = "Roboto Condensed Light"),
+    legend.text = ggplot2::element_text(size = 8,
+                                        family = "Roboto Condensed Light"),
     aspect.ratio = ratio,
     plot.margin = plot_margin,
     strip.text = ggplot2::element_text(
@@ -199,34 +201,35 @@ theme_nlm <- function(base_family = "Roboto Condensed",
 
 #' @rdname theme_nlm
 #' @export
-theme_nlm_discrete <- function(base_family = "Roboto Condensed",
-                               base_size = 11.5,
-                               plot_title_family = base_family,
-                               plot_title_size = 18,
-                               plot_title_face = "bold",
-                               plot_title_margin = 10,
-                               subtitle_family = if (.Platform$OS.type == "windows")
-                                 "Roboto Condensed"
-                               else
-                                 "Roboto Condensed Light",
-                               subtitle_size = 13,
-                               subtitle_face = "plain",
-                               subtitle_margin = 15,
-                               strip_text_family = base_family,
-                               strip_text_size = 12,
-                               strip_text_face = "plain",
-                               caption_family = if (.Platform$OS.type == "windows")
-                                 "Roboto Condensed"
-                               else
-                                 "Roboto Condensed Light",
-                               caption_size = 9,
-                               caption_face = "plain",
-                               caption_margin = 10,
-                               legend_title = "Z",
-                               legend_labels = NULL,
-                               plot_margin = ggplot2::margin(30, 30, 30, 30),
-                               ratio = 1,
-                               viridis_scale = "D") {
+theme_nlm_discrete <- function(
+  base_family = "Roboto Condensed",
+  base_size = 11.5,
+  plot_title_family = base_family,
+  plot_title_size = 18,
+  plot_title_face = "bold",
+  plot_title_margin = 10,
+  subtitle_family = if (.Platform$OS.type == "windows")
+   "Roboto Condensed"
+  else
+   "Roboto Condensed Light",
+  subtitle_size = 13,
+  subtitle_face = "plain",
+  subtitle_margin = 15,
+  strip_text_family = base_family,
+  strip_text_size = 12,
+  strip_text_face = "plain",
+  caption_family = if (.Platform$OS.type == "windows")
+   "Roboto Condensed"
+  else
+   "Roboto Condensed Light",
+  caption_size = 9,
+  caption_face = "plain",
+  caption_margin = 10,
+  legend_title = "Z",
+  legend_labels = NULL,
+  plot_margin = ggplot2::margin(30, 30, 30, 30),
+  ratio = 1,
+  viridis_scale = "D") {
   # start with minimal theme
   ret <-
     ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
@@ -234,7 +237,8 @@ theme_nlm_discrete <- function(base_family = "Roboto Condensed",
   # extend it
   theme_base <- ret + ggplot2::theme(
     legend.background = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(size = 8, family = "Roboto Condensed Light"),
+    legend.text = ggplot2::element_text(size = 8,
+                                        family = "Roboto Condensed Light"),
     aspect.ratio = ratio,
     plot.margin = plot_margin,
     strip.text = ggplot2::element_text(
@@ -331,7 +335,8 @@ theme_nlm_grey <- function(base_family = "Roboto Condensed",
   # extend it
   theme_base <- ret + ggplot2::theme(
     legend.background = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(size = 8, family = "Roboto Condensed Light"),
+    legend.text = ggplot2::element_text(size = 8,
+                                        family = "Roboto Condensed Light"),
     aspect.ratio = ratio,
     plot.margin = plot_margin,
     strip.text = ggplot2::element_text(
@@ -366,8 +371,8 @@ theme_nlm_grey <- function(base_family = "Roboto Condensed",
 
   # define color scale
   theme_color <- ggplot2::scale_fill_gradient(
-    low = '#d0d0d0',
-    high = '#000000',
+    low = "#d0d0d0",
+    high = "#000000",
     na.value = "transparent",
     name = legend_title,
     guide = ggplot2::guide_colorbar(
@@ -424,7 +429,8 @@ theme_nlm_grey_discrete <-
     # extend it
     theme_base <- ret + ggplot2::theme(
       legend.background = ggplot2::element_blank(),
-      legend.text = ggplot2::element_text(size = 8, family = "Roboto Condensed Light"),
+      legend.text = ggplot2::element_text(size = 8,
+                                          family = "Roboto Condensed Light"),
       aspect.ratio = ratio,
       plot.margin = plot_margin,
       strip.text = ggplot2::element_text(

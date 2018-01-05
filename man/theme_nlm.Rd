@@ -131,10 +131,11 @@ The theme itself is heavily influenced by hrbrmstr and his great package
 hrbrthemes (\url{https://github.com/hrbrmstr/hrbrthemes/}).
 }
 \examples{
+# nolint start
 \dontrun{
 # simulate NLM
-x <- NLMR::nlm_random(nCol = 75,
-                      nRow = 75)
+x <- NLMR::nlm_random(ncol = 75,
+                      nrow = 75)
 # classify
 y <- c(0.5, 0.15, 0.25)
 y <- util_classify(x, y, c("1", "2", "3"))
@@ -178,7 +179,7 @@ rasterVis::gplot(y) +
   ggplot2::ggtitle("Random NLM with discrete grey color scale",
                    subtitle = "75x75 cells") +
   ggplot2::labs(caption = "Random map simulated with the R package NLMR.")
-
+# nolint end
 }
 
 }

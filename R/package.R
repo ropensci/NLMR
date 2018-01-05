@@ -27,6 +27,11 @@
 #' @aliases NLMR
 #' @keywords package
 
+# nocov start
+# nolint start
 NULL
 
 globalVariables(c("value", "."))
+
+# nolint end
+# nocov end

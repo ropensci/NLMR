@@ -4,13 +4,13 @@
 \alias{nlm_randomelement}
 \title{nlm_randomelement}
 \usage{
-nlm_randomelement(nCol, nRow, resolution = 1, n, rescale = TRUE)
+nlm_randomelement(ncol, nrow, resolution = 1, n, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -36,7 +36,7 @@ pattern and interpolated by voronoi tessellation.
 }
 \examples{
 # simulate random elements
-random_element <- nlm_randomelement(nCol = 20, nRow = 20, n = 10)
+random_element <- nlm_randomelement(ncol = 20, nrow = 20, n = 10)
 \dontrun{
 # visualize the NLM
 util_plot(random_element)

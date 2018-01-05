@@ -16,9 +16,9 @@
 #' parameter (0 - hardcore process; 1 - poission process) and interaction radius
 #' (distance of points/germs being apart).
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -41,7 +41,7 @@
 #'
 #' @examples
 #' # simulate polygonal landscapes
-#' poly_lands <- nlm_polylands(nCol = 30, nRow = 30, germs = 20)
+#' poly_lands <- nlm_polylands(ncol = 30, nrow = 30, germs = 20)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -58,8 +58,8 @@
 #' @export
 #'
 
-nlm_polylands <- function(nCol,
-                          nRow,
+nlm_polylands <- function(ncol,
+                          nrow,
                           resolution = 1,
                           option = 1,
                           germs,
@@ -70,8 +70,8 @@ nlm_polylands <- function(nCol,
 
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(option, positive = TRUE)
   checkmate::assert_numeric(germs)
@@ -90,7 +90,7 @@ nlm_polylands <- function(nCol,
     tess_surface <- spatstat::dirichlet(X)
 
     # whole bunch of conversions to get a raster in the end ----
-    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nRow, nCol))
+    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nrow, ncol))
     tess_data <- raster::as.data.frame(tess_im)
     sp::coordinates(tess_data) <- ~ x + y
     sp::gridded(tess_data) <- TRUE
@@ -113,19 +113,14 @@ nlm_polylands <- function(nCol,
   if (option == 2) {
 
     # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-    ## INFO: the Strauss process starts with a given Number of points and
-    ##       uses a minimization approach to fit a point pattern with a
-    ##       given interaction parameter (0 - hardcore proces;, 1 - poission
-    ##       process) and interaction radius (distance of points/germs being
-    ##       apart).
-    X <- spatstat::rStrauss(200, gamma = g, R = R)
+    x <- spatstat::rStrauss(200, gamma = g, R = R)
 
     # ... and randomly allocate attribute class (here point pattern mark)
-    m <- sample(1:patch_classes, X$n, replace = TRUE)
-    spatstat::marks(X) <- m
+    m <- sample(1:patch_classes, x$n, replace = TRUE)
+    spatstat::marks(x) <- m
 
     # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
-    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(X)
+    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(x)
 
     # Create a tessellated surface ----
     strauss_tess <- dismo::voronoi(strauss_points)
@@ -142,9 +137,9 @@ nlm_polylands <- function(nCol,
       raster::rasterize(
         strauss_spdf,
         raster::raster(
-          nrow = nRow,
-          ncol = nCol,
-          resolution = c(1 / nCol, 1 / nRow),
+          nrow = nrow,
+          ncol = ncol,
+          resolution = c(1 / ncol, 1 / nrow),
           ext = raster::extent(strauss_spdf)
         ),
         field = strauss_spdf@data[, 1]

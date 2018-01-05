@@ -37,6 +37,7 @@ reference:
       - '`util_import_roboto_condensed`'
       - '`util_merge`'
       - '`util_plot`'
+      - '`util_raster2tibble`'
       - '`util_rescale`'
 navbar:
   title: NLMR | Neutral landscape models with R

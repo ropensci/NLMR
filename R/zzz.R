@@ -4,20 +4,24 @@
   # adapted from hrbrthemes and his great package hrbrthemes/ elevator R package
   # https://github.com/hrbrmstr/hrbrthemes
 
-  if (.Platform$OS.type == "windows")  { # nocov start
+  # nocov start
+  # nolint start
+  if (.Platform$OS.type == "windows")  {
     if (interactive()) packageStartupMessage("Registering Windows fonts with R")
     # work around for https://github.com/wch/extrafont/issues/44
     windowsFonts <- grDevices::windowsFonts
     extrafont::loadfonts("win", quiet = TRUE)
   }
 
-  if (interactive()) packageStartupMessage("Registering PDF & PostScript fonts with R")
+  if (interactive()) packageStartupMessage("Registering PDF &
+                                           PostScript fonts with R")
   #work around for https://github.com/wch/extrafont/issues/44
   pdfFonts <- grDevices::pdfFonts
   extrafont::loadfonts("pdf", quiet = TRUE)
   #work around for https://github.com/wch/extrafont/issues/44
   postscriptFonts <- grDevices::postscriptFonts
   extrafont::loadfonts("postscript", quiet = TRUE)
-  #nocov end
+  # nolint end
+  # nocov end
 
 }

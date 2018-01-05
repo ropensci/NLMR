@@ -2,9 +2,9 @@
 #'
 #' @description Simulates an edge gradient neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -23,7 +23,7 @@
 #' @examples
 #'
 #' # simulate random curdling
-#' (edge_gradient <- nlm_edgegradient(nCol = 100, nRow = 100, direction = 80))
+#' (edge_gradient <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80))
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -44,15 +44,15 @@
 #' @export
 #'
 
-nlm_edgegradient <- function(nCol,
-                             nRow,
+nlm_edgegradient <- function(ncol,
+                             nrow,
                              resolution = 1,
                              direction = NA,
                              rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(direction)
   checkmate::assert_logical(rescale)
@@ -63,7 +63,7 @@ nlm_edgegradient <- function(nCol,
   }
 
   # Create planar gradient ----
-  gradient_raster <- nlm_planargradient(nCol, nRow, direction)
+  gradient_raster <- nlm_planargradient(ncol, nrow, direction)
 
   # Transform to a central gradient ----
   edgegradient_raster <-

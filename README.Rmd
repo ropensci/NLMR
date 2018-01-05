@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 # NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 
 `NLMR` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-`NLMR` builts on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+`NLMR` builds on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
 
 
 ## Installation
@@ -52,7 +52,7 @@ Here we will provide a simple example on using ``NLMR``:
 ```{r example, fig.height=7, fig.width=7, fig.align='center'}
 library(NLMR)
 library(magrittr)
-library(ggplot2)  # to extent the plot functionality of NLMR 
+library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
 # Simulate 50x50 rectangular cluster raster

@@ -34,6 +34,7 @@ The 16 NLM algorithms are:
 1. distance gradient
 1. edge gradient  
 1. hierarchical curdling
+1. wheyed hierarchical curdling
 1. midpoint displacement 
 1. neighbourhood clustering
 1. planar gradient  
@@ -50,7 +51,7 @@ The 16 NLM algorithms are:
 
 The basic syntax used to produce a NLM landscape is:
 ```
-nlm_modeltype(nCol, nRow, resolution, ...)
+nlm_modeltype(ncol, nrow, resolution, ...)
 ```
     
 For example, to produce a simple random neutral landscape one could use the 
@@ -74,17 +75,17 @@ The `util_merge` function is used to merge the rasters as in the example below:
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
   #Create primary landscape raster
-  pL <- NLMR::nlm_edgegradient(nCol = 100,
-                              nRow = 100)
+  pL <- NLMR::nlm_edgegradient(ncol = 100,
+                               nrow = 100)
 
   NLMR::util_plot(pL)
 
   #Create secondary landscape rasters
-  sL1 <- NLMR::nlm_distancegradient(nCol = 100,
-                                    nRow = 100,
+  sL1 <- NLMR::nlm_distancegradient(ncol = 100,
+                                    nrow = 100,
                                     origin = c(10, 10, 10, 10))
-  sL2 <- NLMR::nlm_random(nCol = 100,
-                          nRow = 100)
+  sL2 <- NLMR::nlm_random(ncol = 100,
+                          nrow = 100)
 
   mL1 <- NLMR::util_merge(pL,
                           c(sL1, sL2),
@@ -107,8 +108,8 @@ specified. These classes can be plotted by selecting `discrete = TRUE` in
 `metric_area`.
 
 ```{r fig.height=7, fig.width=7, fig.align='center'}
-nr <- NLMR::nlm_randomcluster(nCol = 50,
-                              nRow = 50,
+nr <- NLMR::nlm_randomcluster(ncol = 50,
+                              nrow = 50,
                               resolution = 1,
                               neighbourhood = 4,
                               p = 0.5)
@@ -136,7 +137,7 @@ parameters define the spatial resolution of the layer.
 
 A `RasterLayer` can be manually created as follows:
 
-```{r raster-example, message=FALSE, warning=FALSE}
+```{r raster-example, message=FALSE, warning=FALSE, cache=TRUE}
 library(raster)
 r <- raster(ncol=10, nrow=10, xmn=0, xmx=100, ymn=0, ymx=100)
 r
@@ -144,7 +145,7 @@ r
 
 However, the raster created is empty, the cells containing no values. We can add values using the following code:
 
-```{r raster-example2, dependson='raster-example', message=FALSE, warning=FALSE}
+```{r raster-example2, dependson='raster-example', message=FALSE, warning=FALSE, cache=TRUE}
 values(r) <- runif(ncell(r))
 r
 ```

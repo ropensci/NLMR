@@ -27,5 +27,4 @@ ggplot(maptib, aes(x,y)) +
   coord_fixed() +
   geom_raster(aes(fill = z))
 
-
 }
