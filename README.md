@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
+[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
 
 NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
 
-`NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builts on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+`NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builds on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
 
 Installation
 ------------
@@ -31,11 +31,11 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
-library(ggplot2)  # to extent the plot functionality of NLMR 
+library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
 # Simulate 50x50 rectangular cluster raster
-nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minL = 3, maxL = 7)
+nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl = 7)
 
 # Plot the NLM
 util_plot(nlm_raster) +
@@ -67,9 +67,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1238|          541|                806|              4146|  1238|        541|        806|         0.6510501|     5.676056|        1.490128|        0.4369952|
-|        1|     618|          244|                522|              1950|   618|        244|        522|         0.8446602|     5.220000|        1.516030|        0.3948220|
-|        2|     644|          185|                630|              1946|   644|        185|        630|         0.9782609|     6.176471|        1.564521|        0.2872671|
+|        0|    1244|          501|                854|              4122|  1244|        501|        854|         0.6864952|     6.014085|        1.505353|        0.4027331|
+|        1|     630|          172|                630|              1890|   630|        172|        630|         1.0000000|     6.176471|        1.569856|        0.2730159|
+|        2|     626|          196|                606|              1898|   626|        196|        606|         0.9680511|     5.941177|        1.559345|        0.3130990|
 
 Citation
 --------
@@ -91,8 +91,7 @@ Dependencies
 `NLMR` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
      [1] "R (>= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
-     [5] " ggplot2"      " gstat"        " igraph"       " lemon"       
-     [9] " magrittr"     " maptools"     " purrr"        " RandomFields"
-    [13] " raster"       " rasterVis"    " R.utils"      " sp"          
-    [17] " spatstat"     " stats"        " tibble"       " viridis"     
-    [21] " extrafont"
+     [5] " ggplot2"      " gstat"        " igraph"       " magrittr"    
+     [9] " maptools"     " purrr"        " RandomFields" " raster"      
+    [13] " rasterVis"    " R.utils"      " sp"           " spatstat"    
+    [17] " stats"        " tibble"       " viridis"      " extrafont"
