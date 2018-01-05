@@ -4,13 +4,13 @@
 \alias{nlm_randomrectangularcluster}
 \title{nlm_randomrectangularcluster}
 \usage{
-nlm_randomrectangularcluster(nCol, nRow, resolution = 1, minL, maxL,
+nlm_randomrectangularcluster(ncol, nrow, resolution = 1, minL, maxL,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{ncol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nrow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
@@ -28,8 +28,8 @@ Create a random rectangular cluster neutral landscape model with values ranging 
 }
 \examples{
 # simulate random rectangular cluster
-randomrectangular_cluster <- nlm_randomrectangularcluster(nCol = 30,
-                                                          nRow = 30,
+randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
+                                                          nrow = 30,
                                                           minL = 5,
                                                           maxL = 10)
 \dontrun{

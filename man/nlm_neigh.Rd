@@ -4,14 +4,14 @@
 \alias{nlm_neigh}
 \title{nlm_neigh}
 \usage{
-nlm_neigh(nCol, nRow, resolution = 1, p_neigh, p_empty, categories = 3,
+nlm_neigh(ncol, nrow, resolution = 1, p_neigh, p_empty, categories = 3,
   neighborhood = "Von-Neumann", proportions = NA, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -62,7 +62,7 @@ The algorithm draws a random cell and turns it into a given category based on
 }
 \examples{
 # simulate neighborhood model
-neigh_raster <- nlm_neigh(nCol = 20, nRow = 20, p_neigh = 0.1, p_empty = 0.3,
+neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
                     categories = 5, neighborhood = "Von-Neumann")
 
 \dontrun{

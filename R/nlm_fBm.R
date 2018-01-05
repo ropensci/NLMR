@@ -2,9 +2,9 @@
 #'
 #' @description Simulates two-dimensional fractional brownian motion model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #'  Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' # simulate fractional brownian motion
-#' (fBm_raster  <- nlm_fBm(nCol = 20, nRow = 30, H = 0.5))
+#' (fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, H = 0.5))
 #' \dontrun{
 #' # visualize the NLM
 #' util_plot(fBm_raster)
@@ -44,16 +44,16 @@
 #' @export
 #'
 
-nlm_fBm <- function(nCol,
-                    nRow,
+nlm_fBm <- function(ncol,
+                    nrow,
                     resolution = 1,
                     H = 0.5,
                     user_seed = NULL,
                     rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(H)
   checkmate::assert_true(H <= 1)
@@ -69,8 +69,8 @@ nlm_fBm <- function(nCol,
   }
 
   # specify spatial extent for simulation ----
-  x <- seq(0, 1, len = nCol)
-  y <- seq(0, 1, len = nRow)
+  x <- seq(0, 1, len = ncol)
+  y <- seq(0, 1, len = nrow)
 
   # formulate and simulate fBm model
   fBm_model <- RandomFields::RMgenfbm(

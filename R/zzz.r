@@ -11,7 +11,8 @@
     extrafont::loadfonts("win", quiet = TRUE)
   }
 
-  if (interactive()) packageStartupMessage("Registering PDF & PostScript fonts with R")
+  if (interactive()) packageStartupMessage("Registering PDF &
+                                           PostScript fonts with R")
   #work around for https://github.com/wch/extrafont/issues/44
   pdfFonts <- grDevices::pdfFonts
   extrafont::loadfonts("pdf", quiet = TRUE)

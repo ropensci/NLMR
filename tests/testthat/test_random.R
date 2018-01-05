@@ -2,17 +2,17 @@
 context("nlm_random")
 
 test_that("nlm_random inherits from `RasterLayer`", {
-  example_nlm_random <- nlm_random(nCol = 5, nRow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
   expect_that(example_nlm_random, is_a("RasterLayer"))
 })
 
 test_that("nlm_random produces the correct number of columns", {
-  example_nlm_random <- nlm_random(nCol = 5, nRow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
   expect_equal(example_nlm_random@ncols, 5)
 })
 
 test_that("nlm_random produces the correct number of columns", {
-  example_nlm_random <- nlm_random(nCol = 5, nRow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
   expect_equal(example_nlm_random@nrows, 3)
 })
 

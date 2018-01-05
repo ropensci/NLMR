@@ -8,9 +8,9 @@
 #' xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
 #' distance is measured.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -25,7 +25,7 @@
 #' @examples
 #'
 #' # simulate a distance gradient
-#' (distance_gradient <- nlm_distancegradient(nCol = 100, nRow = 100,
+#' (distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
 #'                                            origin = c(20, 30, 10, 15)))
 #' \dontrun{
 #' # visualize the NLM
@@ -40,8 +40,8 @@
 #' @export
 #'
 
-nlm_distancegradient <- function(nCol,
-                                 nRow,
+nlm_distancegradient <- function(ncol,
+                                 nrow,
                                  resolution = 1,
                                  origin,
                                  rescale = TRUE) {
@@ -51,18 +51,18 @@ nlm_distancegradient <- function(nCol,
                      Assuming it is longitude/latitude")
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_vector(origin, any.missing = FALSE)
-  checkmate::assert_true(origin[2] <= nCol)
-  checkmate::assert_true(origin[4] <= nRow)
+  checkmate::assert_true(origin[2] <= ncol)
+  checkmate::assert_true(origin[4] <= nrow)
   checkmate::assert_logical(rescale)
 
   # create empty raster ----
   distancegradient <-
-    raster::raster(ncol = nCol, nrow = nRow,
-                   ext = raster::extent(c(0, 1, 0, 1)))
+    raster::raster(ncol = ncol, nrow = nrow,
+                   ext = raster::extent(c(0, ncol, 0, ncol)))
 
   # set origin to 1 ----
   distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1

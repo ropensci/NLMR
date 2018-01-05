@@ -4,14 +4,14 @@
 \alias{nlm_mosaicfield}
 \title{nlm_mosaicfield}
 \usage{
-nlm_mosaicfield(nCol, nRow, resolution = 1, n = 20, mosaic_mean = 0.5,
+nlm_mosaicfield(ncol, nrow, resolution = 1, n = 20, mosaic_mean = 0.5,
   mosaic_sd = 0.5, collect = FALSE, infinit = FALSE, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -44,8 +44,8 @@ Simulate a mosaic random field neutral landscape model.
 \examples{
 
 # simulate mosaic random field
-mosaic_field <- nlm_mosaicfield(nCol = 100,
-                                nRow = 200,
+mosaic_field <- nlm_mosaicfield(ncol = 100,
+                                nrow = 200,
                                 n = NA,
                                 infinit = TRUE,
                                 collect = FALSE)

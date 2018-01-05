@@ -9,7 +9,7 @@
 #'
 #' \itemize{
 #'  \item{Initialization: }{ Determine the smallest fit of
-#'  \code{max(nCol, nRow)} in \emph{n^2 + 1} and assign value to n.
+#'  \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n.
 #'  Setup matrix of size (n^2 + 1)*(n^2 + 1).
 #'  Afterwards, assign a random value to the four corners of the matrix.}
 #'  \item{Diamond Step: }{ For each square in the matrix, assign the average of
@@ -31,9 +31,9 @@
 #' https://commons.wikimedia.org/w/index.php?curid=42510593)
 #'
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -54,8 +54,8 @@
 #' @examples
 #'
 #' # simulate midpoint displacement
-#' midpoint_displacememt <- nlm_mpd(nCol = 200,
-#'                                  nRow = 200,
+#' midpoint_displacememt <- nlm_mpd(ncol = 200,
+#'                                  nrow = 200,
 #'                                  roughness = 0.6)
 #'\dontrun{
 #' # visualize the NLM
@@ -66,8 +66,8 @@
 #'
 #' @export
 
-nlm_mpd <- function(nCol,
-                    nRow,
+nlm_mpd <- function(ncol,
+                    nrow,
                     resolution = 1,
                     roughness = 0.5,
                     rand_dev = 1,
@@ -75,15 +75,15 @@ nlm_mpd <- function(nCol,
                     verbose = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(roughness)
   checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
   checkmate::assert_logical(rescale)
 
   # Init size of matrix (width and height 2^n + 1) and the corresponding matrix
-  max_dim <- max(nRow, nCol)
+  max_dim <- max(nrow, ncol)
   N <- as.integer(ceiling(base::log(max_dim - 1, 2)))
   size <- 2 ** N + 1
 

@@ -2,9 +2,9 @@
 #'
 #' @description Create a planar gradient neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' # simulate planar gradient
-#' planar_gradient <- nlm_planargradient(nCol = 200, nRow = 200)
+#' planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -42,15 +42,15 @@
 #'
 
 
-nlm_planargradient <- function(nCol,
-                               nRow,
+nlm_planargradient <- function(ncol,
+                               nrow,
                                resolution = 1,
                                direction = NA,
                                rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(direction)
   checkmate::assert_logical(rescale)
 
@@ -64,8 +64,8 @@ nlm_planargradient <- function(nCol,
   southness <- cos((pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
-  col_index <- matrix(0:(nCol - 1), nRow, nCol)
-  row_index <- matrix(0:(nRow - 1), nRow, nCol, byrow = TRUE)
+  col_index <- matrix(0:(ncol - 1), nrow, ncol)
+  row_index <- matrix(0:(nrow - 1), nrow, ncol, byrow = TRUE)
 
   # Create gradient matrix ----
   gradient_matrix <-

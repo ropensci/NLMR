@@ -127,19 +127,19 @@
     <p>Simulate the NLM introduced in Gaucherel (2008).</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_polylands</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>option</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>germs</span>, <span class='no'>g</span>, <span class='no'>R</span>,
+    <pre class="usage"><span class='fu'>nlm_polylands</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>option</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>germs</span>, <span class='no'>g</span>, <span class='no'>R</span>,
   <span class='no'>patch_classes</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -209,8 +209,20 @@ networks. <em>Ecological Modelling</em>, 219, 39 - 48.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate polygonal landscapes</span>
-<span class='no'>poly_lands</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_polylands</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>germs</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>poly_lands</span>)</div><div class='img'><img src='nlm_polylands-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='no'>poly_lands</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_polylands</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>germs</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>     PLEASE NOTE:  The components "delsgs" and "summary" of the</span>
+#&gt; <span class='message'> object returned by deldir() are now DATA FRAMES rather than</span>
+#&gt; <span class='message'> matrices (as they were prior to release 0.0-18).</span>
+#&gt; <span class='message'> See help("deldir").</span>
+#&gt; <span class='message'> </span>
+#&gt; <span class='message'>     PLEASE NOTE: The process that deldir() uses for determining</span>
+#&gt; <span class='message'> duplicated points has changed from that used in version</span>
+#&gt; <span class='message'> 0.0-9 of this package (and previously). See help("deldir").</span>
+#&gt; <span class='message'></span></div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>poly_lands</span>)
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

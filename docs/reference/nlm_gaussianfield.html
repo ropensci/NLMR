@@ -128,7 +128,7 @@
 fields) model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
   <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0.01</span>, <span class='fl'>0.005</span>), <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>1</span>,
   <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -136,12 +136,12 @@ fields) model.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -194,10 +194,12 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate random gaussian field</span>
-<span class='no'>gaussian_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_gaussianfield</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+<span class='no'>gaussian_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_gaussianfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                     <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>75</span>, <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.4</span>)</div><div class='output co'>#&gt; [using unconditional Gaussian simulation]</div><div class='input'>
-</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>gaussian_field</span>)</div><div class='img'><img src='nlm_gaussianfield-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>gaussian_field</span>)
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

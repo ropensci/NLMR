@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_random — nlm_random • NLMR</title>
+<title>Converts raster data into tibble — util_raster2tibble • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -120,58 +120,41 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlm_random</h1>
+    <h1>Converts raster data into tibble</h1>
     </div>
 
     
-    <p>Simulate a spatially random neutral landscape model with values
-drawn a uniform distribution.</p>
+    <p>Writes spatial raster values into tibble and adds coordinates.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_random</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>util_raster2tibble</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ncol</th>
-      <td><p>[<code>numerical(1)</code>]
-Number of columns for the raster.</p></td>
-    </tr>
-    <tr>
-      <th>nrow</th>
-      <td><p>[<code>numerical(1)</code>]
-Number of rows for the raster.</p></td>
-    </tr>
-    <tr>
-      <th>resolution</th>
-      <td><p>[<code>numerical(1)</code>]
-Resolution of the raster.</p></td>
-    </tr>
-    <tr>
-      <th>rescale</th>
-      <td><p>[<code>logical(1)</code>]
-If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
+      <th>x</th>
+      <td><p>[<code>Raster* object</code>]</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RasterLayer</p>
+    <p>a tibble</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function takes the number of columns and rows as input and creates a
-RasterLayer with the same extent. Each raster cell is randomly assigned a
-value between 0 and 1 drawn from an uniform distribution (<code>runif(1,0,1)</code>).</p>
+    <p>You will loose any resolution, extent or reference system.
+The output is raw tiles.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># simulate spatially random model</span>
-<span class='no'>random</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_random</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><span class='co'># NOT RUN {</span>
-<span class='co'># visualize the NLM</span>
-<span class='fu'>util_plot</span>(<span class='no'>random</span>)
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>library</span>(<span class='no'>ggplot2</span>)
+<span class='no'>rndMap</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>16</span>, <span class='fl'>9</span>)
+<span class='no'>maptib</span> <span class='kw'>&lt;-</span> <span class='fu'>util_raster2tibble</span>(<span class='no'>rndMap</span>)
+<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/ggplot'>ggplot</a></span>(<span class='no'>maptib</span>, <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='no'>x</span>,<span class='no'>y</span>)) +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/coord_fixed'>coord_fixed</a></span>() +
+  <span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_raster</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>z</span>))</div><div class='img'><img src='util_raster2tibble-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

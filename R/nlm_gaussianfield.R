@@ -3,9 +3,9 @@
 #' @description Simulates a spatially correlated random fields (Gaussian random
 #' fields) model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #'  Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #'  Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' # simulate random gaussian field
-#' gaussian_field <- nlm_gaussianfield(nCol = 90, nRow = 30,
+#' gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 30,
 #'                                     autocorr_range = 75, mag_var = 0.4)
 #'
 #' \dontrun{
@@ -42,8 +42,8 @@
 #' @export
 #'
 
-nlm_gaussianfield <- function(nCol,
-                              nRow,
+nlm_gaussianfield <- function(ncol,
+                              nrow,
                               resolution = 1,
                               autocorr_range = 10,
                               mag_var = 0.025,
@@ -55,8 +55,8 @@ nlm_gaussianfield <- function(nCol,
 
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(autocorr_range, positive = TRUE)
   checkmate::assert_numeric(mag_var)
@@ -67,7 +67,7 @@ nlm_gaussianfield <- function(nCol,
   checkmate::assert_logical(rescale)
 
   # create data structure for spatial model
-  xy <- expand.grid(1:nCol, 1:nRow)
+  xy <- expand.grid(1:ncol, 1:nrow)
   # Set the name of the spatial coordinates within the field
   names(xy) <- c("x", "y")
 

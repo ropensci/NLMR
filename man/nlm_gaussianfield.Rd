@@ -4,15 +4,15 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(nCol, nRow, resolution = 1, autocorr_range = 10,
+nlm_gaussianfield(ncol, nrow, resolution = 1, autocorr_range = 10,
   mag_var = 0.025, beta = c(1, 0.01, 0.005), nug = 1,
   direction = "random", angle = 1, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -48,7 +48,7 @@ fields) model.
 }
 \examples{
 # simulate random gaussian field
-gaussian_field <- nlm_gaussianfield(nCol = 90, nRow = 30,
+gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 30,
                                     autocorr_range = 75, mag_var = 0.4)
 
 \dontrun{

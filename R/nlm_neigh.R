@@ -15,9 +15,9 @@
 #'  reduced by 1. By default, a uniform distribution of the categories is
 #'  applied.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -50,7 +50,7 @@
 #'
 #' @examples
 #' # simulate neighborhood model
-#' neigh_raster <- nlm_neigh(nCol = 20, nRow = 20, p_neigh = 0.1, p_empty = 0.3,
+#' neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
 #'                     categories = 5, neighborhood = "Von-Neumann")
 #'
 #' \dontrun{
@@ -64,8 +64,8 @@
 #' @export
 
 nlm_neigh <-
-  function(nCol,
-           nRow,
+  function(ncol,
+           nrow,
            resolution = 1,
            p_neigh,
            p_empty,
@@ -75,8 +75,8 @@ nlm_neigh <-
            rescale = TRUE) {
 
     # Check function arguments ----
-    checkmate::assert_count(nCol, positive = TRUE)
-    checkmate::assert_count(nRow, positive = TRUE)
+    checkmate::assert_count(ncol, positive = TRUE)
+    checkmate::assert_count(nrow, positive = TRUE)
     checkmate::assert_numeric(p_empty)
     checkmate::assert_numeric(p_neigh)
     checkmate::assert_count(categories, positive = TRUE)
@@ -87,14 +87,14 @@ nlm_neigh <-
     # Determine cells per categorie
     cat <- categories - 1 ## -1 because remaining cells are category
     if (is.double(proportions)) {
-      no_cat <- rev(proportions) * nRow * nCol
+      no_cat <- rev(proportions) * nrow * ncol
     } else {
-      no_cat <- rep(floor(nRow * nCol / categories), cat + 1)
+      no_cat <- rep(floor(nrow * ncol / categories), cat + 1)
     }
 
     # Create an empty matrix of correct dimensions + additional 2 rows and
     # columns ----
-    matrix <- matrix(0, nCol + 2, nRow + 2)
+    matrix <- matrix(0, ncol + 2, nrow + 2)
 
     # Keep applying random clusters until all elements have a value -----
     while (cat > 0) {
@@ -103,7 +103,7 @@ nlm_neigh <-
       while (j < no_cat[cat + 1]) {
 
         # Pick random cell within correct dimensions and with value 0 ----
-        s <- which(matrix[2:(nRow + 1), 2:(nCol + 1)] == 0, arr.ind = TRUE)
+        s <- which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
         s <- s[sample(nrow(s), 1), ]
         row <- as.integer(s[1]) + 1
         col <- as.integer(s[2]) + 1
@@ -143,10 +143,10 @@ nlm_neigh <-
         }
 
         # Update boundary conditions
-        matrix[1, ] <- matrix[nRow + 1, ]
-        matrix[nRow + 2, ] <- matrix[2, ]
-        matrix[, 1] <- matrix[, nCol + 1]
-        matrix[, nCol + 2] <- matrix[, 2]
+        matrix[1, ] <- matrix[nrow + 1, ]
+        matrix[nrow + 2, ] <- matrix[2, ]
+        matrix[, 1] <- matrix[, ncol + 1]
+        matrix[, ncol + 2] <- matrix[, 2]
       } # close while j
 
       cat <- cat - 1
@@ -154,8 +154,8 @@ nlm_neigh <-
 
     # Cut additional cells and transform to raster ----
     randomneighborhoodcluster_raster <- raster::raster(matrix[
-      1:nRow + 1,
-      1:nCol + 1
+      1:nrow + 1,
+      1:ncol + 1
     ])
 
     # specify resolution ----

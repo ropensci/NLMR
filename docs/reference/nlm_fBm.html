@@ -127,19 +127,19 @@
     <p>Simulates two-dimensional fractional brownian motion model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -188,7 +188,7 @@ Software</em>, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate fractional brownian motion</span>
-(<span class='no'>fBm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fBm</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+(<span class='no'>fBm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fBm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 30, 20, 600  (nrow, ncol, ncell)
 #&gt; resolution  : 1, 1  (x, y)
 #&gt; extent      : 0, 20, 0, 30  (xmin, xmax, ymin, ymax)
@@ -196,8 +196,10 @@ Software</em>, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.</p>
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>fBm_raster</span>)</div><div class='img'><img src='nlm_fBm-4.png' alt='' width='700' height='432.632880098887' /></div></pre>
+#&gt; </div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>fBm_raster</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

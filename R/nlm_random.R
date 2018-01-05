@@ -8,9 +8,9 @@
 #' RasterLayer with the same extent. Each raster cell is randomly assigned a
 #' value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' # simulate spatially random model
-#' random <- nlm_random(nCol = 200, nRow = 100)
+#' random <- nlm_random(ncol = 200, nrow = 100)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -34,20 +34,20 @@
 #' @export
 #'
 
-nlm_random <- function(nCol,
-                       nRow,
+nlm_random <- function(ncol,
+                       nrow,
                        resolution = 1,
                        rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_logical(rescale)
 
   # Assign random values to raster cells ----
   random_raster <-
-    raster::raster(matrix(stats::runif(nCol * nRow, 0, 1), nRow, nCol))
+    raster::raster(matrix(stats::runif(ncol * nrow, 0, 1), nrow, ncol))
 
   # specify resolution ----
   raster::extent(random_raster) <- c(

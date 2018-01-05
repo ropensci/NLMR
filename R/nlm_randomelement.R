@@ -2,9 +2,9 @@
 #'
 #' @description Simulates a random rectangular cluster neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -23,7 +23,7 @@
 #'
 #' @examples
 #' # simulate random elements
-#' random_element <- nlm_randomelement(nCol = 20, nRow = 20, n = 10)
+#' random_element <- nlm_randomelement(ncol = 20, nrow = 20, n = 10)
 #' \dontrun{
 #' # visualize the NLM
 #' util_plot(random_element)
@@ -39,26 +39,26 @@
 #' @export
 #'
 
-nlm_randomelement <- function(nCol,
-                              nRow,
+nlm_randomelement <- function(ncol,
+                              nrow,
                               resolution = 1,
                               n,
                               rescale = TRUE) {
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(n, positive = TRUE)
-  checkmate::assert_true(n < nRow * nCol)
+  checkmate::assert_true(n < nrow * ncol)
   checkmate::assert_logical(rescale)
 
-  # Create an empty matrix dimension nCol * nRow ---
-  matrix <- matrix(NA, nRow, nCol)
+  # Create an empty matrix dimension ncol * nrow ---
+  matrix <- matrix(NA, nrow, ncol)
 
   # Insert value for n elements ----
   for (element in seq(1, n)) {
-    random_col <- sample(c(1:nCol), 1)
-    random_row <- sample(c(1:nRow), 1)
+    random_col <- sample(c(1:ncol), 1)
+    random_row <- sample(c(1:nrow), 1)
 
     if (is.na(matrix[random_row, random_col])) {
       matrix[random_row, random_col] <- stats::runif(1, 0, 1)
@@ -82,9 +82,9 @@ nlm_randomelement <- function(nCol,
     raster::rasterize(
       randomelement_spdf,
       raster::raster(
-        nrow = nRow,
-        ncol = nCol,
-        resolution = c(1 / nCol, 1 / nRow),
+        nrow = nrow,
+        ncol = ncol,
+        resolution = c(1 / ncol, 1 / nrow),
         ext = raster::extent(randomelement_spdf)
       ),
       field = randomelement_spdf@data[, 1]

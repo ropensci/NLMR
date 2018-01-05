@@ -127,18 +127,18 @@
     <p>Create a random percolation neutral landscape model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_percolation</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_percolation</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -161,7 +161,7 @@ Probability value for setting a cell either to 0 or 1.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The simulation of a random percolation map is accomplished in two steps:</p><ul>
-<li><p>Initialization:  Setup matrix of size (<code>nCol</code>*<code>nRow</code>)</p></li>
+<li><p>Initialization:  Setup matrix of size (<code>ncol</code>*<code>nrow</code>)</p></li>
 <li><p>Map generation:  For each cell in the matrix a single uniformly
  distributed random number is generated and tested against a probability
  <code>prob</code>. If the random number is smaller than <code>prob</code>, the cell is set to
@@ -181,8 +181,10 @@ proportion and indices of landscape spatial pattern. <em>Landscape Ecology</em>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate percolation model</span>
-<span class='no'>percolation</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_percolation</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>prob</span><span class='kw'>=</span><span class='fl'>0.5</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'><a href='util_plot.html'>util_plot</a></span>(<span class='no'>percolation</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='nlm_percolation-4.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='no'>percolation</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_percolation</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>prob</span><span class='kw'>=</span><span class='fl'>0.5</span>)</div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>percolation</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

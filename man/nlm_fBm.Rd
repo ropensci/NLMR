@@ -4,14 +4,14 @@
 \alias{nlm_fBm}
 \title{nlm_fBm}
 \usage{
-nlm_fBm(nCol, nRow, resolution = 1, H = 0.5, user_seed = NULL,
+nlm_fBm(ncol, nrow, resolution = 1, H = 0.5, user_seed = NULL,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -42,7 +42,7 @@ Neutral landscapes are generated using fractional Brownian motion,
 }
 \examples{
 # simulate fractional brownian motion
-(fBm_raster  <- nlm_fBm(nCol = 20, nRow = 30, H = 0.5))
+(fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, H = 0.5))
 \dontrun{
 # visualize the NLM
 util_plot(fBm_raster)

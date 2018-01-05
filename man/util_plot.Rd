@@ -27,8 +27,8 @@ Plot a Raster* object with the NLMR default theme
 \examples{
 \dontrun{
 # simulate NLM
-x <- NLMR::nlm_random(nCol = 75,
-                      nRow = 75)
+x <- NLMR::nlm_random(ncol = 75,
+                      nrow = 75)
 # classify
 y <- c(0.5, 0.15, 0.25)
 y <- util_classify(x, y, c("1", "2", "3"))
