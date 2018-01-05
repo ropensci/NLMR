@@ -29,7 +29,7 @@ util_calc_boundaries <- function(x, cumulative_proportions) {
   n_cells <- length(x)
 
   # Use number of cells to find index of upper boundary element ----
-  boundary_indexes <- as.integer((cumulative_proportions * n_cells))
+  boundary_indexes <- as.integer( (cumulative_proportions * n_cells))
 
   # Get boundary values ----
   boundary_values <- sort(as.vector(x))[boundary_indexes]

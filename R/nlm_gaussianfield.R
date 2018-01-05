@@ -103,7 +103,7 @@ nlm_gaussianfield <- function(ncol,
     )
   }
 
-  # make four simulations based on the stat object
+  # make simulation based on the stat object
   spatial_pred <- stats::predict(spatial_sim,
                                  newdata = xy,
                                  nsim = 1,

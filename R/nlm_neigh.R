@@ -85,7 +85,8 @@ nlm_neigh <-
     checkmate::assert_logical(rescale)
 
     # Determine cells per categorie
-    cat <- categories - 1 ## -1 because remaining cells are category
+    # -1 because remaining cells are category
+    cat <- categories - 1
     if (is.double(proportions)) {
       no_cat <- rev(proportions) * nrow * ncol
     } else {
@@ -153,24 +154,24 @@ nlm_neigh <-
     } # close while i
 
     # Cut additional cells and transform to raster ----
-    randomneighborhoodcluster_raster <- raster::raster(matrix[
+    rndneigh_raster <- raster::raster(matrix[
       1:nrow + 1,
       1:ncol + 1
     ])
 
     # specify resolution ----
-    raster::extent(randomneighborhoodcluster_raster) <- c(
+    raster::extent(rndneigh_raster) <- c(
       0,
-      ncol(randomneighborhoodcluster_raster) * resolution,
+      ncol(rndneigh_raster) * resolution,
       0,
-      nrow(randomneighborhoodcluster_raster) * resolution
+      nrow(rndneigh_raster) * resolution
     )
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      randomneighborhoodcluster_raster <-
-        util_rescale(randomneighborhoodcluster_raster)
+      rndneigh_raster <-
+        util_rescale(rndneigh_raster)
     }
 
-    return(randomneighborhoodcluster_raster)
+    return(rndneigh_raster)
   }

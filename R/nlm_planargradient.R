@@ -60,8 +60,8 @@ nlm_planargradient <- function(ncol,
   }
 
   # Determine the eastness and southness of the direction ----
-  eastness <- sin((pi / 180) * direction)
-  southness <- cos((pi / 180) * direction) * -1
+  eastness <- sin( (pi / 180) * direction)
+  southness <- cos( (pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
   col_index <- matrix(0:(ncol - 1), nrow, ncol)

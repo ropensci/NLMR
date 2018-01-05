@@ -113,19 +113,14 @@ nlm_polylands <- function(ncol,
   if (option == 2) {
 
     # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-    ## INFO: the Strauss process starts with a given Number of points and
-    ##       uses a minimization approach to fit a point pattern with a
-    ##       given interaction parameter (0 - hardcore proces;, 1 - poission
-    ##       process) and interaction radius (distance of points/germs being
-    ##       apart).
-    X <- spatstat::rStrauss(200, gamma = g, R = R)
+    x <- spatstat::rStrauss(200, gamma = g, R = R)
 
     # ... and randomly allocate attribute class (here point pattern mark)
-    m <- sample(1:patch_classes, X$n, replace = TRUE)
-    spatstat::marks(X) <- m
+    m <- sample(1:patch_classes, x$n, replace = TRUE)
+    spatstat::marks(x) <- m
 
     # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
-    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(X)
+    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(x)
 
     # Create a tessellated surface ----
     strauss_tess <- dismo::voronoi(strauss_points)

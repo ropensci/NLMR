@@ -22,11 +22,10 @@
 #' @export
 #'
 
-metric_area <- function(x, poi = NA) {
+metric_area <- function(x, poi = NULL) {
 
   # Check function arguments ----
   checkmate::assert_class(x, "RasterLayer")
-  checkmate::assert_atomic_vector(poi)
 
   if (is.null(poi)) {
     poi <- sort(unique(x@data@values))
@@ -35,10 +34,10 @@ metric_area <- function(x, poi = NA) {
   freq_tib <- dplyr::tbl_df(raster::freq(x))
 
   if (length(poi) == 1) {
-    area_poi <- freq_tib[freq_tib == poi, 2]
+    area_poi <- freq_tib[freq_tib[, 1] == poi, 2]
     area_poi_perc <- area_poi / raster::ncell(x)
   } else {
-    area_poi <- freq_tib[freq_tib == poi, 2]
+    area_poi <- freq_tib[, 2]
     area_poi_perc <- dplyr::tbl_df(area_poi / raster::ncell(x))
   }
 

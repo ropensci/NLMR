@@ -12,7 +12,7 @@
 #' @examples
 #' \dontrun{
 #' # simulate NLM
-#' x <- NLMR::nlm_random(ncol = 75,
+#' x <- NLMR::nlm_random(ncol = 25,
 #'                       nrow = 75)
 #' # classify
 #' y <- c(0.5, 0.15, 0.25)
@@ -37,7 +37,6 @@ NULL
 util_plot <- function(x,
                       discrete = FALSE,
                       ...) {
-
   # derive ratio for plot, cells should be a square and axis equal in length
   if (raster::ncol(x) == raster::nrow(x)) {
     ratio <- 1
@@ -46,13 +45,12 @@ util_plot <- function(x,
   }
 
   if (raster::nlayers(x) == 1) {
-
-    if (isTRUE(discrete)) { # discrete case
-
+    if (isTRUE(discrete)) {
       # get rasterlabels
       legend_labels <- tryCatch({
         x@data@attributes[[1]][, 2]
-      }, error = function(e) {
+      },
+      error = function(e) {
         x <- raster::as.factor(x)
         levels <- raster::unique(x)
         x@data@attributes[[1]][, 2] <- levels
@@ -62,15 +60,14 @@ util_plot <- function(x,
         ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +
         ggplot2::labs(x = "Easting",
                       y = "Northing")  +
-        theme_nlm_discrete(..., legend_labels = legend_labels)
+        theme_nlm_discrete(..., legend_labels = legend_labels, ratio = ratio)
 
     } else {
-
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = value)) +
         ggplot2::labs(x = "Easting",
                       y = "Northing") +
-        theme_nlm(...)
+        theme_nlm(..., ratio = ratio)
     }
   } else {
     rasterVis::levelplot(x)
@@ -83,7 +80,6 @@ util_plot <- function(x,
 util_plot_grey <- function(x,
                            discrete = FALSE,
                            ...) {
-
   # derive ratio for plot, cells should be a square and axis equal in length
   if (raster::ncol(x) == raster::nrow(x)) {
     ratio <- 1
@@ -92,13 +88,14 @@ util_plot_grey <- function(x,
   }
 
   if (raster::nlayers(x) == 1) {
-
-    if (isTRUE(discrete)) { # discrete case
+    if (isTRUE(discrete)) {
+      # discrete case
 
       # get rasterlabels
       legend_labels <- tryCatch({
         x@data@attributes[[1]][, 2]
-      }, error = function(e) {
+      },
+      error = function(e) {
         x <- raster::as.factor(x)
         levels <- raster::unique(x)
         x@data@attributes[[1]][, 2] <- levels
@@ -108,15 +105,16 @@ util_plot_grey <- function(x,
         ggplot2::geom_raster(ggplot2::aes(fill = factor(value))) +
         ggplot2::labs(x = "Easting",
                       y = "Northing")  +
-        theme_nlm_grey_discrete(..., legend_labels = legend_labels)
+        theme_nlm_grey_discrete(...,
+                                legend_labels = legend_labels,
+                                ratio = ratio)
 
     } else {
-
       rasterVis::gplot(x) +
         ggplot2::geom_raster(ggplot2::aes(fill = value)) +
         ggplot2::labs(x = "Easting",
                       y = "Northing") +
-        theme_nlm_grey(...)
+        theme_nlm_grey(..., ratio = ratio)
     }
   } else {
     rasterVis::levelplot(x)

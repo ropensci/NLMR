@@ -50,6 +50,7 @@
 #' @seealso \code{\link{util_import_roboto_condensed}}
 #'
 #' @examples
+#' # nolint start
 #' \dontrun{
 #' # simulate NLM
 #' x <- NLMR::nlm_random(ncol = 75,
@@ -97,7 +98,7 @@
 #'   ggplot2::ggtitle("Random NLM with discrete grey color scale",
 #'                    subtitle = "75x75 cells") +
 #'   ggplot2::labs(caption = "Random map simulated with the R package NLMR.")
-#'
+#' # nolint end
 #' }
 #'
 #' @aliases theme_nlm
@@ -370,8 +371,8 @@ theme_nlm_grey <- function(base_family = "Roboto Condensed",
 
   # define color scale
   theme_color <- ggplot2::scale_fill_gradient(
-    low = '#d0d0d0',
-    high = '#000000',
+    low = "#d0d0d0",
+    high = "#000000",
     na.value = "transparent",
     name = legend_title,
     guide = ggplot2::guide_colorbar(

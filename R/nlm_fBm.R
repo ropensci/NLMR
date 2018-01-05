@@ -73,15 +73,15 @@ nlm_fBm <- function(ncol,
   y <- seq(0, 1, len = nrow)
 
   # formulate and simulate fBm model
-  fBm_model <- RandomFields::RMgenfbm(
+  fbm_model <- RandomFields::RMgenfbm(
     alpha = H * 2,
     beta = 0.5
   )
-  fBm_simu <- RandomFields::RFsimulate(fBm_model, y, x)
+  fbm_simu <- RandomFields::RFsimulate(fbm_model, y, x)
 
 
   # transform simulation into raster ----
-  fbm_raster <- raster::raster(fBm_simu)
+  fbm_raster <- raster::raster(fbm_simu)
 
 
   # specify extent and resolution ----

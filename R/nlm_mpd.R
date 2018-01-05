@@ -111,7 +111,7 @@ nlm_mpd <- function(ncol,
 
     # Diamond step  ----
     for (row in seq(1, size, by = half.side)) {
-      for (col in seq((col + half.side) %% side.length, size, side.length)) {
+      for (col in seq( (col + half.side) %% side.length, size, side.length)) {
         avg <- mean(c(
           mpd_raster[(row - half.side + size) %% size, col], # above
           mpd_raster[(row + half.side) %% size, col], # below
@@ -133,12 +133,6 @@ nlm_mpd <- function(ncol,
     rand_dev <- rand_dev * roughness
   }
 
-  # Remove artificial boundaries ----
-  mpd_raster <- mpd_raster[-1, ]
-  mpd_raster <- mpd_raster[, -1]
-  mpd_raster <- mpd_raster[, -max(ncol(mpd_raster))]
-  mpd_raster <- mpd_raster[-max(nrow(mpd_raster)), ]
-
   # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)
 
@@ -156,7 +150,7 @@ nlm_mpd <- function(ncol,
   }
 
   if (verbose == TRUE) {
-    message("nlm_mpd returns RasterLayer that fits in the dimension 2^n-1")
+    message("nlm_mpd returns RasterLayer that fits in the dimension 2^n+1")
   }
 
   return(mpd_raster)

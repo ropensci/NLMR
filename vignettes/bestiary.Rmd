@@ -20,7 +20,7 @@ random <- nlm_random(100,100, resolution = 10)
 distagrad <- nlm_distancegradient(100, 100, origin = c(10,15,10,15), resolution = 10)
 edgy <- nlm_edgegradient(100,100, 90, resolution = 10)
 planary <- nlm_planargradient(100,100, resolution = 10)
-randomRecClustery <- nlm_randomrectangularcluster(100, 100, minL = 8, maxL = 16, rescale = FALSE, resolution = 10)
+randomRecClustery <- nlm_randomrectangularcluster(100, 100, minl = 8, maxl = 16, rescale = FALSE, resolution = 10)
 randomElementy <- nlm_randomelement(100,100, n = 90, resolution = 10)
 randomClustery <- nlm_randomcluster(100,100, p = 0.5, resolution = 10)
 randomMPD <- nlm_mpd(ncol = 100, nrow = 100, roughness = 0.7, resolution = 7.874017)
@@ -40,7 +40,6 @@ poly_scapes <- nlm_polylands(ncol = 50, nrow = 50, germs = 20, resolution = 20)
 library(NLMR)
 library(ggplot2)
 library(viridis)
-library(lemon)
 # transform rasters to long data frame to use facets
 
 ## first transform to SpatialPixelsDataFrame to have a transformation to long format
@@ -152,9 +151,7 @@ nlmr_bestiary <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
   ggplot2::coord_equal() +
   ggplot2::labs(x = "Easting",
                 y = "Northing") +
-  theme_nlm() +
-  coord_capped_cart(
-    xlim = c(0, 1000), ylim = c(0, 1000), left = "both", bottom = "both")
+  theme_nlm()
 
 nlmr_bestiary <- nlmr_bestiary + theme(text = element_text(size = 27),
                                        axis.text.x = element_text(size = 25))
@@ -167,7 +164,7 @@ print(nlmr_bestiary)
 library(NLMR)
 library(ggplot2)
 library(viridis)
-library(lemon)
+
 merge_1 <- util_merge(gaussian_linear, randomRecClustery)
 merge_2 <- util_merge(edgy, planary)
 merge_3 <- util_merge(planary, randomElementy)
@@ -236,9 +233,7 @@ nlmr_merges <- ggplot2::ggplot(nlm_df, aes(x=x, y=y)) +
       title.position = "top",
       title.hjust = 0.5,
       label.hjust = 0.5
-    )) +
-  coord_capped_cart(
-    xlim = c(0, 1000), ylim = c(0, 1000), left = "both", bottom = "both")
+    )) 
 
 nlmr_merges <- nlmr_merges + theme(text = element_text(size = 27),
                                        axis.text.x = element_text(size = 25))

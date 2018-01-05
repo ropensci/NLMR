@@ -1,18 +1,23 @@
 # nolint start
 context("nlm_fBm")
 
+fbm_raster <- nlm_fBm(ncol = 9, nrow = 12, H = 0.5)
+
 test_that("nlm_fBm behaves like it should", {
-  fBm_raster <- nlm_fBm(ncol = 20, nrow = 30, H = 0.5)
-  expect_that(fBm_raster, is_a("RasterLayer"))
+  expect_that(fbm_raster, is_a("RasterLayer"))
 })
 
 test_that("nlm_fBm produces the right number of rows", {
-  fBm_raster <- nlm_fBm(ncol = 9, nrow = 12)
-  expect_equal(fBm_raster@nrows, 12)
+  expect_equal(fbm_raster@nrows, 12)
 })
 
 test_that("nlm_fBm produces the right number of columns", {
-  fBm_raster <- nlm_fBm(ncol = 9, nrow = 12)
-  expect_equal(fBm_raster@ncols, 9)
+  expect_equal(fbm_raster@ncols, 9)
 })
+
+test_that("nlm_fBm produces the right hurst coefficient", {
+  h <- pracma::hurstexp(fbm_raster[], display = FALSE)
+  expect_equal(h$Hal, 0.5, tolerance = 0.2)
+})
+
 # nolint end

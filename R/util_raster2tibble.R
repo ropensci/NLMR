@@ -37,4 +37,3 @@ util_raster2tibble <- function(x) {
 
   return(grd)
 }
-

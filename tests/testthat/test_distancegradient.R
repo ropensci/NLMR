@@ -33,4 +33,3 @@ test_that("nlm_distancegradient produces the right number of columns", {
 })
 
 # nolint end
-
