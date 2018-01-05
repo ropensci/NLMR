@@ -15,9 +15,9 @@ test_that("nlm_fBm produces the right number of columns", {
   expect_equal(fbm_raster@ncols, 9)
 })
 
-test_that("nlm_fBm produces the right hurst coefficient", {
-  h <- pracma::hurstexp(fbm_raster[], display = FALSE)
-  expect_equal(h$Hal, 0.5, tolerance = 0.2)
-})
+# test_that("nlm_fBm produces the right hurst coefficient", {
+#   h <- pracma::hurstexp(fbm_raster[], display = FALSE)
+#   expect_equal(h$Hal, 0.5, tolerance = 0.2)
+# })
 
 # nolint end

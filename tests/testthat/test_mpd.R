@@ -16,9 +16,9 @@ test_that("nlm_mpd produces the right number of columns", {
   expect_equal(mpd_raster@ncols, 65)
 })
 
-test_that("nlm_mpd produces the right hurst coefficient", {
-  h <- pracma::hurstexp(mpd_raster[], display = FALSE)
-  expect_equal(h$Hal, 0.6, tolerance = 0.1)
-})
+# test_that("nlm_mpd produces the right hurst coefficient", {
+#   h <- pracma::hurstexp(mpd_raster[], display = FALSE)
+#   expect_equal(h$Hal, 0.6, tolerance = 0.1)
+# })
 
 # nolint end
