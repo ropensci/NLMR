@@ -10,7 +10,8 @@ z <- util_classify(x, y)
 test_that("metric_area is a good boy", {
   expect_that(metric_area(z), is_a("list"))
   expect_equal(length(metric_area(z)), 2)
-})
+  expect_equal(length(metric_area(z, poi = 1)), 2)
+  })
 
 test_that("metric_area calculates correct", {
 

@@ -19,4 +19,9 @@ test_that("binary maps in every layer", {
   expect_equal(length(raster::unique(rnd_bin[[4]])), 2)
 })
 
+test_that("right number of layers in the brick", {
+  expect_equal(raster::nlayers(util_binarize(nlm_random(10, 10), c(0.3))), 1)
+})
+
+
 # nolint end

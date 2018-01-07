@@ -1,11 +1,12 @@
+# nocov start
+# nolint start
+
 .onAttach <- function(libname, pkgname) {
 
   # ensure fonts are available for use/detection
   # adapted from hrbrthemes and his great package hrbrthemes/ elevator R package
   # https://github.com/hrbrmstr/hrbrthemes
 
-  # nocov start
-  # nolint start
   if (.Platform$OS.type == "windows")  {
     if (interactive()) packageStartupMessage("Registering Windows fonts with R")
     # work around for https://github.com/wch/extrafont/issues/44
@@ -21,7 +22,8 @@
   #work around for https://github.com/wch/extrafont/issues/44
   postscriptFonts <- grDevices::postscriptFonts
   extrafont::loadfonts("postscript", quiet = TRUE)
-  # nolint end
-  # nocov end
+
 
 }
+# nolint end
+# nocov end
