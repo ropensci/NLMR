@@ -65,7 +65,7 @@ nlm_gaussianfield <- function(ncol,
 
   # specify RandomFields options ----
   RandomFields::RFoptions(cPrintlevel = 0)
-  RandomFields::RFoptions(spConform = TRUE)
+  RandomFields::RFoptions(spConform = FALSE)
 
   # set RF seed ----
   if (!is.null(user_seed)) {
