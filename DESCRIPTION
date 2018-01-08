@@ -35,7 +35,6 @@ Imports:
     dismo,
     dplyr,
     ggplot2,
-    gstat,
     igraph,
     magrittr,
     maptools,

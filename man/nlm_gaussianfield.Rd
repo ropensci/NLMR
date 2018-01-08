@@ -5,8 +5,8 @@
 \title{nlm_gaussianfield}
 \usage{
 nlm_gaussianfield(ncol, nrow, resolution = 1, autocorr_range = 10,
-  mag_var = 0.025, beta = c(1, 0.01, 0.005), nug = 1,
-  direction = "random", angle = 1, rescale = TRUE)
+  mag_var = 5, nug = 0.2, mean = 0.5, user_seed = NULL,
+  rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -24,17 +24,14 @@ Maximal distance of spatial autocorrelation}
 \item{mag_var}{[\code{numerical(1)}]\cr
 Magnitude of variation in the field}
 
-\item{beta}{[\code{numerical(1)}]\cr
-Mean value over the field.}
-
 \item{nug}{[\code{numerical(1)}]\cr
 Small-scale variations in the field.}
 
-\item{direction}{[\code{character("random" | "linear")}]\cr
-Direction of the gradient. Either random, or with a linear trend (default).}
+\item{mean}{[\code{numerical(1)}]\cr
+Mean value over the field.}
 
-\item{angle}{[\code{numerical(1)}]\cr
-Maximal distance of spatial autocorrelation}
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set Seed for simulation}
 
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
@@ -48,8 +45,10 @@ fields) model.
 }
 \examples{
 # simulate random gaussian field
-gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 30,
-                                    autocorr_range = 75, mag_var = 0.4)
+gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+                                    autocorr_range = 10,
+                                    mag_var = 3,
+                                    nug = 0.01)
 
 \dontrun{
 # visualize the NLM

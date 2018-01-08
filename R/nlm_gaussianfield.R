@@ -13,14 +13,12 @@
 #'  Maximal distance of spatial autocorrelation
 #' @param mag_var [\code{numerical(1)}]\cr
 #'  Magnitude of variation in the field
-#' @param beta [\code{numerical(1)}]\cr
-#'  Mean value over the field.
 #' @param nug [\code{numerical(1)}]\cr
 #'  Small-scale variations in the field.
-#' @param direction [\code{character("random" | "linear")}]\cr
-#'  Direction of the gradient. Either random, or with a linear trend (default).
-#' @param angle [\code{numerical(1)}]\cr
-#'  Maximal distance of spatial autocorrelation
+#' @param mean [\code{numerical(1)}]\cr
+#'  Mean value over the field.
+#' @param user_seed [\code{numerical(1)}]\cr
+#'  Set Seed for simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -28,8 +26,10 @@
 #'
 #' @examples
 #' # simulate random gaussian field
-#' gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 30,
-#'                                     autocorr_range = 75, mag_var = 0.4)
+#' gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+#'                                     autocorr_range = 10,
+#'                                     mag_var = 3,
+#'                                     nug = 0.01)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -46,13 +46,11 @@ nlm_gaussianfield <- function(ncol,
                               nrow,
                               resolution = 1,
                               autocorr_range = 10,
-                              mag_var = 0.025,
-                              beta = c(1, 0.01, 0.005),
-                              nug = 1,
-                              direction = "random",
-                              angle = 1,
+                              mag_var = 5,
+                              nug = 0.2,
+                              mean = 0.5,
+                              user_seed = NULL,
                               rescale = TRUE) {
-
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
@@ -60,80 +58,41 @@ nlm_gaussianfield <- function(ncol,
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(autocorr_range, positive = TRUE)
   checkmate::assert_numeric(mag_var)
-  checkmate::assert_numeric(beta)
   checkmate::assert_numeric(nug)
-  checkmate::assert_character(direction)
-  checkmate::assert_count(angle, positive = TRUE)
+  checkmate::assert_numeric(mean)
   checkmate::assert_logical(rescale)
 
-  # create data structure for spatial model
-  xy <- expand.grid(1:ncol, 1:nrow)
-  # Set the name of the spatial coordinates within the field
-  names(xy) <- c("x", "y")
 
-  # define the spatial model
-  if (direction == "random") {
-    spatial_sim <- gstat::gstat(
-      formula = z~1,
-      locations = ~x + y,
-      dummy = TRUE,
-      beta = beta,
-      model = gstat::vgm(
-        psill = mag_var,
-        nugget = nug,
-        model = "Exp",
-        range = autocorr_range
-      ),
-      nmax = 20
-    )
+  # specify RandomFields options ----
+  RandomFields::RFoptions(cPrintlevel = 0)
+  RandomFields::RFoptions(spConform = TRUE)
+
+  # set RF seed ----
+  if (!is.null(user_seed)) {
+    RandomFields::RFoptions(seed = user_seed)
   }
 
-  if (direction == "linear") {
-    spatial_sim <- gstat::gstat(
-      formula = z~1 + x + y,
-      locations = ~x + y,
-      dummy = TRUE,
-      beta = beta,
-      model = gstat::vgm(
-        psill = mag_var,
-        range = autocorr_range,
-        model = "Exp"
-      ),
-      nmax = 20
-    )
-  }
+  # formulate gaussian random model
+  model <- RandomFields::RMexp(var = mag_var, scale = autocorr_range) +
+    RandomFields::RMnugget(var = nug) + # nugget
+    RandomFields::RMtrend(mean = mean) # and mean
 
-  # make simulation based on the stat object
-  spatial_pred <- stats::predict(spatial_sim,
-                                 newdata = xy,
-                                 nsim = 1,
-                                 messages = FALSE)
+  # simulate
+  simu <-
+    RandomFields::RFsimulate(model,
+                             y = seq(ncol),
+                             x = seq(nrow),
+                             grid =  TRUE)
 
-  # convert prediction to raster
-  sp::gridded(spatial_pred) <- ~x + y
-  pred_raster <- raster::raster(spatial_pred)
-  raster::extent(pred_raster) <- c(0, 1, 0, 1)
-
-  if (direction == "linear" & angle == 2) {
-    pred_raster <- raster::flip(pred_raster, 2)
-  }
-
-
-  if (direction == "linear" & angle == 3) {
-    pred_raster <- raster::t(pred_raster)
-  }
-
-  if (direction == "linear" & angle == 4) {
-    pred_raster <- raster::flip(pred_raster, 1)
-  }
+  # coerce to raster
+  pred_raster <- raster::raster(simu)
+  pred_raster <- pred_raster - raster::cellStats(pred_raster, "min")
 
   # specify resolution ----
-  raster::extent(pred_raster) <- c(
-    0,
-    ncol(pred_raster) * resolution,
-    0,
-    nrow(pred_raster) * resolution
-  )
+  raster::extent(pred_raster) <- c(0,
+                                   ncol(pred_raster) * resolution,
+                                   0,
+                                   nrow(pred_raster) * resolution)
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
