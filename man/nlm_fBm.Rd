@@ -4,7 +4,7 @@
 \alias{nlm_fBm}
 \title{nlm_fBm}
 \usage{
-nlm_fBm(ncol, nrow, resolution = 1, H = 0.5, user_seed = NULL,
+nlm_fBm(ncol, nrow, resolution = 1, fractal_dim = 1, user_seed = NULL,
   rescale = TRUE)
 }
 \arguments{
@@ -17,14 +17,14 @@ Number of rows for the raster.}
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
 
-\item{H}{[\code{numerical(1)}]\cr
-Hurst coefficient}
-
 \item{user_seed}{[\code{numerical(1)}]\cr
 Set Seed for simulation}
 
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
+
+\item{fract_dim}{[\code{numerical(1)}]\cr
+numeric in (0,2]; refers to the fractal dimension of the process}
 }
 \value{
 RasterLayer
@@ -42,7 +42,7 @@ Neutral landscapes are generated using fractional Brownian motion,
 }
 \examples{
 # simulate fractional brownian motion
-(fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, H = 0.5))
+(fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, fractal_dim = 0.8))
 \dontrun{
 # visualize the NLM
 util_plot(fBm_raster)

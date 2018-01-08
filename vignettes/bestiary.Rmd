@@ -25,8 +25,7 @@ randomElementy <- nlm_randomelement(100,100, n = 90, resolution = 10)
 randomClustery <- nlm_randomcluster(100,100, p = 0.5, resolution = 10)
 randomMPD <- nlm_mpd(ncol = 100, nrow = 100, roughness = 0.7, resolution = 7.874017)
 gaussian <- nlm_gaussianfield(ncol = 100, nrow = 100, autocorr_range = 35, resolution = 10)
-gaussian_linear <- nlm_gaussianfield(ncol = 100, nrow = 100, 35, direction = "linear", resolution = 10)
-fBm <- nlm_fBm(ncol = 50, nrow = 50, H = 0.7, resolution = 20)
+fBm <- nlm_fBm(ncol = 50, nrow = 50, fractal_dim = 1, resolution = 20)
 mosaic <- nlm_mosaicfield(ncol = 100, nrow = 100, n = 20, resolution = 10)
 neighboorcluster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.75, categories = 5, p_empty = 0.01, neighborhood = "Von-Neumann", resolution = 20, proportions =c(0.25, 0.05, 0.1, 0.3, 0.3))
 curds <- nlm_curds(p = c(0.33, 0.33, 0.33), s = c(32, 8, 4), ext = 1000)
@@ -53,7 +52,6 @@ randomElementy_spdf    <- as(randomElementy, "SpatialPixelsDataFrame")
 randomClustery_spdf    <- as(randomClustery, "SpatialPixelsDataFrame")
 randomMPD_spdf         <- as(randomMPD, "SpatialPixelsDataFrame")
 gaussian_spdf          <- as(gaussian, "SpatialPixelsDataFrame")
-gaussian_linear_spdf          <- as(gaussian_linear, "SpatialPixelsDataFrame")
 fBm_spdf          <- as(fBm, "SpatialPixelsDataFrame")
 mosaic_spdf          <- as(mosaic, "SpatialPixelsDataFrame")
 neigh_spdf          <- as(neighboorcluster, "SpatialPixelsDataFrame")
@@ -96,12 +94,6 @@ gaussian_df[,4] <- "Gaussian field"
 names(gaussian_df)[1] <- "layer"
 # gaussian_df[,c(2,3)] <- gaussian_df[,c(2,3)] / 100
 
-
-gaussian_linear_df <- as.data.frame(gaussian_linear_spdf)
-gaussian_linear_df[,4] <- "Gaussian field - linear trend"
-names(gaussian_linear_df)[1] <- "layer"
-# gaussian_linear_df[,c(2,3)] <- gaussian_linear_df[,c(2,3)] / 100
-
 fbm_df <- as.data.frame(fBm_spdf)
 fbm_df[,4] <- "Fractional Brownian Motion"
 
@@ -133,7 +125,6 @@ nlm_df <- rbind(percolation_df,
                 randomElementy_df,
                 randomMPD_df,
                 gaussian_df,
-                gaussian_linear_df,
                 fbm_df,
                 mosaic_df,
                 neigh_df, 
@@ -165,7 +156,7 @@ library(NLMR)
 library(ggplot2)
 library(viridis)
 
-merge_1 <- util_merge(gaussian_linear, randomRecClustery)
+merge_1 <- util_merge(gaussian, randomRecClustery)
 merge_2 <- util_merge(edgy, planary)
 merge_3 <- util_merge(planary, randomElementy)
 merge_4 <- util_merge(gaussian, randomClustery)
@@ -180,7 +171,7 @@ merge_4_spdf <- as(merge_4, "SpatialPixelsDataFrame")
 
 ## transform to dataframes and give new row that contains name of the algorithm that produced the landscape
 merge_1_df <- as.data.frame(merge_1_spdf)
-merge_1_df[,4] <- "Gaussian linear + Random Rectangular Cluster"
+merge_1_df[,4] <- "Gaussian + Random Rectangular Cluster"
 
 merge_2_df <- as.data.frame(merge_2_spdf)
 merge_2_df[,4] <- "Edge gradient + Planar gradient"

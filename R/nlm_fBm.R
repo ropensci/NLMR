@@ -8,8 +8,8 @@
 #'  Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
-#' @param H [\code{numerical(1)}]\cr
-#'  Hurst coefficient
+#' @param fract_dim [\code{numerical(1)}]\cr
+#'  numeric in (0,2]; refers to the fractal dimension of the process
 #' @param user_seed [\code{numerical(1)}]\cr
 #'  Set Seed for simulation
 #' @param rescale [\code{numeric(1)}]\cr
@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' # simulate fractional brownian motion
-#' (fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, H = 0.5))
+#' (fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, fractal_dim = 0.8))
 #' \dontrun{
 #' # visualize the NLM
 #' util_plot(fBm_raster)
@@ -47,7 +47,7 @@
 nlm_fBm <- function(ncol,
                     nrow,
                     resolution = 1,
-                    H = 0.5,
+                    fractal_dim = 1,
                     user_seed = NULL,
                     rescale = TRUE) {
 
@@ -55,8 +55,8 @@ nlm_fBm <- function(ncol,
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
-  checkmate::assert_numeric(H)
-  checkmate::assert_true(H <= 1)
+  checkmate::assert_numeric(fractal_dim)
+  checkmate::assert_true(fractal_dim < 2)
   checkmate::assert_logical(rescale)
 
   # specify RandomFields options ----
@@ -68,16 +68,13 @@ nlm_fBm <- function(ncol,
     RandomFields::RFoptions(seed = user_seed)
   }
 
-  # specify spatial extent for simulation ----
-  x <- seq(0, 1, len = ncol)
-  y <- seq(0, 1, len = nrow)
-
   # formulate and simulate fBm model
-  fbm_model <- RandomFields::RMgenfbm(
-    alpha = H * 2,
-    beta = 0.5
-  )
-  fbm_simu <- RandomFields::RFsimulate(fbm_model, y, x)
+  fbm_model <- RandomFields::RMfbm(
+    alpha = 1)
+  fbm_simu <- RandomFields::RFsimulate(fbm_model,
+                                       y = seq(ncol),
+                                       x = seq(nrow),
+                                       grid =  TRUE)
 
 
   # transform simulation into raster ----

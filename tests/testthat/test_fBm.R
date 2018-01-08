@@ -1,7 +1,7 @@
 # nolint start
 context("nlm_fBm")
 
-fbm_raster <- nlm_fBm(ncol = 9, nrow = 12, H = 0.5)
+fbm_raster <- nlm_fBm(ncol = 9, nrow = 12, fractal_dim = 0.5)
 
 test_that("nlm_fBm behaves like it should", {
   expect_that(fbm_raster, is_a("RasterLayer"))
