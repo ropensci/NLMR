@@ -47,7 +47,7 @@
 nlm_fBm <- function(ncol,
                     nrow,
                     resolution = 1,
-                    fractal_dim = 1,
+                    fract_dim = 1,
                     user_seed = NULL,
                     rescale = TRUE) {
 
@@ -55,8 +55,8 @@ nlm_fBm <- function(ncol,
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
-  checkmate::assert_numeric(fractal_dim)
-  checkmate::assert_true(fractal_dim < 2)
+  checkmate::assert_numeric(fract_dim)
+  checkmate::assert_true(fract_dim < 2)
   checkmate::assert_logical(rescale)
 
   # specify RandomFields options ----
@@ -70,8 +70,9 @@ nlm_fBm <- function(ncol,
 
   # formulate and simulate fBm model
   fbm_model <- RandomFields::RMfbm(
-    alpha = 1)
+    alpha = fract_dim)
   fbm_simu <- RandomFields::RFsimulate(fbm_model,
+                                       # fBm changes x and y?
                                        y = seq(ncol),
                                        x = seq(nrow),
                                        grid =  TRUE)
