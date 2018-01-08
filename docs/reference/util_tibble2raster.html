@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>util_plot — util_plot • NLMR</title>
+<title>Converts tibble data into a raster — util_tibble2raster • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -120,56 +120,42 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>util_plot</h1>
+    <h1>Converts tibble data into a raster</h1>
     </div>
 
     
-    <p>Plot a Raster* object with the NLMR default theme</p>
+    <p>Writes spatial tibble values into a raster.</p>
     
 
-    <pre class="usage"><span class='fu'>util_plot</span>(<span class='no'>x</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
-
-<span class='fu'>util_plot_grey</span>(<span class='no'>x</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>util_tibble2raster</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>[<code>Raster* object</code>]</p></td>
-    </tr>
-    <tr>
-      <th>discrete</th>
-      <td><p>[<code>logical</code>(1)] If TRUE, the function plots a raster with
-a discrete legend.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Arguments for  <code>theme_nlm</code></p></td>
+      <td><p>a tibble</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>ggplot2 Object</p>
+    <p>[<code>Raster* object</code>]</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Writes tiles with coordinates from a tibble into a raster.
+Resolution is set to 1 and the extent will be c(0, max(x), 0, max(y)).</p>
+<p>You can directly convert back the result from 'util_raster2tibble()' without
+problems. If you have altered the coordinates or otherwise played with the
+data, be careful while using this function.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># simulate NLM</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>NLMR</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/NLMR/topics/nlm_random'>nlm_random</a></span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>25</span>,
-                      <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>75</span>)
-<span class='co'># classify</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.15</span>, <span class='fl'>0.25</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='fu'>c</span>(<span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>))
-
-<span class='fu'>util_plot</span>(<span class='no'>x</span>)
-<span class='fu'>util_plot</span>(<span class='no'>y</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='fu'>util_plot_grey</span>(<span class='no'>x</span>)
-<span class='fu'>util_plot_grey</span>(<span class='no'>y</span>, <span class='kw'>discrete</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>rndMap</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>16</span>, <span class='fl'>9</span>)
+<span class='no'>maptib</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_raster2tibble.html'>util_raster2tibble</a></span>(<span class='no'>rndMap</span>)
+<span class='no'>mapras</span> <span class='kw'>&lt;-</span> <span class='fu'>util_tibble2raster</span>(<span class='no'>maptib</span>)
+<span class='fu'>all.equal</span>(<span class='no'>rndMap</span>, <span class='no'>mapras</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -178,6 +164,8 @@ a discrete legend.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

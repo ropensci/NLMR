@@ -80,8 +80,8 @@ nlm_gaussianfield <- function(ncol,
   # simulate
   simu <-
     RandomFields::RFsimulate(model,
-                             x = seq(ncol),
-                             y = seq(nrow),
+                             y = seq(ncol),
+                             x = seq(nrow),
                              grid =  TRUE)
 
   # coerce to raster

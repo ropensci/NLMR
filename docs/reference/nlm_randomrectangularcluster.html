@@ -127,7 +127,7 @@
     <p>Create a random rectangular cluster neutral landscape model with values ranging 0-1.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_randomrectangularcluster</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>minL</span>, <span class='no'>maxL</span>,
+    <pre class="usage"><span class='fu'>nlm_randomrectangularcluster</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>minl</span>, <span class='no'>maxl</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -146,11 +146,11 @@
       <td><p>[<code>numerical(1)</code>] Resolution of the raster.</p></td>
     </tr>
     <tr>
-      <th>minL</th>
+      <th>minl</th>
       <td><p>[<code>numerical(1)</code>] The minimum possible width and height for each random rectangular cluster.</p></td>
     </tr>
     <tr>
-      <th>maxL</th>
+      <th>maxl</th>
       <td><p>[<code>numerical(1)</code>] The maximum possible width and height for each random rectangular cluster.</p></td>
     </tr>
     <tr>
@@ -168,8 +168,8 @@
     <pre class="examples"><div class='input'><span class='co'># simulate random rectangular cluster</span>
 <span class='no'>randomrectangular_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomrectangularcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                                           <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
-                                                          <span class='kw'>minL</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                                                          <span class='kw'>maxL</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><span class='co'># NOT RUN {</span>
+                                                          <span class='kw'>minl</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+                                                          <span class='kw'>maxl</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><span class='co'># NOT RUN {</span>
 <span class='co'># visualize the NLM</span>
 <span class='fu'>util_plot</span>(<span class='no'>randomrectangular_cluster</span>)
 <span class='co'># }</span><div class='input'>

@@ -127,7 +127,7 @@
     <p>Simulates two-dimensional fractional brownian motion model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -149,9 +149,9 @@ Number of rows for the raster.</p></td>
 Resolution of the raster.</p></td>
     </tr>
     <tr>
-      <th>H</th>
+      <th>fract_dim</th>
       <td><p>[<code>numerical(1)</code>]
-Hurst coefficient</p></td>
+numeric in (0,2]; refers to the fractal dimension of the process</p></td>
     </tr>
     <tr>
       <th>user_seed</th>
@@ -188,7 +188,7 @@ Software</em>, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate fractional brownian motion</span>
-(<span class='no'>fBm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fBm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+(<span class='no'>fBm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fBm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>0.8</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 30, 20, 600  (nrow, ncol, ncell)
 #&gt; resolution  : 1, 1  (x, y)
 #&gt; extent      : 0, 20, 0, 30  (xmin, xmax, ymin, ymax)

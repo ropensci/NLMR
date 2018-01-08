@@ -208,7 +208,7 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
 <span class='co'># simulate midpoint displacement</span>
 <span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>200</span>,
                                  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.6</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n-1</span></div><span class='co'># NOT RUN {</span>
+                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.6</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><span class='co'># NOT RUN {</span>
 <span class='co'># visualize the NLM</span>
 <span class='fu'>util_plot</span>(<span class='no'>midpoint_displacememt</span>)
 <span class='co'># }</span></pre>

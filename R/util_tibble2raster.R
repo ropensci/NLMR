@@ -4,11 +4,11 @@
 #'
 #' @details Writes tiles with coordinates from a tibble into a raster.
 #' Resolution is set to 1 and the extent will be c(0, max(x), 0, max(y)).
-#' 
+#'
 #' You can directly convert back the result from 'util_raster2tibble()' without
 #' problems. If you have altered the coordinates or otherwise played with the
-#' data, please fix it before using this function.
-#' 
+#' data, be careful while using this function.
+#'
 #'
 #' @param x a tibble
 #'
@@ -27,10 +27,10 @@
 #'
 
 util_tibble2raster <- function(x) {
-  
+
   # Create raster with values from tibble ----
   r <- raster::raster(matrix(x$z, max(x$y), max(x$x), byrow = TRUE))
-  extent(r) <- c(0,max(x$x),0,max(x$y))
+  raster::extent(r) <- c(0, max(x$x), 0, max(x$y))
 
   return(r)
 }
