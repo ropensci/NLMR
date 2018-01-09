@@ -158,9 +158,19 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="whats-new" class="section level2">
 <h2 class="hasAnchor">
 <a href="#whats-new" class="anchor"></a><i class="fa fa-newspaper-o" aria-hidden="true"></i> What’s New</h2>
-<p>We are currently on version 0.1.1. Major changes in this version are:</p>
+<p>We are currently on version <code>0.2.0</code>. Major changes in this version are:</p>
 <ul>
-<li>v0.1.0 was released on 30/11/2017</li>
+<li>Small bug fixes</li>
+<li>New neutral landscape models
+<ul>
+<li>
+<code>nlm_wheys</code>: Simulates a wheyed neutral landscape model</li>
+</ul>
+</li>
+<li>Parameter <code>p</code> in <code>nlm_curds</code> now controls the proportion of habitat instead of the amount of matrix</li>
+<li>Implemented new theme <code>theme_nlm</code>
+</li>
+<li>…</li>
 </ul>
 <p>See our <a href="news/index.html"><i class="fa fa-newspaper-o aria-hidden=" true></i> news</a> page for a detailed changelog.</p>
 <hr>
@@ -184,10 +194,10 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#dependencies" class="anchor"></a><i class="fa fa-shopping-basket" aria-hidden="true"></i> Dependencies</h2>
 <p><strong>NLMR</strong> imports many great packages that it depends on. Many thanks to the developers of these tools:</p>
 <pre><code> [1] "R (&gt;= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
- [5] " ggplot2"      " igraph"       " magrittr"     " maptools"    
- [9] " purrr"        " RandomFields" " raster"       " rasterVis"   
-[13] " R.utils"      " sp"           " spatstat"     " stats"       
-[17] " tibble"       " viridis"      " extrafont"   </code></pre>
+ [5] " ggplot2"      " igraph"       " magrittr"     " purrr"       
+ [9] " RandomFields" " raster"       " rasterVis"    " sp"          
+[13] " spatstat"     " stats"        " tibble"       " viridis"     
+[17] " extrafont"   </code></pre>
 </div>
 </div>
   </div>
@@ -214,8 +224,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.com/marcosci/NLMR"><img src="https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&amp;branch=master" alt="Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/marcosci/nlmr"><img src="https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true" alt="Build status"></a></li>
-<li><a href="https://codecov.io/gh/marcosci/NLMR"><img src="https://codecov.io/gh/marcosci/NLMR/branch/master/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=eNLMR"><img src="http://www.r-pkg.org/badges/version/eNLMR" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://codecov.io/gh/marcosci/NLMR"><img src="https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=NLMR"><img src="http://www.r-pkg.org/badges/version/NLMR" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://gitter.im/NLMR_landscapegenerator"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/NLMR_landscapegenerator"></a></li>
 <li><a href="http://cran.rstudio.com/web/packages/NLMR/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/NLMR"></a></li>
 </ul>

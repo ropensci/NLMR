@@ -1,17 +1,20 @@
 ____________________________________________________________________________________
 
-## NLMR 0.1.1 Release Notes
+## NLMR 0.2 Release Notes
 
-v0.1.1 was released on xx/xx/2017
+v0.2 was released on 09/01/2017
 
-### Minor changes
+### Changes
 
 - Small bug fixes
 - New neutral landscape models
     - `nlm_wheys`: Simulates a wheyed neutral landscape model
 - Parameter `p` in `nlm_curds` now controls the proportion of habitat instead of 
   the amount of matrix
-- Implement new theme `theme_nlm`
+- Implemented new theme `theme_nlm`
+- Functions to coerce raster to tibbles and vice versa (for facetting with `ggplot2`)
+- We now have unit tests covering the main functionality of the packe
+- Removed several packages as dependencies 
 
 ## NLMR 0.1.0 Release Notes
 

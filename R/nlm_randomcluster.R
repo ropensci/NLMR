@@ -82,7 +82,7 @@ nlm_randomcluster <-
     # Create random set of values for each the clusters ----
     types <- factor(stats::runif(n_clusters, 0, 1))
     num_types <- as.numeric(types)
-    num_types <- R.utils::insert(num_types, 1, 0)
+    num_types <- append(num_types, 0, after = 0)
 
     # Apply values by indexing by cluster ----
     clustertype <- sample(num_types, n_clusters, replace = TRUE)

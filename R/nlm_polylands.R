@@ -120,7 +120,8 @@ nlm_polylands <- function(ncol,
     spatstat::marks(x) <- m
 
     # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
-    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(x)
+    strauss_points <- data.frame(x)
+    sp::coordinates(strauss_points) <- ~ x + y
 
     # Create a tessellated surface ----
     strauss_tess <- dismo::voronoi(strauss_points)

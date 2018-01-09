@@ -1,7 +1,7 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.1.1
+Version: 0.2
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
@@ -37,12 +37,10 @@ Imports:
     ggplot2,
     igraph,
     magrittr,
-    maptools,
     purrr,
     RandomFields,
     raster,
     rasterVis,
-    R.utils,
     sp,
     spatstat,
     stats,

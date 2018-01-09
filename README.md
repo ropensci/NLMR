@@ -31,6 +31,14 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
+#> 
+#> Attaching package: 'magrittr'
+#> The following object is masked from 'package:tidyr':
+#> 
+#>     extract
+#> The following object is masked from 'package:purrr':
+#> 
+#>     set_names
 library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
@@ -67,9 +75,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1244|          501|                854|              4122|  1244|        501|        854|         0.6864952|     6.014085|        1.505353|        0.4027331|
-|        1|     630|          172|                630|              1890|   630|        172|        630|         1.0000000|     6.176471|        1.569856|        0.2730159|
-|        2|     626|          196|                606|              1898|   626|        196|        606|         0.9680511|     5.941177|        1.559345|        0.3130990|
+|        0|    1239|          475|                876|              4080|  1239|        475|        876|         0.7070218|     6.169014|        1.513346|        0.3833737|
+|        1|     628|          218|                544|              1968|   628|        218|        544|         0.8662420|     5.333333|        1.525068|        0.3471338|
+|        2|     633|          191|                586|              1946|   633|        191|        586|         0.9257504|     5.745098|        1.546252|        0.3017378|
 
 Citation
 --------
@@ -91,7 +99,7 @@ Dependencies
 `NLMR` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
      [1] "R (>= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
-     [5] " ggplot2"      " gstat"        " igraph"       " magrittr"    
-     [9] " maptools"     " purrr"        " RandomFields" " raster"      
-    [13] " rasterVis"    " R.utils"      " sp"           " spatstat"    
-    [17] " stats"        " tibble"       " viridis"      " extrafont"
+     [5] " ggplot2"      " igraph"       " magrittr"     " purrr"       
+     [9] " RandomFields" " raster"       " rasterVis"    " sp"          
+    [13] " spatstat"     " stats"        " tibble"       " viridis"     
+    [17] " extrafont"

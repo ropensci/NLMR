@@ -10,17 +10,24 @@ vignette: >
 ---
 
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
 ## Core models
 
-<center>
-![]("bestiary_full.png"){
-width=100% }
-</center>
+
+```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
+knitr::include_graphics("bestiary_full.png")
+```
+
 
 ## NLMR Merges
+```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
+knitr::include_graphics("bestiary_merges.png")
+```
 
-
-<center>
-![](bestiary_merges.png){
-width=100% }
-</center>
