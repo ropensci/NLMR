@@ -22,7 +22,7 @@ util_merge <- function(primary_nlm,
                        rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(scalingfactor)
+  checkmate::assert_number(scalingfactor)
   checkmate::assert_logical(rescale)
 
   if (class(secondary_nlm) != "RasterStack") {

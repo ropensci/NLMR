@@ -28,6 +28,13 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
@@ -42,9 +49,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -100,7 +104,7 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2018-01-08</h4>
+            <h4 class="date">2018-01-09</h4>
           </div>
 
     
@@ -191,17 +195,17 @@ NLMR<span class="op">::</span><span class="kw">util_plot</span>(cr, <span class=
 ## # A tibble: 3 x 2
 ##   count class
 ##   &lt;dbl&gt; &lt;int&gt;
-## 1  1229     0
-## 2   630     1
-## 3   641     2
+## 1  1249     0
+## 2   475     1
+## 3   776     2
 ## 
 ## $Proportion_Area
 ## # A tibble: 3 x 2
 ##   count class
 ##   &lt;dbl&gt; &lt;int&gt;
-## 1 0.492     0
-## 2 0.252     1
-## 3 0.256     2</code></pre>
+## 1 0.500     0
+## 2 0.190     1
+## 3 0.310     2</code></pre>
 </div>
 <div id="handling-raster-objects-in-r" class="section level2">
 <h2 class="hasAnchor">
@@ -221,7 +225,8 @@ r</code></pre></div>
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA</code></pre>
 <p>However, the raster created is empty, the cells containing no values. We can add values using the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getValues">values</a></span>(r) &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/ncell">ncell</a></span>(r))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getValues">values</a></span>(r) &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/ncell">ncell</a></span>(r))
 r</code></pre></div>
 <pre><code>## class       : RasterLayer 
 ## dimensions  : 10, 10, 100  (nrow, ncol, ncell)
@@ -230,26 +235,26 @@ r</code></pre></div>
 ## coord. ref. : NA 
 ## data source : in memory
 ## names       : layer 
-## values      : 0.02139515, 0.9968398  (min, max)</code></pre>
+## values      : 0.0005379471, 0.9976398  (min, max)</code></pre>
 <p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
 <p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>In landscape ecology it is quite usual to try and infer ecological dynamics using multiple environmental datasets derived from the same geographical area. The <code>raster</code> packages uses <code>RasterStack</code> and <code>RasterBrick</code> for this kind of multi-layer data.</p>
 <p><code>RasterStack</code> is basically a list of <code>RasterLayer</code> with the same spatial extent and resolution. <code>RasterBrick</code>, however, is a truly multi-layered object. This means that all layer share a single reference for dimensions and extent (which often results in it being more efficient to process a <code>RasterBrick</code> than a <code>RasterStack</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r2 &lt;-<span class="st"> </span>r <span class="op">*</span><span class="st"> </span>(<span class="kw">abs</span>(<span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span>r) <span class="op">*</span><span class="st"> </span><span class="op">-</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
 r3  &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_classify">util_classify</a></span>(r, <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))
-s &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(r, r2, r3)
+s &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(r, r2, r3)
 s</code></pre></div>
 <pre><code>## class       : RasterStack 
 ## dimensions  : 10, 10, 100, 3  (nrow, ncol, ncell, nlayers)
 ## resolution  : 10, 10  (x, y)
 ## extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
 ## coord. ref. : NA 
-## names       :     layer.1,     layer.2,     layer.3 
-## min values  : 0.021395152, 0.009460697, 0.021395152 
-## max values  :   0.9968398,   0.9991397,   0.9968398</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
+## names       :      layer.1,      layer.2,      layer.3 
+## min values  : 0.0005379471, 0.0070694653, 0.0005379471 
+## max values  :    0.9976398,    0.9994626,    0.9976398</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(s)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="manipulation" class="section level3">
@@ -265,7 +270,7 @@ s</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/ncell">ncol</a></span>(r) &lt;-<span class="st"> </span><span class="dv">42</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/dimensions">dim</a></span>(r)</code></pre></div>
 <pre><code>## [1] 10 42  1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(<span class="dt">ncol=</span><span class="dv">10</span>, <span class="dt">nrow=</span><span class="dv">10</span>, <span class="dt">xmn=</span><span class="dv">0</span>, <span class="dt">xmx=</span><span class="dv">100</span>, <span class="dt">ymn=</span><span class="dv">0</span>, <span class="dt">ymx=</span><span class="dv">100</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(<span class="dt">ncol=</span><span class="dv">10</span>, <span class="dt">nrow=</span><span class="dv">10</span>, <span class="dt">xmn=</span><span class="dv">0</span>, <span class="dt">xmx=</span><span class="dv">100</span>, <span class="dt">ymn=</span><span class="dv">0</span>, <span class="dt">ymx=</span><span class="dv">100</span>)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/resolution">res</a></span>(r)</code></pre></div>
 <pre><code>## [1] 10 10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/resolution">res</a></span>(r) &lt;-<span class="st"> </span><span class="dv">42</span>

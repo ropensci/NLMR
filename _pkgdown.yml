@@ -42,6 +42,9 @@ reference:
 navbar:
   title: NLMR | Neutral landscape models with R
   left:
+    - text: "Get Started"
+      icon: fa fa-magic
+      href: articles/getstarted.html
     - text: "How To"
       icon: fa-graduation-cap
       menu:
@@ -49,8 +52,6 @@ navbar:
          href: articles/background.html
       -  text: NLMR Bestiary
          href: articles/bestiary.html
-      -  text: Quickstart Guide
-         href: articles/BasicUsageVignette.html
     - text: "Publication Record"
       icon: fa-file-text-o
       href: articles/publication_record.html

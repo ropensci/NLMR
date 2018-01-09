@@ -12,8 +12,15 @@ vignette: >
 
 ## Core models
 
-```{r  echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.align='center'}
-knitr::include_graphics("../man/figures/bestiary_full.png")
-```
+<center>
+![]("bestiary_full.png"){
+width=100% }
+</center>
 
 ## NLMR Merges
+
+
+<center>
+![](bestiary_merges.png){
+width=100% }
+</center>

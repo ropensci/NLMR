@@ -10,6 +10,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r global_options, include=FALSE}
+rm(list=ls()) ### To clear namespace
+library(raster)
+library(NLMR)
+```
+
 `NLMR` is a `R` package designed to generate neutral landscape models (NLMs), 
 simulated landscapes used to explore landscape scale ecological patterns and 
 processes. The `NLMR` package was designed with a similar philosophy to the 
@@ -146,6 +152,7 @@ r
 However, the raster created is empty, the cells containing no values. We can add values using the following code:
 
 ```{r raster-example2, dependson='raster-example', message=FALSE, warning=FALSE, cache=TRUE}
+library(raster)
 values(r) <- runif(ncell(r))
 r
 ```
@@ -158,7 +165,7 @@ To visually examine the created `RasterLayer`, we can use `raster`'s built-in pl
 </small>):
 
 ```{r dependson='raster-example2', message=FALSE, warning=FALSE, fig.height=7, fig.width=7, fig.align='center'}
-plot(r)
+raster::plot(r)
 ```
 
 In landscape ecology it is quite usual to try and infer ecological dynamics using multiple environmental datasets derived from the same geographical area.
@@ -171,9 +178,9 @@ means that all layer share a single reference for dimensions and extent (which o
 ```{r dependson='raster-example2', message=FALSE, warning=FALSE, fig.height=7, fig.width=7, fig.align='center'}
 r2 <- r * (abs(0.5 - r) * -2) + 1
 r3  <- NLMR::util_classify(r, c(0.5, 0.5))
-s <- stack(r, r2, r3)
+s <- raster::stack(r, r2, r3)
 s
-plot(s)
+raster::plot(s)
 ```
 
 ### Manipulation
@@ -190,7 +197,7 @@ dim(r)
 ```
 
 ```{r dependson='raster-example', message=FALSE, warning=FALSE}
-r <- raster(ncol=10, nrow=10, xmn=0, xmx=100, ymn=0, ymx=100)
+r <- raster::raster(ncol=10, nrow=10, xmn=0, xmx=100, ymn=0, ymx=100)
 res(r)
 res(r) <- 42
 res(r)
@@ -256,7 +263,7 @@ plot(m)
 All `Raster*` objects share common slots to store information.
 Perhaps the most interesting (the values) can be accessed via:
 
-```{r message=FALSE, warning=FALSE}
+```{r dependson='raster-example', message=FALSE, warning=FALSE}
 r <- raster(ncol=10, nrow=10)
 values(r) <- 1:ncell(r)
 
