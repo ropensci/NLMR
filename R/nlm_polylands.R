@@ -1,9 +1,9 @@
 #' nlm_polylands
 #'
-#' @description Simulate the NLM introduced in Gaucherel 2008.
+#' @description Simulate the NLM introduced in Gaucherel (2008).
 #'
 #' @details
-#' The function offers 2 of the 3 NLM described in Gaucheral.
+#' The function offers 2 of the 3 NLM described in Gaucherel (2008).
 #' The first one (\code{option = 1}) is a tessellation method.
 #' It generates a random point pattern (the germs) with an independent
 #' distribution and uses the voronoi tessellation to simulate the patchy
@@ -16,9 +16,9 @@
 #' parameter (0 - hardcore process; 1 - poission process) and interaction radius
 #' (distance of points/germs being apart).
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -40,7 +40,13 @@
 #' @return RasterLayer
 #'
 #' @examples
-#' nlm_polylands(nCol = 50, nRow = 50, germs = 20)
+#' # simulate polygonal landscapes
+#' poly_lands <- nlm_polylands(ncol = 30, nrow = 30, germs = 20)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(poly_lands)
+#' }
 #'
 #' @references
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
@@ -52,29 +58,30 @@
 #' @export
 #'
 
-nlm_polylands <- function(nCol,
-                          nRow,
+nlm_polylands <- function(ncol,
+                          nrow,
                           resolution = 1,
                           option = 1,
                           germs,
                           g,
                           R,
                           patch_classes,
-                          rescale = TRUE){
+                          rescale = TRUE) {
 
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(option, positive = TRUE)
   checkmate::assert_numeric(germs)
   if (!missing(g)) checkmate::assert_numeric(g)
   if (!missing(R)) checkmate::assert_numeric(R)
-  if (!missing(patch_classes)) checkmate::assert_count(patch_classes, positive = TRUE)
+  if (!missing(patch_classes)) checkmate::assert_count(patch_classes,
+                                                       positive = TRUE)
 
   # Tessellation method ----
-  if(option == 1){
+  if (option == 1) {
 
     # generate the germs from which the polygons are build ----
     X <- spatstat::runifpoint(germs)
@@ -83,39 +90,38 @@ nlm_polylands <- function(nCol,
     tess_surface <- spatstat::dirichlet(X)
 
     # whole bunch of conversions to get a raster in the end ----
-    tess_im <- spatstat::as.im(tess_surface, dimyx=c(nCol, nRow))
+    tess_im <- spatstat::as.im(tess_surface, dimyx = c(nrow, ncol))
     tess_data <- raster::as.data.frame(tess_im)
     sp::coordinates(tess_data) <- ~ x + y
     sp::gridded(tess_data) <- TRUE
     polylands_raster <- raster::deratify(raster::raster(tess_data))
-    polylands_raster <- raster::crop(polylands_raster,
-                                     raster::extent(0,1,0,1))
+    polylands_raster <- raster::crop(
+      polylands_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
     # specify resolution ----
-    raster::extent(polylands_raster) <- c(0,
-                                          ncol(polylands_raster)*resolution,
-                                          0,
-                                          nrow(polylands_raster)*resolution)
-
+    raster::extent(polylands_raster) <- c(
+      0,
+      ncol(polylands_raster) * resolution,
+      0,
+      nrow(polylands_raster) * resolution
+    )
   }
 
   # Gibbs algorithm method  ----
-  if(option == 2){
+  if (option == 2) {
 
     # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-    ## INFO: the Strauss process starts with a given Number of points and
-    ##       uses a minimization approach to fit a point pattern with a
-    ##       given interaction parameter (0 - hardcore proces;, 1 - poission
-    ##       process) and interaction radius (distance of points/germs being
-    ##       apart).
-    X <- spatstat::rStrauss(200, gamma = g, R= R)
+    x <- spatstat::rStrauss(200, gamma = g, R = R)
 
     # ... and randomly allocate attribute class (here point pattern mark)
-    m <- sample(1:patch_classes, X$n, replace=TRUE)
-    spatstat::marks(X) <- m
+    m <- sample(1:patch_classes, x$n, replace = TRUE)
+    spatstat::marks(x) <- m
 
     # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
-    strauss_points <- maptools::as.SpatialPointsDataFrame.ppp(X)
+    strauss_points <- data.frame(x)
+    sp::coordinates(strauss_points) <- ~ x + y
 
     # Create a tessellated surface ----
     strauss_tess <- dismo::voronoi(strauss_points)
@@ -125,28 +131,35 @@ nlm_polylands <- function(nCol,
       sp::over(strauss_tess, strauss_points, fn = mean)
 
     # Coerce to raster  ----
-    strauss_spdf   <-
+    strauss_spdf <-
       sp::SpatialPolygonsDataFrame(strauss_tess, strauss_values)
 
     polylands_raster <-
-      raster::rasterize(strauss_spdf,
-                        raster::raster(nrow = nRow,
-                                       ncol = nCol,
-                                       resolution = c(1/nCol, 1/nRow),
-                                       ext = raster::extent(strauss_spdf)),
-                        field = strauss_spdf@data[, 1])
+      raster::rasterize(
+        strauss_spdf,
+        raster::raster(
+          nrow = nrow,
+          ncol = ncol,
+          resolution = c(1 / ncol, 1 / nrow),
+          ext = raster::extent(strauss_spdf)
+        ),
+        field = strauss_spdf@data[, 1]
+      )
 
 
 
-    polylands_raster <- raster::crop(polylands_raster,
-                                     raster::extent(0,1,0,1))
+    polylands_raster <- raster::crop(
+      polylands_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
     # specify resolution ----
-    raster::extent(polylands_raster) <- c(0,
-                                          ncol(polylands_raster)*resolution,
-                                          0,
-                                          nrow(polylands_raster)*resolution)
-
+    raster::extent(polylands_raster) <- c(
+      0,
+      ncol(polylands_raster) * resolution,
+      0,
+      nrow(polylands_raster) * resolution
+    )
   }
 
   # Rescale values to 0-1 ----
@@ -156,4 +169,3 @@ nlm_polylands <- function(nCol,
 
   return(polylands_raster)
 }
-

@@ -12,14 +12,14 @@ util_binarize(x, breaks)
 \item{breaks}{a vector with one or more break percentages}
 }
 \value{
-RasterBrick
+RasterLayer / RasterBrick
 }
 \description{
-Reclassify continuous raster values into binary map cells based upon given
+Classify continuous raster values into binary map cells based upon given
 break(s).
 }
 \details{
-Breaks are considerred to be habitat percentages (p). If more than
+Breaks are considered to be habitat percentages (p). If more than
 one percentage is given multiple layers are written in the same brick.
 }
 \examples{

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_fBM — nlm_fBm • NLMR</title>
+<title>nlm_fBm — nlm_fBm • NLMR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -51,7 +51,14 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
+<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
      
@@ -65,9 +72,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -120,26 +124,26 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>nlm_fBM</h1>
+    <h1>nlm_fBm</h1>
     </div>
 
     
-    <p>Simulate two-dimensional fractional brownian motion model.</p>
+    <p>Simulates two-dimensional fractional brownian motion model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>nlm_fBm</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -149,9 +153,9 @@ Number of rows for the raster.</p></td>
 Resolution of the raster.</p></td>
     </tr>
     <tr>
-      <th>H</th>
+      <th>fract_dim</th>
       <td><p>[<code>numerical(1)</code>]
-Hurst coefficient</p></td>
+numeric in (0,2]; refers to the fractal dimension of the process</p></td>
     </tr>
     <tr>
       <th>user_seed</th>
@@ -171,20 +175,35 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient H. An H of 1 produces a relatively smooth surface while an H of 0 produces a rough, uncorrelated, surface. Implementation of this method is limited to landscapes with extents less than 90 by 90 cells.</p>
+    <p>Neutral landscapes are generated using fractional Brownian motion,
+ an extension of Brownian motion in which the amount of correlation between
+  steps is controlled by the Hurst coefficient H. An H of 1 produces a
+   relatively smooth surface while an H of 0 produces a rough, uncorrelated,
+    surface. Implementation of this method is limited to landscapes with
+     extents less than 90 by 90 cells.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
+Kirstin Strokorb (2015). Analysis, Simulation and Prediction of Multivariate
+Random Fields with Package RandomFields. <em>Journal of Statistical
+Software</em>, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_fBm</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>40</span>, <span class='kw'>H</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 40, 40, 1600  (nrow, ncol, ncell)
+    <pre class="examples"><div class='input'><span class='co'># simulate fractional brownian motion</span>
+(<span class='no'>fBm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fBm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>0.8</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 30, 20, 600  (nrow, ncol, ncell)
 #&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 40, 0, 40  (xmin, xmax, ymin, ymax)
+#&gt; extent      : 0, 20, 0, 30  (xmin, xmax, ymin, ymax)
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>fBm_raster</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -194,6 +213,8 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -203,7 +224,7 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

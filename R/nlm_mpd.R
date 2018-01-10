@@ -1,6 +1,6 @@
 #' nlm_mpd
 #'
-#' @description Create a midpoint displacement neutral landscape model.
+#' @description Simulate a midpoint displacement neutral landscape model.
 #'
 #' @details
 #' The algorithm is a direct implementation of the midpoint displacement
@@ -9,7 +9,7 @@
 #'
 #' \itemize{
 #'  \item{Initialization: }{ Determine the smallest fit of
-#'  \code{max(nCol, nRow)} in \emph{n^2 + 1} and assign value to n.
+#'  \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n.
 #'  Setup matrix of size (n^2 + 1)*(n^2 + 1).
 #'  Afterwards, assign a random value to the four corners of the matrix.}
 #'  \item{Diamond Step: }{ For each square in the matrix, assign the average of
@@ -31,9 +31,9 @@
 #' https://commons.wikimedia.org/w/index.php?curid=42510593)
 #'
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -52,48 +52,55 @@
 #' @references  \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}
 #'
 #' @examples
-#' nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 #'
+#' # simulate midpoint displacement
+#' midpoint_displacememt <- nlm_mpd(ncol = 200,
+#'                                  nrow = 200,
+#'                                  roughness = 0.6)
+#'\dontrun{
+#' # visualize the NLM
+#' util_plot(midpoint_displacememt)
+#' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
 #'
 #' @export
 
-nlm_mpd  <-  function(nCol,
-                      nRow,
-                      resolution = 1,
-                      roughness = 0.5,
-                      rand_dev = 1,
-                      rescale = TRUE,
-                      verbose = TRUE){
+nlm_mpd <- function(ncol,
+                    nrow,
+                    resolution = 1,
+                    roughness = 0.5,
+                    rand_dev = 1,
+                    rescale = TRUE,
+                    verbose = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(roughness)
   checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
   checkmate::assert_logical(rescale)
 
   # Init size of matrix (width and height 2^n + 1) and the corresponding matrix
-  max_dim <-  max(nRow, nCol)
-  N       <- as.integer(ceiling(base::log(max_dim - 1, 2)))
-  size    <-  2 ** N + 1
+  max_dim <- max(nrow, ncol)
+  N <- as.integer(ceiling(base::log(max_dim - 1, 2)))
+  size <- 2 ** N + 1
 
   # setup matrix ----
   mpd_raster <- matrix(0, nrow = size, ncol = size)
 
   # Main loop  ----
-  for (side.length in 2^(N:1)) {
+  for (side.length in 2 ^ (N:1)) {
     half.side <- side.length / 2
 
     # Square step  ----
-    for (col in seq(1, size - 1, by=side.length)) {
-      for (row in seq(1, size - 1, by=side.length)) {
+    for (col in seq(1, size - 1, by = side.length)) {
+      for (row in seq(1, size - 1, by = side.length)) {
         avg <- mean(c(
-          mpd_raster[row, col],                            # upper left
-          mpd_raster[row + side.length, col],              # lower left
-          mpd_raster[row, col + side.length],              # upper right
+          mpd_raster[row, col], # upper left
+          mpd_raster[row + side.length, col], # lower left
+          mpd_raster[row, col + side.length], # upper right
           mpd_raster[row + side.length, col + side.length] # lower right
         ))
         avg <- avg + stats::rnorm(1, 0, rand_dev)
@@ -103,41 +110,39 @@ nlm_mpd  <-  function(nCol,
     }
 
     # Diamond step  ----
-    for (row in seq(1, size, by=half.side)) {
-      for (col in seq((col+half.side) %% side.length, size, side.length)) {
-
+    for (row in seq(1, size, by = half.side)) {
+      for (col in seq( (col + half.side) %% side.length, size, side.length)) {
         avg <- mean(c(
-          mpd_raster[(row - half.side + size) %% size, col],# above
-          mpd_raster[(row + half.side) %% size, col],       # below
-          mpd_raster[row, (col + half.side) %% size],       # right
-          mpd_raster[row, (col - half.side) %% size]        # left
+          mpd_raster[(row - half.side + size) %% size, col], # above
+          mpd_raster[(row + half.side) %% size, col], # below
+          mpd_raster[row, (col + half.side) %% size], # right
+          mpd_raster[row, (col - half.side) %% size] # left
         ))
         mpd_raster[row, col] <- avg + stats::rnorm(1, 0, rand_dev)
 
-        if (row == 0) { mpd_raster[size - 1, col] = avg }
-        if (col == 0) { mpd_raster[row, size - 1] = avg }
+        if (row == 0) {
+          mpd_raster[size - 1, col] <- avg
+        }
+        if (col == 0) {
+          mpd_raster[row, size - 1] <- avg
+        }
       }
     }
 
     # Redudce value for displacement by roughness ----
     rand_dev <- rand_dev * roughness
-
   }
-
-  # Remove artificial boundaries ----
-  mpd_raster <- mpd_raster[-1,]
-  mpd_raster <- mpd_raster[,-1]
-  mpd_raster <- mpd_raster[,-max(ncol(mpd_raster))]
-  mpd_raster <- mpd_raster[-max(nrow(mpd_raster)),]
 
   # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)
 
   # specify resolution ----
-  raster::extent(mpd_raster) <- c(0,
-                                        ncol(mpd_raster)*resolution,
-                                        0,
-                                        nrow(mpd_raster)*resolution)
+  raster::extent(mpd_raster) <- c(
+    0,
+    ncol(mpd_raster) * resolution,
+    0,
+    nrow(mpd_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -145,9 +150,8 @@ nlm_mpd  <-  function(nCol,
   }
 
   if (verbose == TRUE) {
-  message("nlm_mpd returns RasterLayer with that fits in the dimension 2^n+1")
+    message("nlm_mpd returns RasterLayer that fits in the dimension 2^n+1")
   }
 
   return(mpd_raster)
-
 }

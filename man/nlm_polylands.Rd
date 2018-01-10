@@ -4,14 +4,14 @@
 \alias{nlm_polylands}
 \title{nlm_polylands}
 \usage{
-nlm_polylands(nCol, nRow, resolution = 1, option = 1, germs, g, R,
+nlm_polylands(ncol, nrow, resolution = 1, option = 1, germs, g, R,
   patch_classes, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -41,10 +41,10 @@ Otherwise, the distance in raster units is calculated.}
 RasterLayer
 }
 \description{
-Simulate the NLM introduced in Gaucherel 2008.
+Simulate the NLM introduced in Gaucherel (2008).
 }
 \details{
-The function offers 2 of the 3 NLM described in Gaucheral.
+The function offers 2 of the 3 NLM described in Gaucherel (2008).
 The first one (\code{option = 1}) is a tessellation method.
 It generates a random point pattern (the germs) with an independent
 distribution and uses the voronoi tessellation to simulate the patchy
@@ -58,7 +58,13 @@ parameter (0 - hardcore process; 1 - poission process) and interaction radius
 (distance of points/germs being apart).
 }
 \examples{
-nlm_polylands(nCol = 50, nRow = 50, germs = 20)
+# simulate polygonal landscapes
+poly_lands <- nlm_polylands(ncol = 30, nrow = 30, germs = 20)
+
+\dontrun{
+# visualize the NLM
+util_plot(poly_lands)
+}
 
 }
 \references{

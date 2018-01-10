@@ -20,21 +20,31 @@ reference:
       - '`nlm_randomelement`'
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
+      - '`nlm_wheys`'
   - title: Metrics
     desc: ~
     contents:
       - '`metric_area`'
+  - title: Theme
+    desc: ~
+    contents:
+      - '`theme_nlm`'
   - title: Utility Functions
     desc: ~
     contents:
       - '`util_binarize`'
       - '`util_classify`'
+      - '`util_import_roboto_condensed`'
       - '`util_merge`'
       - '`util_plot`'
+      - '`util_raster2tibble`'
       - '`util_rescale`'
 navbar:
   title: NLMR | Neutral landscape models with R
   left:
+    - text: "Get Started"
+      icon: fa fa-magic
+      href: articles/getstarted.html
     - text: "How To"
       icon: fa-graduation-cap
       menu:
@@ -42,8 +52,6 @@ navbar:
          href: articles/background.html
       -  text: NLMR Bestiary
          href: articles/bestiary.html
-      -  text: Quickstart Guide
-         href: articles/BasicUsageVignette.html
     - text: "Publication Record"
       icon: fa-file-text-o
       href: articles/publication_record.html

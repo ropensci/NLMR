@@ -51,7 +51,14 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
+<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
      
@@ -65,9 +72,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -145,13 +149,13 @@ vector of cumulative proportions.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Numerical vector with boundaries for matrix classifcation</p>
+    <p>Numerical vector with boundaries for matrix classification</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(<span class='fu'>runif</span>(<span class='fl'>100</span>,<span class='fl'>0</span>,<span class='fl'>1</span>),<span class='fl'>10</span>,<span class='fl'>10</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_w2cp.html'>util_w2cp</a></span>(<span class='fu'>c</span>(<span class='fl'>0.5</span>, <span class='fl'>0.25</span>, <span class='fl'>0.25</span>)) <span class='co'>#cumulative proportion</span>
-<span class='fu'>util_calc_boundaries</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt; [1] 0.4801023 0.6981662 0.9809212</div><div class='input'>
+<span class='fu'>util_calc_boundaries</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt; [1] 0.4818830 0.8191662 0.9945974</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -169,7 +173,7 @@ vector of cumulative proportions.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

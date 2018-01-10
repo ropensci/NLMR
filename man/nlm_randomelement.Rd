@@ -4,13 +4,13 @@
 \alias{nlm_randomelement}
 \title{nlm_randomelement}
 \usage{
-nlm_randomelement(nCol, nRow, resolution = 1, n, rescale = TRUE)
+nlm_randomelement(ncol, nrow, resolution = 1, n, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -35,8 +35,12 @@ uniformly distributed random value. The cells are then converted to a point
 pattern and interpolated by voronoi tessellation.
 }
 \examples{
-nlm_randomelement(nCol = 10, nRow = 10, n = 10)
-
+# simulate random elements
+random_element <- nlm_randomelement(ncol = 20, nrow = 20, n = 10)
+\dontrun{
+# visualize the NLM
+util_plot(random_element)
+}
 }
 \references{
 Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software

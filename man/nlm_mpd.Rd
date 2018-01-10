@@ -4,14 +4,14 @@
 \alias{nlm_mpd}
 \title{nlm_mpd}
 \usage{
-nlm_mpd(nCol, nRow, resolution = 1, roughness = 0.5, rand_dev = 1,
+nlm_mpd(ncol, nrow, resolution = 1, roughness = 0.5, rand_dev = 1,
   rescale = TRUE, verbose = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -34,7 +34,7 @@ the algorithm.}
 RasterLayer
 }
 \description{
-Create a midpoint displacement neutral landscape model.
+Simulate a midpoint displacement neutral landscape model.
 }
 \details{
 The algorithm is a direct implementation of the midpoint displacement
@@ -43,7 +43,7 @@ It performs the following steps:
 
 \itemize{
  \item{Initialization: }{ Determine the smallest fit of
- \code{max(nCol, nRow)} in \emph{n^2 + 1} and assign value to n.
+ \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n.
  Setup matrix of size (n^2 + 1)*(n^2 + 1).
  Afterwards, assign a random value to the four corners of the matrix.}
  \item{Diamond Step: }{ For each square in the matrix, assign the average of
@@ -65,8 +65,15 @@ algorithm on a 5 × 5 matrix:
 https://commons.wikimedia.org/w/index.php?curid=42510593)
 }
 \examples{
-nlm_mpd(nCol = 100, nRow = 100, roughness = 0.2)
 
+# simulate midpoint displacement
+midpoint_displacememt <- nlm_mpd(ncol = 200,
+                                 nrow = 200,
+                                 roughness = 0.6)
+\dontrun{
+# visualize the NLM
+util_plot(midpoint_displacememt)
+}
 }
 \references{
 \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}

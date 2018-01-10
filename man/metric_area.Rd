@@ -4,7 +4,7 @@
 \alias{metric_area}
 \title{metric_area}
 \usage{
-metric_area(x, poi = NA)
+metric_area(x, poi = NULL)
 }
 \arguments{
 \item{x}{[\code{Raster* object}]}

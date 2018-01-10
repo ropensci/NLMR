@@ -2,9 +2,9 @@
 #'
 #' @description Simulates a random rectangular cluster neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -22,8 +22,12 @@
 #' @return Raster layer with values between 0 and 1
 #'
 #' @examples
-#' nlm_randomelement(nCol = 10, nRow = 10, n = 10)
-#'
+#' # simulate random elements
+#' random_element <- nlm_randomelement(ncol = 20, nrow = 20, n = 10)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(random_element)
+#' }
 #' @references
 #' Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
 #' package for the creation of neutral landscape models within a general
@@ -35,31 +39,30 @@
 #' @export
 #'
 
-nlm_randomelement <- function(nCol,
-                              nRow,
+nlm_randomelement <- function(ncol,
+                              nrow,
                               resolution = 1,
                               n,
                               rescale = TRUE) {
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_count(n, positive = TRUE)
-  checkmate::assert_true(n < nRow * nCol)
+  checkmate::assert_true(n < nrow * ncol)
   checkmate::assert_logical(rescale)
 
-  # Create an empty matrix dimension nCol * nRow ---
-  matrix <- matrix(NA, nRow, nCol)
+  # Create an empty matrix dimension ncol * nrow ---
+  matrix <- matrix(NA, nrow, ncol)
 
   # Insert value for n elements ----
   for (element in seq(1, n)) {
-    random_col <- sample(c(1:nCol), 1)
-    random_row <- sample(c(1:nRow), 1)
+    random_col <- sample(c(1:ncol), 1)
+    random_row <- sample(c(1:nrow), 1)
 
     if (is.na(matrix[random_row, random_col])) {
-      matrix[random_row, random_col]  <- stats::runif(1, 0, 1)
+      matrix[random_row, random_col] <- stats::runif(1, 0, 1)
     }
-
   }
 
   # Convert matrix cells with values to Points, NA = empty space ----
@@ -72,33 +75,40 @@ nlm_randomelement <- function(nCol,
   # Fill tessellated surface with values from points
   randomelement_values <-
     sp::over(randomelement_tess, randomelement_point, fn = mean)
-  randomelement_spdf   <-
+  randomelement_spdf <-
     sp::SpatialPolygonsDataFrame(randomelement_tess, randomelement_values)
 
   randomelement_raster <-
-    raster::rasterize(randomelement_spdf,
-                      raster::raster(nrow = nRow,
-                                     ncol = nCol,
-                                     resolution = c(1/nCol, 1/nRow),
-                                     ext = raster::extent(randomelement_spdf)),
-                                     field = randomelement_spdf@data[, 1])
+    raster::rasterize(
+      randomelement_spdf,
+      raster::raster(
+        nrow = nrow,
+        ncol = ncol,
+        resolution = c(1 / ncol, 1 / nrow),
+        ext = raster::extent(randomelement_spdf)
+      ),
+      field = randomelement_spdf@data[, 1]
+    )
 
 
-  randomelement_raster <- raster::crop(randomelement_raster,
-                                       raster::extent(0,1,0,1))
+  randomelement_raster <- raster::crop(
+    randomelement_raster,
+    raster::extent(0, 1, 0, 1)
+  )
 
   # specify resolution ----
-  raster::extent(randomelement_raster) <- c(0,
-                                       ncol(randomelement_raster)*resolution,
-                                       0,
-                                       nrow(randomelement_raster)*resolution)
+  raster::extent(randomelement_raster) <- c(
+    0,
+    ncol(randomelement_raster) * resolution,
+    0,
+    nrow(randomelement_raster) * resolution
+  )
 
 
-   # Rescale values to 0-1
+  # Rescale values to 0-1
   if (rescale == TRUE) {
     randomelement_raster <- util_rescale(randomelement_raster)
   }
 
   return(randomelement_raster)
-
 }

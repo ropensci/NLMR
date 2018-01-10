@@ -51,7 +51,14 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
+<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
      
@@ -65,9 +72,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -124,23 +128,24 @@
     </div>
 
     
-    <p>Simulate spatially correlated random fields (Gaussian random fields) model.</p>
+    <p>Simulates a spatially correlated random fields (Gaussian random
+fields) model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>beta</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>0.01</span>, <span class='fl'>0.005</span>), <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"random"</span>, <span class='kw'>angle</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_gaussianfield</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>0.2</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -160,24 +165,19 @@ Maximal distance of spatial autocorrelation</p></td>
 Magnitude of variation in the field</p></td>
     </tr>
     <tr>
-      <th>beta</th>
-      <td><p>[<code>numerical(1)</code>]
-Mean value over the field.</p></td>
-    </tr>
-    <tr>
       <th>nug</th>
       <td><p>[<code>numerical(1)</code>]
 Small-scale variations in the field.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>[<code>character("random" | "linear")</code>]
-Direction of the gradient. Either random, or with a linear trend (default).</p></td>
+      <th>mean</th>
+      <td><p>[<code>numerical(1)</code>]
+Mean value over the field.</p></td>
     </tr>
     <tr>
-      <th>angle</th>
+      <th>user_seed</th>
       <td><p>[<code>numerical(1)</code>]
-Maximal distance of spatial autocorrelation</p></td>
+Set Seed for simulation</p></td>
     </tr>
     <tr>
       <th>rescale</th>
@@ -192,15 +192,14 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_gaussianfield</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='fl'>5</span>)</div><div class='output co'>#&gt; [using unconditional Gaussian simulation]</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
-#&gt; resolution  : 5, 5  (x, y)
-#&gt; extent      : 0, 500, 0, 500  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : sim1 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># simulate random gaussian field</span>
+<span class='no'>gaussian_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_gaussianfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>90</span>,
+                                    <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+                                    <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+                                    <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>gaussian_field</span>)
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -218,7 +217,7 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

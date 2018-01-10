@@ -1,13 +1,28 @@
 Package: NLMR
 Type: Package
-Title: Simulating Neutral Landscape Models with R
-Version: 0.1.0
-Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = "Department of Ecosystem Modelling, University of Goettingen"),
-            person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut"), comment = "Department of Ecosystem Modelling, University of Goettingen"),
-            person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("aut"), comment = "Leibniz Institute for Zoo and Wildlife Research, Berlin"),
-            person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut"), comment = "Department of Ecosystem Modelling, University of Goettingen"))
-Description: Simulates more than 16 neutral landscape models and offers utility functions to work with them.                                                                                              
+Title: Simulating Neutral Landscape Models
+Version: 0.2
+Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
+    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
+    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
+    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
+Description: Provides neutral landscape models 
+    (Gardner et al. 1987 <doi:10.1007/BF02275262>,
+    With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
+    existing landscape analyses. Neutral landscape models range from "hard" 
+    neutral models (only random functions) to "soft" ones (with parameters) and 
+    generate landscape patterns that are not grounded in ecological reasoning.
+    Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
+    combines a large number of algorithms from published software (Saura & 
+    Martínez 2000   <doi:10.1023/A:1008107902848>, Etherington et
+    al. 2015 <doi:10.1111/2041-210X.12308>) for simulating neutral landscapes and
+    includes utility functions to classify and combine the landscapes. The 
+    simulation results are obtained in a geospatial data format (raster* objects 
+    from the 'raster' package) and can, therefore, be used 
+    in any sort of raster data operation that is performed with standard 
+    observation data.                                                                                            
 License: GPL-3
+Copyright: file inst/COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -19,21 +34,18 @@ Imports:
     dismo,
     dplyr,
     ggplot2,
-    gstat,
     igraph,
-    lemon,
     magrittr,
-    maptools,
     purrr,
     RandomFields,
     raster,
     rasterVis,
-    R.utils,
     sp,
     spatstat,
     stats,
     tibble,
-    viridis
+    viridis,
+    extrafont
 URL: https://marcosci.github.io/NLMR/
 BugReports: https://github.com/marcosci/NLMR/issues/
 Suggests:

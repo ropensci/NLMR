@@ -4,15 +4,15 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(nCol, nRow, resolution = 1, autocorr_range = 10,
-  mag_var = 0.025, beta = c(1, 0.01, 0.005), nug = 1,
-  direction = "random", angle = 1, rescale = TRUE)
+nlm_gaussianfield(ncol, nrow, resolution = 1, autocorr_range = 10,
+  mag_var = 5, nug = 0.2, mean = 0.5, user_seed = NULL,
+  rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -24,17 +24,14 @@ Maximal distance of spatial autocorrelation}
 \item{mag_var}{[\code{numerical(1)}]\cr
 Magnitude of variation in the field}
 
-\item{beta}{[\code{numerical(1)}]\cr
-Mean value over the field.}
-
 \item{nug}{[\code{numerical(1)}]\cr
 Small-scale variations in the field.}
 
-\item{direction}{[\code{character("random" | "linear")}]\cr
-Direction of the gradient. Either random, or with a linear trend (default).}
+\item{mean}{[\code{numerical(1)}]\cr
+Mean value over the field.}
 
-\item{angle}{[\code{numerical(1)}]\cr
-Maximal distance of spatial autocorrelation}
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set Seed for simulation}
 
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
@@ -43,9 +40,19 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate spatially correlated random fields (Gaussian random fields) model.
+Simulates a spatially correlated random fields (Gaussian random
+fields) model.
 }
 \examples{
-nlm_gaussianfield(nCol = 100, nRow = 100, 5)
+# simulate random gaussian field
+gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+                                    autocorr_range = 10,
+                                    mag_var = 3,
+                                    nug = 0.01)
+
+\dontrun{
+# visualize the NLM
+util_plot(gaussian_field)
+}
 
 }

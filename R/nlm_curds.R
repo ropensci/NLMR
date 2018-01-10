@@ -4,21 +4,29 @@
 #'
 #' @details Random curdling recursively subdivides the plane into blocks.
 #' At each level of the recursion, a fraction of the this block is declared as
-#' habitat (1) while the remaing stays matrix (0).
+#' habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
 #'
 #' @param p [\code{numerical(x)}]\cr
-#' Vector with percentage(s) to cut of (fill with matrix (zeroes)).
+#' Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+#' TRUE)).
 #' @param s [\code{numerical(x)}]\cr
 #' Vector of successive cutting steps for the blocks (split 1 block into x
 #' blocks).
-#' @param ext  [\code{numerical(1)}]\cr
+#' @param ext [\code{numerical(1)}]\cr
 #' Extent of the resulting raster (0,x,0,x).
 #'
 #' @return raster
 #'
 #' @examples
-#' nlm_curds(c(0.25, 0.25, 0.5), c(64, 8, 1))
 #'
+#' # simulate random curdling
+#' (random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2)))
+#' \dontrun{
+#' # Visualize the NLM
+#' util_plot(random_curdling, discrete = TRUE)
+#' }
+#'
+#' @seealso \code{\link{nlm_wheys}}
 #'
 #' @references
 #' Keitt TH. 2000. Spectral representation of neutral landscapes.
@@ -42,6 +50,9 @@ nlm_curds <- function(p,
 
   # supposed to be faster if initialized with false and inverted in the end
   curd_raster <- raster::raster(matrix(FALSE, 1, 1))
+
+  # convert amount of curds to amount of matrix to follow algorithm logic
+  p <- 1 - p
 
   for (i in seq_along(s)) {
 
@@ -68,10 +79,12 @@ nlm_curds <- function(p,
   raster::values(curd_raster) <- !raster::values(curd_raster)
 
   # set resolution ----
-  raster::extent(curd_raster) <- c(0,
-                                   ext,
-                                   0,
-                                   ext)
+  raster::extent(curd_raster) <- c(
+    0,
+    ext,
+    0,
+    ext
+  )
 
   return(curd_raster)
 }

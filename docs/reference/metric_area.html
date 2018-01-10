@@ -51,7 +51,14 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
+<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
      
@@ -65,9 +72,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -127,7 +131,7 @@
     <p>Report area for each of the constituent values making up a matrix</p>
     
 
-    <pre class="usage"><span class='fu'>metric_area</span>(<span class='no'>x</span>, <span class='kw'>poi</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
+    <pre class="usage"><span class='fu'>metric_area</span>(<span class='no'>x</span>, <span class='kw'>poi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -157,24 +161,20 @@
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='util_classify.html'>util_classify</a></span>(<span class='no'>x</span>, <span class='no'>y</span>)
 
 <span class='fu'>metric_area</span>(<span class='no'>z</span>)</div><div class='output co'>#&gt; $Total_Area
-#&gt; # A tibble: 6 x 2
+#&gt; # A tibble: 3 x 2
 #&gt;   count class
-#&gt;   &lt;dbl&gt; &lt;lgl&gt;
-#&gt; 1    NA    NA
-#&gt; 2    NA    NA
-#&gt; 3    NA    NA
-#&gt; 4    NA    NA
-#&gt; 5    NA    NA
-#&gt; 6    NA    NA
+#&gt;   &lt;dbl&gt; &lt;int&gt;
+#&gt; 1  4999     0
+#&gt; 2  2500     1
+#&gt; 3  2501     2
 #&gt; 
 #&gt; $Proportion_Area
+#&gt; # A tibble: 3 x 2
 #&gt;   count class
-#&gt; 1    NA    NA
-#&gt; 2    NA    NA
-#&gt; 3    NA    NA
-#&gt; 4    NA    NA
-#&gt; 5    NA    NA
-#&gt; 6    NA    NA
+#&gt;   &lt;dbl&gt; &lt;int&gt;
+#&gt; 1 0.500     0
+#&gt; 2 0.250     1
+#&gt; 3 0.250     2
 #&gt; </div><div class='input'>
 </div></pre>
   </div>
@@ -195,7 +195,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

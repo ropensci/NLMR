@@ -20,12 +20,9 @@
 #'
 
 util_rescale <- function(x) {
-
   rescaled_NLM <-
-      (x - raster::cellStats(x, "min")) /
-                   (raster::cellStats(x, "max") - raster::cellStats(x, "min"))
+    (x - raster::cellStats(x, "min")) /
+      (raster::cellStats(x, "max") - raster::cellStats(x, "min"))
 
-    return(rescaled_NLM)
-
-
-  }
+  return(rescaled_NLM)
+}

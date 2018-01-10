@@ -1,4 +1,7 @@
-New submission
+## Updated package
+
+This update adds more functionality to the package and provides some additional
+bug fixes.
 
 ## Test environments
 
@@ -19,4 +22,4 @@ New submission
 
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+There are currently no reverse dependencies.

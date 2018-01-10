@@ -51,7 +51,14 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li>
+  <a href="../articles/getstarted.html">
+    <span class="fa fa fa fa-magic"></span>
+     
+    Get Started
+  </a>
+</li>
+<li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fa fa-graduation-cap"></span>
      
@@ -65,9 +72,6 @@
     </li>
     <li>
       <a href="../articles/bestiary.html">NLMR Bestiary</a>
-    </li>
-    <li>
-      <a href="../articles/BasicUsageVignette.html">Quickstart Guide</a>
     </li>
   </ul>
 </li>
@@ -124,21 +128,21 @@
     </div>
 
     
-    <p>Simulate a distance gradient neutral landscape model..</p>
+    <p>Simulate a distance gradient neutral landscape model.</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_distancegradient</span>(<span class='no'>nCol</span>, <span class='no'>nRow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>origin</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_distancegradient</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>origin</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>nCol</th>
+      <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
-      <th>nRow</th>
+      <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]
 Number of rows for the raster.</p></td>
     </tr>
@@ -171,18 +175,28 @@ RasterLayer with the same extent. <code>Origin</code> is a numeric vector of
 xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
 distance is measured.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='nlm_edgegradient.html'>nlm_edgegradient</a></code>,
+<code><a href='nlm_planargradient.html'>nlm_planargradient</a></code></p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>nlm_distancegradient</span>(<span class='kw'>nCol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nRow</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>origin</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>10</span>, <span class='fl'>15</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+    <pre class="examples"><div class='input'>
+<span class='co'># simulate a distance gradient</span>
+(<span class='no'>distance_gradient</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_distancegradient</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                                           <span class='kw'>origin</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>10</span>, <span class='fl'>15</span>)))</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
 #&gt; resolution  : 1, 1  (x, y)
 #&gt; extent      : 0, 100, 0, 100  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : +proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 
+#&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div><span class='co'># NOT RUN {</span>
+<span class='co'># visualize the NLM</span>
+<span class='fu'>util_plot</span>(<span class='no'>distance_gradient</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -192,6 +206,8 @@ distance is measured.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -201,7 +217,7 @@ distance is measured.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Cédric Scherer, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
 </div>
 
 <div class="pkgdown">

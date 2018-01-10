@@ -4,19 +4,19 @@
 \alias{nlm_randomrectangularcluster}
 \title{nlm_randomrectangularcluster}
 \usage{
-nlm_randomrectangularcluster(nCol, nRow, resolution = 1, minL, maxL,
+nlm_randomrectangularcluster(ncol, nrow, resolution = 1, minl, maxl,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
+\item{ncol}{[\code{numerical(1)}]\cr Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
+\item{nrow}{[\code{numerical(1)}]\cr Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr Resolution of the raster.}
 
-\item{minL}{[\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.}
+\item{minl}{[\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.}
 
-\item{maxL}{[\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.}
+\item{maxl}{[\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
@@ -27,7 +27,14 @@ RasterLayer with random values ranging from 0-1.
 Create a random rectangular cluster neutral landscape model with values ranging 0-1.
 }
 \examples{
-nlm_randomrectangularcluster(nCol = 100, nRow = 100, minL = 5, maxL = 40)
-
+# simulate random rectangular cluster
+randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
+                                                          nrow = 30,
+                                                          minl = 5,
+                                                          maxl = 10)
+\dontrun{
+# visualize the NLM
+util_plot(randomrectangular_cluster)
+}
 
 }

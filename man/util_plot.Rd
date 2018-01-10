@@ -2,28 +2,21 @@
 % Please edit documentation in R/util_plot.R
 \name{util_plot}
 \alias{util_plot}
+\alias{util_plot}
+\alias{util_plot_grey}
 \title{util_plot}
 \usage{
-util_plot(x, scale = "A", discrete = FALSE, legendposition = "bottom",
-  legendtitle = "Z")
+util_plot(x, discrete = FALSE, ...)
+
+util_plot_grey(x, discrete = FALSE, ...)
 }
 \arguments{
 \item{x}{[\code{Raster* object}]}
 
-\item{scale}{[\code{character}(1)]
-Five options are available: "viridis - magma" (= "A",  the default option),
-                            "viridis - inferno" (= "B"),
-                            "viridis - plasma" (= "C"),
-                            "viridis - viridis" (= "D")}
-
 \item{discrete}{[\code{logical}(1)] If TRUE, the function plots a raster with
 a discrete legend.}
 
-\item{legendposition}{[\code{character}(1)] The position of legends
-("none", "left", "right", "bottom", "top")}
-
-\item{legendtitle}{[\code{character}(1)]
-Title for legend}
+\item{...}{Arguments for  \code{\link{theme_nlm}}}
 }
 \value{
 ggplot2 Object
@@ -32,14 +25,20 @@ ggplot2 Object
 Plot a Raster* object with the NLMR default theme
 }
 \examples{
-
-# With continuous data
-nlm_raster <- nlm_random(10,10)
-util_plot(nlm_raster, scale = "D")
-
-# With classified data
+\dontrun{
+# simulate NLM
+x <- NLMR::nlm_random(ncol = 25,
+                      nrow = 75)
+# classify
 y <- c(0.5, 0.15, 0.25)
-nlm_raster <- util_classify(nlm_raster, y)
-util_plot(nlm_raster, scale = "D", discrete = TRUE)
+y <- util_classify(x, y, c("1", "2", "3"))
+
+util_plot(x)
+util_plot(y, discrete = TRUE)
+
+util_plot_grey(x)
+util_plot_grey(y, discrete = TRUE)
+
+}
 
 }

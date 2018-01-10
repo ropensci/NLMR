@@ -2,9 +2,9 @@
 #'
 #' Simulates a random cluster nearest-neighbour neutral landscape.
 #'
-#' @param nCol [\code{integer(1)}]\cr
+#' @param ncol [\code{integer(1)}]\cr
 #' Number of columns in the raster.
-#' @param nRow  [\code{integer(1)}]\cr
+#' @param nrow  [\code{integer(1)}]\cr
 #' Number of rows in the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -23,7 +23,13 @@
 #' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labelling algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
 #'
 #' @examples
-#' nlm_randomcluster(nCol = 10, nRow = 10, resolution = 10, neighbourhood = 4, p = 0.4)
+#' # simulate random clustering
+#' random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10, resolution = 1,
+#'                                     neighbourhood = 4, p = 0.4)
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(random_cluster)
+#' }
 #'
 #' @references
 #' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
@@ -42,17 +48,17 @@
 #'
 
 
-nlm_randomcluster  <-
-  function(nCol,
-           nRow,
+nlm_randomcluster <-
+  function(ncol,
+           nrow,
            resolution = 1,
            neighbourhood = 4,
            p,
            rescale = TRUE) {
 
     # Check function arguments ----
-    checkmate::assert_count(nCol, positive = TRUE)
-    checkmate::assert_count(nRow, positive = TRUE)
+    checkmate::assert_count(ncol, positive = TRUE)
+    checkmate::assert_count(nrow, positive = TRUE)
     checkmate::assert_numeric(resolution)
     checkmate::assert_numeric(p)
     checkmate::assert_true(p <= 1)
@@ -60,12 +66,15 @@ nlm_randomcluster  <-
     checkmate::assert_logical(rescale)
 
     # Create percolation array
-    random_matrix <- raster::as.matrix(nlm_percolation(nCol, nRow, p, resolution = resolution))
+    random_matrix <- raster::as.matrix(nlm_percolation(ncol, nrow, p,
+                                                       resolution = resolution))
 
     # Cluster identification (clustering of adjoining pixels) ----
     suppressMessages(clusters <-
-                       raster::clump(raster::raster(random_matrix),
-                                     direction = neighbourhood))
+      raster::clump(
+        raster::raster(random_matrix),
+        direction = neighbourhood
+      ))
 
     # Number of individual clusters ----
     n_clusters <- max(raster::values(clusters), na.rm = TRUE)
@@ -73,7 +82,7 @@ nlm_randomcluster  <-
     # Create random set of values for each the clusters ----
     types <- factor(stats::runif(n_clusters, 0, 1))
     num_types <- as.numeric(types)
-    num_types <-  R.utils::insert(num_types, 1, 0)
+    num_types <- append(num_types, 0, after = 0)
 
     # Apply values by indexing by cluster ----
     clustertype <- sample(num_types, n_clusters, replace = TRUE)
@@ -90,16 +99,18 @@ nlm_randomcluster  <-
     # Fill tessellated surface with values from points ----
     randomcluster_values <-
       sp::over(randomcluster_tess, randomcluster_point, fn = mean)
-    randomcluster_spdf   <-
+    randomcluster_spdf <-
       sp::SpatialPolygonsDataFrame(randomcluster_tess, randomcluster_values)
 
     # Convert to raster ----
     randomcluster_raster <- raster::rasterize(
       randomcluster_spdf,
-      raster::raster(ncol=nCol,
-                     nrow=nRow,
-                     ext = raster::extent(randomcluster_spdf),
-                     resolution = c(1/nCol, 1/nRow)),
+      raster::raster(
+        ncol = ncol,
+        nrow = nrow,
+        ext = raster::extent(randomcluster_spdf),
+        resolution = c(1 / ncol, 1 / nrow)
+      ),
       field = randomcluster_spdf@data[, 1],
       fun = "mean",
       update = TRUE,
@@ -107,15 +118,19 @@ nlm_randomcluster  <-
       na.rm = TRUE
     )
 
-    randomcluster_raster <- raster::crop(randomcluster_raster,
-                                         raster::extent(0,1,0,1))
+    randomcluster_raster <- raster::crop(
+      randomcluster_raster,
+      raster::extent(0, 1, 0, 1)
+    )
 
 
     # specify resolution ----
-    raster::extent(randomcluster_raster) <- c(0,
-                                              ncol(randomcluster_raster)*resolution,
-                                              0,
-                                              nrow(randomcluster_raster)*resolution)
+    raster::extent(randomcluster_raster) <- c(
+      0,
+      ncol(randomcluster_raster) * resolution,
+      0,
+      nrow(randomcluster_raster) * resolution
+    )
 
 
     # Rescale values to 0-1 ----
@@ -124,6 +139,4 @@ nlm_randomcluster  <-
     }
 
     return(randomcluster_raster)
-
   }
-

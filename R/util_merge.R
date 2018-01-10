@@ -16,19 +16,22 @@
 #'
 
 
-util_merge <- function(primary_nlm, secondary_nlm, scalingfactor = 1, rescale = TRUE){
+util_merge <- function(primary_nlm,
+                       secondary_nlm,
+                       scalingfactor = 1,
+                       rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(scalingfactor)
+  checkmate::assert_number(scalingfactor)
   checkmate::assert_logical(rescale)
 
-  if(class(secondary_nlm) != "RasterStack"){
+  if (class(secondary_nlm) != "RasterStack") {
     secondary_nlm <- raster::stack(secondary_nlm)
   }
 
-  if(length(secondary_nlm@layers) > 1){
+  if (length(secondary_nlm@layers) > 1) {
     nlm_merge <- primary_nlm + (sum(secondary_nlm) * scalingfactor)
-  } else{
+  } else {
     nlm_merge <- primary_nlm + (secondary_nlm * scalingfactor)
   }
 
@@ -39,4 +42,3 @@ util_merge <- function(primary_nlm, secondary_nlm, scalingfactor = 1, rescale = 
 
   return(nlm_merge)
 }
-

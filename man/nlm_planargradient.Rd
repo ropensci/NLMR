@@ -4,14 +4,14 @@
 \alias{nlm_planargradient}
 \title{nlm_planargradient}
 \usage{
-nlm_planargradient(nCol, nRow, resolution = 1, direction = NA,
+nlm_planargradient(ncol, nrow, resolution = 1, direction = NA,
   rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -34,10 +34,20 @@ Create a planar gradient neutral landscape model.
 Simulates a linear gradient sloping in a specified or random direction.
 }
 \examples{
-nlm_planargradient(nCol = 100, nRow = 100)
+# simulate planar gradient
+planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
+
+\dontrun{
+# visualize the NLM
+util_plot(planar_gradient)
+}
 
 }
 \references{
 Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
 \emph{The American Naturalist}, 139, 375 - 397.
+}
+\seealso{
+\code{\link{nlm_distancegradient}},
+\code{\link{nlm_edgegradient}}
 }

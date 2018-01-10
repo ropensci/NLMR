@@ -2,9 +2,9 @@
 #'
 #' @description Create a planar gradient neutral landscape model.
 #'
-#' @param nCol [\code{numerical(1)}]\cr
+#' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
-#' @param nRow  [\code{numerical(1)}]\cr
+#' @param nrow  [\code{numerical(1)}]\cr
 #' Number of rows for the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
@@ -20,7 +20,16 @@
 #' Simulates a linear gradient sloping in a specified or random direction.
 #'
 #' @examples
-#' nlm_planargradient(nCol = 100, nRow = 100)
+#' # simulate planar gradient
+#' planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
+#'
+#' \dontrun{
+#' # visualize the NLM
+#' util_plot(planar_gradient)
+#' }
+#'
+#' @seealso \code{\link{nlm_distancegradient}},
+#' \code{\link{nlm_edgegradient}}
 #'
 #' @references
 #' Palmer, M.W. (1992) The coexistence of species in fractal landscapes.
@@ -33,15 +42,15 @@
 #'
 
 
-nlm_planargradient  <- function(nCol,
-                                nRow,
-                                resolution = 1,
-                                direction = NA,
-                                rescale = TRUE) {
+nlm_planargradient <- function(ncol,
+                               nrow,
+                               resolution = 1,
+                               direction = NA,
+                               rescale = TRUE) {
 
   # Check function arguments ----
-  checkmate::assert_count(nCol, positive = TRUE)
-  checkmate::assert_count(nRow, positive = TRUE)
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(direction)
   checkmate::assert_logical(rescale)
 
@@ -51,25 +60,27 @@ nlm_planargradient  <- function(nCol,
   }
 
   # Determine the eastness and southness of the direction ----
-  eastness   <- sin( (pi/180) * direction )
-  southness  <- cos( (pi/180) * direction  ) * -1
+  eastness <- sin( (pi / 180) * direction)
+  southness <- cos( (pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
-  col_index <- matrix(0:(nCol - 1), nCol, nRow)
-  row_index <- matrix(0:(nRow - 1), nCol, nRow, byrow = TRUE)
+  col_index <- matrix(0:(ncol - 1), nrow, ncol)
+  row_index <- matrix(0:(nrow - 1), nrow, ncol, byrow = TRUE)
 
   # Create gradient matrix ----
-  gradient_matrix  <-
+  gradient_matrix <-
     (southness * row_index + eastness * col_index)
 
   # Transform to raster ----
   gradient_raster <- raster::raster(gradient_matrix)
 
   # specify resolution ----
-  raster::extent(gradient_raster) <- c(0,
-                                  ncol(gradient_raster)*resolution,
-                                  0,
-                                  nrow(gradient_raster)*resolution)
+  raster::extent(gradient_raster) <- c(
+    0,
+    ncol(gradient_raster) * resolution,
+    0,
+    nrow(gradient_raster) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -77,5 +88,4 @@ nlm_planargradient  <- function(nCol,
   }
 
   return(gradient_raster)
-
 }

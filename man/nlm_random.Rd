@@ -4,13 +4,13 @@
 \alias{nlm_random}
 \title{nlm_random}
 \usage{
-nlm_random(nCol, nRow, resolution = 1, rescale = TRUE)
+nlm_random(ncol, nrow, resolution = 1, rescale = TRUE)
 }
 \arguments{
-\item{nCol}{[\code{numerical(1)}]\cr
+\item{ncol}{[\code{numerical(1)}]\cr
 Number of columns for the raster.}
 
-\item{nRow}{[\code{numerical(1)}]\cr
+\item{nrow}{[\code{numerical(1)}]\cr
 Number of rows for the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -32,7 +32,12 @@ RasterLayer with the same extent. Each raster cell is randomly assigned a
 value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
-nlm_random(nCol = 100, nRow = 100)
+# simulate spatially random model
+random <- nlm_random(ncol = 200, nrow = 100)
 
+\dontrun{
+# visualize the NLM
+util_plot(random)
+}
 
 }
