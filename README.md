@@ -33,14 +33,19 @@ library(NLMR)
 library(magrittr)
 #> 
 #> Attaching package: 'magrittr'
-#> The following object is masked from 'package:tidyr':
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
+#> The following object is masked from 'package:raster':
 #> 
 #>     extract
-#> The following object is masked from 'package:purrr':
-#> 
-#>     set_names
 library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
+#> 
+#> Attaching package: 'SDMTools'
+#> The following object is masked from 'package:raster':
+#> 
+#>     distance
 
 # Simulate 50x50 rectangular cluster raster
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl = 7)
@@ -75,16 +80,16 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1239|          475|                876|              4080|  1239|        475|        876|         0.7070218|     6.169014|        1.513346|        0.3833737|
-|        1|     628|          218|                544|              1968|   628|        218|        544|         0.8662420|     5.333333|        1.525068|        0.3471338|
-|        2|     633|          191|                586|              1946|   633|        191|        586|         0.9257504|     5.745098|        1.546252|        0.3017378|
+|        0|    1237|          533|                794|              4154|  1237|        533|        794|         0.6418755|     5.591549|        1.486084|        0.4308812|
+|        1|     622|          189|                590|              1898|   622|        189|        590|         0.9485531|     5.900000|        1.552580|        0.3038585|
+|        2|     641|          252|                516|              2048|   641|        252|        516|         0.8049922|     5.058823|        1.503881|        0.3931357|
 
 Citation
 --------
 
 To cite package `NLMR` in publications please use:
 
-    Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.1.1. https://github.com/marcosci/NLMR.
+    Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.2. https://github.com/marcosci/NLMR.
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 
