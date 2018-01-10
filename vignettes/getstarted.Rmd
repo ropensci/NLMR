@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: Citations.bib
 vignette: >
-  %\VignetteIndexEntry{Basic Usage of nlmR}
+  %\VignetteIndexEntry{Basic Usage of NLMR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

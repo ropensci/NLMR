@@ -1,7 +1,7 @@
 ---
 output: github_document
 vignette: >
-  %\VignetteIndexEntry{Basic Usage of nlmR}
+  %\VignetteIndexEntry{Publication Record}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
