@@ -31,26 +31,26 @@
 #'
 
 util_facetplot <- function(x) {
-  
-  if (checkmate::testClass(x, 'RasterLayer') ||
-      checkmate::testClass(x, 'RasterStack') ||
-      checkmate::testClass(x, 'RasterBrick')) {
-    
+
+  if (checkmate::testClass(x, "RasterLayer") ||
+      checkmate::testClass(x, "RasterStack") ||
+      checkmate::testClass(x, "RasterBrick")) {
+
     maplist <- list()
     for (i in seq_len(raster::nlayers(x))) {
       maplist <- append(maplist, list(raster::raster(x, layer = i)))
     }
     x <- magrittr::set_names(maplist, names(x))
   }
-  
-  maptibb <- tibble::enframe(x, 'id', 'maps') %>% 
-             dplyr::mutate(maps = purrr::map(.$maps, util_raster2tibble)) %>% 
+
+  maptibb <- tibble::enframe(x, "id", "maps") %>%
+             dplyr::mutate(maps = purrr::map(.$maps, util_raster2tibble)) %>%
              unnest
-  
-  p <- ggplot2::ggplot(maptibb, aes(x, y)) + 
-        ggplot2::coord_fixed() + 
-        ggplot2::geom_raster(aes(fill = z)) + 
-        ggplot2::facet_wrap(~id) + 
+
+  p <- ggplot2::ggplot(maptibb, aes(x, y)) +
+        ggplot2::coord_fixed() +
+        ggplot2::geom_raster(aes(fill = z)) +
+        ggplot2::facet_wrap(~id) +
         theme_nlm()
 
   return(p)
