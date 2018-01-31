@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.com/marcosci/NLMR.svg?token=jEyKPuKzrFUKtpg4pK2t&branch=master)](https://travis-ci.com/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
+[![Build Status](https://travis-ci.org/marcosci/NLMR.svg?branch=develop)](https://travis-ci.org/marcosci/NLMR) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/NLMR\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
 NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
@@ -31,21 +31,8 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
-#> The following object is masked from 'package:raster':
-#> 
-#>     extract
 library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
-#> 
-#> Attaching package: 'SDMTools'
-#> The following object is masked from 'package:raster':
-#> 
-#>     distance
 
 # Simulate 50x50 rectangular cluster raster
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl = 7)
@@ -80,9 +67,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1237|          533|                794|              4154|  1237|        533|        794|         0.6418755|     5.591549|        1.486084|        0.4308812|
-|        1|     622|          189|                590|              1898|   622|        189|        590|         0.9485531|     5.900000|        1.552580|        0.3038585|
-|        2|     641|          252|                516|              2048|   641|        252|        516|         0.8049922|     5.058823|        1.503881|        0.3931357|
+|        0|    1239|          538|                828|              4128|  1239|        538|        828|         0.6682809|     5.830986|        1.497521|        0.4342211|
+|        1|     586|          177|                552|              1792|   586|        177|        552|         0.9419795|     5.632653|        1.546213|        0.3020478|
+|        2|     675|          215|                632|              2068|   675|        215|        632|         0.9362963|     6.076923|        1.554204|        0.3185185|
 
 Citation
 --------

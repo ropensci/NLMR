@@ -13,7 +13,7 @@ v0.2 was released on 09/01/2017
   the amount of matrix
 - Implemented new theme `theme_nlm`
 - Functions to coerce raster to tibbles and vice versa (for facetting with `ggplot2`)
-- We now have unit tests covering the main functionality of the packe
+- We now have unit tests covering the main functionality of the package
 - Removed several packages as dependencies 
 
 ## NLMR 0.1.0 Release Notes

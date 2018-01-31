@@ -40,6 +40,7 @@
 #'
 #' @aliases nlm_fBm
 #' @rdname nlm_fBm
+#' @include util_rescale.R
 #'
 #' @export
 #'

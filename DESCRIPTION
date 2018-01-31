@@ -10,17 +10,17 @@ Description: Provides neutral landscape models
     (Gardner et al. 1987 <doi:10.1007/BF02275262>,
     With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
     existing landscape analyses. Neutral landscape models range from "hard" 
-    neutral models (only random functions) to "soft" ones (with parameters) and 
-    generate landscape patterns that are not grounded in ecological reasoning.
+    neutral models (completely random distibuted), to "soft" neutral models (definable spatial characteristics) and 
+    generate landscape patterns that are independent of ecological processes.
     Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
-    combines a large number of algorithms from published software (Saura & 
+    combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
     Martínez 2000   <doi:10.1023/A:1008107902848>, Etherington et
-    al. 2015 <doi:10.1111/2041-210X.12308>) for simulating neutral landscapes and
-    includes utility functions to classify and combine the landscapes. The 
+    al. 2015 <doi:10.1111/2041-210X.12308>) and
+    includes utility functions to classify and combine the multiple landscapes. The 
     simulation results are obtained in a geospatial data format (raster* objects 
     from the 'raster' package) and can, therefore, be used 
     in any sort of raster data operation that is performed with standard 
-    observation data.                                                                                            
+    observation data.                                                                                                  
 License: GPL-3
 Copyright: file inst/COPYRIGHTS
 Encoding: UTF-8
@@ -56,3 +56,34 @@ Suggests:
     lintr
 VignetteBuilder:
     knitr
+Collate: 
+    'metric_area.R'
+    'nlm_curds.R'
+    'nlm_distancegradient.R'
+    'nlm_edgegradient.R'
+    'util_rescale.R'
+    'nlm_fBm.R'
+    'nlm_gaussianfield.R'
+    'nlm_mosaicfield.R'
+    'nlm_mpd.R'
+    'nlm_neigh.R'
+    'nlm_percolation.R'
+    'nlm_planargradient.R'
+    'nlm_polylands.R'
+    'nlm_random.R'
+    'nlm_randomcluster.R'
+    'nlm_randomelement.R'
+    'nlm_randomrectangularcluster.R'
+    'nlm_wheys.R'
+    'package.R'
+    'theme_nlm.R'
+    'util_binarize.R'
+    'util_calcboundaries.R'
+    'util_classify.R'
+    'util_import_roboto_condensed.R'
+    'util_merge.R'
+    'util_plot.R'
+    'util_raster2tibble.R'
+    'util_tibble2raster.R'
+    'util_w2cp.R'
+    'zzz.R'

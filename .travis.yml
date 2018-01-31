@@ -1,10 +1,9 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: true
+sudo: false
 cache: packages
-r_build_args: --no-build-vignettes --no-manual --no-resave-data
-r_check_args: --no-build-vignettes --no-manual
+
 warnings_are_errors: false
 
 r_github_packages:
@@ -15,5 +14,5 @@ after_success:
 
 notifications:
   email:
-    on_success: change
-    on_failure: change
+  on_success: change
+on_failure: change

@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ## Core models
 
 
-```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
+```{r, echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
 knitr::include_graphics("bestiary_full.png")
 ```
 
