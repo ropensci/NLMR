@@ -1,11 +1,16 @@
-#' util_facetplot() prototype skeleton
+#' util_facetplot() for visual overview
 #'
-#' @description turns raster stuff into magnificent facet plot.
+#' @description Plot multiple maps side by side for visual inspection. 
 #'
-#' @details You will loose any resolution, extent or reference system,
-#' but the output is beautiful.
+#' @details The output uses ggplots faceting and beforehand raster2tibble. 
+#' Thus you will loose any spatial information (resolution, extent or reference system).
+#' Only raw tiles are displayed and the number of cells determines the size of the plot.
+#' This can lead to huge size differences between maps, but if you plot for example
+#' multiple maps from a time series side by side it works as intended. Depending on the
+#' size of the maps it is advisable to store the plot in an object and print it to
+#' a file. This will help with compressing and rendering the image.
 #'
-#' @param x [\code{Raster* object}], Layer Brick whatever. Works even with a list.
+#' @param x [\code{Raster* object}] (Layer, Stack, Brick) or a list of rasterLayers.
 #'
 #' @return ggplot
 #'
@@ -45,11 +50,11 @@ util_facetplot <- function(x) {
 
   maptibb <- tibble::enframe(x, "id", "maps") %>%
              dplyr::mutate(maps = purrr::map(.$maps, util_raster2tibble)) %>%
-             unnest
+             tidyr::unnest()
 
-  p <- ggplot2::ggplot(maptibb, aes(x, y)) +
+  p <- ggplot2::ggplot(maptibb, ggplot2::aes(x, y)) +
         ggplot2::coord_fixed() +
-        ggplot2::geom_raster(aes(fill = z)) +
+        ggplot2::geom_raster(ggplot2::aes(fill = z)) +
         ggplot2::facet_wrap(~id) +
         theme_nlm()
 
