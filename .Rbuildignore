@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^README\.md$
 ^README-.*\.png$
 man-roxygen
 ^\.travis\.yml$
@@ -12,5 +13,5 @@ man-roxygen
 ^pkgdown$
 ^revdep$
 ^cran-comments\.md$
-^README\.md$
+^NEWS\.md$
 ^CONDUCT\.md$

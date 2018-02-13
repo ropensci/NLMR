@@ -6,6 +6,7 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
+Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
 Description: Provides neutral landscape models 
     (Gardner et al. 1987 <doi:10.1007/BF02275262>,
     With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
