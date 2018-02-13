@@ -1,0 +1,20 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+citHeader("To cite NLMR in publications use:")
+
+citEntry(entry = "misc",
+  title        = "{NLMR}: Simulating neutral landscape models.",
+  author       = personList(as.person("Marco Sciaini"),
+                            as.person("Matthias Fritsch"),
+                            as.person("Craig E. Simpkins")),
+  year         = year,
+  note         = note,
+  url          = "https://CRAN.R-project.org/package=NLMR",
+
+  textVersion  =
+  paste("Marco Sciaini, Matthias Fritsch, Craig E. Simpkins (2018).",
+        "{NLMR}: Simulating neutral landscape models.",
+        "R package version 0.2.0.",
+        "URL https://CRAN.R-project.org/package=NLMR")
+)

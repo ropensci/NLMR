@@ -97,10 +97,8 @@ See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.ht
 <i class="fa fa-pencil" aria-hidden="true"></i> Citation
 -------------------------------------------------------
 
-To cite package `NLMR` in publications please use:
-
 ```{r, echo  = FALSE, result = "asis", comment = ""}
-cat(paste0("Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version ",packageDescription("NLMR")$Version,". https://github.com/marcosci/NLMR.\n"))
+citation("NLMR")
 ```
 
 

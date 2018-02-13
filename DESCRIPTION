@@ -10,7 +10,7 @@ Description: Provides neutral landscape models
     (Gardner et al. 1987 <doi:10.1007/BF02275262>,
     With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
     existing landscape analyses. Neutral landscape models range from "hard" 
-    neutral models (completely random distibuted), to "soft" neutral models (definable spatial characteristics) and 
+    neutral models (completely random distributed), to "soft" neutral models (definable spatial characteristics) and 
     generate landscape patterns that are independent of ecological processes.
     Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
     combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
@@ -28,6 +28,7 @@ LazyData: true
 ByteCompile: true
 Depends:
     R (>= 3.1.0)
+Roxygen: list(roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 6.0.1
 Imports:
     checkmate,
