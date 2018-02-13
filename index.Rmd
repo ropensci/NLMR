@@ -80,15 +80,11 @@ vignette(package = "NLMR")
 <i class="fa fa-newspaper-o" aria-hidden="true"></i> What's New
 ---------------------------------------------------------------
 
-We are currently on version `0.2.0`. Major changes in this version are:
+We are currently on version `0.2.1`. Major changes in this version are:
 
-- Small bug fixes
-- New neutral landscape models
-    - `nlm_wheys`: Simulates a wheyed neutral landscape model
-- Parameter `p` in `nlm_curds` now controls the proportion of habitat instead of 
-  the amount of matrix
-- Implemented new theme `theme_nlm`
-- ...
+- Skip one test on CRAN to keep the Roboto font available
+- Function `util_facetplot` to plot a list of rasters as ggplot2 facet
+- Small updates to the webpage
 
 See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.html) page for a detailed changelog. 
 
