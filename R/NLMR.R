@@ -1,4 +1,4 @@
-#' NLMR
+#' Simulating Neutral Landscape Models
 #'
 #' \emph{NLMR} is an R package for simulating neutral landscape models (NLM).
 #'
@@ -16,20 +16,10 @@
 #' handle the simulations.}
 #' }
 #'
-#' @references
-#' Gardner RH, Milne BT, Turnei MG, O’Neill R V. 1987. Neutral models for the
-#'  analysis of broad-scale landscape pattern. \emph{Landscape Ecology} 1:19–28.
-#'
-#' @docType package
-#' @title Simulating Neutral Landscape Models
-#' @author Marco Sciaini \email{sciaini.marco@@gmail.com}
-#' @name NLMR-package
-#' @aliases NLMR
-#' @keywords package
 
 # nocov start
 # nolint start
-NULL
+"_PACKAGE"
 
 globalVariables(c("value", "."))
 

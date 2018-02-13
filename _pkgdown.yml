@@ -34,6 +34,7 @@ reference:
     contents:
       - '`util_binarize`'
       - '`util_classify`'
+      - '`util_facetplot`'
       - '`util_import_roboto_condensed`'
       - '`util_merge`'
       - '`util_plot`'

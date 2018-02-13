@@ -1,16 +1,17 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.2
+Version: 0.2.1
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
+Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
 Description: Provides neutral landscape models 
     (Gardner et al. 1987 <doi:10.1007/BF02275262>,
     With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
     existing landscape analyses. Neutral landscape models range from "hard" 
-    neutral models (completely random distibuted), to "soft" neutral models (definable spatial characteristics) and 
+    neutral models (completely random distributed), to "soft" neutral models (definable spatial characteristics) and 
     generate landscape patterns that are independent of ecological processes.
     Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
     combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
@@ -28,6 +29,7 @@ LazyData: true
 ByteCompile: true
 Depends:
     R (>= 3.1.0)
+Roxygen: list(roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 6.0.1
 Imports:
     checkmate,
@@ -44,6 +46,7 @@ Imports:
     spatstat,
     stats,
     tibble,
+    tidyr,
     viridis,
     extrafont
 URL: https://marcosci.github.io/NLMR/
@@ -56,34 +59,3 @@ Suggests:
     lintr
 VignetteBuilder:
     knitr
-Collate: 
-    'metric_area.R'
-    'nlm_curds.R'
-    'nlm_distancegradient.R'
-    'nlm_edgegradient.R'
-    'util_rescale.R'
-    'nlm_fBm.R'
-    'nlm_gaussianfield.R'
-    'nlm_mosaicfield.R'
-    'nlm_mpd.R'
-    'nlm_neigh.R'
-    'nlm_percolation.R'
-    'nlm_planargradient.R'
-    'nlm_polylands.R'
-    'nlm_random.R'
-    'nlm_randomcluster.R'
-    'nlm_randomelement.R'
-    'nlm_randomrectangularcluster.R'
-    'nlm_wheys.R'
-    'package.R'
-    'theme_nlm.R'
-    'util_binarize.R'
-    'util_calcboundaries.R'
-    'util_classify.R'
-    'util_import_roboto_condensed.R'
-    'util_merge.R'
-    'util_plot.R'
-    'util_raster2tibble.R'
-    'util_tibble2raster.R'
-    'util_w2cp.R'
-    'zzz.R'

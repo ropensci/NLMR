@@ -306,8 +306,7 @@ hrbrthemes (<a href='https://github.com/hrbrmstr/hrbrthemes/'>https://github.com
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># nolint start
-</div><span class='co'># NOT RUN {</span>
-<span class='co'># simulate NLM</span>
+</div><div class='input'><span class='co'># simulate NLM</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>NLMR</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/NLMR/topics/nlm_random'>nlm_random</a></span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>75</span>,
                       <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>75</span>)
 <span class='co'># classify</span>
@@ -322,8 +321,7 @@ hrbrthemes (<a href='https://github.com/hrbrmstr/hrbrthemes/'>https://github.com
   <span class='fu'>theme_nlm</span>() +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Random NLM with continuous viridis color scale"</span>,
                    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"75x75 cells"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)
-
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='theme_nlm-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># grey + continuous</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/gplot-methods'>gplot</a></span>(<span class='no'>x</span>) +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_tile</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='no'>value</span>)) +
@@ -332,8 +330,7 @@ hrbrthemes (<a href='https://github.com/hrbrmstr/hrbrthemes/'>https://github.com
   <span class='fu'>theme_nlm_grey</span>() +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Random NLM with continuous grey color scale"</span>,
                    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"75x75 cells"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)
-
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='theme_nlm-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># color + discrete</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/gplot-methods'>gplot</a></span>(<span class='no'>y</span>) +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_tile</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>value</span>))) +
@@ -342,8 +339,7 @@ hrbrthemes (<a href='https://github.com/hrbrmstr/hrbrthemes/'>https://github.com
   <span class='fu'>theme_nlm_discrete</span>() +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Random NLM with discrete viridis color scale"</span>,
                    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"75x75 cells"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)
-
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)</div><div class='img'><img src='theme_nlm-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># grey + discrete</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/gplot-methods'>gplot</a></span>(<span class='no'>y</span>) +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile'>geom_tile</a></span>(<span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/aes'>aes</a></span>(<span class='kw'>fill</span> <span class='kw'>=</span> <span class='fu'>factor</span>(<span class='no'>value</span>))) +
@@ -352,9 +348,8 @@ hrbrthemes (<a href='https://github.com/hrbrmstr/hrbrthemes/'>https://github.com
   <span class='fu'>theme_nlm_grey_discrete</span>() +
   <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>ggtitle</a></span>(<span class='st'>"Random NLM with discrete grey color scale"</span>,
                    <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='st'>"75x75 cells"</span>) +
-  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)
-<span class='co'># nolint end</span>
-<span class='co'># }</span><div class='input'>
+  <span class='kw pkg'>ggplot2</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/ggplot2/topics/labs'>labs</a></span>(<span class='kw'>caption</span> <span class='kw'>=</span> <span class='st'>"Random map simulated with the R package NLMR."</span>)</div><div class='img'><img src='theme_nlm-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'># nolint end
+</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

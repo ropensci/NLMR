@@ -31,6 +31,11 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
+#> 
+#> Attaching package: 'magrittr'
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
 library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
@@ -40,6 +45,8 @@ nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl
 # Plot the NLM
 util_plot(nlm_raster) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+#> Warning in seq.default(.limits[1], .limits[2], length = guide$nbin):
+#> partial argument match of 'length' to 'length.out'
 ```
 
 <img src="vignettes/README-example-1.png" style="display: block; margin: auto;" />
@@ -67,16 +74,28 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1239|          538|                828|              4128|  1239|        538|        828|         0.6682809|     5.830986|        1.497521|        0.4342211|
-|        1|     586|          177|                552|              1792|   586|        177|        552|         0.9419795|     5.632653|        1.546213|        0.3020478|
-|        2|     675|          215|                632|              2068|   675|        215|        632|         0.9362963|     6.076923|        1.554204|        0.3185185|
+|        0|    1247|          597|                764|              4224|  1247|        597|        764|         0.6126704|     5.380282|        1.473599|        0.4787490|
+|        1|     624|          176|                578|              1918|   624|        176|        578|         0.9262821|     5.780000|        1.545421|        0.2820513|
+|        2|     629|          215|                540|              1976|   629|        215|        540|         0.8585056|     5.294118|        1.522401|        0.3418124|
 
 Citation
 --------
 
-To cite package `NLMR` in publications please use:
 
-    Sciaini, M; Simpkins, CE; Fritsch, M; Scherer, C (2017). NLMR: Simulating neutral landscape models with R. R package version 0.2. https://github.com/marcosci/NLMR.
+    To cite NLMR in publications use:
+
+      Marco Sciaini, Matthias Fritsch, Craig E. Simpkins (2018).
+      {NLMR}: Simulating neutral landscape models. R package version
+      0.2.0. URL https://CRAN.R-project.org/package=NLMR
+
+    A BibTeX entry for LaTeX users is
+
+      @Misc{,
+        title = {{NLMR}: Simulating neutral landscape models.},
+        author = {Marco Sciaini and Matthias Fritsch and Craig E. Simpkins},
+        note = {R package version 0.2},
+        url = {https://CRAN.R-project.org/package=NLMR},
+      }
 
 Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 
@@ -93,5 +112,5 @@ Dependencies
      [1] "R (>= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
      [5] " ggplot2"      " igraph"       " magrittr"     " purrr"       
      [9] " RandomFields" " raster"       " rasterVis"    " sp"          
-    [13] " spatstat"     " stats"        " tibble"       " viridis"     
-    [17] " extrafont"
+    [13] " spatstat"     " stats"        " tibble"       " tidyr"       
+    [17] " viridis"      " extrafont"
