@@ -30,12 +30,9 @@ Here we will provide a simple example on using `NLMR`:
 
 ``` r
 library(NLMR)
+#> Registering PDF &
+#>                                            PostScript fonts with R
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 library(ggplot2)  # to extend the plot functionality of NLMR 
 library(SDMTools) # to calculate basic landscape metrics
 
@@ -74,9 +71,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1247|          597|                764|              4224|  1247|        597|        764|         0.6126704|     5.380282|        1.473599|        0.4787490|
-|        1|     624|          176|                578|              1918|   624|        176|        578|         0.9262821|     5.780000|        1.545421|        0.2820513|
-|        2|     629|          215|                540|              1976|   629|        215|        540|         0.8585056|     5.294118|        1.522401|        0.3418124|
+|        0|    1245|          559|                832|              4148|  1245|        559|        832|         0.6682731|     5.859155|        1.497859|        0.4489960|
+|        1|     608|          196|                580|              1852|   608|        196|        580|         0.9539474|     5.800000|        1.552761|        0.3223684|
+|        2|     647|          163|                654|              1934|   647|        163|        654|         1.0108192|     6.411765|        1.574951|        0.2519320|
 
 Citation
 --------
