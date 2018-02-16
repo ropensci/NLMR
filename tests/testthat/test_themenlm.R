@@ -35,17 +35,4 @@ test_that("basic functionality", {
   expect_error(p4, NA)
 })
 
-
-test_that("sets the right font", {
-  th1 <- theme_nlm()
-  th2 <- theme_nlm_discrete()
-  th3 <- theme_nlm_grey()
-  th4 <- theme_nlm_grey_discrete()
-  expect_that(th1[[1]]$plot.title$family, equals("Roboto Condensed"))
-  expect_that(th2[[1]]$plot.title$family, equals("Roboto Condensed"))
-  expect_that(th3[[1]]$plot.title$family, equals("Roboto Condensed"))
-  expect_that(th4[[1]]$plot.title$family, equals("Roboto Condensed"))
-})
-
-
 # nolint end

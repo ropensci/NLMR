@@ -18,7 +18,7 @@ Concepts + Terminology}}{Background information on the concepts and
 terminology that underpin the simulation of neutral landscape models.}
 \item{\href{https://marcosci.github.io/NLMR/articles/bestiary.html}{NLMR
 Bestiary}}{Bestiary of the available neutral landscape models.}
-\item{\href{https://marcosci.github.io/NLMR/articles/BasicUsageVignette.html}{
+\item{\href{https://marcosci.github.io/NLMR/articles/getstarted.html}{
 Quickstart Guide}}{Short walk-through of the \emph{NLMR} package and how to
 handle the simulations.}
 }
