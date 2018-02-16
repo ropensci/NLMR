@@ -50,7 +50,7 @@ devtools::install_github("marcosci/NLMR", ref = "develop")
 
 Here we will provide a simple example on using ``NLMR``:
 
-```{r example, fig.height=7, fig.width=7, fig.align='center'}
+```{r message=FALSE, fig.height=7, fig.width=7, fig.align='center'}
 library(NLMR)
 library(magrittr)
 library(ggplot2)  # to extend the plot functionality of NLMR 

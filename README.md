@@ -31,26 +31,8 @@ Here we will provide a simple example on using `NLMR`:
 ``` r
 library(NLMR)
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following object is masked from 'package:raster':
-#> 
-#>     extract
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 library(ggplot2)  # to extend the plot functionality of NLMR 
-#> 
-#> Attaching package: 'ggplot2'
-#> The following object is masked from 'package:raster':
-#> 
-#>     calc
 library(SDMTools) # to calculate basic landscape metrics
-#> 
-#> Attaching package: 'SDMTools'
-#> The following object is masked from 'package:raster':
-#> 
-#>     distance
 
 # Simulate 50x50 rectangular cluster raster
 nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl = 7)
@@ -62,7 +44,7 @@ util_plot(nlm_raster) +
 #> partial argument match of 'length' to 'length.out'
 ```
 
-<img src="vignettes/README-example-1.png" style="display: block; margin: auto;" />
+<img src="vignettes/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -75,7 +57,7 @@ util_plot(nlm_raster, discrete = TRUE) +
   labs(title="Random rectangular cluster NLM \n (50x50 cells)")
 ```
 
-<img src="vignettes/README-example-2.png" style="display: block; margin: auto;" />
+<img src="vignettes/README-unnamed-chunk-4-2.png" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -87,9 +69,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1221|          622|                682|              4202|  1221|        622|        682|         0.5585586|     4.871429|        1.446019|        0.5094185|
-|        1|     641|          197|                628|              1936|   641|        197|        628|         0.9797192|     6.156863|        1.564667|        0.3073323|
-|        2|     638|          178|                602|              1950|   638|        178|        602|         0.9435737|     5.901961|        1.552710|        0.2789969|
+|        0|    1249|          569|                772|              4224|  1249|        569|        772|         0.6180945|     5.436620|        1.476190|        0.4555645|
+|        1|     625|          165|                644|              1856|   625|        165|        644|         1.0304000|     6.440000|        1.578627|        0.2640000|
+|        2|     626|          224|                552|              1952|   626|        224|        552|         0.8817891|     5.411765|        1.530357|        0.3578275|
 
 Citation
 --------
