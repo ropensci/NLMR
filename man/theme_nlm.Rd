@@ -8,54 +8,46 @@
 \alias{theme_nlm_grey_discrete}
 \title{theme_nlm}
 \usage{
-theme_nlm(base_family = "Roboto Condensed", base_size = 11.5,
-  plot_title_family = base_family, plot_title_size = 18,
-  plot_title_face = "bold", plot_title_margin = 10, subtitle_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", subtitle_size = 13, subtitle_face = "plain",
+theme_nlm(base_family = "serif", base_size = 11.5,
+  plot_title_family = "serif", plot_title_size = 18,
+  plot_title_face = "bold", plot_title_margin = 10,
+  subtitle_family = "serif", subtitle_size = 13, subtitle_face = "plain",
   subtitle_margin = 15, strip_text_family = base_family,
-  strip_text_size = 12, strip_text_face = "plain", caption_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
+  strip_text_size = 12, strip_text_face = "plain",
+  caption_family = "serif", caption_size = 9, caption_face = "plain",
   caption_margin = 10, legend_title = "Z",
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
 
-theme_nlm_discrete(base_family = "Roboto Condensed", base_size = 11.5,
+theme_nlm_discrete(base_family = "serif", base_size = 11.5,
   plot_title_family = base_family, plot_title_size = 18,
-  plot_title_face = "bold", plot_title_margin = 10, subtitle_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", subtitle_size = 13, subtitle_face = "plain",
+  plot_title_face = "bold", plot_title_margin = 10,
+  subtitle_family = "serif", subtitle_size = 13, subtitle_face = "plain",
   subtitle_margin = 15, strip_text_family = base_family,
-  strip_text_size = 12, strip_text_face = "plain", caption_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
+  strip_text_size = 12, strip_text_face = "plain",
+  caption_family = "serif", caption_size = 9, caption_face = "plain",
   caption_margin = 10, legend_title = "Z", legend_labels = NULL,
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
 
-theme_nlm_grey(base_family = "Roboto Condensed", base_size = 11.5,
+theme_nlm_grey(base_family = "serif", base_size = 11.5,
   plot_title_family = base_family, plot_title_size = 18,
-  plot_title_face = "bold", plot_title_margin = 10, subtitle_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", subtitle_size = 13, subtitle_face = "plain",
+  plot_title_face = "bold", plot_title_margin = 10,
+  subtitle_family = "serif", subtitle_size = 13, subtitle_face = "plain",
   subtitle_margin = 15, strip_text_family = base_family,
-  strip_text_size = 12, strip_text_face = "plain", caption_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
+  strip_text_size = 12, strip_text_face = "plain",
+  caption_family = "serif", caption_size = 9, caption_face = "plain",
   caption_margin = 10, legend_title = "Z",
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
 
-theme_nlm_grey_discrete(base_family = "Roboto Condensed", base_size = 11.5,
+theme_nlm_grey_discrete(base_family = "serif", base_size = 11.5,
   plot_title_family = base_family, plot_title_size = 18,
-  plot_title_face = "bold", plot_title_margin = 10, subtitle_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", subtitle_size = 13, subtitle_face = "plain",
+  plot_title_face = "bold", plot_title_margin = 10,
+  subtitle_family = "serif", subtitle_size = 13, subtitle_face = "plain",
   subtitle_margin = 15, strip_text_family = base_family,
-  strip_text_size = 12, strip_text_face = "plain", caption_family = if
-  (.Platform$OS.type == "windows") "Roboto Condensed" else
-  "Roboto Condensed Light", caption_size = 9, caption_face = "plain",
+  strip_text_size = 12, strip_text_face = "plain",
+  caption_family = "serif", caption_size = 9, caption_face = "plain",
   caption_margin = 10, legend_title = "Z", legend_labels = NULL,
   plot_margin = ggplot2::margin(30, 30, 30, 30), ratio = 1,
   viridis_scale = "D")
@@ -119,23 +111,25 @@ used with \code{\link{util_plot}} they are automatically derived.}
 Opinionated ggplot2 theme to visualize NLM raster.
 }
 \details{
-A focused theme to visualize raster data.
-The theme makes use of the Roboto Condensed font (Open Source font from
-Google) and sets a lot of defaults for the
+A focused theme to visualize raster data that sets a lot of defaults for the
 \code{ggplot2::theme}.
+
+The theme can make use of the Roboto Condensed font (Open Source font from
+Google).
 If your local font library does not contain Roboto as a font, you can
-import it via \code{\link{util_import_roboto_condensed}}.
+import it via \code{\link{util_import_roboto_condensed}} (highly recommended).
+
 The functions are setup in such a way that you can customize your own one by
 just wrapping the call and changing the parameters.
-The theme itself is heavily influenced by hrbrmstr and his great package
+The theme itself is heavily influenced by hrbrmstr and his package
 hrbrthemes (\url{https://github.com/hrbrmstr/hrbrthemes/}).
 }
 \examples{
 # nolint start
 \dontrun{
 # simulate NLM
-x <- NLMR::nlm_random(ncol = 75,
-                      nrow = 75)
+x <- nlm_random(ncol = 75,
+                nrow = 75)
 # classify
 y <- c(0.5, 0.15, 0.25)
 y <- util_classify(x, y, c("1", "2", "3"))

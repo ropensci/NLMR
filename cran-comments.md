@@ -1,7 +1,6 @@
 ## Updated package
 
-This update adds more functionality to the package and provides some additional
-bug fixes.
+This update fixes an error on CRAN and has small updates.
 
 ## Test environments
 
