@@ -18,15 +18,16 @@
 #' \dontrun{
 #' l1 <- nlm_fBm(64, 64)
 #' l2 <- nlm_planargradient(64, 64)
-#' l3 <- nlm_mosaicfield(42, 42)
+#' l3 <- nlm_randomrectangularcluster(ncol = 60, nrow = 60, minl = 5, maxl = 10)
+#' l4 <- nlm_random(64, 64)
 #'
 #' bri1 <- raster::brick(l1, l2)
 #' util_facetplot(bri1)
 #'
-#' lst1 <- list(lay1 = l1,
-#'              lay2 = l2,
-#'              lay3 = l3,
-#'              lay4 = nlm_random(70, 70))
+#' lst1 <- list(layer1 = l1,
+#'              layer2 = l2,
+#'              layer3 = l3,
+#'              layer4 = l4)
 #' util_facetplot(lst1)
 #' }
 #'

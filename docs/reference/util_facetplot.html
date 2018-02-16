@@ -159,14 +159,15 @@ a file. This will help with compressing and rendering the image.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>l1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_fBm.html'>nlm_fBm</a></span>(<span class='fl'>64</span>, <span class='fl'>64</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='input'><span class='no'>l2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_planargradient.html'>nlm_planargradient</a></span>(<span class='fl'>64</span>, <span class='fl'>64</span>)
-<span class='no'>l3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_mosaicfield.html'>nlm_mosaicfield</a></span>(<span class='fl'>42</span>, <span class='fl'>42</span>)
+<span class='no'>l3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_randomrectangularcluster.html'>nlm_randomrectangularcluster</a></span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>minl</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>maxl</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>l4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>64</span>, <span class='fl'>64</span>)
 
 <span class='no'>bri1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/raster/topics/brick'>brick</a></span>(<span class='no'>l1</span>, <span class='no'>l2</span>)
 <span class='fu'>util_facetplot</span>(<span class='no'>bri1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='util_facetplot-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
-<span class='no'>lst1</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='kw'>lay1</span> <span class='kw'>=</span> <span class='no'>l1</span>,
-             <span class='kw'>lay2</span> <span class='kw'>=</span> <span class='no'>l2</span>,
-             <span class='kw'>lay3</span> <span class='kw'>=</span> <span class='no'>l3</span>,
-             <span class='kw'>lay4</span> <span class='kw'>=</span> <span class='fu'><a href='nlm_random.html'>nlm_random</a></span>(<span class='fl'>70</span>, <span class='fl'>70</span>))
+<span class='no'>lst1</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='kw'>layer1</span> <span class='kw'>=</span> <span class='no'>l1</span>,
+             <span class='kw'>layer2</span> <span class='kw'>=</span> <span class='no'>l2</span>,
+             <span class='kw'>layer3</span> <span class='kw'>=</span> <span class='no'>l3</span>,
+             <span class='kw'>layer4</span> <span class='kw'>=</span> <span class='no'>l4</span>)
 <span class='fu'>util_facetplot</span>(<span class='no'>lst1</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='util_facetplot-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
