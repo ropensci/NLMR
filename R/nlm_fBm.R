@@ -20,8 +20,7 @@
 #'  an extension of Brownian motion in which the amount of correlation between
 #'   steps is controlled by the Hurst coefficient H. An H of 1 produces a
 #'    relatively smooth surface while an H of 0 produces a rough, uncorrelated,
-#'     surface. Implementation of this method is limited to landscapes with
-#'      extents less than 90 by 90 cells.
+#'     surface.
 #'
 #' @return RasterLayer
 #'
@@ -34,8 +33,7 @@
 #' }
 #' @references
 #' Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
-#' Kirstin Strokorb (2015). Analysis, Simulation and Prediction of Multivariate
-#' Random Fields with Package RandomFields. \emph{Journal of Statistical
+#' Kirstin Strokorb (2015). nlm_fBm. \emph{Journal of Statistical
 #' Software}, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.
 #'
 #' @aliases nlm_fBm

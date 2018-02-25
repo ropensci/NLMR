@@ -1,6 +1,6 @@
 #' nlm_percolation
 #'
-#' @description Create a random percolation neutral landscape model.
+#' @description Simulates a random percolation neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.

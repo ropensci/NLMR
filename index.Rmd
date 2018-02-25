@@ -28,6 +28,7 @@ knitr::opts_chunk$set(
 
 **NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
 ``NLMR`` exploits the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 
 ------------------------------------------------------------------------

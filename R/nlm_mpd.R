@@ -1,6 +1,6 @@
 #' nlm_mpd
 #'
-#' @description Simulate a midpoint displacement neutral landscape model.
+#' @description Simulates a midpoint displacement neutral landscape model.
 #'
 #' @details
 #' The algorithm is a direct implementation of the midpoint displacement
@@ -19,7 +19,7 @@
 #'   diamond.}
 #' }
 #'
-#' At each iteration the roughness, an approximation to common hurst index,
+#' At each iteration the roughness, an approximation to common hurst exponent,
 #' is reduced.
 #'
 #' The image below shows the steps involved in running the diamond-square
@@ -38,7 +38,7 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param roughness [\code{numerical(1)}]\cr
-#' Controls the level of spatial autocorrelation (!= hurst index)
+#' Controls the level of spatial autocorrelation (!= hurst exponent)
 #' @param rand_dev [\code{numerical(1)}]\cr
 #' Initial standard deviation for the displacement step (default == 1)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values

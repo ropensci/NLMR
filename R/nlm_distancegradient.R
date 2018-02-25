@@ -1,6 +1,6 @@
 #' nlm_distancegradient
 #'
-#' @description Simulate a distance gradient neutral landscape model.
+#' @description Simulates a distance gradient neutral landscape model.
 #'
 #' @details
 #' The function takes the number of columns and rows as input and creates a

@@ -5,7 +5,9 @@
 NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 =================================================================
 
-`NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builds on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+`NLMR` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `NLMR` builds on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage. Furthermore, it simulates NLMs within a self-contained, reproducible framework.
+
+<img src="vignettes/nlmr_grid.png" align="right"  width="100%" />
 
 Installation
 ------------
@@ -69,9 +71,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1249|          569|                772|              4224|  1249|        569|        772|         0.6180945|     5.436620|        1.476190|        0.4555645|
-|        1|     625|          165|                644|              1856|   625|        165|        644|         1.0304000|     6.440000|        1.578627|        0.2640000|
-|        2|     626|          224|                552|              1952|   626|        224|        552|         0.8817891|     5.411765|        1.530357|        0.3578275|
+|        0|    1236|          560|                770|              4174|  1236|        560|        770|         0.6229773|     5.422535|        1.477631|        0.4530744|
+|        1|     622|          190|                586|              1902|   622|        190|        586|         0.9421222|     5.860000|        1.550465|        0.3054662|
+|        2|     642|          225|                540|              2028|   642|        225|        540|         0.8411215|     5.294118|        1.517583|        0.3504673|
 
 Citation
 --------

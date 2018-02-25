@@ -1,6 +1,6 @@
 #' nlm_random
 #'
-#' @description Simulate a spatially random neutral landscape model with values
+#' @description Simulates a spatially random neutral landscape model with values
 #' drawn a uniform distribution.
 #'
 #' @details

@@ -1,6 +1,6 @@
 #' nlm_planargradient
 #'
-#' @description Create a planar gradient neutral landscape model.
+#' @description Simulates a planar gradient neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.

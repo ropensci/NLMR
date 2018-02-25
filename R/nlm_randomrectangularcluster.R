@@ -1,6 +1,6 @@
 #' nlm_randomrectangularcluster
 #'
-#' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+#' Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
 #'
 #' @param ncol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nrow  [\code{numerical(1)}]\cr Number of rows for the raster.
@@ -11,6 +11,10 @@
 #'
 #' @return RasterLayer with random values ranging from 0-1.
 #'
+#' @references
+#' Gustafson, E.J. & Parker, G.R. (1992). Relationships between landcover
+#' proportion and indices of landscape spatial pattern. \emph{Landscape ecology},
+#' 7, 101–110. 
 #'
 #' @examples
 #' # simulate random rectangular cluster
