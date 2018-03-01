@@ -23,7 +23,7 @@ Probability value for setting a cell either to 0 or 1.}
 RasterLayer
 }
 \description{
-Create a random percolation neutral landscape model.
+Simulates a random percolation neutral landscape model.
 }
 \details{
 The simulation of a random percolation map is accomplished in two steps:

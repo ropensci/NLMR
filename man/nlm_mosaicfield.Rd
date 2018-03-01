@@ -39,7 +39,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer or List with RasterLayer(s) and/or RasterBrick
 }
 \description{
-Simulate a mosaic random field neutral landscape model.
+Simulates a mosaic random field neutral landscape model.
 }
 \examples{
 

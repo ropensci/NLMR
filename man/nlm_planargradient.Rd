@@ -28,7 +28,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Create a planar gradient neutral landscape model.
+Simulates a planar gradient neutral landscape model.
 }
 \details{
 Simulates a linear gradient sloping in a specified or random direction.
