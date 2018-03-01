@@ -1,6 +1,6 @@
 #' util_facetplot() for visual overview
 #'
-#' @description Plot multiple maps side by side for visual inspection.
+#' @description Plot multiple raster (RasterStack, -brick or list of raster) side by side as facets.
 #'
 #' @details The output uses ggplots faceting and beforehand raster2tibble.
 #' Thus you will loose any spatial information (resolution, extent or reference system).

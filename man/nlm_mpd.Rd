@@ -18,7 +18,7 @@ Number of rows for the raster.}
 Resolution of the raster.}
 
 \item{roughness}{[\code{numerical(1)}]\cr
-Controls the level of spatial autocorrelation (!= hurst index)}
+Controls the level of spatial autocorrelation (!= hurst exponent)}
 
 \item{rand_dev}{[\code{numerical(1)}]\cr
 Initial standard deviation for the displacement step (default == 1)}
@@ -34,7 +34,7 @@ the algorithm.}
 RasterLayer
 }
 \description{
-Simulate a midpoint displacement neutral landscape model.
+Simulates a midpoint displacement neutral landscape model.
 }
 \details{
 The algorithm is a direct implementation of the midpoint displacement
@@ -53,7 +53,7 @@ It performs the following steps:
   diamond.}
 }
 
-At each iteration the roughness, an approximation to common hurst index,
+At each iteration the roughness, an approximation to common hurst exponent,
 is reduced.
 
 The image below shows the steps involved in running the diamond-square

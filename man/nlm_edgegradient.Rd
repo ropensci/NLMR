@@ -32,7 +32,7 @@ Simulates an edge gradient neutral landscape model.
 }
 \details{
 Simulates a linear gradient orientated on a specified or random direction
-that has a central peak. which runs perpendicular to the gradient direction.
+that has a central peak, which runs perpendicular to the gradient direction.
 }
 \examples{
 

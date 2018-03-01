@@ -13,7 +13,7 @@ util_facetplot(x)
 ggplot
 }
 \description{
-Plot multiple maps side by side for visual inspection.
+Plot multiple raster (RasterStack, -brick or list of raster) side by side as facets.
 }
 \details{
 The output uses ggplots faceting and beforehand raster2tibble.

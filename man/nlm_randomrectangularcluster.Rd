@@ -24,7 +24,7 @@ nlm_randomrectangularcluster(ncol, nrow, resolution = 1, minl, maxl,
 RasterLayer with random values ranging from 0-1.
 }
 \description{
-Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
 }
 \examples{
 # simulate random rectangular cluster
@@ -37,4 +37,9 @@ randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
 util_plot(randomrectangular_cluster)
 }
 
+}
+\references{
+Gustafson, E.J. & Parker, G.R. (1992). Relationships between landcover
+proportion and indices of landscape spatial pattern. \emph{Landscape ecology},
+7, 101–110.
 }

@@ -63,7 +63,9 @@ nlm_edgegradient <- function(ncol,
   }
 
   # Create planar gradient ----
-  gradient_raster <- nlm_planargradient(ncol, nrow, direction)
+  gradient_raster <- nlm_planargradient(ncol, nrow,
+                                        resolution = resolution,
+                                        direction =  direction)
 
   # Transform to a central gradient ----
   edgegradient_raster <-
