@@ -21,7 +21,8 @@ Resolution of the raster.}
 Controls the level of spatial autocorrelation (!= hurst exponent)}
 
 \item{rand_dev}{[\code{numerical(1)}]\cr
-Initial standard deviation for the displacement step (default == 1)}
+Initial standard deviation for the displacement step (default == 1), sets the
+scale of the overall variance in the resulting landscape.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
@@ -67,9 +68,9 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)
 \examples{
 
 # simulate midpoint displacement
-midpoint_displacememt <- nlm_mpd(ncol = 200,
-                                 nrow = 200,
-                                 roughness = 0.1
+midpoint_displacememt <- nlm_mpd(ncol = 100,
+                                 nrow = 100,
+                                 roughness = 0.1)
 \dontrun{
 # visualize the NLM
 util_plot(midpoint_displacememt)
