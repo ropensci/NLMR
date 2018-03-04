@@ -26,6 +26,13 @@ RasterLayer with random values ranging from 0-1.
 \description{
 Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
 }
+\details{
+The random rectangular cluster algorithm starts to fill a raster randomly
+with rectangles defined by \code{minl} and \code{maxl} until the surface
+of the landscape is completely covered.
+This is one of the realisation of the so-called "falling leaves" algorithm,
+which have the propertie that one get two different patterns: one from l
+}
 \examples{
 # simulate random rectangular cluster
 randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,

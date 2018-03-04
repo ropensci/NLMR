@@ -156,4 +156,3 @@ nlm_mpd <- function(ncol,
 
   return(mpd_raster)
 }
-
