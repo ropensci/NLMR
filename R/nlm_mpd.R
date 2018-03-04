@@ -40,7 +40,8 @@
 #' @param roughness [\code{numerical(1)}]\cr
 #' Controls the level of spatial autocorrelation (!= hurst exponent)
 #' @param rand_dev [\code{numerical(1)}]\cr
-#' Initial standard deviation for the displacement step (default == 1)
+#' Initial standard deviation for the displacement step (default == 1), sets the
+#' scale of the overall variance in the resulting landscape.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
@@ -54,9 +55,9 @@
 #' @examples
 #'
 #' # simulate midpoint displacement
-#' midpoint_displacememt <- nlm_mpd(ncol = 200,
-#'                                  nrow = 200,
-#'                                  roughness = 0.6)
+#' midpoint_displacememt <- nlm_mpd(ncol = 100,
+#'                                  nrow = 100,
+#'                                  roughness = 0.1)
 #'\dontrun{
 #' # visualize the NLM
 #' util_plot(midpoint_displacememt)
@@ -103,7 +104,7 @@ nlm_mpd <- function(ncol,
           mpd_raster[row, col + side.length], # upper right
           mpd_raster[row + side.length, col + side.length] # lower right
         ))
-        avg <- avg + stats::rnorm(1, 0, rand_dev)
+        avg <- avg  + stats::rnorm(1, 0, rand_dev)
 
         mpd_raster[row + half.side, col + half.side] <- avg
       }
@@ -155,3 +156,4 @@ nlm_mpd <- function(ncol,
 
   return(mpd_raster)
 }
+

@@ -69,7 +69,7 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)
 # simulate midpoint displacement
 midpoint_displacememt <- nlm_mpd(ncol = 200,
                                  nrow = 200,
-                                 roughness = 0.6)
+                                 roughness = 0.1
 \dontrun{
 # visualize the NLM
 util_plot(midpoint_displacememt)
