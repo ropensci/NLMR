@@ -29,8 +29,8 @@
 #' zero).
 #' @param categories [\code{numerical(1)}]\cr
 #' Number of categories used.
-#' @param neighborhood [\code{numerical(1)}]\cr
-#' The neighborhood used to determined adjacent cells: `8 ("Moore")` takes the eight
+#' @param neighbourhood [\code{numerical(1)}]\cr
+#' The neighbourhood used to determined adjacent cells: `8 ("Moore")` takes the eight
 #' surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 #' (i.e. left, right, upper and lower cells).
 #' @param proportions [\code{vector(1)}]\cr
@@ -49,7 +49,7 @@
 #' @examples
 #' # simulate neighborhood model
 #' neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
-#'                     categories = 5, neighborhood = 4)
+#'                     categories = 5, neighbourhood = 4)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -68,7 +68,7 @@ nlm_neigh <-
            p_neigh,
            p_empty,
            categories = 3,
-           neighborhood = 4,
+           neighbourhood = 4,
            proportions = NA) {
 
     # Check function arguments ----
@@ -77,7 +77,7 @@ nlm_neigh <-
     checkmate::assert_numeric(p_empty, lower = 0, upper = 1)
     checkmate::assert_numeric(p_neigh, lower = 0, upper = 1)
     checkmate::assert_count(categories, positive = TRUE)
-    checkmate::assert_true(neighborhood == 4 || neighborhood == 8)
+    checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_vector(proportions)
     if (!is.na(proportions)) checkmate::assert_true(sum(proportions) == 1)
 
@@ -106,14 +106,14 @@ nlm_neigh <-
         row <- as.integer(s[1]) + 1
         col <- as.integer(s[2]) + 1
 
-        # Check neighborhood of that cell ----
-        if (neighborhood == 4) { # Von-Neumann"
+        # Check neighbourhood of that cell ----
+        if (neighbourhood == 4) { # Von-Neumann"
           adjacent <- c(matrix[row - 1, col], # upper
                         matrix[row, col - 1], # left
                         matrix[row, col + 1], # right
                         matrix[row + 1, col]) # lower
         }
-        if (neighborhood == 8) { "Moore"
+        if (neighbourhood == 8) { "Moore"
           adjacent <- c(matrix[row - 1, col - 1],
                         # upper left
                         matrix[row - 1, col],
