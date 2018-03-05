@@ -4,7 +4,7 @@
 \alias{nlm_curds}
 \title{nlm_curds}
 \usage{
-nlm_curds(p, s, ext = 1)
+nlm_curds(p, s, q = NULL, resolution = 1)
 }
 \arguments{
 \item{p}{[\code{numerical(x)}]\cr
@@ -15,34 +15,51 @@ TRUE)).}
 Vector of successive cutting steps for the blocks (split 1 block into x
 blocks).}
 
-\item{ext}{[\code{numerical(1)}]\cr
-Extent of the resulting raster (0,x,0,x).}
+\item{q}{[\code{numerical(x)}]\cr
+Vector of with percentage(s) to fill with wheys (fill with Habitat (value ==
+TRUE)).}
+
+\item{resolution}{[\code{numerical(1)}]\cr
+Resolution of the resulting raster.}
 }
 \value{
 raster
 }
 \description{
-Simulates a curdled neutral landscape model.
+Simulates a curdled neutral landscape model with optional wheys.
 }
 \details{
 Random curdling recursively subdivides the plane into blocks.
 At each level of the recursion, a fraction of the this block is declared as
 habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
+
+With the optional argument for wheys, previously selected cells that were 
+declared matrix (value == FALSE) during recursion, can now contain a 
+proportion (\code{q}) of habitat cells.
+
+If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models resembles
+a binary random map.
+
+Note that you can not set ncol and nrow with this landscape algorithm.
+The amount of cells is given by the vectorproduct of s.
 }
 \examples{
 
 # simulate random curdling
-(random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2)))
+random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
+# simulate wheyed curdling
+wheyed_curdling <- nlm_curds(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
 \dontrun{
-# Visualize the NLM
+# Visualize the NLMs
 util_plot(random_curdling, discrete = TRUE)
+util_plot(wheyed_curdling, discrete = TRUE)
 }
 
 }
 \references{
 Keitt TH. 2000. Spectral representation of neutral landscapes.
 \emph{Landscape Ecology} 15:479-493.
-}
-\seealso{
-\code{\link{nlm_wheys}}
+
+Szaro, Robert C., and David W. Johnston, eds. Biodiversity in managed
+landscapes: theory and practice. \emph{Oxford University Press}, USA, 1996.
 }
