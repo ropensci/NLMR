@@ -16,7 +16,6 @@ Vector of successive cutting steps for the blocks (split 1 block into x
 blocks).}
 
 \item{q}{[\code{numerical(x)}]\cr
-Vector of with percentage(s) to fill with wheys (fill with Habitat (value ==
 TRUE)).}
 
 \item{resolution}{[\code{numerical(1)}]\cr
@@ -33,15 +32,15 @@ Random curdling recursively subdivides the plane into blocks.
 At each level of the recursion, a fraction of the this block is declared as
 habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
 
-With the optional argument for wheys, previously selected cells that were 
-declared matrix (value == FALSE) during recursion, can now contain a 
+With the optional argument for wheys, previously selected cells that were
+declared matrix (value == FALSE) during recursion, can now contain a
 proportion (\code{q}) of habitat cells.
 
 If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models resembles
 a binary random map.
 
 Note that you can not set ncol and nrow with this landscape algorithm.
-The amount of cells is given by the vectorproduct of s.
+The amount of cells and hence dimension of the raster is given by the vectorproduct of s.
 }
 \examples{
 
