@@ -1,10 +1,20 @@
 #' nlm_curds
 #'
-#' @description Simulates a curdled neutral landscape model.
+#' @description Simulates a curdled neutral landscape model with optional wheys.
 #'
 #' @details Random curdling recursively subdivides the plane into blocks.
 #' At each level of the recursion, a fraction of the this block is declared as
 #' habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
+#' 
+#' With the optional argument for wheys, previously selected cells that were 
+#' declared matrix (value == FALSE) during recursion, can now contain a 
+#' proportion (\code{q}) of habitat cells.
+#' 
+#' If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models resembles
+#' a binary random map.
+#' 
+#' Note that you can not set ncol and nrow with this landscape algorithm.
+#' The amount of cells is given by the vectorproduct of s.
 #'
 #' @param p [\code{numerical(x)}]\cr
 #' Vector with percentage(s) to fill with curds (fill with Habitat (value ==
@@ -12,25 +22,32 @@
 #' @param s [\code{numerical(x)}]\cr
 #' Vector of successive cutting steps for the blocks (split 1 block into x
 #' blocks).
-#' @param ext [\code{numerical(1)}]\cr
-#' Extent of the resulting raster (0,x,0,x).
+#' @param q [\code{numerical(x)}]\cr
+#' Vector of with percentage(s) to fill with wheys (fill with Habitat (value ==
+#' TRUE)).
+#' @param resolution [\code{numerical(1)}]\cr
+#' Resolution of the resulting raster.
 #'
 #' @return raster
 #'
 #' @examples
 #'
 #' # simulate random curdling
-#' (random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2)))
+#' random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
+#' # simulate wheyed curdling
+#' wheyed_curdling <- nlm_curds(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
 #' \dontrun{
-#' # Visualize the NLM
+#' # Visualize the NLMs
 #' util_plot(random_curdling, discrete = TRUE)
+#' util_plot(wheyed_curdling, discrete = TRUE)
 #' }
-#'
-#' @seealso \code{\link{nlm_wheys}}
 #'
 #' @references
 #' Keitt TH. 2000. Spectral representation of neutral landscapes.
 #' \emph{Landscape Ecology} 15:479-493.
+#' @references
+#' Szaro, Robert C., and David W. Johnston, eds. Biodiversity in managed
+#' landscapes: theory and practice. \emph{Oxford University Press}, USA, 1996.
 #'
 #' @aliases nlm_curds
 #' @rdname nlm_curds
@@ -42,9 +59,12 @@
 
 nlm_curds <- function(p,
                       s,
-                      ext = 1) {
+                      q = NULL,
+                      resolution = 1) {
 
-  # check for same lenght of p and s
+  checkmate::assert_integerish(s)
+  if (length(p) != length(s))
+    stop("Length of p and s differs.")
   # maybe recycle percentages
   # convenient if only one is given!?
 
@@ -62,14 +82,23 @@ nlm_curds <- function(p,
     # get tibble with values and ids
     vl <- raster::values(curd_raster) %>%
       tibble::as_tibble() %>%
-      dplyr::mutate(id = seq_len(raster::ncell(curd_raster)))
+      tibble::rowid_to_column("id")
 
-    # select ids randomly which are set to true and do so
+    # 'curdling' select ids randomly which are to be set to true and do so
     ids <- vl %>%
       dplyr::filter(!value) %>%
       dplyr::sample_frac(p[i]) %>%
       .$id
     vl$value[ids] <- TRUE
+
+    # 'wheying' select ids randomly which are to be set to false and do so
+    if (!is.null(q)) {
+      ids <- vl %>%
+        dplyr::filter(value) %>%
+        dplyr::sample_frac(q[i]) %>%
+        .$id
+      vl$value[ids] <- FALSE
+    }
 
     # overwrite rastervalues
     raster::values(curd_raster) <- vl$value
@@ -81,9 +110,9 @@ nlm_curds <- function(p,
   # set resolution ----
   raster::extent(curd_raster) <- c(
     0,
-    ext,
+    resolution * ncol(curd_raster),
     0,
-    ext
+    resolution * nrow(curd_raster)
   )
 
   return(curd_raster)
