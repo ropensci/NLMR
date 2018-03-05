@@ -6,7 +6,7 @@ neigh_raster  <- nlm_neigh(ncol = 20,
                            p_neigh = 0.1,
                            p_empty = 0.3,
                            categories = 5,
-                           neighborhood = "Von-Neumann"
+                           neighborhood = 4
                            )
 
 test_that("nlm_neigh behaves like it should", {
@@ -29,7 +29,7 @@ neigh_raster  <- nlm_neigh(ncol = 20,
                            p_neigh = 0.1,
                            p_empty = 0.3,
                            categories = 5,
-                           neighborhood = "Moore"
+                           neighborhood = 8
 )
 
 test_that("nlm_neigh behaves like it should", {
