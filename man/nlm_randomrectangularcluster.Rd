@@ -21,7 +21,7 @@ nlm_randomrectangularcluster(ncol, nrow, resolution = 1, minl, maxl,
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer with random values ranging from 0-1.
+RasterLayer
 }
 \description{
 Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
@@ -30,8 +30,8 @@ Simulates a random rectangular cluster neutral landscape model with values rangi
 The random rectangular cluster algorithm starts to fill a raster randomly
 with rectangles defined by \code{minl} and \code{maxl} until the surface
 of the landscape is completely covered.
-This is one of the realisation of the so-called "falling leaves" algorithm,
-which have the propertie that one get two different patterns: one from l
+This is one of the realisations of the so-called "falling/dead leaves" algorithm,
+for more details see Galerne & Goussea (2012).
 }
 \examples{
 # simulate random rectangular cluster
@@ -49,4 +49,6 @@ util_plot(randomrectangular_cluster)
 Gustafson, E.J. & Parker, G.R. (1992). Relationships between landcover
 proportion and indices of landscape spatial pattern. \emph{Landscape ecology},
 7, 101–110.
+Galerne B. & Gousseau Y. (2012). The Transparent Dead Leaves Model. Advances in
+Applied Probability, \emph{Applied Probability Trust}, 44, 1–20.
 }
