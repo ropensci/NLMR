@@ -73,9 +73,9 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1236|          519|                808|              4136|  1236|        519|        808|         0.6537217|     5.690141|        1.491163|        0.4199029|
-|        1|     634|          224|                518|              2018|   634|        224|        518|         0.8170347|     5.078431|        1.507639|        0.3533123|
-|        2|     630|          164|                614|              1906|   630|        164|        614|         0.9746032|     6.019608|        1.561874|        0.2603175|
+|        0|    1239|          526|                836|              4120|  1239|        526|        836|         0.6747377|     5.887324|        1.500222|        0.4245359|
+|        1|     632|          182|                598|              1930|   632|        182|        598|         0.9462025|     5.862745|        1.552917|        0.2879747|
+|        2|     629|          202|                566|              1950|   629|        202|        566|         0.8998410|     5.549020|        1.536995|        0.3211447|
 
 Meta
 ----
@@ -83,9 +83,9 @@ Meta
 -   Please [report any issues or bugs](https://github.com/marcosci/NLMR/issues/new/).
 -   License: GPL3
 -   Get citation information for `NLMR` in R doing `citation(package = 'NLMR')`
--   Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
+    -   Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 -   We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
--   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+    -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 Dependencies
 ------------

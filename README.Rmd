@@ -85,9 +85,9 @@ raster::as.matrix(nlm_raster) %>%
 * Please [report any issues or bugs](https://github.com/marcosci/NLMR/issues/new/).
 * License: GPL3
 * Get citation information for `NLMR` in R doing `citation(package = 'NLMR')`
-   * Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
+    * Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
 * We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
-   * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+    * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
    
 ## Dependencies
 
