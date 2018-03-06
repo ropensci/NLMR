@@ -73,35 +73,19 @@ raster::as.matrix(nlm_raster) %>%
 
 |  patchID|  n.cell|  n.core.cell|  n.edges.perimeter|  n.edges.internal|  area|  core.area|  perimeter|  perim.area.ratio|  shape.index|  frac.dim.index|  core.area.index|
 |--------:|-------:|------------:|------------------:|-----------------:|-----:|----------:|----------:|-----------------:|------------:|---------------:|----------------:|
-|        0|    1249|          569|                772|              4224|  1249|        569|        772|         0.6180945|     5.436620|        1.476190|        0.4555645|
-|        1|     625|          165|                644|              1856|   625|        165|        644|         1.0304000|     6.440000|        1.578627|        0.2640000|
-|        2|     626|          224|                552|              1952|   626|        224|        552|         0.8817891|     5.411765|        1.530357|        0.3578275|
+|        0|    1236|          519|                808|              4136|  1236|        519|        808|         0.6537217|     5.690141|        1.491163|        0.4199029|
+|        1|     634|          224|                518|              2018|   634|        224|        518|         0.8170347|     5.078431|        1.507639|        0.3533123|
+|        2|     630|          164|                614|              1906|   630|        164|        614|         0.9746032|     6.019608|        1.561874|        0.2603175|
 
-Citation
---------
+Meta
+----
 
-
-    To cite NLMR in publications use:
-
-      Marco Sciaini, Matthias Fritsch, Craig E. Simpkins (2018).
-      {NLMR}: Simulating neutral landscape models. R package version
-      0.2.0. URL https://CRAN.R-project.org/package=NLMR
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{,
-        title = {{NLMR}: Simulating neutral landscape models.},
-        author = {Marco Sciaini and Matthias Fritsch and Craig E. Simpkins},
-        note = {R package version 0.2.1},
-        url = {https://CRAN.R-project.org/package=NLMR},
-      }
-
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
-
-Contributor Code of Conduct
----------------------------
-
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+-   Please [report any issues or bugs](https://github.com/marcosci/NLMR/issues/new/).
+-   License: GPL3
+-   Get citation information for `NLMR` in R doing `citation(package = 'NLMR')`
+-   Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
+-   We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
+-   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 Dependencies
 ------------
