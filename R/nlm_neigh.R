@@ -102,18 +102,18 @@ nlm_neigh <-
         # Pick random cell within correct dimensions and with value 0 ----
         s <-
           which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
-        s <- s[sample(nrow(s), 1),]
+        s <- s[sample(nrow(s), 1), ]
         row <- as.integer(s[1]) + 1
         col <- as.integer(s[2]) + 1
 
         # Check neighbourhood of that cell ----
-        if (neighbourhood == 4) { # Von-Neumann"
+        if (neighbourhood == 4) {
           adjacent <- c(matrix[row - 1, col], # upper
                         matrix[row, col - 1], # left
                         matrix[row, col + 1], # right
                         matrix[row + 1, col]) # lower
         }
-        if (neighbourhood == 8) { "Moore"
+        if (neighbourhood == 8) {
           adjacent <- c(matrix[row - 1, col - 1],
                         # upper left
                         matrix[row - 1, col],
@@ -144,10 +144,10 @@ nlm_neigh <-
         }
 
         # Update boundary conditions
-        matrix[1,] <- matrix[nrow + 1,]
-        matrix[nrow + 2,] <- matrix[2,]
-        matrix[, 1] <- matrix[, ncol + 1]
-        matrix[, ncol + 2] <- matrix[, 2]
+        matrix[1, ]         <- matrix[nrow + 1, ]
+        matrix[nrow + 2, ]  <- matrix[2, ]
+        matrix[, 1]         <- matrix[, ncol + 1]
+        matrix[, ncol + 2]  <- matrix[, 2]
       } # close while j
 
       cat <- cat - 1

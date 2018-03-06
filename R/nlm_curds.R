@@ -32,9 +32,9 @@
 #' @examples
 #'
 #' # simulate random curdling
-#' random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
+#' random_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2))
 #' # simulate wheyed curdling
-#' wheyed_curdling <- nlm_curds(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
+#' wheyed_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2), q = c(0.6, 0.05, 0.2))
 #' \dontrun{
 #' # Visualize the NLMs
 #' util_plot(random_curdling, discrete = TRUE)
@@ -79,28 +79,26 @@ nlm_curds <- function(p,
     curd_raster <- raster::disaggregate(curd_raster, s[i])
 
     # get tibble with values and ids
-    vl <- raster::values(curd_raster) %>%
-      tibble::as_tibble() %>%
-      tibble::rowid_to_column("id")
+    vl     <- raster::values(curd_raster)
+    vl_tib <- tibble::as_tibble(vl)
+    vl_tib <- tibble::rowid_to_column(vl_tib, "id")
 
     # 'curdling' select ids randomly which are to be set to true and do so
-    ids <- vl %>%
-      dplyr::filter(!value) %>%
-      dplyr::sample_frac(p[i]) %>%
-      .$id
-    vl$value[ids] <- TRUE
+    vl_tib_curd           <- dplyr::filter(vl_tib, !value)
+    vl_tib_curd           <- dplyr::sample_frac(vl_tib_curd, p[i])
+    vl_tib_curd           <- vl_tib_curd$id
+    vl_tib$value[vl_tib_curd] <- TRUE
 
     # 'wheying' select ids randomly which are to be set to false and do so
     if (!is.null(q)) {
-      ids <- vl %>%
-        dplyr::filter(value) %>%
-        dplyr::sample_frac(q[i]) %>%
-        .$id
-      vl$value[ids] <- FALSE
+      vl_tib_whey           <- dplyr::filter(vl_tib, !value)
+      vl_tib_whey           <- dplyr::sample_frac(vl_tib_whey, q[i])
+      vl_tib_whey           <- vl_tib_whey$id
+      vl_tib$value[vl_tib_whey] <- FALSE
     }
 
     # overwrite rastervalues
-    raster::values(curd_raster) <- vl$value
+    raster::values(curd_raster) <- vl_tib$value
   }
 
   # invert raster
