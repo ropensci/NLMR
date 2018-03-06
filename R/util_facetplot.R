@@ -11,6 +11,7 @@
 #' a file. This will help with compressing and rendering the image.
 #'
 #' @param x [\code{Raster* object}] (Layer, Stack, Brick) or a list of rasterLayers.
+#' @param nrow,ncol Number of rows and columns.
 #'
 #' @return ggplot
 #'
@@ -37,7 +38,7 @@
 #' @export
 #'
 
-util_facetplot <- function(x) {
+util_facetplot <- function(x, nrow = NULL, ncol = NULL) {
 
   if (checkmate::testClass(x, "RasterLayer") ||
       checkmate::testClass(x, "RasterStack") ||
@@ -57,7 +58,7 @@ util_facetplot <- function(x) {
   p <- ggplot2::ggplot(maptibb, ggplot2::aes_string("x", "y")) +
         ggplot2::coord_fixed() +
         ggplot2::geom_raster(ggplot2::aes_string(fill = "z")) +
-        ggplot2::facet_wrap(~id) +
+        ggplot2::facet_wrap(~id, nrow = nrow, ncol = ncol) +
         theme_nlm()
 
   return(p)
