@@ -4,10 +4,12 @@
 \alias{util_facetplot}
 \title{util_facetplot() for visual overview}
 \usage{
-util_facetplot(x)
+util_facetplot(x, nrow = NULL, ncol = NULL)
 }
 \arguments{
 \item{x}{[\code{Raster* object}] (Layer, Stack, Brick) or a list of rasterLayers.}
+
+\item{nrow, ncol}{Number of rows and columns.}
 }
 \value{
 ggplot
