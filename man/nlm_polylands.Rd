@@ -5,7 +5,7 @@
 \alias{nlm_polylands}
 \title{nlm_mosaictess}
 \usage{
-nlm_mosaictess(ncol, nrow, resolution = 1, germs)
+nlm_mosaictess(ncol, nrow, resolution = 1, germs, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -34,7 +34,7 @@ the mosaic landscapes.
 }
 \examples{
 # simulate polygonal landscapes
-mosaictess <- nlm_mosaictess(ncol = 30, nrow = 30, germs = 20)
+mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 20)
 
 \dontrun{
 # visualize the NLM
