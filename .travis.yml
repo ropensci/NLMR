@@ -8,6 +8,7 @@ warnings_are_errors: false
 
 r_github_packages:
   - r-lib/covr
+  - ecohealthalliance/fasterize
 
 after_success:
   - Rscript -e 'covr::codecov(branch = "develop")'
