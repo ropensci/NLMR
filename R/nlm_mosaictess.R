@@ -16,16 +16,18 @@
 #' Resolution of the raster.
 #' @param germs [\code{numerical(1)}]\cr
 #' Intensity parameter (non-negative integer).
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return RasterLayer
 #'
 #' @examples
 #' # simulate polygonal landscapes
-#' mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 20)
+#' mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(poly_lands)
+#' util_plot(mosaictess)
 #' }
 #'
 #' @references
@@ -65,11 +67,11 @@ nlm_mosaictess <- function(ncol,
 
   # clip and give random values ----
   voronoi_tess <- sf::st_intersection(sf::st_cast(voronoi_tess), bounding_box)
-  voronoi_tess <- sf::st_sf(value = runif(germs),
+  voronoi_tess <- sf::st_sf(value = stats::runif(germs),
                             geometry = sf::st_sfc(voronoi_tess))
 
   # (f)rasterize with lightning speed ----
-  r <- raster::raster(voronoi_tess, res = resolution)
+  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
   r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
 
   # Rescale values to 0-1 ----
@@ -79,3 +81,4 @@ nlm_mosaictess <- function(ncol,
 
   return(r)
 }
+

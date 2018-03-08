@@ -4,7 +4,7 @@
 \alias{nlm_mosaicgibbs}
 \title{nlm_mosaicgibbs}
 \usage{
-nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, g, R, patch_classes)
+nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, R, patch_classes)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -19,12 +19,9 @@ Resolution of the raster.}
 \item{germs}{[\code{numerical(1)}]\cr
 Intensity parameter (non-negative integer).}
 
-\item{g}{[\code{numerical(1)}]\cr
-Interaction parameter (a value between 0 - hardcore process and 1- poission process).}
-
 \item{R}{[\code{numerical(1)}]\cr
 Interaction radius (non-negative integer) for the fitting of the spatial point
-pattern process.}
+pattern process - the min. distance between germs in map units.}
 
 \item{patch_classes}{[\code{numerical(1)}]\cr
 Number of classes for germs.}
@@ -50,7 +47,6 @@ parameter (0 - hardcore process; 1 - poission process) and interaction radius
 mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
                               nrow = 30,
                               germs = 20,
-                              g = 0.5,
                               R = 0.02,
                               patch_classes = 12)
 

@@ -83,12 +83,11 @@ nlm_mosaicfield <- function(ncol,
     )
 
     if (isTRUE(collect)) {
-      i <- 2
       mosaicfield_list <- list()
       mosaicfield_list[[1]] <- mosaicfield_result
     }
 
-    for (i in 1:n) {
+    for (i in 2:n) {
       mosaicfield_n <- spatstat::rMosaicField(
         spatstat::rpoislinetess(4),
         stats::rnorm,
@@ -109,10 +108,8 @@ nlm_mosaicfield <- function(ncol,
     }
 
     # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_df <- as.data.frame(mosaicfield_result)
-    sp::coordinates(mosaicfield_df) <- ~ x + y
-    sp::gridded(mosaicfield_df) <- TRUE
-    mosaicfield_raster <- raster::raster(mosaicfield_df)
+    mosaicfield_raster <- raster::rasterFromXYZ(as.data.frame(mosaicfield_result))
+
     raster::extent(mosaicfield_raster) <- c(
       0,
       ncol(mosaicfield_raster) * resolution,
@@ -136,10 +133,8 @@ nlm_mosaicfield <- function(ncol,
       mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
 
         # coerce spatstat image list to raster and set proper resolution ----
-        mosaicfield_list[[i]] <- as.data.frame(mosaicfield_list[[i]])
-        sp::coordinates(mosaicfield_list[[i]]) <- ~ x + y
-        sp::gridded(mosaicfield_list[[i]]) <- TRUE
-        mosaicfield_list[[i]] <- raster::raster(mosaicfield_list[[i]])
+        mosaicfield_list[[i]] <- raster::rasterFromXYZ(as.data.frame(mosaicfield_list[[i]]))
+
         raster::extent(mosaicfield_list[[i]]) <- c(
           0,
           ncol(mosaicfield_list[[i]]) * resolution,
@@ -171,10 +166,8 @@ nlm_mosaicfield <- function(ncol,
     mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
 
     # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_df <- as.data.frame(mosaicfield_inf)
-    sp::coordinates(mosaicfield_df) <- ~ x + y
-    sp::gridded(mosaicfield_df) <- TRUE
-    mosaicfield_raster <- raster::raster(mosaicfield_df)
+    mosaicfield_raster <- raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
+
     raster::extent(mosaicfield_raster) <- c(
       0,
       ncol(mosaicfield_raster) * resolution,

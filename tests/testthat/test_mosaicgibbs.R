@@ -4,7 +4,6 @@ context("nlm_mosaicgibbs")
 nlm_mosaicgibbs  <- nlm_mosaicgibbs(ncol = 40,
                                     nrow = 30,
                                     germs = 20,
-                                    g = 0.5,
                                     R = 0.02,
                                     patch_classes = 12)
 
@@ -21,7 +20,7 @@ test_that("nlm_mosaicgibbs produces the right number of columns", {
   expect_equal(nlm_mosaicgibbs@ncols, 40)
 })
 
-test_that("nlm_mosaicgibbs uses the right number of germs", {
+test_that("nlm_mosaicgibbs uses the right number of patch_classes", {
   expect_equal(length(raster::unique(nlm_mosaicgibbs)), 12)
 })
 

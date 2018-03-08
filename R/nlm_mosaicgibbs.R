@@ -20,11 +20,9 @@
 #' Resolution of the raster.
 #' @param germs [\code{numerical(1)}]\cr
 #' Intensity parameter (non-negative integer).
-#' @param g [\code{numerical(1)}]\cr
-#' Interaction parameter (a value between 0 - hardcore process and 1- poission process).
 #' @param R [\code{numerical(1)}]\cr
 #' Interaction radius (non-negative integer) for the fitting of the spatial point
-#' pattern process.
+#' pattern process - the min. distance between germs in map units.
 #' @param patch_classes [\code{numerical(1)}]\cr
 #' Number of classes for germs.
 #'
@@ -35,7 +33,6 @@
 #' mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
 #'                               nrow = 30,
 #'                               germs = 20,
-#'                               g = 0.5,
 #'                               R = 0.02,
 #'                               patch_classes = 12)
 #'
@@ -58,7 +55,6 @@ nlm_mosaicgibbs <- function(ncol,
                             nrow,
                             resolution = 1,
                             germs,
-                            g,
                             R,
                             patch_classes) {
 
@@ -67,53 +63,44 @@ nlm_mosaicgibbs <- function(ncol,
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(germs)
-  checkmate::assert_numeric(g)
   checkmate::assert_numeric(R)
   checkmate::assert_count(patch_classes, positive = TRUE)
 
   # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-  x <- spatstat::rStrauss(200, gamma = g, R = R)
+  x <- spatstat::rSSI(R, germs, win = spatstat::owin(c(0,ncol), c(0,nrow)))
 
   # ... and randomly allocate attribute class (here point pattern mark)
-  m <- sample(1:patch_classes, x$n, replace = TRUE)
+  m <- sample(rep(1:patch_classes, length.out =germs))
   spatstat::marks(x) <- m
 
   # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
-  strauss_points <- data.frame(x)
-  sp::coordinates(strauss_points) <- ~ x + y
+  strauss_points <- sf::st_as_sf(data.frame(x), coords = c("x", "y"))
 
-  # Create a tessellated surface ----
-  strauss_tess <- dismo::voronoi(strauss_points)
-
-  # Fill tessellated surface with values from points ----
-  strauss_values <-
-    sp::over(strauss_tess, strauss_points, fn = mean)
-
-  # Coerce to raster  ----
-  strauss_spdf <-
-    sp::SpatialPolygonsDataFrame(strauss_tess, strauss_values)
-
-  polylands_raster <-
-    raster::rasterize(
-      strauss_spdf,
-      raster::raster(
-        nrow = nrow,
-        ncol = ncol,
-        resolution = c(1 / ncol, 1 / nrow),
-        ext = raster::extent(strauss_spdf)
-      ),
-      field = strauss_spdf@data[, 1]
+  # compute the voronoi tessellation and clip
+  voronoi_tess <-
+    sf::st_voronoi(sf::st_union(strauss_points), dTolerance = 0.1)
+  voronoi_tess <-
+    sf::st_intersection(sf::st_buffer(sf::st_cast(voronoi_tess), 0),
+                        sf::st_as_sfc(sf::st_bbox(sf::st_as_sf(
+                          data.frame(x = c(0,ncol), y = c(0, nrow)), coords = c("x", "y")
+                        ))))
+  voronoi_tess <-
+    sf::st_sf(
+      value = strauss_points$marks,
+      geometry = sf::st_sfc(voronoi_tess)
     )
 
-  polylands_raster <- raster::crop(polylands_raster,
-                                   raster::extent(0, 1, 0, 1))
+  # (f)rasterize with lightning speed ----
+  r <- raster::raster(raster::extent(c(0, ncol, 0, nrow)), res = resolution)
+  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+
 
   # specify resolution ----
-  raster::extent(polylands_raster) <- c(0,
-                                        ncol(polylands_raster) * resolution,
-                                        0,
-                                        nrow(polylands_raster) * resolution)
+  raster::extent(r) <- c(0,
+                         ncol(r) * resolution,
+                         0,
+                         nrow(r) * resolution)
 
-  return(polylands_raster)
+  return(r)
 
 }

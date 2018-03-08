@@ -24,7 +24,7 @@
 #'
 #' @examples
 #' # simulate random clustering
-#' random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10,
+#' random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10, resolution = 1,
 #'                                     neighbourhood = 4, p = 0.4)
 #' \dontrun{
 #' # visualize the NLM
