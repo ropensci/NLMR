@@ -92,7 +92,7 @@ nlm_neigh <-
 
     # Create an empty matrix of correct dimensions + additional 2 rows and
     # columns ----
-    matrix <- matrix(0, ncol + 2, nrow + 2)
+    matrix <- matrix(0, nrow + 2, ncol + 2)
 
     # Keep applying random clusters until all elements have a value -----
     while (cat > 0) {
@@ -165,3 +165,4 @@ nlm_neigh <-
 
     return(rndneigh_raster)
 }
+
