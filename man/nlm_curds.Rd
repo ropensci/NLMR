@@ -45,9 +45,9 @@ The amount of cells and hence dimension of the raster is given by the vectorprod
 \examples{
 
 # simulate random curdling
-random_curdling <- nlm_curds(c(0.5, 0.3, 0.6), c(32, 6, 2))
+random_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2))
 # simulate wheyed curdling
-wheyed_curdling <- nlm_curds(c(0.1, 0.3, 0.6), c(32, 6, 2), c(0.1, 0.05, 0.2))
+wheyed_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2), q = c(0.1, 0.05, 0.2))
 \dontrun{
 # Visualize the NLMs
 util_plot(random_curdling, discrete = TRUE)

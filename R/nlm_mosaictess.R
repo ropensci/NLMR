@@ -16,16 +16,18 @@
 #' Resolution of the raster.
 #' @param germs [\code{numerical(1)}]\cr
 #' Intensity parameter (non-negative integer).
+#' @param rescale [\code{logical(1)}]\cr
+#' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return RasterLayer
 #'
 #' @examples
 #' # simulate polygonal landscapes
-#' mosaictess <- nlm_mosaictess(ncol = 30, nrow = 30, germs = 20)
+#' mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(poly_lands)
+#' util_plot(mosaictess)
 #' }
 #'
 #' @references
@@ -41,32 +43,42 @@
 nlm_mosaictess <- function(ncol,
                             nrow,
                             resolution = 1,
-                            germs) {
+                            germs,
+                            rescale = TRUE) {
+
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(germs)
 
-  # generate the germs from which the polygons are build ----
-  X <- spatstat::runifpoint(germs)
+  # bounding box placing germs and clipping ----
+  bounding_box <-  sf::st_sfc(sf::st_polygon(list(rbind(c(0, 0),
+                                                        c(ncol, 0),
+                                                        c(ncol, nrow),
+                                                        c(0, nrow),
+                                                        c(0, 0)))))
 
-  # compute the Dirichlet tessellation ----
-  tess_surface <- spatstat::dirichlet(X)
+  # distribute the germs from which the polygons are build ----
+  rnd_points <- sf::st_union(sf::st_sample(bounding_box, germs))
 
-  # whole bunch of conversions to get a raster in the end ----
-  tess_im <- spatstat::as.im(tess_surface, dimyx = c(nrow, ncol))
-  tess_data <- raster::as.data.frame(tess_im)
-  sp::coordinates(tess_data) <- ~ x + y
-  sp::gridded(tess_data) <- TRUE
-  polylands_raster <- raster::deratify(raster::raster(tess_data))
-  polylands_raster <- raster::crop(polylands_raster,
-                                   raster::extent(0, 1, 0, 1))
+  # compute the voronoi tessellation ----
+  voronoi_tess <- sf::st_voronoi(rnd_points)
 
-  # specify resolution ----
-  raster::extent(polylands_raster) <- c(0,
-                                        ncol(polylands_raster) * resolution,
-                                        0,
-                                        nrow(polylands_raster) * resolution)
-  return(polylands_raster)
+  # clip and give random values ----
+  voronoi_tess <- sf::st_intersection(sf::st_cast(voronoi_tess), bounding_box)
+  voronoi_tess <- sf::st_sf(value = stats::runif(germs),
+                            geometry = sf::st_sfc(voronoi_tess))
+
+  # (f)rasterize with lightning speed ----
+  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
+  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+
+  # Rescale values to 0-1 ----
+  if (rescale == TRUE) {
+    r <- util_rescale(r)
+  }
+
+  return(r)
 }
+

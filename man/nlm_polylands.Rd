@@ -5,7 +5,7 @@
 \alias{nlm_polylands}
 \title{nlm_mosaictess}
 \usage{
-nlm_mosaictess(ncol, nrow, resolution = 1, germs)
+nlm_mosaictess(ncol, nrow, resolution = 1, germs, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -19,6 +19,9 @@ Resolution of the raster.}
 
 \item{germs}{[\code{numerical(1)}]\cr
 Intensity parameter (non-negative integer).}
+
+\item{rescale}{[\code{logical(1)}]\cr
+If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
 RasterLayer
@@ -34,11 +37,11 @@ the mosaic landscapes.
 }
 \examples{
 # simulate polygonal landscapes
-mosaictess <- nlm_mosaictess(ncol = 30, nrow = 30, germs = 20)
+mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 
 \dontrun{
 # visualize the NLM
-util_plot(poly_lands)
+util_plot(mosaictess)
 }
 
 }
