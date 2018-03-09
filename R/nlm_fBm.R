@@ -14,6 +14,11 @@
 #'  Set Seed for simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param ... \cr
+#'  Other options to RandomFields::RFoptions, especially if you are using
+#'  fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+#'  \code{modus_operandi = "sloppy"}.
+#'
 #'
 #' @details
 #' Neutral landscapes are generated using fractional Brownian motion,
@@ -47,14 +52,16 @@ nlm_fBm <- function(ncol,
                     resolution = 1,
                     fract_dim = 1,
                     user_seed = NULL,
-                    rescale = TRUE) {
+                    rescale = TRUE,
+                    ...) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(fract_dim)
-  checkmate::assert_true(fract_dim < 2)
+  checkmate::assert_true(fract_dim > 0)
+  checkmate::assert_true(fract_dim <= 2)
   checkmate::assert_logical(rescale)
 
   # specify RandomFields options ----
@@ -62,18 +69,16 @@ nlm_fBm <- function(ncol,
   RandomFields::RFoptions(spConform = FALSE)
 
   # set RF seed ----
-  if (!is.null(user_seed)) {
-    RandomFields::RFoptions(seed = user_seed)
-  }
+  RandomFields::RFoptions(seed = user_seed)
 
   # formulate and simulate fBm model
   fbm_model <- RandomFields::RMfbm(
     alpha = fract_dim)
   fbm_simu <- RandomFields::RFsimulate(fbm_model,
                                        # fBm changes x and y?
-                                       y = seq(ncol),
-                                       x = seq(nrow),
-                                       grid =  TRUE)
+                                       y = seq.int(0, length.out = ncol),
+                                       x = seq.int(0, length.out = nrow),
+                                       grid = TRUE)
 
 
   # transform simulation into raster ----
