@@ -57,7 +57,6 @@ nlm_mosaicfield <- function(ncol,
                             collect     = FALSE,
                             infinit     = FALSE,
                             rescale     = TRUE) {
-
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
@@ -76,10 +75,8 @@ nlm_mosaicfield <- function(ncol,
       spatstat::rpoislinetess(4),
       stats::rnorm,
       dimyx = c(nrow, ncol),
-      rgenargs = list(
-        mean = mosaic_mean,
-        sd = mosaic_sd
-      )
+      rgenargs = list(mean = mosaic_mean,
+                      sd = mosaic_sd)
     )
 
     if (isTRUE(collect)) {
@@ -92,10 +89,8 @@ nlm_mosaicfield <- function(ncol,
         spatstat::rpoislinetess(4),
         stats::rnorm,
         dimyx = c(nrow, ncol),
-        rgenargs = list(
-          mean = mosaic_mean,
-          sd = mosaic_sd
-        )
+        rgenargs = list(mean = mosaic_mean,
+                        sd = mosaic_sd)
       )
 
       mosaicfield_result <- mosaicfield_result + mosaicfield_n
@@ -108,7 +103,8 @@ nlm_mosaicfield <- function(ncol,
     }
 
     # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_raster <- raster::rasterFromXYZ(as.data.frame(mosaicfield_result))
+    mosaicfield_raster <- raster::rasterFromXYZ(
+      as.data.frame(mosaicfield_result))
 
     raster::extent(mosaicfield_raster) <- c(
       0,
@@ -126,27 +122,30 @@ nlm_mosaicfield <- function(ncol,
 
     if (isTRUE(collect)) {
       names(mosaicfield_list) <- seq_along(mosaicfield_list)
-      mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
-        mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
-      })
+      mosaicfield_list <-
+        purrr::map(seq_along(mosaicfield_list), function(i) {
+          mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
+        })
 
-      mosaicfield_list <- purrr::map(seq_along(mosaicfield_list), function(i) {
+      mosaicfield_list <-
+        purrr::map(seq_along(mosaicfield_list), function(i) {
+          # coerce spatstat image list to raster and set proper resolution ----
+          mosaicfield_list[[i]] <- raster::rasterFromXYZ(
+            as.data.frame(mosaicfield_list[[i]]))
 
-        # coerce spatstat image list to raster and set proper resolution ----
-        mosaicfield_list[[i]] <- raster::rasterFromXYZ(as.data.frame(mosaicfield_list[[i]]))
+          raster::extent(mosaicfield_list[[i]]) <- c(
+            0,
+            ncol(mosaicfield_list[[i]]) * resolution,
+            0,
+            nrow(mosaicfield_list[[i]]) * resolution
+          )
 
-        raster::extent(mosaicfield_list[[i]]) <- c(
-          0,
-          ncol(mosaicfield_list[[i]]) * resolution,
-          0,
-          nrow(mosaicfield_list[[i]]) * resolution
-        )
-
-        mosaicfield_list[[i]]
-      })
+          mosaicfield_list[[i]]
+        })
 
       mosaicfields_brick <- raster::brick(mosaicfield_list)
-      names(mosaicfields_brick) <- paste("Step: ", seq_along(mosaicfield_list))
+      names(mosaicfields_brick) <-
+        paste("Step: ", seq_along(mosaicfield_list))
 
       # Rescale values to 0-1
       if (rescale == TRUE) {
@@ -159,14 +158,20 @@ nlm_mosaicfield <- function(ncol,
   }
 
   if (isTRUE(infinit)) {
-
     # INFINITE STEPS:
-    X <- spatstat::rLGCP("exp", 4, var = 1, dimyx = c(nrow, ncol),
-                         scale = .2, saveLambda = TRUE)
+    X <- spatstat::rLGCP(
+      "exp",
+      4,
+      var = 1,
+      dimyx = c(nrow, ncol),
+      scale = .2,
+      saveLambda = TRUE
+    )
     mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
 
     # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_raster <- raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
+    mosaicfield_raster <-
+      raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
 
     raster::extent(mosaicfield_raster) <- c(
       0,

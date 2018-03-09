@@ -165,4 +165,3 @@ nlm_neigh <-
 
     return(rndneigh_raster)
 }
-

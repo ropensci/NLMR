@@ -81,4 +81,3 @@ nlm_mosaictess <- function(ncol,
 
   return(r)
 }
-

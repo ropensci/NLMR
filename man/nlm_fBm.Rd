@@ -5,7 +5,7 @@
 \title{nlm_fBm}
 \usage{
 nlm_fBm(ncol, nrow, resolution = 1, fract_dim = 1, user_seed = NULL,
-  rescale = TRUE)
+  rescale = TRUE, ...)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -25,6 +25,11 @@ Set Seed for simulation}
 
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
+
+\item{...}{\cr
+Other options to RandomFields::RFoptions, especially if you are using
+fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+\code{modus_operandi = "sloppy"}.}
 }
 \value{
 RasterLayer

@@ -67,10 +67,10 @@ nlm_mosaicgibbs <- function(ncol,
   checkmate::assert_count(patch_classes, positive = TRUE)
 
   # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-  x <- spatstat::rSSI(R, germs, win = spatstat::owin(c(0,ncol), c(0,nrow)))
+  x <- spatstat::rSSI(R, germs, win = spatstat::owin(c(0, ncol), c(0, nrow)))
 
   # ... and randomly allocate attribute class (here point pattern mark)
-  m <- sample(rep(1:patch_classes, length.out =germs))
+  m <- sample(rep(1:patch_classes, length.out = germs))
   spatstat::marks(x) <- m
 
   # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
@@ -82,7 +82,9 @@ nlm_mosaicgibbs <- function(ncol,
   voronoi_tess <-
     sf::st_intersection(sf::st_buffer(sf::st_cast(voronoi_tess), 0),
                         sf::st_as_sfc(sf::st_bbox(sf::st_as_sf(
-                          data.frame(x = c(0,ncol), y = c(0, nrow)), coords = c("x", "y")
+                          data.frame(x = c(0, ncol),
+                                     y = c(0, nrow)),
+                                     coords = c("x", "y")
                         ))))
   voronoi_tess <-
     sf::st_sf(
