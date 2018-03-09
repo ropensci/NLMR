@@ -14,6 +14,11 @@
 #'  Set Seed for simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param ... \cr
+#'  Other options to RandomFields::RFoptions, especially if you are using
+#'  fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+#'  \code{modus_operandi = "sloppy"}.
+#'
 #'
 #' @details
 #' Neutral landscapes are generated using fractional Brownian motion,
@@ -47,7 +52,8 @@ nlm_fBm <- function(ncol,
                     resolution = 1,
                     fract_dim = 1,
                     user_seed = NULL,
-                    rescale = TRUE) {
+                    rescale = TRUE,
+                    ...) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
