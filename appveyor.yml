@@ -15,7 +15,7 @@ cache:
 
 # Adapt as necessary starting from here
 environment:
-  - USE_RTOOLS: true
+  USE_RTOOLS: true
 
 build_script:
   - travis-tool.sh install_github ecohealthalliance/fasterize
