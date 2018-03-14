@@ -4,8 +4,8 @@
 \alias{nlm_randomcluster}
 \title{nlm_randomcluster}
 \usage{
-nlm_randomcluster(ncol, nrow, resolution = 1, neighbourhood = 4, p,
-  rescale = TRUE)
+nlm_randomcluster(ncol, nrow, resolution = 1, p, ai = c(0.5, 0.5),
+  neighbourhood = 4, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{integer(1)}]\cr
@@ -17,13 +17,16 @@ Number of rows in the raster.}
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
 
-\item{neighbourhood}{[\code{numerical(1)}]\cr
-Clusters are defined using a set of neighbourhood structures,
- 4 (Rook's or von Neumann neighbourhood) (default), 8 (Queen's or Moore neighbourhood).}
-
 \item{p}{[\code{numerical(1)}]\cr
 The p value defines the proportion of   elements randomly selected to form
 clusters.}
+
+\item{ai}{Vector with the cluster type distribution (pecentages of occupancy).
+This controls directly the number of types via the given length.}
+
+\item{neighbourhood}{[\code{numerical(1)}]\cr
+Clusters are defined using a set of neighbourhood structures,
+ 4 (Rook's or von Neumann neighbourhood) (default), 8 (Queen's or Moore neighbourhood).}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
@@ -35,23 +38,22 @@ Raster with random values ranging from 0-1.
 Simulates a random cluster nearest-neighbour neutral landscape.
 }
 \details{
-The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labelling algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
+This is a direct implementation of steps A - D of the MRC algorithm
+by Saura & Martínez-Millán (2000).
 }
 \examples{
 # simulate random clustering
-random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10, resolution = 1,
-                                    neighbourhood = 4, p = 0.4)
+random_cluster <- nlm_randomcluster(
+  ncol = 20, nrow = 10, resolution = 1, neighbourhood = 4,
+  p = 0.4, ai = c(0.25, 0.25, 0.5), rescale = FALSE
+)
 \dontrun{
 # visualize the NLM
-util_plot(random_cluster)
+util_plot(random_cluster, discrete = TRUE)
 }
 
 }
 \references{
 Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
 modified random clusters method. \emph{Landscape Ecology}, 15, 661 – 678.
-
-Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
-package for the creation of neutral landscape models within a general
-numerical framework. \emph{Methods in Ecology and Evolution} 6:164 – 168.
 }
