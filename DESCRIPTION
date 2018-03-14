@@ -58,7 +58,8 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    lintr
+    lintr,
+    classInt
 VignetteBuilder:
     knitr
 Remotes: ecohealthalliance/fasterize

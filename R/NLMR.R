@@ -21,7 +21,7 @@
 # nolint start
 "_PACKAGE"
 
-globalVariables(c("x", "value", "."))
+globalVariables(c("x", "value", ".", "ctf"))
 
 # nolint end
 # nocov end
