@@ -21,25 +21,6 @@ reference:
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
       - '`nlm_wheys`'
-  - title: Metrics
-    desc: ~
-    contents:
-      - '`metric_area`'
-  - title: Theme
-    desc: ~
-    contents:
-      - '`theme_nlm`'
-  - title: Utility Functions
-    desc: ~
-    contents:
-      - '`util_binarize`'
-      - '`util_classify`'
-      - '`util_facetplot`'
-      - '`util_import_roboto_condensed`'
-      - '`util_merge`'
-      - '`util_plot`'
-      - '`util_raster2tibble`'
-      - '`util_rescale`'
 navbar:
   title: nlmr | Neutral landscape models with R
   left:

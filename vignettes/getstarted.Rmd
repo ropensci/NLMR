@@ -47,7 +47,6 @@ The 16 NLM algorithms are:
 1. planar gradient  
 1. random  
 1. random cluster nearest-neighbour 
-1. random curdling
 1. random element 
 1. random mosaic fields
 1. random polygonal landscapes
@@ -65,7 +64,7 @@ For example, to produce a simple random neutral landscape one could use the
 following code:
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
- x <- nlmr::nlm_random(20,20)
+x <- nlmr::nlm_random(20,20)
 rasterVis::levelplot(x, margin = FALSE, par.settings = viridisTheme())
 ```
 

@@ -21,7 +21,7 @@ Resolution of the raster.}
 The p value defines the proportion of   elements randomly selected to form
 clusters.}
 
-\item{ai}{Vector with the cluster type distribution (pecentages of occupancy).
+\item{ai}{Vector with the cluster type distribution (percentages of occupancy).
 This controls directly the number of types via the given length.}
 
 \item{neighbourhood}{[\code{numerical(1)}]\cr

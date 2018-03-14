@@ -14,7 +14,7 @@
 #' @param p [\code{numerical(1)}]\cr
 #' The p value defines the proportion of   elements randomly selected to form
 #' clusters.
-#' @param ai Vector with the cluster type distribution (pecentages of occupancy).
+#' @param ai Vector with the cluster type distribution (percentages of occupancy).
 #' This controls directly the number of types via the given length.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
@@ -24,7 +24,7 @@
 #' @details
 #' This is a direct implementation of steps A - D of the MRC algorithm
 #' by Saura & Martínez-Millán (2000).
-#' 
+#'
 #'
 #' @examples
 #' # simulate random clustering
@@ -48,8 +48,12 @@
 #'
 
 
-nlm_randomcluster <- function(ncol, nrow, resolution = 1, p, ai = c(0.5, 0.5),
-                              neighbourhood = 4, rescale = TRUE) {
+nlm_randomcluster <- function(ncol, nrow,
+                              resolution = 1,
+                              p,
+                              ai = c(0.5, 0.5),
+                              neighbourhood = 4,
+                              rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)

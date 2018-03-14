@@ -23,7 +23,7 @@
 #' Vector of successive cutting steps for the blocks (split 1 block into x
 #' blocks).
 #' @param q [\code{numerical(x)}]\cr
-#' TRUE)).
+#' missing
 #' @param resolution [\code{numerical(1)}]\cr
 #' Resolution of the resulting raster.
 #'
@@ -44,7 +44,7 @@
 #' @references
 #' Keitt TH. 2000. Spectral representation of neutral landscapes.
 #' \emph{Landscape Ecology} 15:479-493.
-#' @references
+#'
 #' Szaro, Robert C., and David W. Johnston, eds. Biodiversity in managed
 #' landscapes: theory and practice. \emph{Oxford University Press}, USA, 1996.
 #'
