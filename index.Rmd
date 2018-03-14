@@ -2,12 +2,12 @@
 output: github_document
 ---
 
-[![Build Status](https://travis-ci.org/marcosci/NLMR.svg?branch=develop)](https://travis-ci.org/marcosci/NLMR)
+[![Build Status](https://travis-ci.org/marcosci/nlmr.svg?branch=develop)](https://travis-ci.org/marcosci/nlmr)
 [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr)
-[![codecov](https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
-[![Join the chat at  https://gitter.im/NLMR_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) 
-[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
+[![codecov](https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/nlmr)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nlmr)](https://cran.r-project.org/package=nlmr) 
+[![Join the chat at  https://gitter.im/nlmr_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) 
+[![](http://cranlogs.r-pkg.org/badges/grand-total/nlmr)](http://cran.rstudio.com/web/packages/nlmr/index.html) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
 ```{r setup, include=FALSE}
@@ -19,21 +19,21 @@ knitr::opts_chunk$set(
 )
 ```
 
-<i class="fa fa-code" aria-hidden="true"></i> **NLMR** <img src="vignettes/logo.png" align="right" height="175" />
+<i class="fa fa-code" aria-hidden="true"></i> **nlmr** <img src="vignettes/logo.png" align="right" height="175" />
 ------------------------------------------------------------
 
 **N**eutral **L**andscape **M**odels with **R**
 
 ------------------------------------------------------------------------
 
-**NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-``NLMR`` exploits the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+**nlmr** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
+``nlmr`` exploits the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
 Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 
 ------------------------------------------------------------------------
 
-<i class="fa fa-cubes" aria-hidden="true"></i> Why NLMR?  <small> ... and not one of the other software tools<a href="https://marcosci.github.io/NLMR/articles/faq.html"><sup>\*</sup></a></small>
+<i class="fa fa-cubes" aria-hidden="true"></i> Why nlmr?  <small> ... and not one of the other software tools<a href="https://marcosci.github.io/nlmr/articles/faq.html"><sup>\*</sup></a></small>
 ------------------------------------------------------------
 
 * It is so far the only library of NLM in ``R``
@@ -42,8 +42,8 @@ Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 * Most comprehensive collection of algorithms to simulate NLM
 * Embedded in a native GIS framework
 * Variety of utility functions (classification, merging, visualization, ...)
-* Openly developed on [github](https://github.com/marcosci/NLMR)
-    * If something is missing or annoys you - [get in touch](https://github.com/marcosci/NLMR/issues/new)
+* Openly developed on [github](https://github.com/marcosci/nlmr)
+    * If something is missing or annoys you - [get in touch](https://github.com/marcosci/nlmr/issues/new)
  
 
 ------------------------------------------------------------------------
@@ -54,14 +54,14 @@ Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 Install the release version from CRAN:
 
 ```{r eval = FALSE}
-install.packages("NLMR")
+install.packages("nlmr")
 ```
 
-To install the developmental version of ``NLMR``, use the following R code:
+To install the developmental version of ``nlmr``, use the following R code:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("marcosci/NLMR")
+devtools::install_github("marcosci/nlmr")
 ```
 
 
@@ -70,10 +70,10 @@ devtools::install_github("marcosci/NLMR")
 <i class="fa fa-book" aria-hidden="true"></i> Documentation
 ------------------------------------------------------------
 
-Documentation is available at [NLMR/reference](https://marcosci.github.io/NLMR/reference). To get started, please explore our [vignettes online](https://marcosci.github.io/NLMR/articles/), or in R:
+Documentation is available at [nlmr/reference](https://marcosci.github.io/nlmr/reference). To get started, please explore our [vignettes online](https://marcosci.github.io/nlmr/articles/), or in R:
 
 ```{r eval = FALSE}
-vignette(package = "NLMR")
+vignette(package = "nlmr")
 ```
 
 ------------------------------------------------------------------------
@@ -95,12 +95,12 @@ See our [<i class="fa fa-newspaper-o aria-hidden="true"></i> news](news/index.ht
 -------------------------------------------------------
 
 ```{r, echo  = FALSE, result = "asis", comment = ""}
-citation("NLMR")
+citation("nlmr")
 ```
 
 
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`.
-Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
+Additionally, we keep a [record of publications](https://marcosci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`.
+Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/marcosci/nlmr/issues/new/) so we can add it to the list.
 
 ------------------------------------------------------------------------
 
@@ -115,10 +115,10 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 <i class="fa fa-shopping-basket" aria-hidden="true"></i> Dependencies
 -------------------------------------------------------
 
-**NLMR** imports many great packages that it depends on. Many thanks to the developers of these tools:
+**nlmr** imports many great packages that it depends on. Many thanks to the developers of these tools:
 
 ```{r, echo  = FALSE, result = "asis", comment = ""}
-desc = read.dcf("/home/marco/PhD_Cloud/7_Code/NLMR/DESCRIPTION")
+desc = read.dcf("/home/marco/PhD_Cloud/7_Code/nlmr/DESCRIPTION")
 headings = dimnames(desc)[[2]]
 fields = which(headings %in% c("Depends", "Imports"))
 pkgs = paste(desc[fields], collapse = ", ")

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Basic Usage of NLMR • NLMR</title>
+<title>Basic Usage of nlmr • nlmr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -24,7 +24,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="../index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -48,7 +48,7 @@
       <a href="../articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/bestiary.html">NLMR Bestiary</a>
+      <a href="../articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
@@ -83,7 +83,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -101,7 +101,7 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Basic Usage of NLMR</h1>
+      <h1>Basic Usage of nlmr</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
             <h4 class="date">2018-02-25</h4>
@@ -110,11 +110,11 @@
     
     
 <div class="contents">
-<p><code>NLMR</code> is a <code>R</code> package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The <code>NLMR</code> package was designed with a similar philosophy to the Python package <code>NLMpy</code> <span class="citation">(see Etherington, Holland, and O’Sullivan 2014)</span>, offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. Additionally, NLMR allows users to merge multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the <code>raster</code> package.</p>
+<p><code>nlmr</code> is a <code>R</code> package designed to generate neutral landscape models (NLMs), simulated landscapes used to explore landscape scale ecological patterns and processes. The <code>nlmr</code> package was designed with a similar philosophy to the Python package <code>NLMpy</code> <span class="citation">(see Etherington, Holland, and O’Sullivan 2014)</span>, offering a general numeric framework allowing for a high degree of flexibility. Most of the common NLMs, as described by the relevant literature, can be produced using nlmr. Additionally, nlmr allows users to merge multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the <code>raster</code> package.</p>
 <div id="basic-landscape-generation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-landscape-generation" class="anchor"></a>Basic landscape generation</h2>
-<p><code>NLMR</code> supplies 16 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
+<p><code>nlmr</code> supplies 16 NLM algorithms. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients) <span class="citation">(see Palmer 1992)</span>.</p>
 <p>The 16 NLM algorithms are:</p>
 <ol style="list-style-type: decimal">
 <li>distance gradient</li>
@@ -143,8 +143,8 @@
 <p>The basic syntax used to produce a NLM landscape is:</p>
 <pre><code>nlm_modeltype(ncol, nrow, resolution, ...)</code></pre>
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
- NLMR<span class="op">::</span><span class="kw">util_plot</span>(x)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> x &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)
+ nlmr<span class="op">::</span><span class="kw">util_plot</span>(x)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="merging-landscapes" class="section level2">
@@ -153,30 +153,30 @@
 <p>Multiple NLM rasters can be merged or merged together to create new landscape patterns. A single primary or base raster can be merged with any number of additional secondary rasters, with optional scaling factors used to control the influence of the secondary rasters.</p>
 <p>The <code>util_merge</code> function is used to merge the rasters as in the example below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create primary landscape raster</span>
-  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+  pL &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
                                <span class="dt">nrow =</span> <span class="dv">100</span>)
 
-  NLMR<span class="op">::</span><span class="kw">util_plot</span>(pL)</code></pre></div>
+  nlmr<span class="op">::</span><span class="kw">util_plot</span>(pL)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#Create secondary landscape rasters</span>
-  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+  sL1 &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
                                     <span class="dt">nrow =</span> <span class="dv">100</span>,
                                     <span class="dt">origin =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>))
-  sL2 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
+  sL2 &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/nlm_random">nlm_random</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,
                           <span class="dt">nrow =</span> <span class="dv">100</span>)
 
-  mL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_merge">util_merge</a></span>(pL,
+  mL1 &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/util_merge">util_merge</a></span>(pL,
                           <span class="kw">c</span>(sL1, sL2),
                           <span class="dt">scalingfactor =</span> <span class="dv">1</span>)
   
-  NLMR<span class="op">::</span><span class="kw">util_plot</span>(mL1)</code></pre></div>
+  nlmr<span class="op">::</span><span class="kw">util_plot</span>(mL1)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
 <h2 class="hasAnchor">
 <a href="#classifying-categories" class="anchor"></a>Classifying categories</h2>
-<p>Landscape rasters generated by <code>NLMR</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code>. The number of classes and the proportion of the NLM raster assigned to each class is determined using a <code>weighting</code> vector. If the weighting vector does not sum to 1, the sum of the weightings is divided by the number of vector elements and these are used to define the class proportions. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>. The number of cells contained by each class can be calculated using <code>metric_area</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dt">ncol =</span> <span class="dv">50</span>,
+<p>Landscape rasters generated by <code>nlmr</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code>. The number of classes and the proportion of the NLM raster assigned to each class is determined using a <code>weighting</code> vector. If the weighting vector does not sum to 1, the sum of the weightings is divided by the number of vector elements and these are used to define the class proportions. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>. The number of cells contained by each class can be calculated using <code>metric_area</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nr &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dt">ncol =</span> <span class="dv">50</span>,
                               <span class="dt">nrow =</span> <span class="dv">50</span>,
                               <span class="dt">resolution =</span> <span class="dv">1</span>,
                               <span class="dt">neighbourhood =</span> <span class="dv">4</span>,
@@ -184,13 +184,13 @@
 <pre><code>## Loading required namespace: deldir</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weighting &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>)
 
-cr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_classify">util_classify</a></span>(nr,
+cr &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/util_classify">util_classify</a></span>(nr,
                           <span class="dt">weighting =</span> weighting,
                           <span class="dt">level_names =</span> <span class="kw">c</span>(<span class="st">"L1"</span>, <span class="st">"L2"</span>, <span class="st">"L3"</span>))
 
-NLMR<span class="op">::</span><span class="kw">util_plot</span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
+nlmr<span class="op">::</span><span class="kw">util_plot</span>(cr, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/metric_area">metric_area</a></span>(cr)</code></pre></div>
 <pre><code>## $Total_Area
 ## # A tibble: 3 x 2
 ##   count class
@@ -213,7 +213,7 @@ NLMR<span class="op">::</span><span class="kw">util_plot</span>(cr, <span class=
 <div id="basics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#basics" class="anchor"></a>Basics</h3>
-<p>The <code>raster</code> package, the major framework for <code>NLMR</code>, is built around a number of classes, most importantly the <code>RasterLayer</code>, <code>RasterBrick</code>, and <code>RasterStack</code> classes. The latter two basically comprising collections of multiple <code>RasterLayers</code> with the same spatial extent and resolution.</p>
+<p>The <code>raster</code> package, the major framework for <code>nlmr</code>, is built around a number of classes, most importantly the <code>RasterLayer</code>, <code>RasterBrick</code>, and <code>RasterStack</code> classes. The latter two basically comprising collections of multiple <code>RasterLayers</code> with the same spatial extent and resolution.</p>
 <p>A <code>RasterLayer</code> is defined by its spatial dimensions (number of rows, number of columns and resulting number of cells) and its spatial extent. These two parameters define the spatial resolution of the layer.</p>
 <p>A <code>RasterLayer</code> can be manually created as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
@@ -237,13 +237,13 @@ r</code></pre></div>
 ## names       : layer 
 ## values      : 0.0005379471, 0.9976398  (min, max)</code></pre>
 <p>By running the above code we have just created one of the most simple NLMs - a completely random landscape.</p>
-<p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of NLMR::util_plot, for aesthetic and viridis reasons </small>):</p>
+<p>To visually examine the created <code>RasterLayer</code>, we can use <code>raster</code>’s built-in plotting function ( <small> but recommend to the use of nlmr::util_plot, for aesthetic and viridis reasons </small>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(r)</code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>In landscape ecology it is quite usual to try and infer ecological dynamics using multiple environmental datasets derived from the same geographical area. The <code>raster</code> packages uses <code>RasterStack</code> and <code>RasterBrick</code> for this kind of multi-layer data.</p>
 <p><code>RasterStack</code> is basically a list of <code>RasterLayer</code> with the same spatial extent and resolution. <code>RasterBrick</code>, however, is a truly multi-layered object. This means that all layer share a single reference for dimensions and extent (which often results in it being more efficient to process a <code>RasterBrick</code> than a <code>RasterStack</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r2 &lt;-<span class="st"> </span>r <span class="op">*</span><span class="st"> </span>(<span class="kw">abs</span>(<span class="fl">0.5</span> <span class="op">-</span><span class="st"> </span>r) <span class="op">*</span><span class="st"> </span><span class="op">-</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-r3  &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/util_classify">util_classify</a></span>(r, <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))
+r3  &lt;-<span class="st"> </span>nlmr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/nlmr/topics/util_classify">util_classify</a></span>(r, <span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))
 s &lt;-<span class="st"> </span>raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(r, r2, r3)
 s</code></pre></div>
 <pre><code>## class       : RasterStack 
@@ -387,7 +387,7 @@ r[]</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references">
-<div id="ref-EtheringtonNLMR2015">
+<div id="ref-Etheringtonnlmr2015">
 <p>Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2014. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” <em>Methods in Ecology and Evolution</em> 6 (2): 164–68. doi:<a href="https://doi.org/10.1111/2041-210X.12308">10.1111/2041-210X.12308</a>.</p>
 </div>
 <div id="ref-Palmer1992">

@@ -1,8 +1,4 @@
 .Rproj.user
 .Rhistory
 .RData
-inst/doc
-*.o
-*.so
-*.dll
-/revdep/.cache.rds
+.Ruserdata

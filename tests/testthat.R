@@ -1,4 +1,4 @@
 library(testthat)
-library(NLMR)
+library(nlmr)
 
-test_check("NLMR")
+test_check("nlmr")

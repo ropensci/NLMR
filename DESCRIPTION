@@ -1,4 +1,4 @@
-Package: NLMR
+Package: nlmr
 Type: Package
 Title: Simulating Neutral Landscape Models
 Version: 0.2.1
@@ -13,7 +13,7 @@ Description: Provides neutral landscape models
     existing landscape analyses. Neutral landscape models range from "hard" 
     neutral models (completely random distributed), to "soft" neutral models (definable spatial characteristics) and 
     generate landscape patterns that are independent of ecological processes.
-    Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
+    Thus, these patterns can be used as null models in landscape ecology. 'nlmr' 
     combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
     Martínez 2000   <doi:10.1023/A:1008107902848>, Etherington et
     al. 2015 <doi:10.1111/2041-210X.12308>) and
@@ -51,8 +51,8 @@ Imports:
     extrafont,
     fasterize,
     sf
-URL: https://marcosci.github.io/NLMR/
-BugReports: https://github.com/marcosci/NLMR/issues/
+URL: https://marcosci.github.io/nlmr/
+BugReports: https://github.com/marcosci/nlmr/issues/
 Suggests:
     testthat,
     covr,
