@@ -4,19 +4,20 @@
 \alias{nlm_curds}
 \title{nlm_curds}
 \usage{
-nlm_curds(p, s, q = NULL, resolution = 1)
+nlm_curds(curds, recursion_steps, wheyes = NULL, resolution = 1)
 }
 \arguments{
-\item{p}{[\code{numerical(x)}]\cr
+\item{curds}{[\code{numerical(x)}]\cr
 Vector with percentage(s) to fill with curds (fill with Habitat (value ==
 TRUE)).}
 
-\item{s}{[\code{numerical(x)}]\cr
+\item{recursion_steps}{[\code{numerical(x)}]\cr
 Vector of successive cutting steps for the blocks (split 1 block into x
 blocks).}
 
-\item{q}{[\code{numerical(x)}]\cr
-TRUE)).}
+\item{wheyes}{[\code{numerical(x)}]\cr
+Vector with percentage(s) to fill with wheyes, which fill matrix in an
+additional step with habitat.#'}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the resulting raster.}
@@ -36,8 +37,8 @@ With the optional argument for wheys, previously selected cells that were
 declared matrix (value == FALSE) during recursion, can now contain a
 proportion (\code{q}) of habitat cells.
 
-If \deqn{p_{1} = p_{2} = q_{2} = ... = p_{n} = p_{n}} the models resembles
-a binary random map.
+If \deqn{curds_{1} = curds_{2} = recursion_steps_{2} = ... = curds_{n} =
+recursion_steps_{n}} the models resembles a binary random map.
 
 Note that you can not set ncol and nrow with this landscape algorithm.
 The amount of cells and hence dimension of the raster is given by the vectorproduct of s.
@@ -45,13 +46,17 @@ The amount of cells and hence dimension of the raster is given by the vectorprod
 \examples{
 
 # simulate random curdling
-random_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2))
+(random_curdling <- nlm_curds(curds = c(0.5, 0.3, 0.6),
+                              recursion_steps = c(32, 6, 2)))
+
 # simulate wheyed curdling
-wheyed_curdling <- nlm_curds(p = c(0.5, 0.3, 0.6), s = c(32, 6, 2), q = c(0.1, 0.05, 0.2))
+(wheyed_curdling <- nlm_curds(curds = c(0.5, 0.3, 0.6),
+                              recursion_steps = c(32, 6, 2),
+                              wheyes = c(0.1, 0.05, 0.2)))
 \dontrun{
 # Visualize the NLMs
-util_plot(random_curdling, discrete = TRUE)
-util_plot(wheyed_curdling, discrete = TRUE)
+rasterVis::levelplot(random_curdling, margin = FALSE, par.settings = rasterVis::viridisTheme())
+rasterVis::levelplot(wheyed_curdling, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

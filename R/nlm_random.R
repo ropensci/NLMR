@@ -21,11 +21,11 @@
 #'
 #' @examples
 #' # simulate spatially random model
-#' random <- nlm_random(ncol = 200, nrow = 100)
+#' (random <- nlm_random(ncol = 200, nrow = 100))
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(random)
+#' rasterVis::levelplot(random, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @aliases nlm_random

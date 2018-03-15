@@ -49,14 +49,14 @@ distinct than closer ones.
 }
 \examples{
 # simulate random gaussian field
-gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+(gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
                                     autocorr_range = 60,
                                     mag_var = 8,
-                                    nug = 5)
+                                    nug = 5))
 
 \dontrun{
 # visualize the NLM
-util_plot(gaussian_field)
+rasterVis::levelplot(gaussian_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

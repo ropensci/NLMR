@@ -39,7 +39,8 @@ Simulating a neutral landscape model with `nlmr` can be achieved in a single lin
 nlm_raster <- nlmr::nlm_randomcluster(nrow = 50,
                                       ncol = 50,
                                       p    = 0.5,
-                                      ai   = c(0.2, 0.2, 0.5, 0.1))
+                                      ai   = c(0.3, 0.6, 0.1),
+                                      rescale = FALSE)
 ```
 
 Landscape models simulated by nlmr are returned as raster objects, hence they can be processed as usual, e.g. visualized:
@@ -48,7 +49,7 @@ Landscape models simulated by nlmr are returned as raster objects, hence they ca
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
 
-<img src="vignettes/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="vignettes/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
 Overview
 --------
@@ -65,7 +66,7 @@ Overview
 | nlm\_mosaicfield              | Simulates a mosaic random field neutral landscape model.                                                                                                                                                                                                                                                                                                                                                                  | Schlather et al. (2015)                                             |
 | nlm\_mpd                      | Simulates a midpoint displacement neutral landscape model where the parameter *roughness* controls the level of spatial autocorrelatian.                                                                                                                                                                                                                                                                                  | Peitgen and Saupe (1988)                                            |
 | nlm\_neigh                    | Simulates a neutral landscape model with categories and clustering based on neighborhood characteristic.                                                                                                                                                                                                                                                                                                                  | Scherer et al. (2016)                                               |
-| nlm\_percolation              | Simulates a binary neutral landscape model based on percolation theory. The probality for a cell to be assigned a 1 is drawn from a uniform distribution.                                                                                                                                                                                                                                                                 | Gardner et al. (1989);                                              |
+| nlm\_percolation              | Simulates a binary neutral landscape model based on percolation theory. The probality for a cell to be assigned a 1 is drawn from a uniform distribution.                                                                                                                                                                                                                                                                 | Gardner et al. (1989)                                               |
 | nlm\_planargradient           | Simulates a planar gradient neutral landscape model with gradient sloping in a specified or random direction.                                                                                                                                                                                                                                                                                                             | Palmer (1992)                                                       |
 | nlm\_polylands                | Simulates patchy mosaic neutral landscape models built on the basis of spatial point pattern processes such as the Strauss process.                                                                                                                                                                                                                                                                                       | Gaucherel (2008)                                                    |
 | nlm\_random                   | Simulates a spatially random neutral landscape model with values drawn a uniform distribution.                                                                                                                                                                                                                                                                                                                            |                                                                     |
@@ -87,11 +88,10 @@ Dependencies
 
 `nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-     [1] "R (>= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
-     [5] " ggplot2"      " igraph"       " magrittr"     " purrr"       
-     [9] " RandomFields" " raster"       " rasterVis"    " sp"          
-    [13] " spatstat"     " stats"        " tibble"       " tidyr"       
-    [17] " viridis"      " extrafont"    " fasterize"    " sf"          
+     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " igraph"      
+     [5] " purrr"        " RandomFields" " raster"       " spatstat"    
+     [9] " stats"        " tibble"       " tidyr"        " fasterize"   
+    [13] " sf"          
 
 References
 ----------

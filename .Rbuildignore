@@ -16,3 +16,4 @@ man-roxygen
 ^NEWS\.md$
 ^CONDUCT\.md$
 ^CONTRIBUTING\.md$
+^references\.bib$

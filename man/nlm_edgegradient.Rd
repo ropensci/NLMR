@@ -41,7 +41,7 @@ that has a central peak, which runs perpendicular to the gradient direction.
 
 \dontrun{
 # visualize the NLM
-util_plot(edge_gradient)
+rasterVis::levelplot(edge_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

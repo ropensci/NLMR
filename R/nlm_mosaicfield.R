@@ -32,14 +32,14 @@
 #' @examples
 #'
 #' # simulate mosaic random field
-#' mosaic_field <- nlm_mosaicfield(ncol = 100,
+#' (mosaic_field <- nlm_mosaicfield(ncol = 100,
 #'                                 nrow = 200,
 #'                                 n = NA,
 #'                                 infinit = TRUE,
-#'                                 collect = FALSE)
+#'                                 collect = FALSE))
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(mosaic_field)
+#' rasterVis::levelplot(mosaic_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @aliases nlm_mosaicfield

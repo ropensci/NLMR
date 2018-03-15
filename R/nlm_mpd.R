@@ -55,12 +55,13 @@
 #' @examples
 #'
 #' # simulate midpoint displacement
-#' midpoint_displacememt <- nlm_mpd(ncol = 100,
+#' (midpoint_displacememt <- nlm_mpd(ncol = 100,
 #'                                  nrow = 100,
-#'                                  roughness = 0.1)
+#'                                  roughness = 0.61))
 #'\dontrun{
 #' # visualize the NLM
-#' util_plot(midpoint_displacememt)
+#' rasterVis::levelplot(midpoint_displacememt, margin = FALSE,
+#' par.settings = rasterVis::viridisTheme())
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd

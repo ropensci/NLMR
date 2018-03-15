@@ -35,11 +35,11 @@ Simulates a linear gradient sloping in a specified or random direction.
 }
 \examples{
 # simulate planar gradient
-planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
+(planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200))
 
 \dontrun{
 # visualize the NLM
-util_plot(planar_gradient)
+rasterVis::levelplot(planar_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

@@ -28,13 +28,12 @@
 #'
 #' @examples
 #' # simulate random clustering
-#' random_cluster <- nlm_randomcluster(
-#'   ncol = 20, nrow = 10, resolution = 1, neighbourhood = 4,
-#'   p = 0.4, ai = c(0.25, 0.25, 0.5), rescale = FALSE
-#' )
+#' (random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
+#'                                      p = 0.4,
+#'                                      ai = c(0.25, 0.25, 0.5)))
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(random_cluster, discrete = TRUE)
+#' rasterVis::levelplot(random_cluster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @references

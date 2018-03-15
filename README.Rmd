@@ -60,11 +60,18 @@ Simulating a neutral landscape model with `nlmr` can be achieved in a single lin
 nlm_raster <- nlmr::nlm_randomcluster(nrow = 50,
                                       ncol = 50,
                                       p    = 0.5,
-                                      ai   = c(0.2, 0.2, 0.5, 0.1))
+                                      ai   = c(0.3, 0.6, 0.1),
+                                      rescale = FALSE)
 ```
 
 Landscape models simulated by nlmr are returned as raster objects, hence they can
 be processed as usual, e.g. visualized:
+```{r echo = FALSE}
+nlm_raster <- raster::ratify(nlm_raster) 
+rat <- raster::levels(nlm_raster)[[1]]
+rat$legend <- c('Forest', 'Grassland', 'Crops')
+levels(nlm_raster) <- rat
+```
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
@@ -127,7 +134,7 @@ function_tibble[8,3] <- "@Scherer2016"
 # nlm_percolation
 function_tibble[9,1] <- "nlm_percolation"
 function_tibble[9,2] <- "Simulates a binary neutral landscape model based on percolation theory. The probality for a cell to be assigned a 1 is drawn from a uniform distribution."
-function_tibble[9,3] <- "@Gardner1989; "
+function_tibble[9,3] <- "@Gardner1989"
 
 # nlm_planargradient
 function_tibble[10,1] <- "nlm_planargradient"

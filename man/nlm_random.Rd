@@ -33,11 +33,11 @@ value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
 # simulate spatially random model
-random <- nlm_random(ncol = 200, nrow = 100)
+(random <- nlm_random(ncol = 200, nrow = 100))
 
 \dontrun{
 # visualize the NLM
-util_plot(random)
+rasterVis::levelplot(random, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

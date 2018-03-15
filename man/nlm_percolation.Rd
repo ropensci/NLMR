@@ -40,10 +40,10 @@ The proportion of 0 and 1 is thus controlled with the argument \code{prob}.
 }
 \examples{
 # simulate percolation model
-percolation <- nlm_percolation(ncol = 100, nrow = 100, prob=0.5)
+(percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5))
 \dontrun{
 # visualize the NLM
-util_plot(percolation, discrete = TRUE)
+rasterVis::levelplot(percolation, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 }
 \references{

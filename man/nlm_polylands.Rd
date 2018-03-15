@@ -37,11 +37,11 @@ the mosaic landscapes.
 }
 \examples{
 # simulate polygonal landscapes
-mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
+(mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200))
 
 \dontrun{
 # visualize the NLM
-util_plot(mosaictess)
+rasterVis::levelplot(mosaictess, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

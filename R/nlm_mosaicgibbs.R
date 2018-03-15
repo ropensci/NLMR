@@ -30,15 +30,15 @@
 #'
 #' @examples
 #' # simulate polygonal landscapes
-#' mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
+#' (mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
 #'                               nrow = 30,
 #'                               germs = 20,
 #'                               R = 0.02,
-#'                               patch_classes = 12)
+#'                               patch_classes = 12))
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(mosaicgibbs)
+#' rasterVis::levelplot(mosaicgibbs, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @references

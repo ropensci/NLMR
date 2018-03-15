@@ -1,0 +1,10 @@
+pandoc: 1.19.2.1
+pkgdown: 0.1.0.9000
+pkgdown_sha: b2313f0ad7bcc2deb563a850c1f0cb3f6a9df79e
+articles:
+  background: articles/background.html
+  bestiary: articles/bestiary.html
+  faq: articles/faq.html
+  publication_record: articles/publication_record.html
+  getstarted: getstarted.html
+

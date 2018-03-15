@@ -7,23 +7,18 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
-Description: Provides neutral landscape models 
-    (Gardner et al. 1987 <doi:10.1007/BF02275262>,
-    With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
+Description: Provides neutral landscape models  that can easily extend in 
     existing landscape analyses. Neutral landscape models range from "hard" 
-    neutral models (completely random distributed), to "soft" neutral models (definable spatial characteristics) and 
-    generate landscape patterns that are independent of ecological processes.
+    neutral models (completely random distributed), to "soft" neutral models 
+    (definable spatial characteristics) and generate landscape patterns that are 
+    independent of ecological processes.
     Thus, these patterns can be used as null models in landscape ecology. 'nlmr' 
-    combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
-    Martínez 2000   <doi:10.1023/A:1008107902848>, Etherington et
-    al. 2015 <doi:10.1111/2041-210X.12308>) and
-    includes utility functions to classify and combine the multiple landscapes. The 
-    simulation results are obtained in a geospatial data format (raster* objects 
-    from the 'raster' package) and can, therefore, be used 
-    in any sort of raster data operation that is performed with standard 
-    observation data.                                                                                                  
+    combines a large number of algorithms from other published software for 
+    simulating neutral landscapes. The simulation results are obtained in a
+    geospatial data format (raster* objects from the 'raster' package) and can,
+    therefore, be used in any sort of raster data operation that is performed 
+    with standard observation data.                                                                                                  
 License: GPL-3
-Copyright: file inst/COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -33,22 +28,15 @@ Roxygen: list(roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 6.0.1
 Imports: 
     checkmate,
-    dismo,
     dplyr,
-    ggplot2,
     igraph,
-    magrittr,
     purrr,
     RandomFields,
     raster,
-    rasterVis,
-    sp,
     spatstat,
     stats,
     tibble,
     tidyr,
-    viridis,
-    extrafont,
     fasterize,
     sf
 URL: https://marcosci.github.io/nlmr/
@@ -59,7 +47,8 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    classInt
+    classInt,
+    rasterVis
 VignetteBuilder:
     knitr
 Remotes: ecohealthalliance/fasterize

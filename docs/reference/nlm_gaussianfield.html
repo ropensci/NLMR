@@ -18,13 +18,18 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="nlm_gaussianfield — nlm_gaussianfield" />
+
+<meta property="og:description" content="Simulates a spatially correlated random fields (Gaussian random
+fields) model." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -68,15 +73,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/background.html">NLM Concepts + Terminology</a>
+      <a href="../articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/bestiary.html">nlmr Bestiary</a>
+      <a href="../articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/publication_record.html">
+  <a href="../articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -157,17 +162,18 @@ Resolution of the raster.</p></td>
     <tr>
       <th>autocorr_range</th>
       <td><p>[<code>numerical(1)</code>]
-Maximal distance of spatial autocorrelation</p></td>
+Maximal distance (raster units) of spatial autocorrelation.</p></td>
     </tr>
     <tr>
       <th>mag_var</th>
       <td><p>[<code>numerical(1)</code>]
-Magnitude of variation in the field</p></td>
+Magnitude of variation in the entire landscape.</p></td>
     </tr>
     <tr>
       <th>nug</th>
       <td><p>[<code>numerical(1)</code>]
-Small-scale variations in the field.</p></td>
+Magnitude of variation in the scale of <code>autocorr_range</code>,
+a smaller value leads to a more homogeneous landscape.</p></td>
     </tr>
     <tr>
       <th>mean</th>
@@ -186,19 +192,35 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>RasterLayer</p>
+    <p>Gaussian random fields are a collection of random numbers on a spatially
+discrete set of coordinates (landscape raster). Natural sciences often apply
+them with spatial autocorrelation, meaning that distant things are more
+distinct than closer ones.</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Kéry &amp; Royle (2016) <em>Applied Hierarachical Modeling in Ecology</em>
+Chapter 20</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate random gaussian field</span>
-<span class='no'>gaussian_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_gaussianfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>90</span>,
-                                    <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-                                    <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-                                    <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'class' to 'class2'</span></div><div class='input'>
+(<span class='no'>gaussian_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_gaussianfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>90</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>90</span>,
+                                    <span class='kw'>autocorr_range</span> <span class='kw'>=</span> <span class='fl'>60</span>,
+                                    <span class='kw'>mag_var</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+                                    <span class='kw'>nug</span> <span class='kw'>=</span> <span class='fl'>5</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 90, 90, 8100  (nrow, ncol, ncell)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 90, 0, 90  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
 </div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'>util_plot</span>(<span class='no'>gaussian_field</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='nlm_gaussianfield-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>gaussian_field</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_gaussianfield-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -206,7 +228,9 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -220,7 +244,7 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -228,3 +252,4 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
   </body>
 </html>
+

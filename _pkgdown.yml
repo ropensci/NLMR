@@ -17,10 +17,8 @@ reference:
       - '`nlm_polylands`'
       - '`nlm_planargradient`'
       - '`nlm_randomcluster`'
-      - '`nlm_randomelement`'
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
-      - '`nlm_wheys`'
 navbar:
   title: nlmr | Neutral landscape models with R
   left:
@@ -31,12 +29,12 @@ navbar:
       icon: fa-graduation-cap
       menu:
       -  text: NLM Concepts + Terminology
-         href: articles/background.html
+         href: articles/articles/background.html
       -  text: nlmr Bestiary
-         href: articles/bestiary.html
+         href: articles/articles/bestiary.html
     - text: "Publication Record"
       icon: fa-file-text-o
-      href: articles/publication_record.html
+      href: articles/articles/publication_record.html
   right:
     - text: "faq"
       icon: fa-question-circle-o
