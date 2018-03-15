@@ -29,14 +29,12 @@ RoxygenNote: 6.0.1
 Imports: 
     checkmate,
     dplyr,
-    igraph,
     purrr,
     RandomFields,
     raster,
     spatstat,
     stats,
     tibble,
-    tidyr,
     fasterize,
     sf
 URL: https://marcosci.github.io/nlmr/

@@ -1,5 +1,4 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: R
 sudo: false
 cache: packages
@@ -8,13 +7,13 @@ warnings_are_errors: false
 
 r_github_packages:
   - r-lib/covr
-- ecohealthalliance/fasterize
+  - ecohealthalliance/fasterize
 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-- sudo apt-get --yes --force-yes update -qq
-- sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
-- Rscript -e 'update.packages(ask = FALSE)'
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
+  - Rscript -e 'update.packages(ask = FALSE)'
 
 after_success:
   - Rscript -e 'covr::codecov(branch = "develop")'
