@@ -7,8 +7,8 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
-Description: Provides neutral landscape models  that can easily extend in 
-    existing landscape analyses. Neutral landscape models range from "hard" 
+Description: Provides neutral landscape models (<https://doi.org/10.1007/BF02275262>, <http://sci-hub.tw/10.1007/bf02275262>)
+    that can easily extend in existing landscape analyses. Neutral landscape models range from "hard" 
     neutral models (completely random distributed), to "soft" neutral models 
     (definable spatial characteristics) and generate landscape patterns that are 
     independent of ecological processes.
