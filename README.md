@@ -20,7 +20,7 @@ Install the release version from CRAN:
 install.packages("NLMR")
 ```
 
-**NOTE**: The version on CRAN is
+**NOTE**: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in [`landscapetools`](https://github.com/marcosci/landscapetools).
 
 To install the developmental version of `nlmr`, use the following R code:
 
@@ -72,6 +72,8 @@ Overview
 | nlm\_random                   | Simulates a spatially random neutral landscape model with values drawn a uniform distribution.                                                                                                                                                                                                                                                                                                                            |                                                                     |
 | nlm\_randomcluster            | Simulates a spatially random neutral landscape model with values drawn a uniform distribution.                                                                                                                                                                                                                                                                                                                            | Saura and Martínez-Millán (2000)                                    |
 | nlm\_randomrectangularcluster | Simulates a random rectangular cluster neutral landscape model where rectangular clusters are randomly distributed until the raster is filled.                                                                                                                                                                                                                                                                            | Gustafson and Parker (1992)                                         |
+
+<img src="vignettes/articles/bestiary_full.png"  width="100%" />
 
 Meta
 ----
