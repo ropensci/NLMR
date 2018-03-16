@@ -95,7 +95,7 @@ nlm_mosaicgibbs <- function(ncol,
   # (f)rasterize with lightning speed ----
   vx <- velox::velox(matrix(0, nrow = nrow, ncol = ncol),
                      extent = raster::extent(voronoi_tess),
-                     res = c(resolution,resolution))
+                     res = c(resolution, resolution))
   vx$rasterize(voronoi_tess, field = "value")
   r <- vx$as.RasterLayer()
 
