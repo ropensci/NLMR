@@ -42,7 +42,8 @@ Install the release version from CRAN:
 install.packages("NLMR")
 ```
 
-__NOTE__: The version on CRAN is 
+__NOTE__: The version on CRAN is pre-rOpenSci review, so it still contains the
+utility functions you find now in [`landscapetools`](https://github.com/marcosci/landscapetools).
 
 To install the developmental version of ``nlmr``, use the following R code:
 
@@ -164,6 +165,8 @@ function_tibble[14,3] <- "@Gustafson1992"
 kable(function_tibble) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
+
+<img src="vignettes/articles/bestiary_full.png"  width="100%" />
 
 ## Meta
 
