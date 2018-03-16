@@ -95,7 +95,7 @@ Dependencies
 References
 ----------
 
-Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2015. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” *Methods in Ecology and Evolution* 6 (2): 164–68. doi:[10.1111/2041-210X.12308](https://doi.org/10.1111/2041-210X.12308).
+Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2015. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” *Methods in Ecology and Evolution* 6 (2): 164–68.
 
 Gardner, R H, R V O’Neill, M G Turner, and V H Dale. 1989. “Quantifying Scale-Dependent Effects of Animal Movement with Simple Percolation Models.” *Landsc. Ecol.* 3 (3/4): 217–27.
 
