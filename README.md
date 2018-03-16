@@ -49,7 +49,7 @@ Landscape models simulated by nlmr are returned as raster objects, hence they ca
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
 
-<img src="vignettes/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="vignettes/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 Overview
 --------
@@ -88,10 +88,9 @@ Dependencies
 
 `nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " igraph"      
-     [5] " purrr"        " RandomFields" " raster"       " spatstat"    
-     [9] " stats"        " tibble"       " tidyr"        " fasterize"   
-    [13] " sf"          
+     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"       
+     [5] " RandomFields" " raster"       " spatstat"     " stats"       
+     [9] " tibble"       " velox"        " sf"          
 
 References
 ----------
