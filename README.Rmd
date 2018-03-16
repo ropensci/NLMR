@@ -77,7 +77,7 @@ levels(nlm_raster) <- rat
 ```{r,  eval=FALSE}
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
-<img src="vignettes/articles/figure_readme.png"  width="75%" />
+<img src="vignettes/articles/figure_readme.png"  width="100%" />
 
 ## Overview
 

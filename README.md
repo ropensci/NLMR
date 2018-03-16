@@ -49,7 +49,7 @@ Landscape models simulated by nlmr are returned as raster objects, hence they ca
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
 
-<img src="vignettes/articles/figure_readme.png"  width="75%" />
+<img src="vignettes/articles/figure_readme.png"  width="100%" />
 
 Overview
 --------
