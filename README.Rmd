@@ -74,11 +74,10 @@ rat$legend <- c('Forest', 'Grassland', 'Crops')
 levels(nlm_raster) <- rat
 ```
 
-<center>
-```{r, fig.height=7, fig.width=7, fig.align='center'}
+```{r,  eval=FALSE}
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
-</center>
+<img src="vignettes/articles/figure_readme.png"  width="75%" />
 
 ## Overview
 

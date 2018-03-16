@@ -45,13 +45,12 @@ nlm_raster <- nlmr::nlm_randomcluster(nrow = 50,
 
 Landscape models simulated by nlmr are returned as raster objects, hence they can be processed as usual, e.g. visualized:
 
-<center>
 ``` r
 rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 ```
 
-<img src="vignettes/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
-</center>
+<img src="vignettes/articles/figure_readme.png"  width="75%" />
+
 Overview
 --------
 
