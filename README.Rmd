@@ -72,7 +72,7 @@ midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
                                  nrow = 100,
                                  roughness = 0.61)
 ```
-```{r, echo = FALSE, fig.retina=2}
+```{r, echo = FALSE, eval = FALSE}
 library(patchwork)
 library(ggplot2)
 landscapetools::util_plot(random_cluster, discrete = TRUE, xlab = NULL, ylab = NULL) + guides(fill = FALSE)  + theme(axis.title  = element_blank(),
@@ -90,8 +90,10 @@ landscapetools::util_plot(midpoint_displacememt, discrete = FALSE, xlab = NULL, 
           axis.text   = element_blank(),
           panel.grid  = element_blank(),
           axis.line   = element_blank()) + guides(fill = FALSE) 
-```
+ggsave("vignettes/articles/figure_readme.png")
 
+```
+<img src="vignettes/articles/figure_readme.png"  width="100%" />
 
 ## Overview
 
