@@ -32,24 +32,26 @@ devtools::install_github("marcosci/nlmr", ref = "develop")
 Example
 -------
 
-Simulating a neutral landscape model with `nlmr` can be achieved in a single line:
+Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `nlmr`, e.g.:
 
 ``` r
 # Simulate 50x50 random cluster raster
-nlm_raster <- nlmr::nlm_randomcluster(nrow = 50,
-                                      ncol = 50,
+random_cluster <- nlmr::nlm_randomcluster(nrow = 100,
+                                      ncol = 100,
                                       p    = 0.5,
                                       ai   = c(0.3, 0.6, 0.1),
                                       rescale = FALSE)
+
+random_curdling <- nlmr::nlm_curds(curds = c(0.5, 0.3, 0.6),
+                              recursion_steps = c(32, 6, 2))
+
+
+midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
+                                 nrow = 100,
+                                 roughness = 0.61)
 ```
 
-Landscape models simulated by nlmr are returned as raster objects, hence they can be processed as usual, e.g. visualized:
-
-``` r
-rasterVis::levelplot(nlm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
-```
-
-<img src="vignettes/articles/figure_readme.png"  width="100%" />
+<img src="vignettes/README-unnamed-chunk-16-1.png" width="672" />
 
 Overview
 --------

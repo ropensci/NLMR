@@ -11,6 +11,8 @@ reference:
       - '`nlm_fBm`'
       - '`nlm_gaussianfield`'
       - '`nlm_mosaicfield`'
+      - '`nlm_mosaicgibbs`'
+      - '`nlm_mosaictess`'
       - '`nlm_mpd`'
       - '`nlm_neigh`'
       - '`nlm_percolation`'
