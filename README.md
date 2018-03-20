@@ -2,14 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Build Status](https://travis-ci.org/marcosci/nlmr.svg?branch=develop)](https://travis-ci.org/marcosci/nlmr) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/nlmr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nlmr)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/nlmr\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/nlmr)](http://cran.rstudio.com/web/packages/NLMR/index.html) [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
-nlmr <img src="vignettes/logo.png" align="right"  height="175" />
-=================================================================
-
 `nlmr` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `nlmr` builds on the advantages of the `raster`-package and returns all simulation as `RasterLayer`-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage. Furthermore, it simulates NLMs within a self-contained, reproducible framework.
-
-<img src="vignettes/nlmr_grid.png"  width="100%" />
-
-<br>
 
 Installation
 ------------
@@ -92,7 +85,8 @@ Dependencies
 
 `nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"        " RandomFields" " raster"       " spatstat"     " stats"       
+     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"       
+     [5] " RandomFields" " raster"       " spatstat"     " stats"       
      [9] " tibble"       " velox"        " sf"          
 
 References
