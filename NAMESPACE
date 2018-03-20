@@ -3,7 +3,7 @@
 export(nlm_curds)
 export(nlm_distancegradient)
 export(nlm_edgegradient)
-export(nlm_fBm)
+export(nlm_fbm)
 export(nlm_gaussianfield)
 export(nlm_mosaicfield)
 export(nlm_mosaicgibbs)

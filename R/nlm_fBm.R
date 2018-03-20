@@ -1,4 +1,4 @@
-#' nlm_fBm
+#' nlm_fbm
 #'
 #' @description Simulates two-dimensional fractional brownian motion model.
 #'
@@ -31,10 +31,10 @@
 #'
 #' @examples
 #' # simulate fractional brownian motion
-#' (fBm_raster  <- nlm_fBm(ncol = 20, nrow = 30, fract_dim = 0.8))
+#' (fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8))
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(fBm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
+#' rasterVis::levelplot(fbm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #' @references
 #' Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
@@ -47,7 +47,7 @@
 #' @export
 #'
 
-nlm_fBm <- function(ncol,
+nlm_fbm <- function(ncol,
                     nrow,
                     resolution = 1,
                     fract_dim = 1,

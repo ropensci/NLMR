@@ -63,6 +63,8 @@ nlm_curds <- function(curds,
                       wheyes = NULL,
                       resolution = 1) {
 
+  checkmate::assert_numeric(curds)
+  if(!is.null(wheyes))checkmate::assert_numeric(wheyes)
   checkmate::assert_integerish(recursion_steps)
   if (length(curds) != length(recursion_steps))
     stop("Length of p and s differs.")

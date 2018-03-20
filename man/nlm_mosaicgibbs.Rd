@@ -4,7 +4,8 @@
 \alias{nlm_mosaicgibbs}
 \title{nlm_mosaicgibbs}
 \usage{
-nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, R, patch_classes)
+nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, R, patch_classes,
+  rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -25,6 +26,9 @@ pattern process - the min. distance between germs in map units.}
 
 \item{patch_classes}{[\code{numerical(1)}]\cr
 Number of classes for germs.}
+
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
+are rescaled between 0-1.}
 }
 \value{
 RasterLayer

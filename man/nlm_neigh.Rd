@@ -5,7 +5,7 @@
 \title{nlm_neigh}
 \usage{
 nlm_neigh(ncol, nrow, resolution = 1, p_neigh, p_empty, categories = 3,
-  neighbourhood = 4, proportions = NA)
+  neighbourhood = 4, proportions = NA, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -37,6 +37,9 @@ surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 The algorithm uses uniform proportions for each category by default. A vector
 with as many proportions as categories and that sums up to 1 can be used for
 other distributions.}
+
+\item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
+are rescaled between 0-1.}
 }
 \value{
 RasterLayer
@@ -59,7 +62,7 @@ The algorithm draws a random cell and turns it into a given category based on
 }
 \examples{
 # simulate neighborhood model
-(neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
+(neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
                     categories = 5, neighbourhood = 4))
 
 \dontrun{

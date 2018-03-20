@@ -51,7 +51,7 @@ midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
                                  roughness = 0.61)
 ```
 
-<img src="vignettes/README-unnamed-chunk-16-1.png" width="672" />
+<img src="vignettes/articles/figure_readme.png"  width="100%" />
 
 Overview
 --------
@@ -92,8 +92,7 @@ Dependencies
 
 `nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
-     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"       
-     [5] " RandomFields" " raster"       " spatstat"     " stats"       
+     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"        " RandomFields" " raster"       " spatstat"     " stats"       
      [9] " tibble"       " velox"        " sf"          
 
 References

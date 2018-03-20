@@ -135,7 +135,8 @@
     <p>Simulate the NLM introduced in Gaucherel (2008).</p>
     
 
-    <pre class="usage"><span class='fu'>nlm_mosaicgibbs</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>germs</span>, <span class='no'>R</span>, <span class='no'>patch_classes</span>)</pre>
+    <pre class="usage"><span class='fu'>nlm_mosaicgibbs</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>germs</span>, <span class='no'>R</span>, <span class='no'>patch_classes</span>,
+  <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +171,11 @@ pattern process - the min. distance between germs in map units.</p></td>
       <th>patch_classes</th>
       <td><p>[<code>numerical(1)</code>]
 Number of classes for germs.</p></td>
+    </tr>
+    <tr>
+      <th>rescale</th>
+      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values
+are rescaled between 0-1.</p></td>
     </tr>
     </table>
     
@@ -207,7 +213,7 @@ networks. <em>Ecological Modelling</em>, 219, 39 - 48.</p>
 #&gt; coord. ref. : NA 
 #&gt; data source : in memory
 #&gt; names       : layer 
-#&gt; values      : 1, 12  (min, max)
+#&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
 </div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>mosaicgibbs</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mosaicgibbs-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>

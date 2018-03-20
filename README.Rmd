@@ -75,23 +75,28 @@ midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
 ```{r, echo = FALSE, eval = FALSE}
 library(patchwork)
 library(ggplot2)
-landscapetools::util_plot(random_cluster, discrete = TRUE, xlab = NULL, ylab = NULL) + guides(fill = FALSE)  + theme(axis.title  = element_blank(),
+library(cowplot)
+p1 <- landscapetools::util_plot(random_cluster, discrete = TRUE, xlab = NULL, ylab = NULL) + guides(fill = FALSE)  + theme(axis.title  = element_blank(),
           axis.ticks  = element_blank(), 
           axis.text   = element_blank(),
           panel.grid  = element_blank(),
-          axis.line   = element_blank())  +
-landscapetools::util_plot(random_curdling, discrete = TRUE, xlab = NULL, ylab = NULL) + guides(fill = FALSE) + theme(axis.title  = element_blank(),
+          axis.line   = element_blank())  
+p2 <- landscapetools::util_plot(random_curdling, discrete = TRUE, xlab = NULL, ylab = NULL) + guides(fill = FALSE) + theme(axis.title  = element_blank(),
           axis.ticks  = element_blank(), 
           axis.text   = element_blank(),
           panel.grid  = element_blank(),
-          axis.line   = element_blank()) +
-landscapetools::util_plot(midpoint_displacememt, discrete = FALSE, xlab = NULL, ylab = NULL) + theme(axis.title  = element_blank(),
+          axis.line   = element_blank()) 
+p3 <- landscapetools::util_plot(midpoint_displacememt, discrete = FALSE, xlab = NULL, ylab = NULL) + theme(axis.title  = element_blank(),
           axis.ticks  = element_blank(), 
           axis.text   = element_blank(),
           panel.grid  = element_blank(),
           axis.line   = element_blank()) + guides(fill = FALSE) 
 ggsave("vignettes/articles/figure_readme.png")
 
+cowplot::plot_grid(p1, p2, p3, ncol = 3)
+
+
+ggplot2::facet_grid(p1)
 ```
 <img src="vignettes/articles/figure_readme.png"  width="100%" />
 
