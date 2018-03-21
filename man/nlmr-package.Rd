@@ -32,7 +32,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Marco Sciaini \email{sciaini.marco@gmail.com}
+\strong{Maintainer}: Marco Sciaini \email{sciaini.marco@gmail.com} (0000-0002-3042-5435)
 
 Authors:
 \itemize{

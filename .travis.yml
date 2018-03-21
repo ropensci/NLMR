@@ -1,30 +1,25 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-language: R
+language: r
 sudo: false
+dist: trusty
 cache: packages
 latex: false
 fortran: false
-
 warnings_are_errors: false
+
+r:
+  - release
+  - oldrel
+  - devel
 
 matrix:
   include:
     - os: linux
-      env: R_CODECOV=true
-    - os: osx
-      osx_image: xcode9.3beta
     - os: osx
       osx_image: xcode9.2
       before_install:
         - brew install curl
         - brew link --force curl
-    - os: osx
-      osx_image: xcode9.2
-    - os: osx
-      osx_image: xcode7.3
-      r_build_args: '--no-build-vignettes'
-      r_check_args: '--ignore-vignettes --no-examples'
-
 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes

@@ -2,12 +2,12 @@ Package: nlmr
 Type: Package
 Title: Simulating Neutral Landscape Models
 Version: 0.3.0
-Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
+Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
-       role =  "ctb", comment = "Craig reviewed/provided comments to improve the documentation."),
+       role =  "aut", comment = "ORCID = '0000-0003-3212-1379'"),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", 
-       role =  c("ctb"), comment = "Cédric implemented nlm_neigh"), 
+       role =  c("aut")), 
     person("Laura", "Graham", role = "rev",
        comment = "Laura reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"),
