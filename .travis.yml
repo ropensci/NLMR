@@ -3,6 +3,7 @@ language: R
 sudo: false
 cache: packages
 latex: false
+fortran: false
 
 warnings_are_errors: false
 
