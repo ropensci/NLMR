@@ -30,6 +30,8 @@
 <meta property="og:description" content="Simulates a spatially random neutral landscape model with values
 drawn a uniform distribution." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -52,8 +54,12 @@ drawn a uniform distribution." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">nlmr | Neutral landscape models with R</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">nlmr</a>
+        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -130,6 +136,7 @@ drawn a uniform distribution." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>nlm_random</h1>
+    
     </div>
 
     
@@ -139,7 +146,7 @@ drawn a uniform distribution.</p>
 
     <pre class="usage"><span class='fu'>nlm_random</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -207,7 +214,7 @@ value between 0 and 1 drawn from an uniform distribution (<code>runif(1,0,1)</co
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer.</p>
 </div>
 
 <div class="pkgdown">

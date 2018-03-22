@@ -28,7 +28,6 @@ Example
 Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `nlmr`, e.g.:
 
 ``` r
-# Simulate 50x50 random cluster raster
 random_cluster <- nlmr::nlm_randomcluster(nrow = 100,
                                       ncol = 100,
                                       p    = 0.5,
@@ -56,7 +55,7 @@ Overview
 | nlm\_curds                    | Simulates a curdled neutral landscape model. Random curdling recursively subdivides the plane into blocks. At each level of the recursion, a fraction of the this block is declared as habitat while the remaining stays matrix. When option `q` is set, it simulates a wheyed curdling model, where previously selected cells that were declared matrix during recursion, can now contain a proportion of habitat cells. | Keitt (2000); Travis and Dytham (2004), Gustafson and Parker (1992) |
 | nlm\_distancegradient         | Simulates a distance gradient neutral landscape model. The function takes the number of columns and rows as input and creates a *RasterLayer* with the same extent. *Origin* is a numeric vector of xmin, xmax, ymin, ymax for a rectangle inside the raster from which the distance is measured.                                                                                                                         | Etherington, Holland, and O’Sullivan (2015)                         |
 | nlm\_edgegradient             | Simulates a linear gradient orientated on a specified or random direction that has a central peak, which runs perpendicular to the gradient direction.                                                                                                                                                                                                                                                                    | Travis and Dytham (2004)                                            |
-| nlm\_fBm                      | Simulates neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient *H*.                                                                                                                                                                                                                 | Schlather et al. (2015)                                             |
+| nlm\_fbm                      | Simulates neutral landscapes are generated using fractional Brownian motion, an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient *H*.                                                                                                                                                                                                                 | Schlather et al. (2015)                                             |
 | nlm\_gaussianfield            | Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelatian.                                                                                                                                                                                                                                                               | Schlather et al. (2015)                                             |
 | nlm\_mosaicfield              | Simulates a mosaic random field neutral landscape model.                                                                                                                                                                                                                                                                                                                                                                  | Schlather et al. (2015)                                             |
 | nlm\_mpd                      | Simulates a midpoint displacement neutral landscape model where the parameter *roughness* controls the level of spatial autocorrelatian.                                                                                                                                                                                                                                                                                  | Peitgen and Saupe (1988)                                            |
@@ -80,15 +79,6 @@ Meta
 -   We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
     -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-Dependencies
-------------
-
-`nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
-
-     [1] "R (>= 3.1.0)"  " checkmate"    " dplyr"        " purrr"       
-     [5] " RandomFields" " raster"       " spatstat"     " stats"       
-     [9] " tibble"       " velox"        " sf"          
-
 References
 ----------
 
@@ -98,18 +88,18 @@ Gardner, R H, R V O’Neill, M G Turner, and V H Dale. 1989. “Quantifying Scal
 
 Gaucherel, C. 2008. “Neutral Models for Polygonal Landscapes with Linear Networks.” *Ecol. Modell.* 219 (1-2): 39–48.
 
-Gustafson, Eric J, and George R Parker. 1992. “Relationships Between Landcover Proportion and Indices of Landscape Spatial Pattern.” *Landsc. Ecol.* 7 (2). Kluwer Academic Publishers: 101–10.
+Gustafson, Eric J, and George R Parker. 1992. “Relationships Between Landcover Proportion and Indices of Landscape Spatial Pattern.” *Landsc. Ecol.* 7: 101–10.
 
 Keitt, Timothy H. 2000. “Spectral Representation of Neutral Landscapes.” *Landsc. Ecol.* 15: 479–93.
 
 Palmer, Michael W. 1992. “The Coexistence of Species in Fractal Landscapes.” *Am. Nat.* 139 (2): 375.
 
-Peitgen, Heinz-Otto, and Dietmar Saupe, eds. 1988. *The Science of Fractal Images*. New York, NY, USA: Springer-Verlag New York, Inc.
+Peitgen, Heinz-Otto, and Dietmar Saupe, eds. 1988. The Science of Fractal Images. New York, NY, USA: *Springer New York*, Inc.
 
 Saura, Santiago, and Javier Martínez-Millán. 2000. “Landscape Patterns Simulation with a Modified Random Clusters Method.” *Landsc. Ecol.* 15 (7): 661–78.
 
-Scherer, Cédric, Florian Jeltsch, Volker Grimm, and Niels Blaum. 2016. “Merging Trait-Based and Individual-Based Modelling: An Animal Functional Type Approach to Explore the Responses of Birds to Climatic and Land Use Changes in Semi-Arid African Savannas.” *Ecol. Modell.* 326 (April): 75–89.
+Scherer, Cédric, Florian Jeltsch, Volker Grimm, and Niels Blaum. 2016. “Merging Trait-Based and Individual-Based Modelling: An Animal Functional Type Approach to Explore the Responses of Birds to Climatic and Land Use Changes in Semi-Arid African Savannas.” *Ecol. Modell.* 326: 75–89.
 
-Schlather, Martin, Alexander Malinowski, Peter J Menck, Marco Oesting, Kirstin Strokorb, and Others. 2015. “Analysis, Simulation and Prediction of Multivariate Random Fields with Package RandomFields.” *J. Stat. Softw.* 63 (8). Foundation for Open Access Statistics: 1–25.
+Schlather, Martin, Alexander Malinowski, Peter J Menck, Marco Oesting, Kirstin Strokorb, and Others. 2015. “Analysis, Simulation and Prediction of Multivariate Random Fields with Package RandomFields.” *J. Stat. Softw.* 63: 1–25.
 
-Travis, J M J, and C Dytham. 2004. “A Method for Simulating Patterns of Habitat Availability at Static and Dynamic Range Margins.” *Oikos* 104 (2). Munksgaard International Publishers: 410–16.
+Travis, J M J, and C Dytham. 2004. “A Method for Simulating Patterns of Habitat Availability at Static and Dynamic Range Margins.” *Oikos* 104 410–16.

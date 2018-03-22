@@ -26,6 +26,8 @@
 <script src="jquery.sticky-kit.min.js"></script>
 <script src="pkgdown.js"></script>
 <meta property="og:title" content="/home/marco/PhD_Cloud/7_Code/nlmr/NEWS.md" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +50,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">nlmr | Neutral landscape models with R</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">nlmr</a>
+        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -123,20 +129,46 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-12">
+  <div class="contents col-md-9">
     <div class="page-header">
       <h1>/home/marco/PhD_Cloud/7_Code/nlmr/NEWS.md</h1>
     </div>
 
 
 <hr>
+<div id="nlmr-0-3-0-release-notes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#nlmr-0-3-0-release-notes" class="anchor"></a>nlmr 0.3.0 Release Notes</h2>
+<p>v0.3.0 was released on 20/03/2018</p>
+<div id="changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#changes" class="anchor"></a>Changes</h3>
+<ul>
+<li>rename the package into lowercase: <code>nlmr</code>
+</li>
+<li>split package into two packages:</li>
+<li>
+<code>nlmr</code>
+<ul>
+<li>contains now only the neutral landscape models, minimal dependencies</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/marcosci/landscapetools"><code>landscapetools</code></a>
+<ul>
+<li>contains now only utility functions</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div id="nlmr-0-2-1-release-notes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nlmr-0-2-1-release-notes" class="anchor"></a>nlmr 0.2.1 Release Notes</h2>
 <p>v0.2.1 was released on 13/02/2018</p>
-<div id="changes" class="section level3">
+<div id="changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#changes" class="anchor"></a>Changes</h3>
+<a href="#changes-1" class="anchor"></a>Changes</h3>
 <ul>
 <li>Skip one test on CRAN to keep the Roboto font available</li>
 <li>Function <code>util_facetplot</code> to plot a list of rasters as ggplot2 facet</li>
@@ -148,9 +180,9 @@
 <h2 class="hasAnchor">
 <a href="#nlmr-0-2-release-notes" class="anchor"></a>nlmr 0.2 Release Notes</h2>
 <p>v0.2 was released on 09/01/2018</p>
-<div id="changes-1" class="section level3">
+<div id="changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#changes-1" class="anchor"></a>Changes</h3>
+<a href="#changes-2" class="anchor"></a>Changes</h3>
 <ul>
 <li>Small bug fixes</li>
 <li>New neutral landscape models
@@ -187,7 +219,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer.</p>
 </div>
 
 <div class="pkgdown">
