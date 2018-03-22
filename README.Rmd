@@ -18,14 +18,14 @@ knitr::opts_chunk$set(
 [![Build Status](https://travis-ci.org/marcosci/nlmr.svg?branch=develop)](https://travis-ci.org/marcosci/nlmr)
 [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr)
 [![codecov](https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/nlmr)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nlmr)](https://cran.r-project.org/package=NLMR) 
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
 [![Join the chat at  https://gitter.im/nlmr_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) 
-[![](http://cranlogs.r-pkg.org/badges/grand-total/nlmr)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
+[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
 
 `nlmr` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-`nlmr` builds on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+`nlmr` builds on the advantages of the ``raster`` package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage.
 Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
