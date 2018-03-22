@@ -1,13 +1,26 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
+language: r
 sudo: false
+dist: trusty
 cache: packages
-
+latex: false
+fortran: false
 warnings_are_errors: false
 
-r_github_packages:
-  - r-lib/covr
+matrix:
+  include:
+    - os: linux
+    - os: osx
+      osx_image: xcode9.2
+      before_install:
+        - brew install curl
+        - brew link --force curl
+
+before_install:
+  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
+  - Rscript -e 'update.packages(ask = FALSE)'
 
 after_success:
   - Rscript -e 'covr::codecov(branch = "develop")'

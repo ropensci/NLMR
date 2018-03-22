@@ -14,32 +14,31 @@
 #' @param p [\code{numerical(1)}]\cr
 #' The p value defines the proportion of   elements randomly selected to form
 #' clusters.
+#' @param ai Vector with the cluster type distribution (percentages of occupancy).
+#' This controls directly the number of types via the given length.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
 #' @details
-#' The implemented algorithm has been adopted from Etherington et al. 2014 and is itself an  adaptation of the MRC algorithm by Saura & Martínez-Millán (2000). The algorithm simulates a percolation map, which defines random clusters by running a connected labelling algorithm which detects clusters and gives each a unique ID. The algorithm controls the size and directional bias of the cluster with the proportion of the matrix that is within a cluster and with specifying a specific neighbourhood rule. Each cluster is than given a random value and non-cluster cells are assigned values by performing a nearest neighbour interpolation.
+#' This is a direct implementation of steps A - D of the MRC algorithm
+#' by Saura & Martínez-Millán (2000).
+#'
 #'
 #' @examples
 #' # simulate random clustering
-#' random_cluster <- nlm_randomcluster(ncol = 20, nrow = 10, resolution = 1,
-#'                                     neighbourhood = 4, p = 0.4)
+#' (random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
+#'                                      p = 0.4,
+#'                                      ai = c(0.25, 0.25, 0.5)))
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(random_cluster)
+#' rasterVis::levelplot(random_cluster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @references
 #' Saura, S. & Martínez-Millán, J. (2000) Landscape patterns simulation with a
 #' modified random clusters method. \emph{Landscape Ecology}, 15, 661 – 678.
-#'
-#' Etherington TR, Holland EP, O’Sullivan D. 2015. NLMpy: A python software
-#' package for the creation of neutral landscape models within a general
-#' numerical framework. \emph{Methods in Ecology and Evolution} 6:164 – 168.
-#'
-#' @importFrom igraph components
 #'
 #' @aliases nlm_randomcluster
 #' @rdname nlm_randomcluster
@@ -48,95 +47,81 @@
 #'
 
 
-nlm_randomcluster <-
-  function(ncol,
-           nrow,
-           resolution = 1,
-           neighbourhood = 4,
-           p,
-           rescale = TRUE) {
+nlm_randomcluster <- function(ncol, nrow,
+                              resolution = 1,
+                              p,
+                              ai = c(0.5, 0.5),
+                              neighbourhood = 4,
+                              rescale = TRUE) {
 
-    # Check function arguments ----
-    checkmate::assert_count(ncol, positive = TRUE)
-    checkmate::assert_count(nrow, positive = TRUE)
-    checkmate::assert_numeric(resolution)
-    checkmate::assert_numeric(p)
-    checkmate::assert_true(p <= 1)
-    checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
-    checkmate::assert_logical(rescale)
+  # Check function arguments ----
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
+  checkmate::assert_numeric(resolution)
+  checkmate::assert_numeric(p)
+  checkmate::assert_true(p <= 1)
+  checkmate::assert_numeric(ai)
+  checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
+  checkmate::assert_logical(rescale)
 
-    # Create percolation array
-    random_matrix <- raster::as.matrix(nlm_percolation(ncol, nrow, p,
-                                                       resolution = resolution))
+  # Step A - Create percolation map
+  ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution)
 
-    # Cluster identification (clustering of adjoining pixels) ----
-    suppressMessages(clusters <-
-      raster::clump(
-        raster::raster(random_matrix),
-        direction = neighbourhood
-      ))
+  # Step B - Cluster identification (clustering of adjoining pixels)
+  ranclumap <- raster::clump(ranclumap, direction = neighbourhood, gaps = FALSE)
 
-    # Number of individual clusters ----
-    n_clusters <- max(raster::values(clusters), na.rm = TRUE)
+  # Step C - Cluster type assignation
+  # number of different cluster
+  numclu <- max(raster::values(ranclumap), na.rm = TRUE)
+  # assign to each cluster nr a new category given by Ai
+  clutyp <- sample(seq_along(ai), numclu, replace = TRUE, prob = ai)
+  # write back new category nr
+  raster::values(ranclumap) <- clutyp[raster::values(ranclumap)]
 
-    # Create random set of values for each the clusters ----
-    types <- factor(stats::runif(n_clusters, 0, 1))
-    num_types <- as.numeric(types)
-    num_types <- append(num_types, 0, after = 0)
-
-    # Apply values by indexing by cluster ----
-    clustertype <- sample(num_types, n_clusters, replace = TRUE)
-    raster::values(clusters) <-
-      clustertype[raster::values(clusters)]
-
-    # Convert array cells with values to Points, NA = empty space ----
-    randomcluster_point <-
-      raster::rasterToPoints(clusters, spatial = TRUE)
-
-    # Create a tessellated surface ---
-    randomcluster_tess <- dismo::voronoi(randomcluster_point)
-
-    # Fill tessellated surface with values from points ----
-    randomcluster_values <-
-      sp::over(randomcluster_tess, randomcluster_point, fn = mean)
-    randomcluster_spdf <-
-      sp::SpatialPolygonsDataFrame(randomcluster_tess, randomcluster_values)
-
-    # Convert to raster ----
-    randomcluster_raster <- raster::rasterize(
-      randomcluster_spdf,
-      raster::raster(
-        ncol = ncol,
-        nrow = nrow,
-        ext = raster::extent(randomcluster_spdf),
-        resolution = c(1 / ncol, 1 / nrow)
-      ),
-      field = randomcluster_spdf@data[, 1],
-      fun = "mean",
-      update = TRUE,
-      updateValue = "all",
-      na.rm = TRUE
-    )
-
-    randomcluster_raster <- raster::crop(
-      randomcluster_raster,
-      raster::extent(0, 1, 0, 1)
-    )
-
-
-    # specify resolution ----
-    raster::extent(randomcluster_raster) <- c(
-      0,
-      ncol(randomcluster_raster) * resolution,
-      0,
-      nrow(randomcluster_raster) * resolution
-    )
-
-
-    # Rescale values to 0-1 ----
-    if (rescale == TRUE) {
-      randomcluster_raster <- util_rescale(randomcluster_raster)
+  # Step D - Filling the map
+  # helperfuction to choose values
+  fillit <- function(cid) {
+    # get neighbour cells
+    nbrs <- raster::adjacent(ranclumap, cid, directions = 8, pairs = FALSE)
+    # count neighbour values (exclude NA see Saura 2000 paper)
+    vals <- table(raster::values(ranclumap)[nbrs])
+    # if everything in da hood is NA
+    if (purrr::is_empty(vals)) {
+      # be a rebel get your own value
+      fili <- sample(seq_along(ai), 1, prob = ai)
+    }else{
+      # if there is a majority be an prick and join the winning team
+      fili <- as.integer(names(vals)[vals == max(vals)])
+      if (length(fili) > 1) {
+        # if there is a tie just join a faction
+        fili <- sample(fili, 1)
+      }
     }
-
-    return(randomcluster_raster)
+    # choose your destiny
+    return(fili)
   }
+
+  # identify unfilled cells
+  gaps <- dplyr::rowwise(tibble::tibble(
+    ctf = (1:(ncol * nrow))[is.na(raster::values(ranclumap))]
+    ))
+  # get values for the gaps
+  gaps <- dplyr::mutate(gaps, val = fillit(ctf))
+  # feed it back in the map
+  raster::values(ranclumap)[gaps$ctf] <- gaps$val
+
+  # specify resolution ----
+  raster::extent(ranclumap) <- c(
+    0,
+    ncol(ranclumap) * resolution,
+    0,
+    nrow(ranclumap) * resolution
+  )
+
+  # Rescale values to 0-1 ----
+  if (rescale == TRUE) {
+    ranclumap <- util_rescale(ranclumap)
+  }
+
+  return(ranclumap)
+}

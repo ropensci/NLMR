@@ -1,6 +1,6 @@
 #' nlm_mpd
 #'
-#' @description Simulate a midpoint displacement neutral landscape model.
+#' @description Simulates a midpoint displacement neutral landscape model.
 #'
 #' @details
 #' The algorithm is a direct implementation of the midpoint displacement
@@ -19,7 +19,7 @@
 #'   diamond.}
 #' }
 #'
-#' At each iteration the roughness, an approximation to common hurst index,
+#' At each iteration the roughness, an approximation to common hurst exponent,
 #' is reduced.
 #'
 #' The image below shows the steps involved in running the diamond-square
@@ -38,9 +38,10 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param roughness [\code{numerical(1)}]\cr
-#' Controls the level of spatial autocorrelation (!= hurst index)
+#' Controls the level of spatial autocorrelation (!= hurst exponent)
 #' @param rand_dev [\code{numerical(1)}]\cr
-#' Initial standard deviation for the displacement step (default == 1)
+#' Initial standard deviation for the displacement step (default == 1), sets the
+#' scale of the overall variance in the resulting landscape.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
@@ -54,12 +55,13 @@
 #' @examples
 #'
 #' # simulate midpoint displacement
-#' midpoint_displacememt <- nlm_mpd(ncol = 200,
-#'                                  nrow = 200,
-#'                                  roughness = 0.6)
+#' (midpoint_displacememt <- nlm_mpd(ncol = 100,
+#'                                  nrow = 100,
+#'                                  roughness = 0.61))
 #'\dontrun{
 #' # visualize the NLM
-#' util_plot(midpoint_displacememt)
+#' rasterVis::levelplot(midpoint_displacememt, margin = FALSE,
+#' par.settings = rasterVis::viridisTheme())
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
@@ -103,7 +105,7 @@ nlm_mpd <- function(ncol,
           mpd_raster[row, col + side.length], # upper right
           mpd_raster[row + side.length, col + side.length] # lower right
         ))
-        avg <- avg + stats::rnorm(1, 0, rand_dev)
+        avg <- avg  + stats::rnorm(1, 0, rand_dev)
 
         mpd_raster[row + half.side, col + half.side] <- avg
       }

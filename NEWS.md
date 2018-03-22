@@ -1,6 +1,6 @@
 ____________________________________________________________________________________
 
-## NLMR 0.2.1 Release Notes
+## nlmr 0.2.1 Release Notes
 
 v0.2.1 was released on 13/02/2018
 
@@ -10,7 +10,7 @@ v0.2.1 was released on 13/02/2018
 - Function `util_facetplot` to plot a list of rasters as ggplot2 facet
 - Small updates to the webpage
 
-## NLMR 0.2 Release Notes
+## nlmr 0.2 Release Notes
 
 v0.2 was released on 09/01/2018
 
@@ -26,10 +26,10 @@ v0.2 was released on 09/01/2018
 - We now have unit tests covering the main functionality of the package
 - Removed several packages as dependencies 
 
-## NLMR 0.1.0 Release Notes
+## nlmr 0.1.0 Release Notes
 
 v0.1.0 was released on 30/11/2017
 
 ### Major changes
 
-First stable release of NLMR
+First stable release of nlmr

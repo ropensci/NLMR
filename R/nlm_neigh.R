@@ -29,9 +29,9 @@
 #' zero).
 #' @param categories [\code{numerical(1)}]\cr
 #' Number of categories used.
-#' @param neighborhood [\code{string(1)}]\cr
-#' The neighborhood used to determined adjacent cells: `"Moore"` takes the eight
-#' surrounding cells, while `"Von-Neumann"` takes the four adjacent cells
+#' @param neighbourhood [\code{numerical(1)}]\cr
+#' The neighbourhood used to determined adjacent cells: `8 ("Moore")` takes the eight
+#' surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 #' (i.e. left, right, upper and lower cells).
 #' @param proportions [\code{vector(1)}]\cr
 #' The algorithm uses uniform proportions for each category by default. A vector
@@ -39,7 +39,6 @@
 #' other distributions.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
-#'
 #' @return RasterLayer
 #'
 #' @references
@@ -50,12 +49,12 @@
 #'
 #' @examples
 #' # simulate neighborhood model
-#' neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
-#'                     categories = 5, neighborhood = "Von-Neumann")
+#' (neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
+#'                     categories = 5, neighbourhood = 4))
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(neigh_raster)
+#' rasterVis::levelplot(neigh_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @aliases nlm_neigh
@@ -70,65 +69,70 @@ nlm_neigh <-
            p_neigh,
            p_empty,
            categories = 3,
-           neighborhood = "Von-Neumann",
+           neighbourhood = 4,
            proportions = NA,
            rescale = TRUE) {
 
     # Check function arguments ----
     checkmate::assert_count(ncol, positive = TRUE)
     checkmate::assert_count(nrow, positive = TRUE)
-    checkmate::assert_numeric(p_empty)
-    checkmate::assert_numeric(p_neigh)
+    checkmate::assert_numeric(p_empty, lower = 0, upper = 1)
+    checkmate::assert_numeric(p_neigh, lower = 0, upper = 1)
     checkmate::assert_count(categories, positive = TRUE)
-    checkmate::assert_character(neighborhood)
+    checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_vector(proportions)
     checkmate::assert_logical(rescale)
+
+    if (!is.na(proportions)) checkmate::assert_true(sum(proportions) == 1)
 
     # Determine cells per categorie
     # -1 because remaining cells are category
     cat <- categories - 1
     if (is.double(proportions)) {
-      no_cat <- rev(proportions) * nrow * ncol
+      no_cat <- proportions * nrow * ncol
     } else {
       no_cat <- rep(floor(nrow * ncol / categories), cat + 1)
     }
 
     # Create an empty matrix of correct dimensions + additional 2 rows and
     # columns ----
-    matrix <- matrix(0, ncol + 2, nrow + 2)
+    matrix <- matrix(0, nrow + 2, ncol + 2)
 
     # Keep applying random clusters until all elements have a value -----
     while (cat > 0) {
       j <- 0
 
       while (j < no_cat[cat + 1]) {
-
         # Pick random cell within correct dimensions and with value 0 ----
-        s <- which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
+        s <-
+          which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
         s <- s[sample(nrow(s), 1), ]
         row <- as.integer(s[1]) + 1
         col <- as.integer(s[2]) + 1
 
-        # Check neighborhood of that cell ----
-        if (neighborhood == "Von-Neumann") {
-          adjacent <- c(
-            matrix[row - 1, col    ], # upper
-            matrix[row, col - 1], # left
-            matrix[row, col + 1], # right
-            matrix[row + 1, col    ]
-          ) # lower
+        # Check neighbourhood of that cell ----
+        if (neighbourhood == 4) {
+          adjacent <- c(matrix[row - 1, col], # upper
+                        matrix[row, col - 1], # left
+                        matrix[row, col + 1], # right
+                        matrix[row + 1, col]) # lower
         }
-        if (neighborhood == "Moore") {
-          adjacent <- c(
-            matrix[row - 1, col - 1], # upper left
-            matrix[row - 1, col    ], # upper
-            matrix[row - 1, col + 1], # upper right
-            matrix[row, col - 1], # left
-            matrix[row, col + 1], # right
-            matrix[row + 1, col - 1], # lower left
-            matrix[row + 1, col    ], # lower
-            matrix[row + 1, col + 1]
-          ) # lower right
+        if (neighbourhood == 8) {
+          adjacent <- c(matrix[row - 1, col - 1],
+                        # upper left
+                        matrix[row - 1, col],
+                        # upper
+                        matrix[row - 1, col + 1],
+                        # upper right
+                        matrix[row, col - 1],
+                        # left
+                        matrix[row, col + 1],
+                        # right
+                        matrix[row + 1, col - 1],
+                        # lower left
+                        matrix[row + 1, col],
+                        # lower
+                        matrix[row + 1, col + 1]) # lower right
         }
 
         if (sum(adjacent, na.rm = TRUE) > 0) {
@@ -144,34 +148,29 @@ nlm_neigh <-
         }
 
         # Update boundary conditions
-        matrix[1, ] <- matrix[nrow + 1, ]
-        matrix[nrow + 2, ] <- matrix[2, ]
-        matrix[, 1] <- matrix[, ncol + 1]
-        matrix[, ncol + 2] <- matrix[, 2]
+        matrix[1, ]         <- matrix[nrow + 1, ]
+        matrix[nrow + 2, ]  <- matrix[2, ]
+        matrix[, 1]         <- matrix[, ncol + 1]
+        matrix[, ncol + 2]  <- matrix[, 2]
       } # close while j
 
       cat <- cat - 1
     } # close while i
 
     # Cut additional cells and transform to raster ----
-    rndneigh_raster <- raster::raster(matrix[
-      1:nrow + 1,
-      1:ncol + 1
-    ])
+    rndneigh_raster <- raster::raster(matrix[1:nrow + 1,
+                                             1:ncol + 1])
 
     # specify resolution ----
-    raster::extent(rndneigh_raster) <- c(
-      0,
-      ncol(rndneigh_raster) * resolution,
-      0,
-      nrow(rndneigh_raster) * resolution
-    )
+    raster::extent(rndneigh_raster) <- c(0,
+                                         ncol(rndneigh_raster) * resolution,
+                                         0,
+                                         nrow(rndneigh_raster) * resolution)
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
-      rndneigh_raster <-
-        util_rescale(rndneigh_raster)
+      rndneigh_raster <- util_rescale(rndneigh_raster)
     }
 
     return(rndneigh_raster)
-  }
+}

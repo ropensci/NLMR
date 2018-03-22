@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_planargradient — nlm_planargradient • NLMR</title>
+<title>nlm_planargradient — nlm_planargradient • nlmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,17 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="nlm_planargradient — nlm_planargradient" />
+
+<meta property="og:description" content="Simulates a planar gradient neutral landscape model." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,7 +51,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="../index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -68,15 +72,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/background.html">NLM Concepts + Terminology</a>
+      <a href="../articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/bestiary.html">NLMR Bestiary</a>
+      <a href="../articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/publication_record.html">
+  <a href="../articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -107,7 +111,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -128,7 +132,7 @@
     </div>
 
     
-    <p>Create a planar gradient neutral landscape model.</p>
+    <p>Simulates a planar gradient neutral landscape model.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_planargradient</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
@@ -186,8 +190,17 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate planar gradient</span>
-<span class='no'>planar_gradient</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_planargradient</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'>util_plot</span>(<span class='no'>planar_gradient</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='nlm_planargradient-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+(<span class='no'>planar_gradient</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_planargradient</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>200</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 200, 200, 40000  (nrow, ncol, ncell)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 200, 0, 200  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
+</div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>planar_gradient</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_planargradient-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -211,11 +224,11 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -223,3 +236,4 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
 
   </body>
 </html>
+

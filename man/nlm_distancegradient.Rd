@@ -27,7 +27,7 @@ Otherwise, the distance in raster units is calculated.}
 RasterLayer
 }
 \description{
-Simulate a distance gradient neutral landscape model.
+Simulates a distance gradient neutral landscape model.
 }
 \details{
 The function takes the number of columns and rows as input and creates a
@@ -42,7 +42,7 @@ distance is measured.
                                            origin = c(20, 30, 10, 15)))
 \dontrun{
 # visualize the NLM
-util_plot(distance_gradient)
+rasterVis::levelplot(distance_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 }
 \seealso{

@@ -18,7 +18,7 @@
 #'
 #' @details
 #' Simulates a linear gradient orientated on a specified or random direction
-#' that has a central peak. which runs perpendicular to the gradient direction.
+#' that has a central peak, which runs perpendicular to the gradient direction.
 #'
 #' @examples
 #'
@@ -27,7 +27,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(edge_gradient)
+#' rasterVis::levelplot(edge_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
@@ -63,7 +63,9 @@ nlm_edgegradient <- function(ncol,
   }
 
   # Create planar gradient ----
-  gradient_raster <- nlm_planargradient(ncol, nrow, direction)
+  gradient_raster <- nlm_planargradient(ncol, nrow,
+                                        resolution = resolution,
+                                        direction =  direction)
 
   # Transform to a central gradient ----
   edgegradient_raster <-

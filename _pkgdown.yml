@@ -11,37 +11,18 @@ reference:
       - '`nlm_fBm`'
       - '`nlm_gaussianfield`'
       - '`nlm_mosaicfield`'
+      - '`nlm_mosaicgibbs`'
+      - '`nlm_mosaictess`'
       - '`nlm_mpd`'
       - '`nlm_neigh`'
       - '`nlm_percolation`'
       - '`nlm_polylands`'
       - '`nlm_planargradient`'
       - '`nlm_randomcluster`'
-      - '`nlm_randomelement`'
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
-      - '`nlm_wheys`'
-  - title: Metrics
-    desc: ~
-    contents:
-      - '`metric_area`'
-  - title: Theme
-    desc: ~
-    contents:
-      - '`theme_nlm`'
-  - title: Utility Functions
-    desc: ~
-    contents:
-      - '`util_binarize`'
-      - '`util_classify`'
-      - '`util_facetplot`'
-      - '`util_import_roboto_condensed`'
-      - '`util_merge`'
-      - '`util_plot`'
-      - '`util_raster2tibble`'
-      - '`util_rescale`'
 navbar:
-  title: NLMR | Neutral landscape models with R
+  title: nlmr | Neutral landscape models with R
   left:
     - text: "Get Started"
       icon: fa fa-magic
@@ -50,12 +31,12 @@ navbar:
       icon: fa-graduation-cap
       menu:
       -  text: NLM Concepts + Terminology
-         href: articles/background.html
-      -  text: NLMR Bestiary
-         href: articles/bestiary.html
+         href: articles/articles/background.html
+      -  text: nlmr Bestiary
+         href: articles/articles/bestiary.html
     - text: "Publication Record"
       icon: fa-file-text-o
-      href: articles/publication_record.html
+      href: articles/articles/publication_record.html
   right:
     - text: "faq"
       icon: fa-question-circle-o
@@ -68,7 +49,7 @@ navbar:
       href: reference/index.html
     - icon: fa-github fa-lg
       text: "github"
-      href: https://github.com/marcosci/NLMR
+      href: https://github.com/marcosci/nlmr
 
 
 

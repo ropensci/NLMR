@@ -5,11 +5,16 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulating Neutral Landscape Models • NLMR</title>
+<title>Simulating Neutral Landscape Models • nlmr</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Simulating Neutral Landscape Models">
+<meta property="og:description" content="Provides neutral landscape models (&lt;https://doi.org/10.1007/BF02275262&gt;,
+    &lt;http://sci-hub.tw/10.1007/bf02275262&gt;).  
+    Neutral landscape models range from " hard neutral models random distributed to spatial characteristics and generate landscape patterns that are independent of ecological processes. thus these can be used as null in ecology. combines a large number algorithms from other published software for simulating landscapes. the simulation results obtained geospatial data format objects package therefore any sort raster operation is performed with standard observation data.>
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
@@ -24,7 +29,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -45,15 +50,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/background.html">NLM Concepts + Terminology</a>
+      <a href="articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="articles/bestiary.html">NLMR Bestiary</a>
+      <a href="articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="articles/publication_record.html">
+  <a href="articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -83,7 +88,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -108,16 +113,16 @@
 
 <div id="nlmr" class="section level2">
 <h2 class="hasAnchor">
-<a href="#nlmr" class="anchor"></a><i class="fa fa-code" aria-hidden="true"></i> <strong>NLMR</strong> <img src="articles/logo.png" align="right" height="175">
+<a href="#nlmr" class="anchor"></a><i class="fa fa-code" aria-hidden="true"></i> <strong>nlmr</strong> <img src="articles/logo.png" align="right" height="175">
 </h2>
 <p><strong>N</strong>eutral <strong>L</strong>andscape <strong>M</strong>odels with <strong>R</strong></p>
 <hr>
-<p><strong>NLMR</strong> is an <code>R</code> package for simulating <strong>n</strong>eutral <strong>l</strong>andscape <strong>m</strong>odels (NLM). Designed to be a generic framework like <a href="https://pypi.python.org/pypi/nlmpy">NLMpy</a>, it leverages the ability to simulate the most common NLM that are described in the ecological literature. <code>NLMR</code> exploits the advantages of the <code>raster</code>-package and returns all simulation as <code>RasterLayer</code>-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.</p>
+<p><strong>nlmr</strong> is an <code>R</code> package for simulating <strong>n</strong>eutral <strong>l</strong>andscape <strong>m</strong>odels (NLM). Designed to be a generic framework like <a href="https://pypi.python.org/pypi/nlmpy">NLMpy</a>, it leverages the ability to simulate the most common NLM that are described in the ecological literature. <code>nlmr</code> exploits the advantages of the <code>raster</code>-package and returns all simulation as <code>RasterLayer</code>-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage. Furthermore, it simulates NLMs within a self-contained, reproducible framework.</p>
 <hr>
 </div>
 <div id="why-nlmr-and-not-one-of-the-other-software-tools" class="section level2">
 <h2 class="hasAnchor">
-<a href="#why-nlmr-and-not-one-of-the-other-software-tools" class="anchor"></a><i class="fa fa-cubes" aria-hidden="true"></i> Why NLMR? <small> … and not one of the other software tools<a href="https://marcosci.github.io/NLMR/articles/faq.html"><sup>*</sup></a></small>
+<a href="#why-nlmr-and-not-one-of-the-other-software-tools" class="anchor"></a><i class="fa fa-cubes" aria-hidden="true"></i> Why nlmr? <small> … and not one of the other software tools<a href="https://marcosci.github.io/nlmr/articles/faq.html"><sup>*</sup></a></small>
 </h2>
 <ul>
 <li>It is so far the only library of NLM in <code>R</code>
@@ -129,9 +134,9 @@
 <li>Most comprehensive collection of algorithms to simulate NLM</li>
 <li>Embedded in a native GIS framework</li>
 <li>Variety of utility functions (classification, merging, visualization, …)</li>
-<li>Openly developed on <a href="https://github.com/marcosci/NLMR">github</a>
+<li>Openly developed on <a href="https://github.com/marcosci/nlmr">github</a>
 <ul>
-<li>If something is missing or annoys you - <a href="https://github.com/marcosci/NLMR/issues/new">get in touch</a>
+<li>If something is missing or annoys you - <a href="https://github.com/marcosci/nlmr/issues/new">get in touch</a>
 </li>
 </ul>
 </li>
@@ -142,17 +147,17 @@
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a><i class="fa fa-cog" aria-hidden="true"></i> Getting Started</h2>
 <p>Install the release version from CRAN:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"NLMR"</span>)</code></pre></div>
-<p>To install the developmental version of <code>NLMR</code>, use the following R code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"nlmr"</span>)</code></pre></div>
+<p>To install the developmental version of <code>nlmr</code>, use the following R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"marcosci/NLMR"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"marcosci/nlmr"</span>)</code></pre></div>
 <hr>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a><i class="fa fa-book" aria-hidden="true"></i> Documentation</h2>
-<p>Documentation is available at <a href="https://marcosci.github.io/NLMR/reference">NLMR/reference</a>. To get started, please explore our <a href="https://marcosci.github.io/NLMR/articles/">vignettes online</a>, or in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="dt">package =</span> <span class="st">"NLMR"</span>)</code></pre></div>
+<p>Documentation is available at <a href="https://marcosci.github.io/nlmr/reference">nlmr/reference</a>. To get started, please explore our <a href="https://marcosci.github.io/nlmr/articles/">vignettes online</a>, or in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="dt">package =</span> <span class="st">"nlmr"</span>)</code></pre></div>
 <hr>
 </div>
 <div id="whats-new" class="section level2">
@@ -171,21 +176,21 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a><i class="fa fa-pencil" aria-hidden="true"></i> Citation</h2>
 <pre><code>
-To cite NLMR in publications use:
+To cite nlmr in publications use:
 
   Marco Sciaini, Matthias Fritsch, Craig E. Simpkins (2018).
-  {NLMR}: Simulating neutral landscape models. R package version
-  0.2.0. URL https://CRAN.R-project.org/package=NLMR
+  {nlmr}: Simulating neutral landscape models. R package version
+  0.2.0. URL https://CRAN.R-project.org/package=nlmr
 
 A BibTeX entry for LaTeX users is
 
   @Misc{,
-    title = {{NLMR}: Simulating neutral landscape models.},
+    title = {{nlmr}: Simulating neutral landscape models.},
     author = {Marco Sciaini and Matthias Fritsch and Craig E. Simpkins},
     note = {R package version 0.2.1},
-    url = {https://CRAN.R-project.org/package=NLMR},
+    url = {https://CRAN.R-project.org/package=nlmr},
   }</code></pre>
-<p>Additionally, we keep a <a href="https://marcosci.github.io/NLMR/articles/publication_record.html/">record of publications</a> that use<code>NLMR</code>. Hence, if you used <code>NLMR</code> please <a href="https://github.com/marcosci/NLMR/issues/new/">file an issue on GitHub</a> so we can add it to the list.</p>
+<p>Additionally, we keep a <a href="https://marcosci.github.io/nlmr/articles/publication_record.html/">record of publications</a> that use<code>nlmr</code>. Hence, if you used <code>nlmr</code> please <a href="https://github.com/marcosci/nlmr/issues/new/">file an issue on GitHub</a> so we can add it to the list.</p>
 <hr>
 </div>
 <div id="contributor-code-of-conduct" class="section level2">
@@ -197,12 +202,10 @@ A BibTeX entry for LaTeX users is
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a><i class="fa fa-shopping-basket" aria-hidden="true"></i> Dependencies</h2>
-<p><strong>NLMR</strong> imports many great packages that it depends on. Many thanks to the developers of these tools:</p>
-<pre><code> [1] "R (&gt;= 3.1.0)"  " checkmate"    " dismo"        " dplyr"       
- [5] " ggplot2"      " igraph"       " magrittr"     " purrr"       
- [9] " RandomFields" " raster"       " rasterVis"    " sp"          
-[13] " spatstat"     " stats"        " tibble"       " tidyr"       
-[17] " viridis"      " extrafont"   </code></pre>
+<p><strong>nlmr</strong> imports many great packages that it depends on. Many thanks to the developers of these tools:</p>
+<pre><code> [1] "R (&gt;= 3.1.0)"  " checkmate"    " dplyr"        " purrr"       
+ [5] " RandomFields" " raster"       " spatstat"     " stats"       
+ [9] " tibble"       " velox"        " sf"          </code></pre>
 </div>
 </div>
   </div>
@@ -211,32 +214,29 @@ A BibTeX entry for LaTeX users is
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=NLMR">https://​cran.r-project.org/​package=NLMR</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/marcosci/NLMR/issues/">https://​github.com/​marcosci/​NLMR/​issues/​</a>
+<li>Report a bug at <br><a href="https://github.com/marcosci/nlmr/issues/">https://​github.com/​marcosci/​nlmr/​issues/​</a>
 </li>
 </ul>
 <h2>License</h2>
 <p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></p>
 <h2>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing NLMR</a></li>
+<li><a href="authors.html">Citing nlmr</a></li>
 </ul>
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Marco Sciaini <br><small class="roles"> Author, maintainer </small> </li>
-<li>Matthias Fritsch <br><small class="roles"> Author </small> </li>
-<li>Craig Simpkins <br><small class="roles"> Author </small> </li>
+<li>Marco Sciaini <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Matthias Fritsch <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/marcosci/NLMR"><img src="https://travis-ci.org/marcosci/NLMR.svg?branch=develop" alt="Build Status"></a></li>
+<li><a href="https://travis-ci.org/marcosci/nlmr"><img src="https://travis-ci.org/marcosci/nlmr.svg?branch=develop" alt="Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/marcosci/nlmr"><img src="https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true" alt="Build status"></a></li>
-<li><a href="https://codecov.io/gh/marcosci/NLMR"><img src="https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
-<li><a href="https://cran.r-project.org/package=NLMR"><img src="http://www.r-pkg.org/badges/version/NLMR" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://gitter.im/NLMR_landscapegenerator"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/NLMR_landscapegenerator"></a></li>
-<li><a href="http://cran.rstudio.com/web/packages/NLMR/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/NLMR"></a></li>
+<li><a href="https://codecov.io/gh/marcosci/nlmr"><img src="https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
+<li><a href="https://cran.r-project.org/package=nlmr"><img src="http://www.r-pkg.org/badges/version/nlmr" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://gitter.im/nlmr_landscapegenerator"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/nlmr_landscapegenerator"></a></li>
+<li><a href="http://cran.rstudio.com/web/packages/nlmr/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/nlmr"></a></li>
 <li><a href="https://github.com/ropensci/onboarding/issues/188"><img src="https://badges.ropensci.org/188_status.svg"></a></li>
 </ul>
 </div>
@@ -245,11 +245,11 @@ A BibTeX entry for LaTeX users is
 
 
       <footer><div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

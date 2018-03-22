@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_mpd — nlm_mpd • NLMR</title>
+<title>nlm_mpd — nlm_mpd • nlmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,17 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="nlm_mpd — nlm_mpd" />
+
+<meta property="og:description" content="Simulates a midpoint displacement neutral landscape model." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,7 +51,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="../index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -68,15 +72,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/background.html">NLM Concepts + Terminology</a>
+      <a href="../articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/bestiary.html">NLMR Bestiary</a>
+      <a href="../articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/publication_record.html">
+  <a href="../articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -107,7 +111,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -128,7 +132,7 @@
     </div>
 
     
-    <p>Simulate a midpoint displacement neutral landscape model.</p>
+    <p>Simulates a midpoint displacement neutral landscape model.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_mpd</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>rand_dev</span> <span class='kw'>=</span> <span class='fl'>1</span>,
@@ -155,12 +159,13 @@ Resolution of the raster.</p></td>
     <tr>
       <th>roughness</th>
       <td><p>[<code>numerical(1)</code>]
-Controls the level of spatial autocorrelation (!= hurst index)</p></td>
+Controls the level of spatial autocorrelation (!= hurst exponent)</p></td>
     </tr>
     <tr>
       <th>rand_dev</th>
       <td><p>[<code>numerical(1)</code>]
-Initial standard deviation for the displacement step (default == 1)</p></td>
+Initial standard deviation for the displacement step (default == 1), sets the
+scale of the overall variance in the resulting landscape.</p></td>
     </tr>
     <tr>
       <th>rescale</th>
@@ -183,7 +188,8 @@ the algorithm.</p></td>
 
     <p>The algorithm is a direct implementation of the midpoint displacement
 algorithm.
-It performs the following steps:</p><ul>
+It performs the following steps:</p>
+<ul>
 <li><p>Initialization:  Determine the smallest fit of
  <code>max(ncol, nrow)</code> in <em>n^2 + 1</em> and assign value to n.
  Setup matrix of size (n^2 + 1)*(n^2 + 1).
@@ -194,11 +200,11 @@ It performs the following steps:</p><ul>
   of the four corner points plus a random value to the midpoint of that
   diamond.</p></li>
 </ul>
-    <p>At each iteration the roughness, an approximation to common hurst index,
+    <p>At each iteration the roughness, an approximation to common hurst exponent,
 is reduced.</p>
 <p>The image below shows the steps involved in running the diamond-square
-algorithm on a 5 × 5 matrix:
-    <img src='figures/Diamond_Square.png' width="300%" alt="" /></p>
+algorithm on a 5 × 5 matrix:</p>
+<p><img src='figures/Diamond_Square.png' width="300%" alt="" /></p>
 <p>(By Christopher Ewin - Own work, CC BY-SA 4.0,
 https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
     
@@ -210,10 +216,19 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># simulate midpoint displacement</span>
-<span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-                                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>200</span>,
-                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.6</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'>util_plot</span>(<span class='no'>midpoint_displacememt</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='nlm_mpd-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+(<span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.61</span>))</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 129, 129, 16641  (nrow, ncol, ncell)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 129, 0, 129  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>midpoint_displacememt</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+<span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mpd-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -234,11 +249,11 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -246,3 +261,4 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
 
   </body>
 </html>
+

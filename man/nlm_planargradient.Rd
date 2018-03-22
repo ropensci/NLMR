@@ -28,18 +28,18 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Create a planar gradient neutral landscape model.
+Simulates a planar gradient neutral landscape model.
 }
 \details{
 Simulates a linear gradient sloping in a specified or random direction.
 }
 \examples{
 # simulate planar gradient
-planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
+(planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200))
 
 \dontrun{
 # visualize the NLM
-util_plot(planar_gradient)
+rasterVis::levelplot(planar_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

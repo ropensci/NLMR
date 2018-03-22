@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>nlm_neigh — nlm_neigh • NLMR</title>
+<title>nlm_neigh — nlm_neigh • nlmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,18 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="nlm_neigh — nlm_neigh" />
+
+<meta property="og:description" content="Create a neutral landscape model with categories and clustering
+ based on neighborhood characteristic." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,7 +52,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="../index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -68,15 +73,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/background.html">NLM Concepts + Terminology</a>
+      <a href="../articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="../articles/bestiary.html">NLMR Bestiary</a>
+      <a href="../articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/publication_record.html">
+  <a href="../articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -107,7 +112,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -133,7 +138,7 @@
     
 
     <pre class="usage"><span class='fu'>nlm_neigh</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>p_neigh</span>, <span class='no'>p_empty</span>, <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>neighborhood</span> <span class='kw'>=</span> <span class='st'>"Von-Neumann"</span>, <span class='kw'>proportions</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>proportions</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -171,10 +176,10 @@ zero).</p></td>
 Number of categories used.</p></td>
     </tr>
     <tr>
-      <th>neighborhood</th>
-      <td><p>[<code>string(1)</code>]
-The neighborhood used to determined adjacent cells: `"Moore"` takes the eight
-surrounding cells, while `"Von-Neumann"` takes the four adjacent cells
+      <th>neighbourhood</th>
+      <td><p>[<code>numerical(1)</code>]
+The neighbourhood used to determined adjacent cells: `8 ("Moore")` takes the eight
+surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 (i.e. left, right, upper and lower cells).</p></td>
     </tr>
     <tr>
@@ -218,9 +223,18 @@ climatic and land use changes in semi-arid African savannas."
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate neighborhood model</span>
-<span class='no'>neigh_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_neigh</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>p_neigh</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>p_empty</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-                    <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>neighborhood</span> <span class='kw'>=</span> <span class='st'>"Von-Neumann"</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='fu'>util_plot</span>(<span class='no'>neigh_raster</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: partial argument match of 'length' to 'length.out'</span></div><div class='img'><img src='nlm_neigh-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+(<span class='no'>neigh_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_neigh</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>p_neigh</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>p_empty</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+                    <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; dimensions  : 50, 50, 2500  (nrow, ncol, ncell)
+#&gt; resolution  : 1, 1  (x, y)
+#&gt; extent      : 0, 50, 0, 50  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : in memory
+#&gt; names       : layer 
+#&gt; values      : 0, 1  (min, max)
+#&gt; </div><div class='input'>
+</div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>neigh_raster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_neigh-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -242,11 +256,11 @@ climatic and land use changes in semi-arid African savannas."
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -254,3 +268,4 @@ climatic and land use changes in semi-arid African savannas."
 
   </body>
 </html>
+

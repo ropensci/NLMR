@@ -5,7 +5,7 @@
 \title{nlm_neigh}
 \usage{
 nlm_neigh(ncol, nrow, resolution = 1, p_neigh, p_empty, categories = 3,
-  neighborhood = "Von-Neumann", proportions = NA, rescale = TRUE)
+  neighbourhood = 4, proportions = NA, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -28,9 +28,9 @@ zero).}
 \item{categories}{[\code{numerical(1)}]\cr
 Number of categories used.}
 
-\item{neighborhood}{[\code{string(1)}]\cr
-The neighborhood used to determined adjacent cells: `"Moore"` takes the eight
-surrounding cells, while `"Von-Neumann"` takes the four adjacent cells
+\item{neighbourhood}{[\code{numerical(1)}]\cr
+The neighbourhood used to determined adjacent cells: `8 ("Moore")` takes the eight
+surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 (i.e. left, right, upper and lower cells).}
 
 \item{proportions}{[\code{vector(1)}]\cr
@@ -62,12 +62,12 @@ The algorithm draws a random cell and turns it into a given category based on
 }
 \examples{
 # simulate neighborhood model
-neigh_raster <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
-                    categories = 5, neighborhood = "Von-Neumann")
+(neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
+                    categories = 5, neighbourhood = 4))
 
 \dontrun{
 # visualize the NLM
-util_plot(neigh_raster)
+rasterVis::levelplot(neigh_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

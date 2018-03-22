@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Citation and Authors • NLMR</title>
+<title>Citation and Authors • nlmr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,14 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="pkgdown.css" rel="stylesheet">
 <script src="jquery.sticky-kit.min.js"></script>
 <script src="pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Citation and Authors" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,7 +48,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">NLMR | Neutral landscape models with R</a>
+      <a class="navbar-brand" href="index.html">nlmr | Neutral landscape models with R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -68,15 +69,15 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/background.html">NLM Concepts + Terminology</a>
+      <a href="articles/articles/background.html">NLM Concepts + Terminology</a>
     </li>
     <li>
-      <a href="articles/bestiary.html">NLMR Bestiary</a>
+      <a href="articles/articles/bestiary.html">nlmr Bestiary</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="articles/publication_record.html">
+  <a href="articles/articles/publication_record.html">
     <span class="fa fa-file-text-o"></span>
      
     Publication Record
@@ -107,7 +108,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/marcosci/NLMR">
+  <a href="https://github.com/marcosci/nlmr">
     <span class="fa fa-github fa-lg"></span>
      
     github
@@ -129,13 +130,14 @@
     </div>
 
     <p>Sciaini M, Fritsch M and Simpkins CE (????).
-&ldquo;NLMR: Simulating neutral landscape models.&rdquo;
-<a href="https://CRAN.R-project.org/package=NLMR">https://CRAN.R-project.org/package=NLMR</a>. 
+&ldquo;nlmr: Simulating neutral landscape models.&rdquo;
+R package version 0.3.0, <a href="https://CRAN.R-project.org/package=nlmr">https://CRAN.R-project.org/package=nlmr</a>. 
 </p>
     <pre>@Misc{,
-  title = {{NLMR}: Simulating neutral landscape models.},
+  title = {{nlmr}: Simulating neutral landscape models.},
   author = {Marco Sciaini and Matthias Fritsch and Craig E. Simpkins},
-  url = {https://CRAN.R-project.org/package=NLMR},
+  note = {R package version 0.3.0},
+  url = {https://CRAN.R-project.org/package=nlmr},
 }</pre>
     <div class="page-header">
       <h1>Authors</h1>
@@ -143,20 +145,30 @@
 
     <ul class="list-unstyled">
       <li>
-        <p><strong>Marco Sciaini</strong>. Author, maintainer.
+        <p><strong>Marco Sciaini</strong>. Author, maintainer. 
         </p>
       </li>
       <li>
-        <p><strong>Matthias Fritsch</strong>. Author.
+        <p><strong>Matthias Fritsch</strong>. Author. 
         </p>
       </li>
       <li>
-        <p><strong>Craig Simpkins</strong>. Author.
-        </p>
+        <p><strong>Craig Simpkins</strong>. Contributor. 
+        <br /><small>Craig reviewed/provided comments to improve the documentation.</small></p>
       </li>
       <li>
-        <p><strong>Cédric Scherer</strong>. Contributor.
-        <br /><small>Implemented nlm_neigh</small></p>
+        <p><strong>Cédric Scherer</strong>. Contributor. 
+        <br /><small>Cédric implemented nlm_neigh</small></p>
+      </li>
+      <li>
+        <p><strong>Laura Graham</strong>. Reviewer. 
+        <br /><small>Laura reviewed the package for rOpenSci, see 
+                  https://github.com/ropensci/onboarding/issues/188</small></p>
+      </li>
+      <li>
+        <p><strong>Jeffrey Hollister</strong>. Reviewer. 
+        <br /><small>Jeffrey reviewed the package for rOpenSci, see 
+                  https://github.com/ropensci/onboarding/issues/188</small></p>
       </li>
     </ul>
 
@@ -167,11 +179,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -179,3 +191,4 @@
 
   </body>
 </html>
+

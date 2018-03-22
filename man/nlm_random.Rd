@@ -23,7 +23,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate a spatially random neutral landscape model with values
+Simulates a spatially random neutral landscape model with values
 drawn a uniform distribution.
 }
 \details{
@@ -33,11 +33,11 @@ value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
 # simulate spatially random model
-random <- nlm_random(ncol = 200, nrow = 100)
+(random <- nlm_random(ncol = 200, nrow = 100))
 
 \dontrun{
 # visualize the NLM
-util_plot(random)
+rasterVis::levelplot(random, margin = FALSE, par.settings = rasterVis::viridisTheme())
 }
 
 }

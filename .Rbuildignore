@@ -15,3 +15,5 @@ man-roxygen
 ^cran-comments\.md$
 ^NEWS\.md$
 ^CONDUCT\.md$
+^CONTRIBUTING\.md$
+^references\.bib$

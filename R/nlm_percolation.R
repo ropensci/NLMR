@@ -1,6 +1,6 @@
 #' nlm_percolation
 #'
-#' @description Create a random percolation neutral landscape model.
+#' @description Simulates a random percolation neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns for the raster.
@@ -28,10 +28,10 @@
 #'
 #' @examples
 #' # simulate percolation model
-#' percolation <- nlm_percolation(ncol = 100, nrow = 100, prob=0.5)
+#' (percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5))
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(percolation, discrete = TRUE)
+#' rasterVis::levelplot(percolation, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #' @references
 #' 1. Gardner RH, O'Neill R V, Turner MG, Dale VH. 1989. Quantifying

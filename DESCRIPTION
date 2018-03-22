@@ -1,29 +1,33 @@
-Package: NLMR
+Package: nlmr
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.2.1
-Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre")), 
-    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role =  c("aut")),
-    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com", role =  c("aut")),
-    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", role =  c("ctb"), comment = "Implemented nlm_neigh"))
+Version: 0.3.0
+Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
+    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
+    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
+       role =  "aut", comment = "ORCID = '0000-0003-3212-1379'"),
+    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", 
+       role =  c("aut"), comment = "ORCID = '0000-0003-0465-2543'"), 
+    person("Laura", "Graham", role = "rev",
+       comment = "Laura reviewed the package for rOpenSci, see 
+                  https://github.com/ropensci/onboarding/issues/188"),
+    person("Jeffrey", "Hollister", role = "rev",
+       comment = "Jeffrey reviewed the package for rOpenSci, see 
+                  https://github.com/ropensci/onboarding/issues/188"))
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
-Description: Provides neutral landscape models 
-    (Gardner et al. 1987 <doi:10.1007/BF02275262>,
-    With 1997 <doi:10.1046/j.1523-1739.1997.96210.x>) that can easily extend in 
-    existing landscape analyses. Neutral landscape models range from "hard" 
-    neutral models (completely random distributed), to "soft" neutral models (definable spatial characteristics) and 
-    generate landscape patterns that are independent of ecological processes.
-    Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
-    combines a large number of algorithms from other published software for simulating neutral landscapes (Saura & 
-    Martínez 2000   <doi:10.1023/A:1008107902848>, Etherington et
-    al. 2015 <doi:10.1111/2041-210X.12308>) and
-    includes utility functions to classify and combine the multiple landscapes. The 
-    simulation results are obtained in a geospatial data format (raster* objects 
-    from the 'raster' package) and can, therefore, be used 
-    in any sort of raster data operation that is performed with standard 
-    observation data.                                                                                                  
+Description: Provides neutral landscape models (<https://doi.org/10.1007/BF02275262>,
+    <http://sci-hub.tw/10.1007/bf02275262>).  
+    Neutral landscape models range from "hard" 
+    neutral models (completely random distributed), to "soft" neutral models 
+    (definable spatial characteristics) and generate landscape patterns that are 
+    independent of ecological processes.
+    Thus, these patterns can be used as null models in landscape ecology. 'nlmr' 
+    combines a large number of algorithms from other published software for 
+    simulating neutral landscapes. The simulation results are obtained in a
+    geospatial data format (raster* objects from the 'raster' package) and can,
+    therefore, be used in any sort of raster data operation that is performed 
+    with standard observation data.                                                                                                  
 License: GPL-3
-Copyright: file inst/COPYRIGHTS
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -31,31 +35,26 @@ Depends:
     R (>= 3.1.0)
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 6.0.1
-Imports:
+Imports: 
     checkmate,
-    dismo,
     dplyr,
-    ggplot2,
-    igraph,
-    magrittr,
     purrr,
     RandomFields,
     raster,
-    rasterVis,
-    sp,
     spatstat,
     stats,
     tibble,
-    tidyr,
-    viridis,
-    extrafont
-URL: https://marcosci.github.io/NLMR/
-BugReports: https://github.com/marcosci/NLMR/issues/
+    velox,
+    sf
+URL: https://marcosci.github.io/nlmr/
+BugReports: https://github.com/marcosci/nlmr/issues/
 Suggests:
     testthat,
     covr,
     knitr,
     rmarkdown,
-    lintr
+    lintr,
+    classInt,
+    rasterVis
 VignetteBuilder:
     knitr

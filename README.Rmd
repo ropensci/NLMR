@@ -2,6 +2,7 @@
 output:
   github_document:
     html_preview: false
+bibliography: references.bib
 ---
 
 
@@ -15,19 +16,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Build Status](https://travis-ci.org/marcosci/NLMR.svg?branch=develop)](https://travis-ci.org/marcosci/NLMR)
+[![Build Status](https://travis-ci.org/marcosci/nlmr.svg?branch=develop)](https://travis-ci.org/marcosci/nlmr)
 [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr)
-[![codecov](https://codecov.io/gh/marcosci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/NLMR)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
-[![Join the chat at  https://gitter.im/NLMR_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/NLMR_landscapegenerator) 
-[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
+[![codecov](https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/nlmr)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/nlmr)](https://cran.r-project.org/package=NLMR) 
+[![Join the chat at  https://gitter.im/nlmr_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) 
+[![](http://cranlogs.r-pkg.org/badges/grand-total/nlmr)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
-# NLMR <img src="vignettes/logo.png" align="right"  height="175" />
 
-`NLMR` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-`NLMR` builds on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
-
+`nlmr` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
+`nlmr` builds on the advantages of the ``raster``-package and returns all simulation as ``RasterLayer``-objects, thus ensuring a direct compability to common GIS tasks and a pretty flexible and simple usage.
+Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
 
@@ -37,65 +37,141 @@ Install the release version from CRAN:
 install.packages("NLMR")
 ```
 
-To install the developmental version of ``NLMR``, use the following R code:
+__NOTE__: The version on CRAN is pre-rOpenSci review, so it still contains the
+utility functions you find now in [`landscapetools`](https://github.com/marcosci/landscapetools).
+
+To install the developmental version of ``nlmr``, use the following R code:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("marcosci/NLMR", ref = "develop")
+devtools::install_github("marcosci/nlmr", ref = "develop")
 ```
-
-
 
 ## Example
 
-Here we will provide a simple example on using ``NLMR``:
+Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `nlmr`, e.g.:
 
-```{r example, fig.height=7, fig.width=7, fig.align='center'}
-library(NLMR)
+```{r message=FALSE}
+# Simulate 50x50 random cluster raster
+random_cluster <- nlmr::nlm_randomcluster(nrow = 100,
+                                      ncol = 100,
+                                      p    = 0.5,
+                                      ai   = c(0.3, 0.6, 0.1),
+                                      rescale = FALSE)
+
+random_curdling <- nlmr::nlm_curds(curds = c(0.5, 0.3, 0.6),
+                              recursion_steps = c(32, 6, 2))
+
+
+midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
+                                 nrow = 100,
+                                 roughness = 0.61)
+```
+
+<img src="vignettes/articles/figure_readme.png"  width="100%" />
+
+## Overview
+
+`nlmr` supplies 14 NLM algorithms, with several options to simulate derivates of
+them. The algorithms differ from each other in spatial auto-correlation, from 
+no auto-correlation (random NLM) to a constant gradient (planar gradients):  
+
+```{r warning=FALSE, message = FALSE, results='asis', echo=FALSE, cache=FALSE}
+library(tibble)
 library(magrittr)
-library(ggplot2)  # to extend the plot functionality of NLMR 
-library(SDMTools) # to calculate basic landscape metrics
+library(knitr)
+library(kableExtra)
 
-# Simulate 50x50 rectangular cluster raster
-nlm_raster <- nlm_randomrectangularcluster(50,50, resolution = 1, minl = 3, maxl = 7)
+function_tibble <- tibble(Function = character(), Description = character(), Reference = character())
 
-# Plot the NLM
-util_plot(nlm_raster) +
-  labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+# nlm_curds
+function_tibble[1,1] <- "nlm_curds"
+function_tibble[1,2] <- "Simulates a curdled neutral landscape model. Random curdling recursively subdivides the plane into blocks. At each level of the recursion, a fraction of the this block is declared as habitat while the remaining stays matrix. When option `q` is set, it simulates a wheyed curdling model, where previously selected cells that were declared matrix during recursion, can now contain a proportion of habitat cells."
+function_tibble[1,3] <- "@Keitt2000; @Travis2004, @Gustafson1992"
 
-# Classify into 3 categories
-nlm_raster <- nlm_raster %>%
-                 util_classify(., c(0.5, 0.25, 0.25))
+# nlm_distancegradient
+function_tibble[2,1] <- "nlm_distancegradient"
+function_tibble[2,2] <- "Simulates a distance gradient neutral landscape model. The function takes the number of columns and rows as input and creates a *RasterLayer* with the same extent. *Origin* is a numeric vector of xmin, xmax, ymin, ymax for a rectangle inside the raster from which the distance is measured."
+function_tibble[2,3] <- "@EtheringtonNLMpy2015"
 
-# Plot the classified NLM
-util_plot(nlm_raster, discrete = TRUE) +
-  labs(title="Random rectangular cluster NLM \n (50x50 cells)")
+# nlm_edgegradient
+function_tibble[3,1] <- "nlm_edgegradient"
+function_tibble[3,2] <- "Simulates a linear gradient orientated on a specified or random direction that has a central peak, which runs perpendicular to the gradient direction."
+function_tibble[3,3] <- "@Travis2004"
 
-# Calculate basic landscape metrics
-raster::as.matrix(nlm_raster) %>% 
-  PatchStat() %>% 
-  knitr::kable()
+# nlm_edgegradient
+function_tibble[4,1] <- "nlm_fBm"
+function_tibble[4,2] <- "Simulates neutral landscapes are generated using fractional Brownian motion,  an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient *H*."
+function_tibble[4,3] <- "@Schlather2015"
 
+# nlm_gaussianfield
+function_tibble[5,1] <- "nlm_gaussianfield"
+function_tibble[5,2] <- "Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelatian."
+function_tibble[5,3] <- "@Schlather2015"
+
+# nlm_mosaicfield
+function_tibble[6,1] <- "nlm_mosaicfield"
+function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model."
+function_tibble[6,3] <- "@Schlather2015"
+
+# nlm_mpd
+function_tibble[7,1] <- "nlm_mpd"
+function_tibble[7,2] <- "Simulates a midpoint displacement neutral landscape model where the parameter *roughness* controls the level of spatial autocorrelatian."
+function_tibble[7,3] <- "@Peitgen1988"
+
+# nlm_neigh
+function_tibble[8,1] <- "nlm_neigh"
+function_tibble[8,2] <- "Simulates a neutral landscape model with categories and clustering based on neighborhood characteristic."
+function_tibble[8,3] <- "@Scherer2016"
+
+# nlm_percolation
+function_tibble[9,1] <- "nlm_percolation"
+function_tibble[9,2] <- "Simulates a binary neutral landscape model based on percolation theory. The probality for a cell to be assigned a 1 is drawn from a uniform distribution."
+function_tibble[9,3] <- "@Gardner1989"
+
+# nlm_planargradient
+function_tibble[10,1] <- "nlm_planargradient"
+function_tibble[10,2] <- "Simulates a planar gradient neutral landscape model with gradient sloping in a specified or random direction."
+function_tibble[10,3] <- "@Palmer1992"
+
+# nlm_polylands
+function_tibble[11,1] <- "nlm_polylands"
+function_tibble[11,2] <- "Simulates patchy mosaic neutral landscape models built on the basis of spatial point pattern processes such as the Strauss process."
+function_tibble[11,3] <- "@Gaucherel2008"
+
+# nlm_random
+function_tibble[12,1] <- "nlm_random"
+function_tibble[12,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution."
+function_tibble[12,3] <- ""
+
+# nlm_randomcluster
+function_tibble[13,1] <- "nlm_randomcluster"
+function_tibble[13,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution."
+function_tibble[13,3] <- "@Saura2000"
+
+# nlm_randomrectangularcluster
+function_tibble[14,1] <- "nlm_randomrectangularcluster"
+function_tibble[14,2] <- "Simulates a random rectangular cluster neutral landscape model where rectangular clusters are randomly distributed until the raster is filled."
+function_tibble[14,3] <- "@Gustafson1992"
+
+kable(function_tibble) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
+<img src="vignettes/articles/bestiary_full.png"  width="100%" />
 
+## Meta
 
-## Citation
-
-```{r, echo  = FALSE, result = "asis", comment = ""}
-citation("NLMR")
-```
-
-Additionally, we keep a [record of publications](https://marcosci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`.
-Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/marcosci/NLMR/issues/new/) so we can add it to the list.
-
-## Contributor Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
-
+* Please [report any issues or bugs](https://github.com/marcosci/nlmr/issues/new/).
+* License: GPL3
+* Get citation information for `nlmr` in R doing `citation(package = 'nlmr')`
+    * Additionally, we keep a [record of publications](https://marcosci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`. Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/marcosci/nlmr/issues/new/) so we can add it to the list.
+* We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
+    * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+   
 ## Dependencies
 
-`NLMR` imports many great packages that it depends on. Many thanks to the developers of these tools:
+`nlmr` imports many great packages that it depends on. Many thanks to the developers of these tools:
 
 ```{r, echo  = FALSE, result = "asis", comment = ""}
 desc = read.dcf("DESCRIPTION")
@@ -106,3 +182,4 @@ pkgs = gsub("\n", " ", pkgs)
 strsplit(pkgs, ",")[[1]]
 ```
 
+## References

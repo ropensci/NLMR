@@ -1,6 +1,6 @@
 #' nlm_randomrectangularcluster
 #'
-#' Create a random rectangular cluster neutral landscape model with values ranging 0-1.
+#' Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
 #'
 #' @param ncol [\code{numerical(1)}]\cr Number of columns for the raster.
 #' @param nrow  [\code{numerical(1)}]\cr Number of rows for the raster.
@@ -9,18 +9,32 @@
 #' @param maxl [\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer with random values ranging from 0-1.
+#' @details
+#' The random rectangular cluster algorithm starts to fill a raster randomly
+#' with rectangles defined by \code{minl} and \code{maxl} until the surface
+#' of the landscape is completely covered.
+#' This is one of the realisations of the so-called "falling/dead leaves" algorithm,
+#' for more details see Galerne & Goussea (2012).
 #'
+#' @return RasterLayer
+#'
+#' @references
+#' Gustafson, E.J. & Parker, G.R. (1992). Relationships between landcover
+#' proportion and indices of landscape spatial pattern. \emph{Landscape ecology},
+#' 7, 101–110.
+#' Galerne B. & Gousseau Y. (2012). The Transparent Dead Leaves Model. Advances in
+#' Applied Probability, \emph{Applied Probability Trust}, 44, 1–20.
 #'
 #' @examples
 #' # simulate random rectangular cluster
-#' randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
+#' (randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
 #'                                                           nrow = 30,
 #'                                                           minl = 5,
-#'                                                           maxl = 10)
+#'                                                           maxl = 10))
 #' \dontrun{
 #' # visualize the NLM
-#' util_plot(randomrectangular_cluster)
+#' rasterVis::levelplot(randomrectangular_cluster, margin = FALSE,
+#' par.settings = rasterVis::viridisTheme())
 #' }
 #'
 #' @aliases nlm_randomrectangularcluster
@@ -46,6 +60,7 @@ nlm_randomrectangularcluster <-
     checkmate::assert_true(minl <= nrow)
     checkmate::assert_true(maxl <= ncol)
     checkmate::assert_true(maxl <= nrow)
+    checkmate::assert_true(minl <= maxl)
     checkmate::assert_logical(rescale)
 
     # Create an empty matrix of correct dimensions ----
