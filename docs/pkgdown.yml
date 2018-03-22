@@ -1,6 +1,6 @@
 pandoc: 1.19.2.1
 pkgdown: 0.1.0.9000
-pkgdown_sha: b2313f0ad7bcc2deb563a850c1f0cb3f6a9df79e
+pkgdown_sha: 2d8ea48eacf7dff54a1ecadd2367a9f798ccc33b
 articles:
   background: articles/background.html
   bestiary: articles/bestiary.html

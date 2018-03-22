@@ -5,9 +5,9 @@ Version: 0.3.0
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
-       role =  "aut", comment = "ORCID = '0000-0003-3212-1379'"),
+       role =  "aut", comment = c(ORCID = '0000-0003-3212-1379')),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", 
-       role =  c("aut"), comment = "ORCID = '0000-0003-0465-2543'"), 
+       role =  c("aut"), comment = c(ORCID = '0000-0003-0465-2543')), 
     person("Laura", "Graham", role = "rev",
        comment = "Laura reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"),

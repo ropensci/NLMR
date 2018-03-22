@@ -37,12 +37,12 @@ Useful links:
 Authors:
 \itemize{
   \item Matthias Fritsch \email{matthias.fritsch@forst.uni-goettingen.de}
+  \item Craig Simpkins \email{simpkinscraig063@gmail.com} (ORCID = '0000-0003-3212-1379')
+  \item Cédric Scherer \email{cedricphilippscherer@gmail.com} (ORCID = '0000-0003-0465-2543')
 }
 
 Other contributors:
 \itemize{
-  \item Craig Simpkins \email{simpkinscraig063@gmail.com} (Craig reviewed/provided comments to improve the documentation.) [contributor]
-  \item Cédric Scherer \email{cedricphilippscherer@gmail.com} (Cédric implemented nlm_neigh) [contributor]
   \item Laura Graham (Laura reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188) [NA]
   \item Jeffrey Hollister (Jeffrey reviewed the package for rOpenSci, see 
