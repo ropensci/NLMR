@@ -151,12 +151,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of columns for the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of rows for the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -166,7 +166,7 @@ Resolution of the raster.</p></td>
     <tr>
       <th>roughness</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Controls the level of spatial autocorrelation (!= hurst exponent)</p></td>
+Controls the level of spatial autocorrelation (!= Hurst exponent)</p></td>
     </tr>
     <tr>
       <th>rand_dev</th>
@@ -207,7 +207,7 @@ It performs the following steps:</p>
   of the four corner points plus a random value to the midpoint of that
   diamond.</p></li>
 </ul>
-    <p>At each iteration the roughness, an approximation to common hurst exponent,
+    <p>At each iteration the roughness, an approximation to common Hurst exponent,
 is reduced.</p>
 <p>The image below shows the steps involved in running the diamond-square
 algorithm on a 5 × 5 matrix:</p>
@@ -223,17 +223,9 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># simulate midpoint displacement</span>
-(<span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+<span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                                  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.61</span>))</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 129, 129, 16641  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 129, 0, 129  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.61</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>midpoint_displacememt</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
 <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mpd-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

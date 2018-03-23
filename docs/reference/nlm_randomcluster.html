@@ -151,12 +151,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>integer(1)</code>]<br />
-Number of columns in the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>integer(1)</code>]<br />
-Number of rows in the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -166,13 +166,13 @@ Resolution of the raster.</p></td>
     <tr>
       <th>p</th>
       <td><p>[<code>numerical(1)</code>]<br />
-The p value defines the proportion of   elements randomly selected to form
+Defines the proportion of elements randomly selected to form
 clusters.</p></td>
     </tr>
     <tr>
       <th>ai</th>
       <td><p>Vector with the cluster type distribution (percentages of occupancy).
-This controls directly the number of types via the given length.</p></td>
+This directly controls the number of types via the given length.</p></td>
     </tr>
     <tr>
       <th>neighbourhood</th>
@@ -193,8 +193,8 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This is a direct implementation of steps A - D of the MRC algorithm
-by Saura &amp; Martínez-Millán (2000).</p>
+    <p>This is a direct implementation of steps A - D of the modified random clusters algorithm
+by Saura &amp; Martínez-Millán (2000), which creates naturalistic patchy patterns.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -204,17 +204,9 @@ modified random clusters method. <em>Landscape Ecology</em>, 15, 661 – 678.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate random clustering</span>
-(<span class='no'>random_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+<span class='no'>random_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                      <span class='kw'>p</span> <span class='kw'>=</span> <span class='fl'>0.4</span>,
-                                     <span class='kw'>ai</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.25</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>)))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 30, 30, 900  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 30, 0, 30  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : clumps 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+                                     <span class='kw'>ai</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.25</span>, <span class='fl'>0.25</span>, <span class='fl'>0.5</span>))</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>random_cluster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_randomcluster-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

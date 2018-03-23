@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="nlm_randomrectangularcluster — nlm_randomrectangularcluster" />
 
-<meta property="og:description" content="Simulates a random rectangular cluster neutral landscape model with values ranging 0-1." />
+<meta property="og:description" content="Simulates a random rectangular clusters neutral landscape model with values ranging 0-1." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,7 +139,7 @@
     </div>
 
     
-    <p>Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.</p>
+    <p>Simulates a random rectangular clusters neutral landscape model with values ranging 0-1.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_randomrectangularcluster</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>minl</span>, <span class='no'>maxl</span>,
@@ -150,11 +150,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ncol</th>
-      <td><p>[<code>numerical(1)</code>]<br /> Number of columns for the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>]<br /> Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
-      <td><p>[<code>numerical(1)</code>]<br /> Number of rows for the raster.</p></td>
+      <td><p>[<code>numerical(1)</code>]<br /> Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -183,7 +183,7 @@
     <p>The random rectangular cluster algorithm starts to fill a raster randomly
 with rectangles defined by <code>minl</code> and <code>maxl</code> until the surface
 of the landscape is completely covered.
-This is one of the realisations of the so-called "falling/dead leaves" algorithm,
+This is one type of realisation of a "falling/dead leaves" algorithm,
 for more details see Galerne &amp; Goussea (2012).</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -197,18 +197,10 @@ Applied Probability, <em>Applied Probability Trust</em>, 44, 1–20.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate random rectangular cluster</span>
-(<span class='no'>randomrectangular_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomrectangularcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>,
+<span class='no'>randomrectangular_cluster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_randomrectangularcluster</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                                           <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>,
                                                           <span class='kw'>minl</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                                                          <span class='kw'>maxl</span> <span class='kw'>=</span> <span class='fl'>10</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 30, 30, 900  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 30, 0, 30  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+                                                          <span class='kw'>maxl</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>randomrectangular_cluster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
 <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_randomrectangularcluster-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>

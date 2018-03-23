@@ -28,7 +28,7 @@
 <meta property="og:title" content="nlm_neigh — nlm_neigh" />
 
 <meta property="og:description" content="Create a neutral landscape model with categories and clustering
- based on neighborhood characteristic." />
+ based on neighborhood characteristics." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,7 +141,7 @@
 
     
     <p>Create a neutral landscape model with categories and clustering
- based on neighborhood characteristic.</p>
+ based on neighborhood characteristics.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_neigh</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>p_neigh</span>, <span class='no'>p_empty</span>, <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>3</span>,
@@ -153,12 +153,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of columns for the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of rows for the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -168,7 +168,7 @@ Resolution of the raster.</p></td>
     <tr>
       <th>p_neigh</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Probability to turn into a value if there is any neighbor with the same or a
+Probability of a cell will turning into a value if there is any neighbor with the same or a
  higher value.</p></td>
     </tr>
     <tr>
@@ -211,8 +211,8 @@ are rescaled between 0-1.</p></td>
 
     <p>The algorithm draws a random cell and turns it into a given category based on
  the probabilities <code>p_neigh</code> and <code>p_empty</code>, respectively. The decision is
- based on the probability <code>p_neigh</code>, if there is any cell in the Moore- or
- Von-Neumann-neighborhood, otherwise it is based on <code>p_empty</code>. To create
+ based on the probability <code>p_neigh</code>, if there is any cell in the Moore- (8 cells) or
+ Von-Neumann-neighborhood (4 cells), otherwise it is based on <code>p_empty</code>. To create
  clustered neutral landscape models, <code>p_empty</code> should be (significantly) smaller than
  <code>p_neigh</code>. By default, the Von-Neumann-neighborhood is used to check adjacent
  cells. The algorithm starts with the highest categorial value. If the
@@ -230,17 +230,8 @@ climatic and land use changes in semi-arid African savannas."
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate neighborhood model</span>
-(<span class='no'>neigh_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_neigh</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>p_neigh</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>p_empty</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-                    <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 50, 50, 2500  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 50, 0, 50  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-</div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='no'>neigh_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_neigh</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>p_neigh</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>p_empty</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+                    <span class='kw'>categories</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>neighbourhood</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>neigh_raster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_neigh-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="nlm_curds — nlm_curds" />
 
-<meta property="og:description" content="Simulates a curdled neutral landscape model with optional wheys." />
+<meta property="og:description" content="Simulates a random curd neutral landscape model with optional wheys." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,7 +139,7 @@
     </div>
 
     
-    <p>Simulates a curdled neutral landscape model with optional wheys.</p>
+    <p>Simulates a random curd neutral landscape model with optional wheys.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_curds</span>(<span class='no'>curds</span>, <span class='no'>recursion_steps</span>, <span class='kw'>wheyes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
@@ -150,20 +150,20 @@
     <tr>
       <th>curds</th>
       <td><p>[<code>numerical(x)</code>]<br />
-Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+Vector with percentage/s to fill with curds (fill with habitat (value ==
 TRUE)).</p></td>
     </tr>
     <tr>
       <th>recursion_steps</th>
       <td><p>[<code>numerical(x)</code>]<br />
-Vector of successive cutting steps for the blocks (split 1 block into x
+Vector of successive cutting steps for the blocks (split 1 block into <code>x</code>
 blocks).</p></td>
     </tr>
     <tr>
       <th>wheyes</th>
       <td><p>[<code>numerical(x)</code>]<br />
-Vector with percentage(s) to fill with wheyes, which fill matrix in an
-additional step with habitat.#'</p></td>
+Vector with percentage/s to fill with wheys, which fill matrix in an
+additional step with habitat.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -179,15 +179,14 @@ Resolution of the resulting raster.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Random curdling recursively subdivides the plane into blocks.
-At each level of the recursion, a fraction of the this block is declared as
-habitat (value == TRUE) while the remaining stays matrix (value == FALSE).</p>
-<p>With the optional argument for wheys, previously selected cells that were
-declared matrix (value == FALSE) during recursion, can now contain a
-proportion (<code>q</code>) of habitat cells.</p>
+At each level of the recursion, a fraction of the blocks are declared as
+habitat (value == TRUE) while the remaining blocks continue to be defined as matrix (value == FALSE) and enter the next recursive cycle.</p>
+<p>The optional argument (<code>wheyes</code>) allows wheys to be added, in which a set proportion of cells that were
+declared matrix (value == FALSE) during recursion, are now set as habitat cells (value == TRUE).</p>
 <p>If $$curds_{1} = curds_{2} = recursion_steps_{2} = ... = curds_{n} =
 recursion_steps_{n}$$ the models resembles a binary random map.</p>
 <p>Note that you can not set ncol and nrow with this landscape algorithm.
-The amount of cells and hence dimension of the raster is given by the vectorproduct of s.</p>
+The amount of cells and hence dimension of the raster is given by the vector product of the recursive steps.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

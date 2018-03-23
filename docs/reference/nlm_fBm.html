@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="nlm_fbm — nlm_fbm" />
 
-<meta property="og:description" content="Simulates two-dimensional fractional brownian motion model." />
+<meta property="og:description" content="Creates a two-dimensional fractional Brownian motion neutral landscape model." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,7 +139,7 @@
     </div>
 
     
-    <p>Simulates two-dimensional fractional brownian motion model.</p>
+    <p>Creates a two-dimensional fractional Brownian motion neutral landscape model.</p>
     
 
     <pre class="usage"><span class='fu'>nlm_fbm</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>user_seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -151,12 +151,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of columns for the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of rows for the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -166,12 +166,12 @@ Resolution of the raster.</p></td>
     <tr>
       <th>fract_dim</th>
       <td><p>[<code>numerical(1)</code>]<br />
-numeric in (0,2]; refers to the fractal dimension of the process</p></td>
+The fractal dimension of the process (0,2)</p></td>
     </tr>
     <tr>
       <th>user_seed</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Set Seed for simulation</p></td>
+Set random seed for the simulation</p></td>
     </tr>
     <tr>
       <th>rescale</th>
@@ -181,8 +181,8 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     <tr>
       <th>...</th>
       <td><p><br />
-Other options to RandomFields::RFoptions, especially if you are using
-fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+Other options to RandomFields::RFoptions, especially if using
+a fractal dimension between ~ 1.6 and 1.9 one must set the option
 <code>modus_operandi = "sloppy"</code>.</p></td>
     </tr>
     </table>
@@ -195,9 +195,8 @@ fractal dimensions between ~ 1.6 and 1.9 you have to set the option
 
     <p>Neutral landscapes are generated using fractional Brownian motion,
  an extension of Brownian motion in which the amount of correlation between
-  steps is controlled by the Hurst coefficient H. An H of 1 produces a
-   relatively smooth surface while an H of 0 produces a rough, uncorrelated,
-    surface.</p>
+  steps is controlled by <code>frac_dim</code>. A high value of <code>frac_dim</code> produces a
+   relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -208,15 +207,7 @@ Software</em>, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate fractional brownian motion</span>
-(<span class='no'>fbm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fbm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>0.8</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 30, 20, 600  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 20, 0, 30  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='no'>fbm_raster</span>  <span class='kw'>&lt;-</span> <span class='fu'>nlm_fbm</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>fract_dim</span> <span class='kw'>=</span> <span class='fl'>0.8</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>fbm_raster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_fBm-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

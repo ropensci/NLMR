@@ -2,6 +2,7 @@
 % Please edit documentation in R/nlm_mosaictess.R
 \name{nlm_mosaictess}
 \alias{nlm_mosaictess}
+\alias{nlm_polylands}
 \title{nlm_mosaictess}
 \usage{
 nlm_mosaictess(ncol, nrow, resolution = 1, germs, rescale = TRUE)
