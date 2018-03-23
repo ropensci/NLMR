@@ -9,10 +9,10 @@ nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, R, patch_classes,
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
-Number of columns for the raster.}
+Number of columns forming the raster.}
 
 \item{nrow}{[\code{numerical(1)}]\cr
-Number of rows for the raster.}
+Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
@@ -34,25 +34,25 @@ are rescaled between 0-1.}
 RasterLayer
 }
 \description{
-Simulate the NLM introduced in Gaucherel (2008).
+Simulate a neutral landscape model using the Gibbs algorithm introduced in Gaucherel (2008).
 }
 \details{
 \code{nlm_mosaicgibbs} offers the second option of simulating a neutral landscape model
 described in Gaucherel (2008).
 The method works in principal like the tessellation method (\code{nlm_mosaictess}),
-but instead of a random point pattern one fits a simulated realization of the Strauss
+but instead of a random point pattern the algorithm fits a simulated realization of the Strauss
 process. The Strauss process starts with a given number of points and
 uses a minimization approach to fit a point pattern with a given interaction
-parameter (0 - hardcore process; 1 - poission process) and interaction radius
+parameter (0 - hardcore process; 1 - Poission process) and interaction radius
 (distance of points/germs being apart).
 }
 \examples{
 # simulate polygonal landscapes
-(mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
+mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
                               nrow = 30,
                               germs = 20,
                               R = 0.02,
-                              patch_classes = 12))
+                              patch_classes = 12)
 
 \dontrun{
 # visualize the NLM

@@ -10,44 +10,43 @@ nlm_fbm(ncol, nrow, resolution = 1, fract_dim = 1, user_seed = NULL,
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
-Number of columns for the raster.}
+Number of columns forming the raster.}
 
 \item{nrow}{[\code{numerical(1)}]\cr
-Number of rows for the raster.}
+Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
 
 \item{fract_dim}{[\code{numerical(1)}]\cr
-numeric in (0,2]; refers to the fractal dimension of the process}
+The fractal dimension of the process (0,2)}
 
 \item{user_seed}{[\code{numerical(1)}]\cr
-Set Seed for simulation}
+Set random seed for the simulation}
 
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 
 \item{...}{\cr
-Other options to RandomFields::RFoptions, especially if you are using
-fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+Other options to RandomFields::RFoptions, especially if using
+a fractal dimension between ~ 1.6 and 1.9 one must set the option
 \code{modus_operandi = "sloppy"}.}
 }
 \value{
 RasterLayer
 }
 \description{
-Simulates two-dimensional fractional brownian motion model.
+Creates a two-dimensional fractional Brownian motion neutral landscape model.
 }
 \details{
 Neutral landscapes are generated using fractional Brownian motion,
  an extension of Brownian motion in which the amount of correlation between
-  steps is controlled by the Hurst coefficient H. An H of 1 produces a
-   relatively smooth surface while an H of 0 produces a rough, uncorrelated,
-    surface.
+  steps is controlled by \code{frac_dim}. A high value of \code{frac_dim} produces a
+   relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.
 }
 \examples{
 # simulate fractional brownian motion
-(fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8))
+fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 \dontrun{
 # visualize the NLM
 rasterVis::levelplot(fbm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())

@@ -1,9 +1,9 @@
 #' nlm_randomrectangularcluster
 #'
-#' Simulates a random rectangular cluster neutral landscape model with values ranging 0-1.
+#' Simulates a random rectangular clusters neutral landscape model with values ranging 0-1.
 #'
-#' @param ncol [\code{numerical(1)}]\cr Number of columns for the raster.
-#' @param nrow  [\code{numerical(1)}]\cr Number of rows for the raster.
+#' @param ncol [\code{numerical(1)}]\cr Number of columns forming the raster.
+#' @param nrow  [\code{numerical(1)}]\cr Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param minl [\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.
 #' @param maxl [\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.
@@ -13,7 +13,7 @@
 #' The random rectangular cluster algorithm starts to fill a raster randomly
 #' with rectangles defined by \code{minl} and \code{maxl} until the surface
 #' of the landscape is completely covered.
-#' This is one of the realisations of the so-called "falling/dead leaves" algorithm,
+#' This is one type of realisation of a "falling/dead leaves" algorithm,
 #' for more details see Galerne & Goussea (2012).
 #'
 #' @return RasterLayer
@@ -27,10 +27,10 @@
 #'
 #' @examples
 #' # simulate random rectangular cluster
-#' (randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
+#' randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
 #'                                                           nrow = 30,
 #'                                                           minl = 5,
-#'                                                           maxl = 10))
+#'                                                           maxl = 10)
 #' \dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(randomrectangular_cluster, margin = FALSE,

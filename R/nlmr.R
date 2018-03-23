@@ -1,6 +1,6 @@
 #' Simulating Neutral Landscape Models
 #'
-#' \emph{nlmr} is an R package for simulating neutral landscape models (NLM).
+#' \emph{nlmr} is an R package for simulating neutral landscape models (NLMs).
 #'
 #' @details This package contains vignettes that introduce NLM and basic usage
 #' of the \emph{nlmr} package. The vignettes in this package are listed below.

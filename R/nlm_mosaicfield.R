@@ -3,25 +3,25 @@
 #' @description Simulates a mosaic random field neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param n [\code{numerical(1)}]\cr
-#' Number of steps that the mosaic random field algorithm is run
+#' Number of steps over which the mosaic random field algorithm is run
 #' @param mosaic_mean [\code{numerical(1)}]\cr
 #' Mean value of the mosaic displacement distribution
 #' @param mosaic_sd [\code{numerical(1)}]\cr
 #' Standard deviation of the mosaic displacement distribution
 #' @param collect [\code{logical(1)}]\cr
-#' return RasterBrick of all steps 1:n
+#' return \code{RasterBrick} of all steps 1:\code{n}
 #' @param infinit [\code{logical(1)}]\cr
 #' return raster of the random mosaic field algorithm with infinite steps
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer or List with RasterLayer(s) and/or RasterBrick
+#' @return RasterLayer or List with RasterLayer/s and/or RasterBrick
 #'
 #' @references
 #' Schwab, Dimitri, Martin Schlather, and Jürgen Potthoff. "A general class of
@@ -32,11 +32,11 @@
 #' @examples
 #'
 #' # simulate mosaic random field
-#' (mosaic_field <- nlm_mosaicfield(ncol = 100,
+#' mosaic_field <- nlm_mosaicfield(ncol = 100,
 #'                                 nrow = 200,
 #'                                 n = NA,
 #'                                 infinit = TRUE,
-#'                                 collect = FALSE))
+#'                                 collect = FALSE)
 #' \dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(mosaic_field, margin = FALSE, par.settings = rasterVis::viridisTheme())

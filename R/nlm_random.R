@@ -9,9 +9,9 @@
 #' value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param rescale [\code{logical(1)}]\cr
@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' # simulate spatially random model
-#' (random <- nlm_random(ncol = 200, nrow = 100))
+#' random <- nlm_random(ncol = 200, nrow = 100)
 #'
 #' \dontrun{
 #' # visualize the NLM

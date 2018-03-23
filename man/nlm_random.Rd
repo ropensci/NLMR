@@ -8,10 +8,10 @@ nlm_random(ncol, nrow, resolution = 1, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
-Number of columns for the raster.}
+Number of columns forming the raster.}
 
 \item{nrow}{[\code{numerical(1)}]\cr
-Number of rows for the raster.}
+Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
@@ -33,7 +33,7 @@ value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
 # simulate spatially random model
-(random <- nlm_random(ncol = 200, nrow = 100))
+random <- nlm_random(ncol = 200, nrow = 100)
 
 \dontrun{
 # visualize the NLM

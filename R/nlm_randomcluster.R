@@ -3,34 +3,34 @@
 #' Simulates a random cluster nearest-neighbour neutral landscape.
 #'
 #' @param ncol [\code{integer(1)}]\cr
-#' Number of columns in the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{integer(1)}]\cr
-#' Number of rows in the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param neighbourhood [\code{numerical(1)}]\cr
 #' Clusters are defined using a set of neighbourhood structures,
 #'  4 (Rook's or von Neumann neighbourhood) (default), 8 (Queen's or Moore neighbourhood).
 #' @param p [\code{numerical(1)}]\cr
-#' The p value defines the proportion of   elements randomly selected to form
+#' Defines the proportion of elements randomly selected to form
 #' clusters.
 #' @param ai Vector with the cluster type distribution (percentages of occupancy).
-#' This controls directly the number of types via the given length.
+#' This directly controls the number of types via the given length.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @return Raster with random values ranging from 0-1.
 #'
 #' @details
-#' This is a direct implementation of steps A - D of the MRC algorithm
-#' by Saura & Martínez-Millán (2000).
+#' This is a direct implementation of steps A - D of the modified random clusters algorithm
+#' by Saura & Martínez-Millán (2000), which creates naturalistic patchy patterns.
 #'
 #'
 #' @examples
 #' # simulate random clustering
-#' (random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
+#' random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
 #'                                      p = 0.4,
-#'                                      ai = c(0.25, 0.25, 0.5)))
+#'                                      ai = c(0.25, 0.25, 0.5))
 #' \dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(random_cluster, margin = FALSE, par.settings = rasterVis::viridisTheme())

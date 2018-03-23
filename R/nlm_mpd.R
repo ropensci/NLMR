@@ -19,7 +19,7 @@
 #'   diamond.}
 #' }
 #'
-#' At each iteration the roughness, an approximation to common hurst exponent,
+#' At each iteration the roughness, an approximation to common Hurst exponent,
 #' is reduced.
 #'
 #' The image below shows the steps involved in running the diamond-square
@@ -32,13 +32,13 @@
 #'
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param roughness [\code{numerical(1)}]\cr
-#' Controls the level of spatial autocorrelation (!= hurst exponent)
+#' Controls the level of spatial autocorrelation (!= Hurst exponent)
 #' @param rand_dev [\code{numerical(1)}]\cr
 #' Initial standard deviation for the displacement step (default == 1), sets the
 #' scale of the overall variance in the resulting landscape.
@@ -55,9 +55,9 @@
 #' @examples
 #'
 #' # simulate midpoint displacement
-#' (midpoint_displacememt <- nlm_mpd(ncol = 100,
+#' midpoint_displacememt <- nlm_mpd(ncol = 100,
 #'                                  nrow = 100,
-#'                                  roughness = 0.61))
+#'                                  roughness = 0.61)
 #'\dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(midpoint_displacememt, margin = FALSE,
