@@ -55,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nlmr</a>
-        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -150,47 +150,47 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ncol</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of rows for the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Resolution of the raster.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of steps that the mosaic random field algorithm is run</p></td>
     </tr>
     <tr>
       <th>mosaic_mean</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Mean value of the mosaic displacement distribution</p></td>
     </tr>
     <tr>
       <th>mosaic_sd</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Standard deviation of the mosaic displacement distribution</p></td>
     </tr>
     <tr>
       <th>collect</th>
-      <td><p>[<code>logical(1)</code>]
+      <td><p>[<code>logical(1)</code>]<br />
 return RasterBrick of all steps 1:n</p></td>
     </tr>
     <tr>
       <th>infinit</th>
-      <td><p>[<code>logical(1)</code>]
+      <td><p>[<code>logical(1)</code>]<br />
 return raster of the random mosaic field algorithm with infinite steps</p></td>
     </tr>
     <tr>
       <th>rescale</th>
-      <td><p>[<code>logical(1)</code>]
+      <td><p>[<code>logical(1)</code>]<br />
 If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     </tr>
     </table>
@@ -202,7 +202,7 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Schwab, Dimitri, Martin Schlather, and Jürgen Potthoff. "A general class of
-mosaic random fields." arXiv preprint arXiv:1709.01441 (2017). 
+mosaic random fields." arXiv preprint arXiv:1709.01441 (2017). <br />
 Baddeley, Adrian, Ege Rubak, and Rolf Turner. Spatial point patterns:
 methodology and applications with R. CRC Press, 2015.</p>
     
@@ -223,7 +223,7 @@ methodology and applications with R. CRC Press, 2015.</p>
 #&gt; names       : value 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>mosaic_field</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mosaicfield-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>mosaic_field</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mosaicfield-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -56,7 +56,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nlmr</a>
-        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -152,53 +152,53 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>ncol</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of columns for the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of rows for the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Resolution of the raster.</p></td>
     </tr>
     <tr>
       <th>p_neigh</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Probability to turn into a value if there is any neighbor with the same or a
  higher value.</p></td>
     </tr>
     <tr>
       <th>p_empty</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Probability a cell receives a value if all neighbors have no value (i.e.
 zero).</p></td>
     </tr>
     <tr>
       <th>categories</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Number of categories used.</p></td>
     </tr>
     <tr>
       <th>neighbourhood</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 The neighbourhood used to determined adjacent cells: `8 ("Moore")` takes the eight
 surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 (i.e. left, right, upper and lower cells).</p></td>
     </tr>
     <tr>
       <th>proportions</th>
-      <td><p>[<code>vector(1)</code>]
+      <td><p>[<code>vector(1)</code>]<br />
 The algorithm uses uniform proportions for each category by default. A vector
 with as many proportions as categories and that sums up to 1 can be used for
 other distributions.</p></td>
     </tr>
     <tr>
       <th>rescale</th>
-      <td><p>[<code>logical(1)</code>] If <code>TRUE</code> (default), the values
+      <td><p>[<code>logical(1)</code>]<br /> If <code>TRUE</code> (default), the values
 are rescaled between 0-1.</p></td>
     </tr>
     </table>
@@ -241,7 +241,7 @@ climatic and land use changes in semi-arid African savannas."
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
 </div><div class='input'><span class='co'># visualize the NLM</span>
-<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>neigh_raster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_neigh-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>neigh_raster</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_neigh-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

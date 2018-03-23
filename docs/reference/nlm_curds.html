@@ -55,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nlmr</a>
-        <span class="label label-" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0</span>
       </span>
     </div>
 
@@ -149,25 +149,25 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>curds</th>
-      <td><p>[<code>numerical(x)</code>]
+      <td><p>[<code>numerical(x)</code>]<br />
 Vector with percentage(s) to fill with curds (fill with Habitat (value ==
 TRUE)).</p></td>
     </tr>
     <tr>
       <th>recursion_steps</th>
-      <td><p>[<code>numerical(x)</code>]
+      <td><p>[<code>numerical(x)</code>]<br />
 Vector of successive cutting steps for the blocks (split 1 block into x
 blocks).</p></td>
     </tr>
     <tr>
       <th>wheyes</th>
-      <td><p>[<code>numerical(x)</code>]
+      <td><p>[<code>numerical(x)</code>]<br />
 Vector with percentage(s) to fill with wheyes, which fill matrix in an
 additional step with habitat.#'</p></td>
     </tr>
     <tr>
       <th>resolution</th>
-      <td><p>[<code>numerical(1)</code>]
+      <td><p>[<code>numerical(1)</code>]<br />
 Resolution of the resulting raster.</p></td>
     </tr>
     </table>
@@ -222,7 +222,7 @@ landscapes: theory and practice. <em>Oxford University Press</em>, USA, 1996.</p
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'><span class='co'># Visualize the NLMs</span>
-<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>random_curdling</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_curds-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>wheyed_curdling</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_curds-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>random_curdling</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_curds-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>wheyed_curdling</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_curds-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

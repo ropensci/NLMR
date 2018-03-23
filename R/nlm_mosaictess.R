@@ -34,8 +34,8 @@
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
 #' networks. \emph{Ecological Modelling}, 219, 39 - 48.
 #'
-#' @aliases nlm_polylands
-#' @rdname nlm_polylands
+#' @aliases nlm_mosaictess
+#' @rdname nlm_mosaictess
 #'
 #' @export
 #'
