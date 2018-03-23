@@ -17,7 +17,8 @@ Number of rows forming the raster.}
 Resolution of the raster.}
 
 \item{origin}{[\code{numerical(4)}]\cr
-Edge coordinates of the origin of the distance measurement.}
+Edge coordinates of the origin (raster::extent with xmin, xmax, ymin, ymax)
+of the distance measurement.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.

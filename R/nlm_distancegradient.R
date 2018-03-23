@@ -15,7 +15,8 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param origin  [\code{numerical(4)}]\cr
-#' Edge coordinates of the origin of the distance measurement.
+#' Edge coordinates of the origin (raster::extent with xmin, xmax, ymin, ymax)
+#' of the distance measurement.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #' Otherwise, the distance in raster units is calculated.
