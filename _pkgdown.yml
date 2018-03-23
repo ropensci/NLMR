@@ -1,6 +1,3 @@
-template:
-  params:
-    bootswatch: yeti
 reference:
   - title: Neutral Landscape Models
     desc: ~
@@ -16,7 +13,6 @@ reference:
       - '`nlm_mpd`'
       - '`nlm_neigh`'
       - '`nlm_percolation`'
-      - '`nlm_polylands`'
       - '`nlm_planargradient`'
       - '`nlm_randomcluster`'
       - '`nlm_random`'
