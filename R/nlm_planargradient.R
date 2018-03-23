@@ -3,9 +3,9 @@
 #' @description Simulates a planar gradient neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param direction [\code{numerical(1)}]\cr
@@ -21,7 +21,7 @@
 #'
 #' @examples
 #' # simulate planar gradient
-#' (planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200))
+#' planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 #'
 #' \dontrun{
 #' # visualize the NLM

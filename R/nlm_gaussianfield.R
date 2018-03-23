@@ -1,33 +1,33 @@
 #' nlm_gaussianfield
 #'
 #' @description Simulates a spatially correlated random fields (Gaussian random
-#' fields) model.
+#' fields) neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#'  Number of columns for the raster.
+#'  Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#'  Number of rows for the raster.
+#'  Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param autocorr_range [\code{numerical(1)}]\cr
-#'  Maximal distance (raster units) of spatial autocorrelation.
+#'  Maximum range (raster units) of spatial autocorrelation.
 #' @param mag_var [\code{numerical(1)}]\cr
-#'  Magnitude of variation in the entire landscape.
+#'  Magnitude of variation over the entire landscape.
 #' @param nug [\code{numerical(1)}]\cr
 #'  Magnitude of variation in the scale of \code{autocorr_range},
-#'  a smaller value leads to a more homogeneous landscape.
+#'  smaller values lead to more homogeneous landscapes.
 #' @param mean [\code{numerical(1)}]\cr
 #'  Mean value over the field.
 #' @param user_seed [\code{numerical(1)}]\cr
-#'  Set Seed for simulation
+#'  Set random seed for the simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @details
 #' Gaussian random fields are a collection of random numbers on a spatially
 #' discrete set of coordinates (landscape raster). Natural sciences often apply
-#' them with spatial autocorrelation, meaning that distant things are more
-#' distinct than closer ones.
+#' them with spatial autocorrelation, meaning that objects which distant are more
+#' distinct from one another than they are to closer objects.
 #'
 #' @references
 #' Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology}
@@ -35,10 +35,10 @@
 #'
 #' @examples
 #' # simulate random gaussian field
-#' (gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+#' gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
 #'                                     autocorr_range = 60,
 #'                                     mag_var = 8,
-#'                                     nug = 5))
+#'                                     nug = 5)
 #'
 #' \dontrun{
 #' # visualize the NLM
