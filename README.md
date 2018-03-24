@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Build Status](https://travis-ci.org/marcosci/nlmr.svg?branch=develop)](https://travis-ci.org/marcosci/nlmr) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/marcosci/nlmr) [![codecov](https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/marcosci/nlmr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/nlmr\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
+[![Build Status](https://travis-ci.org/ropensci/nlmr.svg?branch=develop)](https://travis-ci.org/ropensci/nlmr) [![Build status](https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true)](https://ci.appveyor.com/project/ropensci/nlmr) [![codecov](https://codecov.io/gh/ropensci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/nlmr) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) [![Join the chat at https://gitter.im/nlmr\_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
 `nlmr` is an `R` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. `nlmr` builds on the advantages of the `raster` package and returns all simulation as `RasterLayer` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage. Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
@@ -13,13 +13,13 @@ Install the release version from CRAN:
 install.packages("NLMR")
 ```
 
-**NOTE**: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in [`landscapetools`](https://github.com/marcosci/landscapetools).
+**NOTE**: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in [`landscapetools`](https://github.com/ropensci/landscapetools).
 
 To install the developmental version of `nlmr`, use the following R code:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("marcosci/nlmr", ref = "develop")
+devtools::install_github("ropensci/nlmr", ref = "develop")
 ```
 
 Example
@@ -72,10 +72,10 @@ Overview
 Meta
 ----
 
--   Please [report any issues or bugs](https://github.com/marcosci/nlmr/issues/new/).
+-   Please [report any issues or bugs](https://github.com/ropensci/nlmr/issues/new/).
 -   License: GPL3
 -   Get citation information for `nlmr` in R doing `citation(package = 'nlmr')`
-    -   Additionally, we keep a [record of publications](https://marcosci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`. Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/marcosci/nlmr/issues/new/) so we can add it to the list.
+    -   Additionally, we keep a [record of publications](https://ropensci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`. Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/ropensci/nlmr/issues/new/) so we can add it to the list.
 -   We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
     -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
