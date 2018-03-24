@@ -79,6 +79,8 @@ Meta
 -   We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
     -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
+[![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+
 References
 ----------
 
