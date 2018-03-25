@@ -18,3 +18,4 @@ man-roxygen
 ^CONTRIBUTING\.md$
 ^references\.bib$
 ^codemeta\.json$
+^\.github$
