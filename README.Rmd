@@ -163,7 +163,7 @@ kable(function_tibble) %>%
 * License: GPL3
 * Get citation information for `nlmr` in R doing `citation(package = 'nlmr')`
     * Additionally, we keep a [record of publications](https://ropensci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`. Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/ropensci/nlmr/issues/new/) so we can add it to the list.
-* We are very open to contributions - if you are interested check [Contributor Code of Conduct](CONTRIBUTING.md).
+* We are very open to contributions - if you are interested check out our [Contributor Guidelines](CONTRIBUTING.md).
     * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
