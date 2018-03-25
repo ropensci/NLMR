@@ -1,0 +1,280 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "nlmr",
+  "description": "Provides neutral landscape models (<https://doi.org/10.1007/BF02275262>,\n    <http://sci-hub.tw/10.1007/bf02275262>).  \n    Neutral landscape models range from \"hard\" \n    neutral models (completely random distributed), to \"soft\" neutral models \n    (definable spatial characteristics) and generate landscape patterns that are \n    independent of ecological processes.\n    Thus, these patterns can be used as null models in landscape ecology. 'nlmr' \n    combines a large number of algorithms from other published software for \n    simulating neutral landscapes. The simulation results are obtained in a\n    geospatial data format (raster* objects from the 'raster' package) and can,\n    therefore, be used in any sort of raster data operation that is performed \n    with standard observation data.                                                                                                  ",
+  "name": "nlmr: Simulating Neutral Landscape Models",
+  "codeRepository": "https://github.com/ropensci/nlmr",
+  "issueTracker": "https://github.com/ropensci/nlmr/issues/",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.3.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.4.3",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Marco",
+      "familyName": "Sciaini",
+      "email": "sciaini.marco@gmail.com",
+      "@id": "https://orcid.org/0000-0002-3042-5435"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Matthias",
+      "familyName": "Fritsch",
+      "email": "matthias.fritsch@forst.uni-goettingen.de"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Craig",
+      "familyName": "Simpkins",
+      "email": "simpkinscraig063@gmail.com",
+      "@id": "https://orcid.org/0000-0003-3212-1379"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Cédric",
+      "familyName": "Scherer",
+      "email": "cedricphilippscherer@gmail.com",
+      "@id": "https://orcid.org/0000-0003-0465-2543"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Marco",
+    "familyName": "Sciaini",
+    "email": "sciaini.marco@gmail.com",
+    "@id": "https://orcid.org/0000-0002-3042-5435"
+  },
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "lintr",
+      "name": "lintr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "classInt",
+      "name": "classInt",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rasterVis",
+      "name": "rasterVis",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "checkmate",
+      "name": "checkmate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "dplyr",
+      "name": "dplyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RandomFields",
+      "name": "RandomFields",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "raster",
+      "name": "raster",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "spatstat",
+      "name": "spatstat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "velox",
+      "name": "velox",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sf",
+      "name": "sf",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": "3.1.0"
+    }
+  ],
+  "contIntegration": "https://travis-ci.org/ropensci/nlmr",
+  "releaseNotes": "https://github.com/ropensci/nlmr/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/nlmr/blob/master/README.md",
+  "fileSize": "1578.046KB",
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Marco",
+          "familyName": "Sciaini"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Matthias",
+          "familyName": "Fritsch"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Cedric",
+          "familyName": "Scherer"
+        },
+        {
+          "@type": "Person",
+          "givenName": ["Craig", "E."],
+          "familyName": "Simpkins"
+        }
+      ],
+      "name": "{nlmr}: Simulating neutral landscape models.",
+      "url": "https://CRAN.R-project.org/package=nlmr",
+      "description": "R package version 0.3.0"
+    }
+  ]
+}

@@ -17,3 +17,4 @@ man-roxygen
 ^CONDUCT\.md$
 ^CONTRIBUTING\.md$
 ^references\.bib$
+^codemeta\.json$
