@@ -13,9 +13,9 @@ man-roxygen
 ^pkgdown$
 ^revdep$
 ^cran-comments\.md$
-^NEWS\.md$
 ^CONDUCT\.md$
 ^CONTRIBUTING\.md$
 ^references\.bib$
 ^codemeta\.json$
 ^\.github$
+^vignettes/articles$

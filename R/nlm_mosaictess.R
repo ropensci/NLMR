@@ -70,15 +70,8 @@ nlm_mosaictess <- function(ncol,
                             geometry = sf::st_sfc(voronoi_tess))
 
   # (f)rasterize with lightning speed ----
-  vx <- velox::velox(matrix(0, nrow = nrow, ncol = ncol),
-                     extent = raster::extent(voronoi_tess),
-                     res = c(resolution, resolution))
-  vx$rasterize(voronoi_tess, field = "value")
-  r <- vx$as.RasterLayer()
-
-  # return to fasterize when it is on CRAN
-  # r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
-  # r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
+  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {

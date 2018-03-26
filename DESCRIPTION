@@ -44,7 +44,7 @@ Imports:
     spatstat,
     stats,
     tibble,
-    velox,
+    fasterize,
     sf
 URL: https://ropensci.github.io/nlmr/
 BugReports: https://github.com/ropensci/nlmr/issues/
