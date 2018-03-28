@@ -27,7 +27,7 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="nlm_mosaictess — nlm_mosaictess" />
 
-<meta property="og:description" content="Simulate the NLM introduced in Gaucherel (2008)." />
+<meta property="og:description" content="Simulate a neutral landscape model using the tesselation approach introduced in Gaucherel (2008)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,7 +139,7 @@
     </div>
 
     
-    <p>Simulate the NLM introduced in Gaucherel (2008).</p>
+    <p>Simulate a neutral landscape model using the tesselation approach introduced in Gaucherel (2008).</p>
     
 
     <pre class="usage"><span class='fu'>nlm_mosaictess</span>(<span class='no'>ncol</span>, <span class='no'>nrow</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='no'>germs</span>, <span class='kw'>rescale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -150,12 +150,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of columns for the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of rows for the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -181,9 +181,8 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>nlm_mosaictess</code> offers the first option of simulating a neutral landscape model
-described in Gaucherel (2008). It generates a random point pattern (the germs)
-with an independent distribution and uses the voronoi tessellation to simulate
-the mosaic landscapes.</p>
+described in Gaucherel (2008). It generates a random point pattern (germs)
+with an independent distribution and uses the Voronoi tessellation to simulate mosaic landscapes.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -193,16 +192,7 @@ networks. <em>Ecological Modelling</em>, 219, 39 - 48.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># simulate polygonal landscapes</span>
-(<span class='no'>mosaictess</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mosaictess</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>germs</span> <span class='kw'>=</span> <span class='fl'>200</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 60, 30, 1800  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 30, 0, 60  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : layer 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'>
-</div><div class='input'><span class='co'># visualize the NLM</span>
+<span class='no'>mosaictess</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mosaictess</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>60</span>, <span class='kw'>germs</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>mosaictess</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mosaictess-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

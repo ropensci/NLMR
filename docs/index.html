@@ -122,10 +122,10 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install the release version from CRAN:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"NLMR"</span>)</code></pre></div>
-<p><strong>NOTE</strong>: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in <a href="https://github.com/marcosci/landscapetools"><code>landscapetools</code></a>.</p>
+<p><strong>NOTE</strong>: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in <a href="https://github.com/ropensci/landscapetools"><code>landscapetools</code></a>.</p>
 <p>To install the developmental version of <code>nlmr</code>, use the following R code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"marcosci/nlmr"</span>, <span class="dt">ref =</span> <span class="st">"develop"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/nlmr"</span>, <span class="dt">ref =</span> <span class="st">"develop"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -231,23 +231,29 @@ midpoint_displacememt &lt;-<span class="st"> </span>nlmr<span class="op">::</spa
 </table>
 <p><img src="articles/articles/bestiary_full.png" width="100%"></p>
 </div>
+<div id="see-also" class="section level2">
+<h2 class="hasAnchor">
+<a href="#see-also" class="anchor"></a>See also</h2>
+<p><code>nlmr</code> was split during its development process - to have a minimal dependency version for simulating neutral landscape models and an utility toolbox to facilate workflows with raster data. If you are interested in merging, visualizing or further handling neutral landscape models have a look at the <a href="https://github.com/ropensci/landscapetools/">landscapetools</a> package.</p>
+</div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">
 <a href="#meta" class="anchor"></a>Meta</h2>
 <ul>
-<li>Please <a href="https://github.com/marcosci/nlmr/issues/new/">report any issues or bugs</a>.</li>
+<li>Please <a href="https://github.com/ropensci/nlmr/issues/new/">report any issues or bugs</a>.</li>
 <li>License: GPL3</li>
 <li>Get citation information for <code>nlmr</code> in R doing <code>citation(package = 'nlmr')</code>
 <ul>
-<li>Additionally, we keep a <a href="https://marcosci.github.io/nlmr/articles/publication_record.html/">record of publications</a> that use<code>nlmr</code>. Hence, if you used <code>nlmr</code> please <a href="https://github.com/marcosci/nlmr/issues/new/">file an issue on GitHub</a> so we can add it to the list.</li>
+<li>Additionally, we keep a <a href="https://ropensci.github.io/nlmr/articles/publication_record.html/">record of publications</a> that use<code>nlmr</code>. Hence, if you used <code>nlmr</code> please <a href="https://github.com/ropensci/nlmr/issues/new/">file an issue on GitHub</a> so we can add it to the list.</li>
 </ul>
 </li>
-<li>We are very open to contributions - if you are interested check <a href="CONTRIBUTING.html">Contributor Code of Conduct</a>.
+<li>We are very open to contributions - if you are interested check out our <a href="CONTRIBUTING.html">Contributor Guidelines</a>.
 <ul>
 <li>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
 </ul>
 </li>
 </ul>
+<p><a href="http://ropensci.org"><img src="https://ropensci.org/public_images/github_footer.png" alt="ropensci_footer"></a></p>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -271,7 +277,7 @@ midpoint_displacememt &lt;-<span class="st"> </span>nlmr<span class="op">::</spa
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="https://github.com/marcosci/nlmr/issues/">https://​github.com/​marcosci/​nlmr/​issues/​</a>
+<li>Report a bug at <br><a href="https://github.com/ropensci/nlmr/issues/">https://​github.com/​ropensci/​nlmr/​issues/​</a>
 </li>
 </ul>
 </div>
@@ -301,9 +307,9 @@ midpoint_displacememt &lt;-<span class="st"> </span>nlmr<span class="op">::</spa
       <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/marcosci/nlmr"><img src="https://travis-ci.org/marcosci/nlmr.svg?branch=develop" alt="Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/marcosci/nlmr"><img src="https://ci.appveyor.com/api/projects/status/ns75pdrbaykxc865?svg=true" alt="Build status"></a></li>
-<li><a href="https://codecov.io/gh/marcosci/nlmr"><img src="https://codecov.io/gh/marcosci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
+<li><a href="https://travis-ci.org/ropensci/nlmr"><img src="https://travis-ci.org/ropensci/nlmr.svg?branch=develop" alt="Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/ropensci/nlmr"><img src="https://ci.appveyor.com/api/projects/status/djw840fitcvolbxg?svg=true" alt="Build status"></a></li>
+<li><a href="https://codecov.io/gh/ropensci/nlmr"><img src="https://codecov.io/gh/ropensci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa" alt="codecov"></a></li>
 <li><a href="https://cran.r-project.org/package=NLMR"><img src="http://www.r-pkg.org/badges/version/NLMR" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://gitter.im/nlmr_landscapegenerator"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/nlmr_landscapegenerator"></a></li>
 <li><a href="http://cran.rstudio.com/web/packages/NLMR/index.html"><img src="http://cranlogs.r-pkg.org/badges/grand-total/NLMR"></a></li>

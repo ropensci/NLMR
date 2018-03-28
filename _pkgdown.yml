@@ -5,7 +5,7 @@ reference:
       - '`nlm_curds`'
       - '`nlm_distancegradient`'
       - '`nlm_edgegradient`'
-      - '`nlm_fBm`'
+      - '`nlm_fbm`'
       - '`nlm_gaussianfield`'
       - '`nlm_mosaicfield`'
       - '`nlm_mosaicgibbs`'

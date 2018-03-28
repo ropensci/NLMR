@@ -8,22 +8,22 @@ nlm_percolation(ncol, nrow, resolution = 1, prob = 0.5)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
-Number of columns for the raster.}
+Number of columns forming the raster.}
 
 \item{nrow}{[\code{numerical(1)}]\cr
-Number of rows for the raster.}
+Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
 
 \item{prob}{[\code{numerical(1)}]\cr
-Probability value for setting a cell either to 0 or 1.}
+Probability value for setting a cell to 1.}
 }
 \value{
 RasterLayer
 }
 \description{
-Simulates a random percolation neutral landscape model.
+Generates a random percolation neutral landscape model.
 }
 \details{
 The simulation of a random percolation map is accomplished in two steps:
@@ -35,12 +35,10 @@ The simulation of a random percolation map is accomplished in two steps:
  \code{prob}. If the random number is smaller than \code{prob}, the cell is set to
  TRUE - if it is higher the cell is set to FALSE.}
 }
-
-The proportion of 0 and 1 is thus controlled with the argument \code{prob}.
 }
 \examples{
 # simulate percolation model
-(percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5))
+percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5)
 \dontrun{
 # visualize the NLM
 rasterVis::levelplot(percolation, margin = FALSE, par.settings = rasterVis::viridisTheme())

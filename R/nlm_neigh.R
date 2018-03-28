@@ -1,13 +1,13 @@
 #' nlm_neigh
 #'
 #' @description Create a neutral landscape model with categories and clustering
-#'  based on neighborhood characteristic.
+#'  based on neighborhood characteristics.
 #'
 #' @details
 #' The algorithm draws a random cell and turns it into a given category based on
 #'  the probabilities \code{p_neigh} and \code{p_empty}, respectively. The decision is
-#'  based on the probability \code{p_neigh}, if there is any cell in the Moore- or
-#'  Von-Neumann-neighborhood, otherwise it is based on \code{p_empty}. To create
+#'  based on the probability \code{p_neigh}, if there is any cell in the Moore- (8 cells) or
+#'  Von-Neumann-neighborhood (4 cells), otherwise it is based on \code{p_empty}. To create
 #'  clustered neutral landscape models, \code{p_empty} should be (significantly) smaller than
 #'  \code{p_neigh}. By default, the Von-Neumann-neighborhood is used to check adjacent
 #'  cells. The algorithm starts with the highest categorial value. If the
@@ -16,13 +16,13 @@
 #'  applied.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param p_neigh [\code{numerical(1)}]\cr
-#' Probability to turn into a value if there is any neighbor with the same or a
+#' Probability of a cell will turning into a value if there is any neighbor with the same or a
 #'  higher value.
 #' @param p_empty [\code{numerical(1)}]\cr
 #' Probability a cell receives a value if all neighbors have no value (i.e.
@@ -49,8 +49,8 @@
 #'
 #' @examples
 #' # simulate neighborhood model
-#' (neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
-#'                     categories = 5, neighbourhood = 4))
+#' neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
+#'                     categories = 5, neighbourhood = 4)
 #'
 #' \dontrun{
 #' # visualize the NLM

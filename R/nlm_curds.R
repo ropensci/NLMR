@@ -1,30 +1,29 @@
 #' nlm_curds
 #'
-#' @description Simulates a curdled neutral landscape model with optional wheys.
+#' @description Simulates a random curd neutral landscape model with optional wheys.
 #'
 #' @details Random curdling recursively subdivides the plane into blocks.
-#' At each level of the recursion, a fraction of the this block is declared as
-#' habitat (value == TRUE) while the remaining stays matrix (value == FALSE).
+#' At each level of the recursion, a fraction of the blocks are declared as
+#' habitat (value == TRUE) while the remaining blocks continue to be defined as matrix (value == FALSE) and enter the next recursive cycle.
 #'
-#' With the optional argument for wheys, previously selected cells that were
-#' declared matrix (value == FALSE) during recursion, can now contain a
-#' proportion (\code{q}) of habitat cells.
+#' The optional argument (\code{wheyes}) allows wheys to be added, in which a set proportion of cells that were
+#' declared matrix (value == FALSE) during recursion, are now set as habitat cells (value == TRUE).
 #'
 #' If \deqn{curds_{1} = curds_{2} = recursion_steps_{2} = ... = curds_{n} =
 #' recursion_steps_{n}} the models resembles a binary random map.
 #'
 #' Note that you can not set ncol and nrow with this landscape algorithm.
-#' The amount of cells and hence dimension of the raster is given by the vectorproduct of s.
+#' The amount of cells and hence dimension of the raster is given by the vector product of the recursive steps.
 #'
 #' @param curds [\code{numerical(x)}]\cr
-#' Vector with percentage(s) to fill with curds (fill with Habitat (value ==
+#' Vector with percentage/s to fill with curds (fill with habitat (value ==
 #' TRUE)).
 #' @param recursion_steps [\code{numerical(x)}]\cr
-#' Vector of successive cutting steps for the blocks (split 1 block into x
+#' Vector of successive cutting steps for the blocks (split 1 block into \code{x}
 #' blocks).
 #' @param wheyes [\code{numerical(x)}]\cr
-#' Vector with percentage(s) to fill with wheyes, which fill matrix in an
-#' additional step with habitat.#'
+#' Vector with percentage/s to fill with wheys, which fill matrix in an
+#' additional step with habitat.
 #' @param resolution [\code{numerical(1)}]\cr
 #' Resolution of the resulting raster.
 #'

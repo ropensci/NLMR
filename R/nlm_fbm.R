@@ -1,48 +1,50 @@
 #' nlm_fbm
 #'
-#' @description Simulates two-dimensional fractional brownian motion model.
+#' @description Creates a two-dimensional fractional Brownian motion neutral landscape model.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#'  Number of columns for the raster.
+#'  Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#'  Number of rows for the raster.
+#'  Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param fract_dim [\code{numerical(1)}]\cr
-#'  numeric in (0,2]; refers to the fractal dimension of the process
+#' The fractal dimension of the process (0,2)
 #' @param user_seed [\code{numerical(1)}]\cr
-#'  Set Seed for simulation
+#'  Set random seed for the simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
-#' @param ... \cr
-#'  Other options to RandomFields::RFoptions, especially if you are using
-#'  fractal dimensions between ~ 1.6 and 1.9 you have to set the option
+#' @param ...
+#'  Other options to RandomFields::RFoptions, especially if using
+#'  a fractal dimension between ~ 1.6 and 1.9 one must set the option
 #'  \code{modus_operandi = "sloppy"}.
 #'
 #'
 #' @details
 #' Neutral landscapes are generated using fractional Brownian motion,
 #'  an extension of Brownian motion in which the amount of correlation between
-#'   steps is controlled by the Hurst coefficient H. An H of 1 produces a
-#'    relatively smooth surface while an H of 0 produces a rough, uncorrelated,
-#'     surface.
+#'   steps is controlled by \code{frac_dim}. A high value of \code{frac_dim} produces a
+#'    relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.
 #'
 #' @return RasterLayer
 #'
 #' @examples
 #' # simulate fractional brownian motion
-#' (fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8))
+#' fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 #' \dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(fbm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #' @references
+#' Travis, J.M.J. & Dytham, C. (2004). A method for simulating patterns of
+#' habitat availability at static and dynamic range margins. \emph{Oikos} , 104, 410–416.
+#'
 #' Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
 #' Kirstin Strokorb (2015). nlm_fBm. \emph{Journal of Statistical
 #' Software}, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.
 #'
-#' @aliases nlm_fBm
-#' @rdname nlm_fBm
+#' @aliases nlm_fbm
+#' @rdname nlm_fbm
 #'
 #' @export
 #'

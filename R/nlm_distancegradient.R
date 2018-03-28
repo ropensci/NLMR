@@ -1,17 +1,17 @@
 #' nlm_distancegradient
 #'
-#' @description Simulates a distance gradient neutral landscape model.
+#' @description Simulates a distance-gradient neutral landscape model.
 #'
 #' @details
 #' The function takes the number of columns and rows as input and creates a
-#' RasterLayer with the same extent. \code{Origin} is a numeric vector of
+#' \code{RasterLayer} with the same extent. \code{Origin} is a numeric vector of
 #' xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
 #' distance is measured.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param origin  [\code{numerical(4)}]\cr
@@ -26,8 +26,8 @@
 #' @examples
 #'
 #' # simulate a distance gradient
-#' (distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
-#'                                            origin = c(20, 30, 10, 15)))
+#' distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
+#'                                            origin = c(20, 30, 10, 15))
 #' \dontrun{
 #' # visualize the NLM
 #' rasterVis::levelplot(distance_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())

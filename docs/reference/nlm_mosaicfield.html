@@ -151,12 +151,12 @@
     <tr>
       <th>ncol</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of columns for the raster.</p></td>
+Number of columns forming the raster.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of rows for the raster.</p></td>
+Number of rows forming the raster.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -166,7 +166,7 @@ Resolution of the raster.</p></td>
     <tr>
       <th>n</th>
       <td><p>[<code>numerical(1)</code>]<br />
-Number of steps that the mosaic random field algorithm is run</p></td>
+Number of steps over which the mosaic random field algorithm is run</p></td>
     </tr>
     <tr>
       <th>mosaic_mean</th>
@@ -181,7 +181,7 @@ Standard deviation of the mosaic displacement distribution</p></td>
     <tr>
       <th>collect</th>
       <td><p>[<code>logical(1)</code>]<br />
-return RasterBrick of all steps 1:n</p></td>
+return <code>RasterBrick</code> of all steps 1:<code>n</code></p></td>
     </tr>
     <tr>
       <th>infinit</th>
@@ -197,7 +197,7 @@ If <code>TRUE</code> (default), the values are rescaled between 0-1.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RasterLayer or List with RasterLayer(s) and/or RasterBrick</p>
+    <p>RasterLayer or List with RasterLayer/s and/or RasterBrick</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -210,19 +210,11 @@ methodology and applications with R. CRC Press, 2015.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># simulate mosaic random field</span>
-(<span class='no'>mosaic_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mosaicfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
+<span class='no'>mosaic_field</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mosaicfield</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>200</span>,
                                 <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
                                 <span class='kw'>infinit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-                                <span class='kw'>collect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; class       : RasterLayer 
-#&gt; dimensions  : 200, 100, 20000  (nrow, ncol, ncell)
-#&gt; resolution  : 1, 1  (x, y)
-#&gt; extent      : 0, 100, 0, 200  (xmin, xmax, ymin, ymax)
-#&gt; coord. ref. : NA 
-#&gt; data source : in memory
-#&gt; names       : value 
-#&gt; values      : 0, 1  (min, max)
-#&gt; </div><div class='input'><span class='co'># visualize the NLM</span>
+                                <span class='kw'>collect</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>mosaic_field</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mosaicfield-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>

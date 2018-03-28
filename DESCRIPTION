@@ -44,10 +44,10 @@ Imports:
     spatstat,
     stats,
     tibble,
-    velox,
+    fasterize,
     sf
-URL: https://marcosci.github.io/nlmr/
-BugReports: https://github.com/marcosci/nlmr/issues/
+URL: https://ropensci.github.io/nlmr/
+BugReports: https://github.com/ropensci/nlmr/issues/
 Suggests:
     testthat,
     covr,

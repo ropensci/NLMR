@@ -9,10 +9,10 @@ nlm_planargradient(ncol, nrow, resolution = 1, direction = NA,
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
-Number of columns for the raster.}
+Number of columns forming the raster.}
 
 \item{nrow}{[\code{numerical(1)}]\cr
-Number of rows for the raster.}
+Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
@@ -35,7 +35,7 @@ Simulates a linear gradient sloping in a specified or random direction.
 }
 \examples{
 # simulate planar gradient
-(planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200))
+planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 
 \dontrun{
 # visualize the NLM

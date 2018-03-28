@@ -1,17 +1,16 @@
 #' nlm_mosaictess
 #'
-#' @description Simulate the NLM introduced in Gaucherel (2008).
+#' @description Simulate a neutral landscape model using the tesselation approach introduced in Gaucherel (2008).
 #'
 #' @details
 #' \code{nlm_mosaictess} offers the first option of simulating a neutral landscape model
-#' described in Gaucherel (2008). It generates a random point pattern (the germs)
-#' with an independent distribution and uses the voronoi tessellation to simulate
-#' the mosaic landscapes.
+#' described in Gaucherel (2008). It generates a random point pattern (germs)
+#' with an independent distribution and uses the Voronoi tessellation to simulate mosaic landscapes.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
-#' Number of columns for the raster.
+#' Number of columns forming the raster.
 #' @param nrow  [\code{numerical(1)}]\cr
-#' Number of rows for the raster.
+#' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param germs [\code{numerical(1)}]\cr
@@ -23,7 +22,7 @@
 #'
 #' @examples
 #' # simulate polygonal landscapes
-#' (mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200))
+#' mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 #'
 #' \dontrun{
 #' # visualize the NLM
@@ -34,7 +33,7 @@
 #' Gaucherel, C. (2008) Neutral models for polygonal landscapes with linear
 #' networks. \emph{Ecological Modelling}, 219, 39 - 48.
 #'
-#' @aliases nlm_mosaictess
+#' @aliases nlm_polylands
 #' @rdname nlm_mosaictess
 #'
 #' @export
@@ -71,15 +70,8 @@ nlm_mosaictess <- function(ncol,
                             geometry = sf::st_sfc(voronoi_tess))
 
   # (f)rasterize with lightning speed ----
-  vx <- velox::velox(matrix(0, nrow = nrow, ncol = ncol),
-                     extent = raster::extent(voronoi_tess),
-                     res = c(resolution, resolution))
-  vx$rasterize(voronoi_tess, field = "value")
-  r <- vx$as.RasterLayer()
-
-  # return to fasterize when it is on CRAN
-  # r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
-  # r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
+  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
