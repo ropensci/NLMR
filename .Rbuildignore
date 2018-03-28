@@ -19,3 +19,4 @@ man-roxygen
 ^codemeta\.json$
 ^\.github$
 ^vignettes/articles$
+^CRAN-RELEASE$

@@ -1,6 +1,8 @@
 ## New submission/Updated package
 
-nlmr replaces NLMR. This update is the development of a review process through 
+nlmr replaces NLMR. 
+
+This update is the development of a review process through 
 rOpenSci. During that, we were encouraged to split the package into two distinct 
 packages and rename it - hence this package is now a slender version that
 is focused only on simulating the data and not handling it. 

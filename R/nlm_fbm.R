@@ -14,7 +14,7 @@
 #'  Set random seed for the simulation
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
-#' @param ... \cr
+#' @param ...
 #'  Other options to RandomFields::RFoptions, especially if using
 #'  a fractal dimension between ~ 1.6 and 1.9 one must set the option
 #'  \code{modus_operandi = "sloppy"}.
@@ -36,12 +36,15 @@
 #' rasterVis::levelplot(fbm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
 #' }
 #' @references
+#' Travis, J.M.J. & Dytham, C. (2004). A method for simulating patterns of
+#' habitat availability at static and dynamic range margins. \emph{Oikos} , 104, 410–416.
+#'
 #' Martin Schlather, Alexander Malinowski, Peter J. Menck, Marco Oesting,
 #' Kirstin Strokorb (2015). nlm_fBm. \emph{Journal of Statistical
 #' Software}, 63(8), 1-25. URL http://www.jstatsoft.org/v63/i08/.
 #'
-#' @aliases nlm_fBm
-#' @rdname nlm_fBm
+#' @aliases nlm_fbm
+#' @rdname nlm_fbm
 #'
 #' @export
 #'

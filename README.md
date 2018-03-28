@@ -69,6 +69,11 @@ Overview
 
 <img src="vignettes/articles/bestiary_full.png"  width="100%" />
 
+See also
+--------
+
+`nlmr` was split during its development process - to have a minimal dependency version for simulating neutral landscape models and an utility toolbox to facilate workflows with raster data. If you are interested in merging, visualizing or further handling neutral landscape models have a look at the [landscapetools](https://github.com/ropensci/landscapetools/) package.
+
 Meta
 ----
 
