@@ -1,4 +1,4 @@
-Package: nlmr
+Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
 Version: 0.3.0
@@ -15,7 +15,7 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
        comment = "Jeffrey reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"))
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
-Description: Provides neutral landscape models (<https://doi.org/10.1007/BF02275262>,
+Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     <http://sci-hub.tw/10.1007/bf02275262>).  
     Neutral landscape models range from "hard" 
     neutral models (completely random distributed), to "soft" neutral models 
@@ -46,8 +46,8 @@ Imports:
     tibble,
     fasterize,
     sf
-URL: https://ropensci.github.io/nlmr/
-BugReports: https://github.com/ropensci/nlmr/issues/
+URL: https://ropensci.github.io/NLMR/
+BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
     testthat,
     covr,

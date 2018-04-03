@@ -11,11 +11,11 @@ citEntry(entry = "misc",
                             as.person("Craig E. Simpkins")),
   year         = "2018",
   note         = "R package version 0.3.0",
-  url          = "https://CRAN.R-project.org/package=nlmr",
+  url          = "https://CRAN.R-project.org/package=NLMR",
 
   textVersion  =
   paste("Marco Sciaini, Matthias Fritsch, Cedric Scherer, Craig E. Simpkins (2018).",
         "{nlmr}: Simulating neutral landscape models.",
         "R package version 0.3.0.",
-        "URL https://CRAN.R-project.org/package=nlmr")
+        "URL https://CRAN.R-project.org/package=NLMR")
 )
