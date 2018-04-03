@@ -40,10 +40,10 @@
 #'
 
 nlm_mosaictess <- function(ncol,
-                            nrow,
-                            resolution = 1,
-                            germs,
-                            rescale = TRUE) {
+                           nrow,
+                           resolution = 1,
+                           germs,
+                           rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)

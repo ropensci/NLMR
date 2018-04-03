@@ -7,9 +7,8 @@ v0.3.0 was released on 26/03/2018
 ### Changes
 
 - successful review through rOpenSci
-- rename the package into lowercase: `nlmr`
 - split package into two packages:
-  - `nlmr` 
+  - `NLMR` 
     - contains now only the neutral landscape models, minimal dependencies
   - [`landscapetools`](https://github.com/marcosci/landscapetools)
     - contains now only utility functions

@@ -1,17 +1,8 @@
 ## New submission/Updated package
 
-nlmr replaces NLMR. 
-
-This update is the development of a review process through 
-rOpenSci. During that, we were encouraged to split the package into two distinct 
-packages and rename it - hence this package is now a slender version that
-is focused only on simulating the data and not handling it. 
-The renaming was done to meet the requirements of rOpenSci and ensure a long-term
-compliance to their software standards.
-
-The package itself keeps its main functionality, so none of the users should 
-have major difficulties. Since there are no reverse depencies, the renaming of
-the package should have only minor drawbacks in general.
+This update removes some functionality of the package, which is now found in
+`landscapetools`. Other changes reflect the changes made during the ropensci
+review (bug fixes e.g.).
 
 ## Test environments
 

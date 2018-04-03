@@ -15,16 +15,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![Build Status](https://travis-ci.org/ropensci/nlmr.svg?branch=develop)](https://travis-ci.org/ropensci/nlmr)[![Build status](https://ci.appveyor.com/api/projects/status/djw840fitcvolbxg?svg=true)](https://ci.appveyor.com/project/ropensci/nlmr)
-[![codecov](https://codecov.io/gh/ropensci/nlmr/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/nlmr)
+[![Build Status](https://travis-ci.org/ropensci/NLMR.svg?branch=develop)](https://travis-ci.org/ropensci/NLMR)[![Build status](https://ci.appveyor.com/api/projects/status/djw840fitcvolbxg?svg=true)](https://ci.appveyor.com/project/ropensci/NLMR)
+[![codecov](https://codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
-[![Join the chat at  https://gitter.im/nlmr_landscapegenerator](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nlmr_landscapegenerator) 
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
 
-`nlmr` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-`nlmr` builds on the advantages of the ``raster`` package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage.
+`NLMR` is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
+`NLMR` builds on the advantages of the ``raster`` package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage.
 Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
@@ -38,29 +38,29 @@ install.packages("NLMR")
 __NOTE__: The version on CRAN is pre-rOpenSci review, so it still contains the
 utility functions you find now in [`landscapetools`](https://github.com/ropensci/landscapetools).
 
-To install the developmental version of ``nlmr``, use the following R code:
+To install the developmental version of ``NLMR``, use the following R code:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("ropensci/nlmr", ref = "develop")
+devtools::install_github("ropensci/NLMR", ref = "develop")
 ```
 
 ## Example
 
-Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `nlmr`, e.g.:
+Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `NLMR`, e.g.:
 
 ```{r message=FALSE}
-random_cluster <- nlmr::nlm_randomcluster(nrow = 100,
+random_cluster <- NLMR::nlm_randomcluster(nrow = 100,
                                       ncol = 100,
                                       p    = 0.5,
                                       ai   = c(0.3, 0.6, 0.1),
                                       rescale = FALSE)
 
-random_curdling <- nlmr::nlm_curds(curds = c(0.5, 0.3, 0.6),
+random_curdling <- NLMR::nlm_curds(curds = c(0.5, 0.3, 0.6),
                               recursion_steps = c(32, 6, 2))
 
 
-midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
+midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
                                  nrow = 100,
                                  roughness = 0.61)
 ```
@@ -69,7 +69,7 @@ midpoint_displacememt <- nlmr::nlm_mpd(ncol = 100,
 
 ## Overview
 
-`nlmr` supplies 14 NLM algorithms, with several options to simulate derivates of
+`NLMR` supplies 14 NLM algorithms, with several options to simulate derivates of
 them. The algorithms differ from each other in spatial auto-correlation, from 
 no auto-correlation (random NLM) to a constant gradient (planar gradients):  
 
@@ -159,7 +159,7 @@ kable(function_tibble) %>%
 
 ## See also
 
-`nlmr` was split during its development process - to have a minimal dependency version
+`NLMR` was split during its development process - to have a minimal dependency version
 for simulating neutral landscape models and an utility toolbox to facilate workflows
 with raster data.
 If you are interested in merging, visualizing or further handling neutral landscape models
@@ -167,10 +167,10 @@ have a look at the [landscapetools](https://github.com/ropensci/landscapetools/)
 
 ## Meta
 
-* Please [report any issues or bugs](https://github.com/ropensci/nlmr/issues/new/).
+* Please [report any issues or bugs](https://github.com/ropensci/NLMR/issues/new/).
 * License: GPL3
-* Get citation information for `nlmr` in R doing `citation(package = 'nlmr')`
-    * Additionally, we keep a [record of publications](https://ropensci.github.io/nlmr/articles/publication_record.html/) that use`nlmr`. Hence, if you used `nlmr` please [file an issue on GitHub](https://github.com/ropensci/nlmr/issues/new/) so we can add it to the list.
+* Get citation information for `NLMR` in R doing `citation(package = 'NLMR')`
+    * Additionally, we keep a [record of publications](https://ropensci.github.io/NLMR/articles/publication_record.html/) that use`NLMR`. Hence, if you used `NLMR` please [file an issue on GitHub](https://github.com/ropensci/NLMR/issues/new/) so we can add it to the list.
 * We are very open to contributions - if you are interested check out our [Contributor Guidelines](CONTRIBUTING.md).
     * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
