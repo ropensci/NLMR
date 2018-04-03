@@ -21,8 +21,8 @@ handle the simulations.}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ropensci.github.io/nlmr/}
-  \item Report bugs at \url{https://github.com/ropensci/nlmr/issues/}
+  \item \url{https://ropensci.github.io/NLMR/}
+  \item Report bugs at \url{https://github.com/ropensci/NLMR/issues/}
 }
 
 }
