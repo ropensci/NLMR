@@ -13,8 +13,6 @@ Install the release version from CRAN:
 install.packages("NLMR")
 ```
 
-**NOTE**: The version on CRAN is pre-rOpenSci review, so it still contains the utility functions you find now in [`landscapetools`](https://github.com/ropensci/landscapetools).
-
 To install the developmental version of `NLMR`, use the following R code:
 
 ``` r
