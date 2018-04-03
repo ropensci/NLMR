@@ -1,8 +1,6 @@
-## New submission/Updated package
+## Resubmission
 
-This update removes some functionality of the package, which is now found in
-`landscapetools`. Other changes reflect the changes made during the ropensci
-review (bug fixes e.g.).
+Fixed invalid URL in documentation.
 
 ## Test environments
 
