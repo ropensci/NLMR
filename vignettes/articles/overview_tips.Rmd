@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 ### Core models
 
-<img src="https://github.com/ropensci/NLMR/blob/develop/vignettes/articles/bestiary_full.png"  width="100%" />
+<img src="https://raw.githubusercontent.com/ropensci/NLMR/develop/vignettes/articles/bestiary_full.png"  width="100%" />
 
 ### Selection of possible merges
 
