@@ -28,8 +28,12 @@ navbar:
       menu:
       -  text: NLM Concepts + Terminology
          href: articles/articles/background.html
-      -  text: nlmr Bestiary
-         href: articles/articles/bestiary.html
+      -  text: NLMR Overview + Tips
+         href: articles/articles/overview_tips.html
+      -  text: NLMR Software Heritage
+         href: articles/articles/nlm_software_heritage.html
+      -  text: Visualize Neutral Landscape Models
+         href: articles/articles/visualize_nlms.html
     - text: "Publication Record"
       icon: fa-file-text-o
       href: articles/articles/publication_record.html

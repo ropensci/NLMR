@@ -56,5 +56,4 @@ Suggests:
     lintr,
     classInt,
     rasterVis
-VignetteBuilder:
-    knitr
+VignetteBuilder: knitr
