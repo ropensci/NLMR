@@ -241,11 +241,9 @@ https://commons.wikimedia.org/w/index.php?curid=42510593)</p>
 <span class='co'># simulate midpoint displacement</span>
 <span class='no'>midpoint_displacememt</span> <span class='kw'>&lt;-</span> <span class='fu'>nlm_mpd</span>(<span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>100</span>,
                                  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.61</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><span class='co'># NOT RUN {</span>
-<span class='co'># visualize the NLM</span>
+                                 <span class='kw'>roughness</span> <span class='kw'>=</span> <span class='fl'>0.61</span>)</div><div class='output co'>#&gt; <span class='message'>nlm_mpd returns RasterLayer that fits in the dimension 2^n+1</span></div><div class='input'><span class='co'># visualize the NLM</span>
 <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods'>levelplot</a></span>(<span class='no'>midpoint_displacememt</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-<span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())
-<span class='co'># }</span></pre>
+<span class='kw'>par.settings</span> <span class='kw'>=</span> <span class='kw pkg'>rasterVis</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/rasterVis/topics/rasterTheme'>viridisTheme</a></span>())</div><div class='img'><img src='nlm_mpd-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
