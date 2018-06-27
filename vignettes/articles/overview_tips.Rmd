@@ -12,20 +12,18 @@ vignette: >
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
+  cache = TRUE
 )
 ```
 
 ## Overview
 
 ### Core models
-```{r, echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
-knitr::include_graphics("bestiary_full.png")
-```
+
+<img src="https://github.com/ropensci/NLMR/blob/develop/vignettes/articles/bestiary_full.png"  width="100%" />
 
 ### Selection of possible merges
+
 ```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
 knitr::include_graphics("bestiary_merges.png")
 ```
@@ -63,7 +61,7 @@ landscape %>%
 
 #### Use matrix of parameter to simulate landscapes
 
-```{r}
+```{r, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library(NLMR)
 library(landscapetools)
 library(raster)
@@ -97,7 +95,7 @@ util_facetplot(nlm_list)
 
 Merging different types of NLMs, such as a planar gradient with a less autocorrelated landscape, provide a means of generating more complex landscapes and realistic-looking ecotones (Travis 2004):
 
-```{r}
+```{r, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library(NLMR)
 library(landscapetools)
 

@@ -4,9 +4,9 @@ pkgdown_sha: ~
 articles:
   background: articles/background.html
   faq: articles/faq.html
+  nlm_software_heritage: articles/nlm_software_heritage.html
   overview_tips: articles/overview_tips.html
   publication_record: articles/publication_record.html
   visualize_nlms: articles/visualize_nlms.html
   getstarted: getstarted.html
-  nlm_software_heritage: nlm_software_heritage.html
 
