@@ -64,7 +64,7 @@ util_facetplot(landscape_list)
 ### Landscape metrics
 
 If you are interested in landscapes that share a metric which is not a built-in 
-parameter, the most clever way I can came up is to simulate models as long as 
+parameter, the most clever way I can came up with is to simulate models as long as 
 it takes to have the desired number of landscapes with a certain metric.
 
 An examplary workflow for this could look like this:
@@ -80,25 +80,22 @@ n <- 1 # counter and index variable
 sim_results <- list() # list to store simulation results
 
 # loop until we have 5 landscapes with the metric we are interested in
-while(n < 6){
-  
-  # In this use case we are interested in a categorical metric, 
+while (n < 6) {
+  # In this use case we are interested in a categorical metric,
   # which is why we reclassify the continous result in three categories
-  landscape <- nlm_mosaictess(100, 100, germs = 50) %>% 
-    util_classify(c(0.33, 0.33, 0.33))
+  landscape <- nlm_mosaictess(100, 100, germs = 50) %>%
+  util_classify(c(0.33, 0.33, 0.33))
   
   # We are interested in the Euclidean Nearest Neighbor Distance Distribution
-  enn_value <- lsm_l_enn_mn(landscape) %>% 
-    pull(value)
+  enn_value <- lsm_l_enn_mn(landscape) %>%
+  pull(value)
   
   # ... and we want to keep simulation results that have a mean ENN
   # between 7.5 and 8
-  if(enn_value < 8 | enn_value > 7.5){
-    
+  if (enn_value > 7.5 | enn_value < 8) {
     sim_results[n] <- landscape
     n = n + 1
   }
-  
 }
 
 # look at the result
