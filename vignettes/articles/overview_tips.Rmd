@@ -1,0 +1,119 @@
+---
+title: "NLMR Overview and Tips"
+author: "Marco Sciaini"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bestiary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+## Overview
+
+### Core models
+```{r, echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
+knitr::include_graphics("bestiary_full.png")
+```
+
+### Selection of possible merges
+```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
+knitr::include_graphics("bestiary_merges.png")
+```
+
+## Tips
+
+If you are new to the raster package, I hope to collect here some useful tips
+how to handle raster data in general. Furthermore, this section also serves
+as a place to collect workflows on how to use **NLMR** and other R packages to
+simulate specific patterns one can find in the literature.
+
+### Basics
+
+#### Counting cells
+
+Ecologists are for example often interested in how much habitat one actually finds
+in the study area you are looking at and there are a couple of nice ways to do
+that with rasters. One of them is:
+
+```{r}
+library(NLMR)
+library(raster)
+library(dplyr)
+
+landscape <- nlm_curds(curds = c(0.5, 0.3, 0.6),
+                       recursion_steps = c(32, 6, 2),
+                       wheyes = c(0.1, 0.05, 0.2))
+
+# count cells for each category (0 = Matrix, 1 = Habitat)
+landscape %>% 
+  freq()
+```
+
+### More specific tips
+
+#### Use matrix of parameter to simulate landscapes
+
+```{r}
+library(NLMR)
+library(landscapetools)
+library(raster)
+library(dplyr)
+library(purrr)
+library(tibble)
+
+# simulation function that has the parameters we want to alter as input
+simulate_landscape = function(roughness, weighting){
+    nlm_mpd(ncol = 33,
+            nrow = 33,
+            roughness = roughness,
+            rescale = TRUE) %>%
+        util_classify(weighting = weighting)
+}
+
+# paramter combinations we are interested in
+param_df = expand.grid(roughness = c(0.2, 0.9),
+                       weighting = list(c(0.2, 0.8), c(0.2, 0.3, 0.5))) %>%
+    as.tibble()
+
+# map over the nested tibble and use each row as input for our simulation function
+nlm_list = param_df %>% pmap(simulate_landscape)
+
+# look at the results
+util_facetplot(nlm_list)
+```
+
+
+#### Simulate ecotones
+
+Merging different types of NLMs, such as a planar gradient with a less autocorrelated landscape, provide a means of generating more complex landscapes and realistic-looking ecotones (Travis 2004):
+
+```{r}
+library(NLMR)
+library(landscapetools)
+
+# landscape with higher autocorrelation 
+high_autocorrelation <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80)
+
+# landscape with lower autocorrelation 
+low_autocorrelation <- nlm_fbm(ncol = 100, nrow = 100, fract_dim = 0.5)
+
+# merge to derive ecotone
+ecotones <- util_merge(low_autocorrelation, high_autocorrelation)
+
+# look at the results
+util_facetplot(list("Low autocorrelation" = low_autocorrelation,
+                    "High autocorrelation" = high_autocorrelation,
+                    "Ecotones" = ecotones
+                    ))
+```
+

@@ -1,0 +1,199 @@
+---
+title: "Visualize Neutral Landscape Models"
+author: "Marco Sciaini"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Visualize Neutral Landscape Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = TRUE
+)
+```
+
+As the ever growing R package environment can be a rough terrain to navigate and find the appropriate tools to achieve one's goals, this vignette is meant to point out some ways to overcome initial problems with visualizing neutral landscape models or more general raster data. This is probably a heavily biased view on packages and functions and I am sure there are other good R packages out there to achieve the same (if so - feel free to point that out to me and I will include it!). However, I am also sure this collection can at least be a kickstart for quickly visualizing your results and help you to communicate them.
+
+## Static plots
+
+### landscapetools
+
+**landscapetools** function `util_plot` was developed to help users to adhere to
+some standards concerning color scales and typographie. This means for example 
+that by default the [viridis color scale](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) 
+is applied which makes your plots easier to read by those with colorblindness.
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("landscapetools")
+
+landscape <- nlm_mosaictess(200, 200, germs = 444)
+
+# default theme
+util_plot(landscape)
+
+# ... chose another color scale from viridis ("E" = cividis)
+util_plot(landscape, viridis_scale = "E")
+
+# ... chose any other scale:
+# util_plot returns a ggplot2 object, so you can follow your usual ggplot2
+# workflow and change the color, axis labels, ...
+library(ggplot2)
+library(pals)
+util_plot(landscape)  + 
+  scale_fill_gradientn(colours=pals::parula(100)) + # parula color scale
+  theme_void() +  # minimal theme
+  guides(fill = FALSE) # remove legend
+```
+
+### rasterVis
+
+**rasterVis** also offers some convience functions to plot raster, for example:
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("rasterVis")
+
+landscape <- nlm_mosaictess(200, 200, germs = 444)
+
+levelplot(landscape, , margin = FALSE)
+```
+
+Another nice function from **rasterVis** is `gplot()`, a wrapper to use ggplot2
+with raster data without reshaping your data as long data.frame:
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("rasterVis")
+
+landscape <- nlm_mosaictess(200, 200, germs = 444)
+
+gplot(landscape) + 
+  geom_tile(aes(fill = value)) + 
+  coord_equal()
+```
+
+
+### ggplot2
+
+If you want to start from scratch with ggplot2:
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("raster")
+library("ggplot2")
+
+landscape <- nlm_mosaictess(200, 200, germs = 444)
+
+# transform to long format for ggplot2
+landscape_long <- as.data.frame(landscape, xy = TRUE)
+
+# plot with ggplot2
+ggplot(landscape_long, aes(x,y)) + 
+  geom_tile(aes(fill = layer)) + 
+  coord_equal()
+```
+
+### raster + plot()
+
+... if you are in a lot of hurry, raster itself also has a plot method for raster:
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("raster")
+
+landscape <- nlm_mosaictess(200, 200, germs = 444)
+
+plot(landscape)
+```
+
+### Perspective plot
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("raster")
+library("NLMR")
+landscape <- nlm_fbm(ncol = 50, nrow = 50, fract_dim = 1.3)
+
+persp(landscape,
+      exp=0.5,
+      maxpixels = 5000,
+      theta = 125,
+      phi=45,
+      xlab="Longitude",
+      ylab="Latitude",
+      zlab="Z",
+      shade = 0.45)
+```
+
+### Contour plots
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("NLMR")
+library("rasterVis")
+
+landscape <- nlm_mpd(ncol = 50, nrow = 50, roughness = 0.6)
+
+
+contourplot(landscape,
+            pretty = TRUE) 
+
+levelplot(landscape,
+          contour = TRUE,
+          pretty = TRUE)
+```
+
+
+## Interactive plots
+
+### rgl + rasterVis
+
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+library("rgl")
+library("rasterVis")
+library("viridis")
+library("NLMR")
+landscape <- nlm_mpd(ncol = 100, nrow = 100, roughness = 0.6)
+
+plot3D(landscape,
+       zfac=2,
+       lit=FALSE,
+       col=colorRampPalette(magma(11)))
+
+rglwidget()
+
+```
+
+
+### highcharter + plotly
+
+```{r message=FALSE, warning=FALSE}
+library("highcharter")
+library("magrittr")
+library("plotly")
+library("NLMR")
+
+# create a NLM to work with
+landscape <- nlm_mosaicfield(ncol = 100, nrow = 100, n = 20)
+
+# coerce to matrix
+landscape_matrix <- raster::as.matrix(landscape)
+
+# plot interactive graph
+hchart(landscape_matrix) %>%
+  # changing default color
+  hc_colorAxis(stops = color_stops(colors = viridis::inferno(10))) %>%
+  hc_exporting(
+    enabled = TRUE
+  )
+
+# With plotly we can combine the interactive approach with the 3D Visualization
+plot_ly(z = as.matrix(landscape_matrix), type = "surface", colors = viridis::magma(8))
+```
+
+
+
