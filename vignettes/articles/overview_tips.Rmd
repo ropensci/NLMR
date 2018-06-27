@@ -20,9 +20,7 @@ knitr::opts_chunk$set(
 
 ### Core models
 
-```{r, echo=FALSE, message=FALSE, dpi = 50, fig.align='center'}
-knitr::include_graphics("bestiary_full.png")
-```
+<img src="https://github.com/ropensci/NLMR/blob/develop/vignettes/articles/bestiary_full.png"  width="100%" />
 
 ### Selection of possible merges
 
