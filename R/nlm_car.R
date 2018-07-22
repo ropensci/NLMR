@@ -5,13 +5,12 @@ nlm_car <- function (ncol,
                      col2 = 0,
                      rc1 = 0,
                      cr1 = 0,
-                     maindi = 1,
-                     rajz = TRUE)
+                     maindi = 1)
 {
   col1 <- rho
   row1 <- rho
   max_dim <- max(nrow, ncol)
-  M <- as.integer(ceiling(base::log(max_dim - 1, 2)))
+  M <- 2^as.integer(ceiling(base::log(max_dim - 1, 2)))
   NN <- M^2
   FNN <- NN/2
   I1 <- array(rep(0, NN))
@@ -38,7 +37,6 @@ nlm_car <- function (ncol,
     col2 * NC2 - rc1 * NRC1 - cr1 * NCR1
   d2 <- fft(k, inverse = FALSE)
   qse <- sqrt(Re(d2))
-  par(mfrow = c(1, 1))
   nkar <- 0
   while (nkar == 0) {
     xe <- rnorm(NN)
@@ -52,14 +50,13 @@ nlm_car <- function (ncol,
     nkar <- 3
   }
   A <- A/sum(A * A)
-  if (rajz) {
-    par(mfrow = c(1, 1))
-    image(A)
-  }
-  return(A)
+
+  car_raster <- raster::raster(as.matrix(A))
+
+  return(car_raster)
 }
 
 
-nlm_car(LEVEL = 6, rho = 0.0499, row2 = 0.4, col2 = 0, rc1 = 0, cr1 = 0,
-        maindi = 1, rajz = TRUE)
+raster::plot(nlm_car(ncol = 100, nrow = 100, rho = 0.0499, row2 = 0.4, col2 = 0, rc1 = 0, cr1 = 0,
+        maindi = 1))
 
