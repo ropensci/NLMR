@@ -2,10 +2,10 @@
 output:
   github_document:
     html_preview: false
+editor_options: 
+  chunk_output_type: console
+always_allow_html: yes
 ---
-
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 
-# NLMR <img src="https://raw.githubusercontent.com/ropensci/NLMR/develop/vignettes/logo.png" align="right" />
+# NLMR <img src="man/figures/logo.png" align="right" width="150" />
 
 **NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
 **NLMR** builds on the advantages of the **raster** package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage.
@@ -47,7 +47,7 @@ devtools::install_github("ropensci/NLMR", ref = "develop")
 
 Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `NLMR`, e.g.:
 
-```{r message=FALSE}
+```{r eval=FALSE}
 random_cluster <- NLMR::nlm_randomcluster(nrow = 100,
                                       ncol = 100,
                                       p    = 0.5,
@@ -63,11 +63,9 @@ midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
                                  roughness = 0.61)
 ```
 
-<img src="https://raw.githubusercontent.com/ropensci/NLMR/develop/vignettes/articles/figure_readme.png"  width="100%" />
-
 ## Overview
 
-**NLMR** supplies 14 NLM algorithms, with several options to simulate derivates of
+**NLMR** supplies 15 NLM algorithms, with several options to simulate derivates of
 them. The algorithms differ from each other in spatial auto-correlation, from 
 no auto-correlation (random NLM) to a constant gradient (planar gradients):  
 
@@ -81,79 +79,98 @@ function_tibble <- tibble(Function = character(), Description = character(), Ref
 
 # nlm_curds
 function_tibble[1,1] <- "nlm_curds"
-function_tibble[1,2] <- "Simulates a curdled neutral landscape model. Random curdling recursively subdivides the plane into blocks. At each level of the recursion, a fraction of the this block is declared as habitat while the remaining stays matrix. When option `q` is set, it simulates a wheyed curdling model, where previously selected cells that were declared matrix during recursion, can now contain a proportion of habitat cells."
-function_tibble[1,3] <- "Keitt (2000); Travis and Dytham (2004), Gustafson and Parker (1992)"
+function_tibble[1,2] <- "Simulates a randomly curdled or wheyed neutral landscape model. Random curdling recursively subdivides the landscape into blocks. At each level of the recursion, a fraction of these blocks is declared as habitat while the remaining stays matrix. When option q is set, it simulates a wheyed curdling model, where previously selected cells that were declared matrix during recursion, can now contain a proportion of habitat cells"
+function_tibble[1,3] <- "Figure 1a,p"
+function_tibble[1,4] <- "O’Neill, Gardner, and Turner (1992); Keitt (2000)"
 
 # nlm_distancegradient
 function_tibble[2,1] <- "nlm_distancegradient"
-function_tibble[2,2] <- "Simulates a distance gradient neutral landscape model. The function takes the number of columns and rows as input and creates a *RasterLayer* with the same extent. *Origin* is a numeric vector of xmin, xmax, ymin, ymax for a rectangle inside the raster from which the distance is measured."
-function_tibble[2,3] <- "Etherington, Holland, and O’Sullivan (2015)"
+function_tibble[2,2] <- "Simulates a distance gradient neutral landscape model. The gradient is always measured from a rectangle that one has to specify in the function (parameter origin)"
+function_tibble[2,3] <- "Figure 1b"
+function_tibble[2,4] <- "Etherington, Holland, and O’Sullivan (2015)"
 
 # nlm_edgegradient
 function_tibble[3,1] <- "nlm_edgegradient"
-function_tibble[3,2] <- "Simulates a linear gradient orientated on a specified or random direction that has a central peak, which runs perpendicular to the gradient direction."
-function_tibble[3,3] <- "Travis and Dytham (2004)"
+function_tibble[3,2] <- "Simulates a linear gradient orientated neutral model. The gradient has a specified or random direction that has a central peak, which runs perpendicular to the gradient direction"
+function_tibble[3,3] <- "Figure 1c"
+function_tibble[3,4] <- "Travis and Dytham (2004); Schlather et al. (2015)"
 
 # nlm_edgegradient
 function_tibble[4,1] <- "nlm_fbm"
-function_tibble[4,2] <- "Simulates neutral landscapes are generated using fractional Brownian motion,  an extension of Brownian motion in which the amount of correlation between steps is controlled by the Hurst coefficient *H*."
-function_tibble[4,3] <- "Schlather et al. (2015)"
+function_tibble[4,2] <- "Simulates neutral landscapes using fractional Brownian motion (fBm). fBm is an extension of Brownian motion in which the amount of spatial autocorrelation between steps is controlled by the Hurst coefficient H"
+function_tibble[4,3] <- "Figure 1d"
+function_tibble[4,4] <- "Schlather et al. (2015)"
 
 # nlm_gaussianfield
 function_tibble[5,1] <- "nlm_gaussianfield"
-function_tibble[5,2] <- "Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelatian."
-function_tibble[5,3] <- "Schlather et al. (2015)"
+function_tibble[5,2] <- "Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelation	"
+function_tibble[5,3] <- "Figure 1e"
+function_tibble[5,4] <- "Schlather et al. (2015)"
 
 # nlm_mosaicfield
 function_tibble[6,1] <- "nlm_mosaicfield"
-function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model."
-function_tibble[6,3] <- "Schlather et al. (2015)"
-
-# nlm_mpd
-function_tibble[7,1] <- "nlm_mpd"
-function_tibble[7,2] <- "Simulates a midpoint displacement neutral landscape model where the parameter *roughness* controls the level of spatial autocorrelatian."
-function_tibble[7,3] <- "Peitgen and Saupe (1988)"
+function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model. The algorithm imitates fault lines by repeatedly bisecting the landscape and lowering the values of cells in one half and increasing the values in the other half. If one sets the parameter infinit to TRUE, the algorithm approaches a fractal pattern"
+function_tibble[6,3] <- "Figure 1f"
+function_tibble[6,4] <- "Schlather et al. (2015)"
 
 # nlm_neigh
-function_tibble[8,1] <- "nlm_neigh"
-function_tibble[8,2] <- "Simulates a neutral landscape model with categories and clustering based on neighborhood characteristic."
-function_tibble[8,3] <- "Scherer et al. (2016)"
+function_tibble[7,1] <- "nlm_neigh"
+function_tibble[7,2] <- "Simulates a neutral landscape model with land cover classes and clustering based on neighbourhood characteristics. The cluster are based on the surrounding cells. If there is a neighbouring cell of the current value/type, the target cell will more likely turned into a cell of that type/value"
+function_tibble[7,3] <- "Figure 1g"
+function_tibble[7,4] <- "Scherer et al. (2016)"
 
 # nlm_percolation
-function_tibble[9,1] <- "nlm_percolation"
-function_tibble[9,2] <- "Simulates a binary neutral landscape model based on percolation theory. The probality for a cell to be assigned a 1 is drawn from a uniform distribution."
-function_tibble[9,3] <- "Gardner et al. (1989)"
+function_tibble[8,1] <- "nlm_percolation"
+function_tibble[8,2] <- "Simulates a binary neutral landscape model based on percolation theory. The probability for a cell to be assigned habitat is drawn from a uniform distribution"
+function_tibble[8,3] <- "Figure 1h"
+function_tibble[8,4] <- "Gardner et al. (1989)"
 
 # nlm_planargradient
-function_tibble[10,1] <- "nlm_planargradient"
-function_tibble[10,2] <- "Simulates a planar gradient neutral landscape model with gradient sloping in a specified or random direction."
-function_tibble[10,3] <- "Palmer (1992)"
+function_tibble[9,1] <- "nlm_planargradient"
+function_tibble[9,2] <- "Simulates a planar gradient neutral landscape model. The gradient is sloping in a specified or (by default) random direction between 0 and 360 degree"
+function_tibble[9,3] <- "Figure 1i"
+function_tibble[9,4] <- "Palmer (1992)"
 
-# nlm_polylands
-function_tibble[11,1] <- "nlm_polylands"
-function_tibble[11,2] <- "Simulates patchy mosaic neutral landscape models built on the basis of spatial point pattern processes such as the Strauss process."
-function_tibble[11,3] <- "Gaucherel (2008)"
+# nlm_mosaictess
+function_tibble[10,1] <- "nlm_mosaictess"
+function_tibble[10,2] <- "Simulates a patchy mosaic neutral landscape model based on the tessellation of a random point process. The algorithm randomly places points (parameter germs) in the landscape, which are used as the centroid points for a voronoi tessellation. A higher number of points therefore leads to a more fragmented landscape"
+function_tibble[10,3] <- "Figure 1k"
+function_tibble[10,4] <- "Gaucherel (2008), Method 1"
+
+# nlm_mosaicgibbs	
+function_tibble[11,1] <- "nlm_mosaicgibbs	"
+function_tibble[11,2] <- "Simulates a patchy mosaic neutral landscape model based on the tessellation of an inhibition point process. This inhibition point process starts with a given number of points and uses a minimisation approach to fit a point pattern with a given interaction parameter (0 ‐ hardcore process; 1 ‐ Poisson process) and interaction radius (distance of points/germs being apart)"
+function_tibble[11,3] <- "Figure 1l"
+function_tibble[11,4] <- "Gaucherel (2008), Method 2"
 
 # nlm_random
 function_tibble[12,1] <- "nlm_random"
-function_tibble[12,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution."
-function_tibble[12,3] <- ""
-
+function_tibble[12,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution"
+function_tibble[12,3] <- "Figure 1m"
+function_tibble[12,4] <- "With and Crist (1995)"
 # nlm_randomcluster
 function_tibble[13,1] <- "nlm_randomcluster"
-function_tibble[13,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution."
+function_tibble[13,2] <- "Simulates a random cluster nearest‐neighbour neutral landscape. The parameter ai controls for the number and abundance of land cover classes and p controls for proportion of elements randomly selected to form clusters"
+function_tibble[13,3] <- "Figure 1n"
 function_tibble[13,3] <- "Saura and Martínez-Millán (2000)"
 
+# nlm_mpd
+function_tibble[14,1] <- "nlm_mpd"
+function_tibble[14,2] <- "Simulates a midpoint displacement neutral landscape model where the parameter roughness controls the level of spatial autocorrelation"
+function_tibble[14,3] <- "Figure 1n"
+function_tibble[14,4] <- "Peitgen and Saupe (1988)"
+
 # nlm_randomrectangularcluster
-function_tibble[14,1] <- "nlm_randomrectangularcluster"
-function_tibble[14,2] <- "Simulates a random rectangular cluster neutral landscape model where rectangular clusters are randomly distributed until the raster is filled."
-function_tibble[14,3] <- "Gustafson and Parker (1992)"
+function_tibble[15,1] <- "nlm_randomrectangularcluster"
+function_tibble[15,2] <- "Simulates a random rectangular cluster neutral landscape model. The algorithm randomly distributes overlapping rectangles until the landscape is filled"
+function_tibble[15,3] <- "Figure 1o"
+function_tibble[15,3] <- "Gustafson and Parker (1992)"
 
 kable(function_tibble) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-<img src="vignettes/articles/bestiary_full.png"  width="100%" />
+<img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" />
 
 ## See also
 
@@ -173,26 +190,3 @@ have a look at the [landscapetools](https://github.com/ropensci/landscapetools/)
     * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
-
-## References
-Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2015. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” *Methods in Ecology and Evolution* 6 (2): 164–68.
-
-Gardner, R H, R V O’Neill, M G Turner, and V H Dale. 1989. “Quantifying Scale-Dependent Effects of Animal Movement with Simple Percolation Models.” *Landsc. Ecol.* 3 (3/4): 217–27.
-
-Gaucherel, C. 2008. “Neutral Models for Polygonal Landscapes with Linear Networks.” *Ecol. Modell.* 219 (1-2): 39–48.
-
-Gustafson, Eric J, and George R Parker. 1992. “Relationships Between Landcover Proportion and Indices of Landscape Spatial Pattern.” *Landsc. Ecol.* 7: 101–10.
-
-Keitt, Timothy H. 2000. “Spectral Representation of Neutral Landscapes.” *Landsc. Ecol.* 15: 479–93.
-
-Palmer, Michael W. 1992. “The Coexistence of Species in Fractal Landscapes.” *Am. Nat.* 139 (2): 375.
-
-Peitgen, Heinz-Otto, and Dietmar Saupe, eds. 1988. The Science of Fractal Images. New York, NY, USA: *Springer New York*, Inc.
-
-Saura, Santiago, and Javier Martínez-Millán. 2000. “Landscape Patterns Simulation with a Modified Random Clusters Method.” *Landsc. Ecol.* 15 (7): 661–78.
-
-Scherer, Cédric, Florian Jeltsch, Volker Grimm, and Niels Blaum. 2016. “Merging Trait-Based and Individual-Based Modelling: An Animal Functional Type Approach to Explore the Responses of Birds to Climatic and Land Use Changes in Semi-Arid African Savannas.” *Ecol. Modell.* 326: 75–89.
-
-Schlather, Martin, Alexander Malinowski, Peter J Menck, Marco Oesting, Kirstin Strokorb, and Others. 2015. “Analysis, Simulation and Prediction of Multivariate Random Fields with Package RandomFields.” *J. Stat. Softw.* 63: 1–25.
-
-Travis, J M J, and C Dytham. 2004. “A Method for Simulating Patterns of Habitat Availability at Static and Dynamic Range Margins.” *Oikos* 104 410–16.

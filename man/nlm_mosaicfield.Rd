@@ -4,8 +4,9 @@
 \alias{nlm_mosaicfield}
 \title{nlm_mosaicfield}
 \usage{
-nlm_mosaicfield(ncol, nrow, resolution = 1, n = 20, mosaic_mean = 0.5,
-  mosaic_sd = 0.5, collect = FALSE, infinit = FALSE, rescale = TRUE)
+nlm_mosaicfield(ncol, nrow, resolution = 1, n = 20,
+  mosaic_mean = 0.5, mosaic_sd = 0.5, collect = FALSE,
+  infinit = FALSE, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
