@@ -85,8 +85,8 @@ nlm_randomcluster <- function(ncol, nrow,
     nbrs <- raster::adjacent(ranclumap, cid, directions = 8, pairs = FALSE)
     # count neighbour values (exclude NA see Saura 2000 paper)
     vals <- table(raster::values(ranclumap)[nbrs])
-    # if everything in da hood is NA
-    if (purrr::is_empty(vals)) {
+    # check if everything is NA
+    if (!length(vals)) {
       # be a rebel get your own value
       fili <- sample(seq_along(ai), 1, prob = ai)
     }else{

@@ -4,6 +4,7 @@ ________________________________________________________________________________
 
 - Minor bug fixes
 - Updated documentation
+- removed purrr as dependency
 
 ## NLMR 0.3.0 Release Notes
 

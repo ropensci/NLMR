@@ -123,7 +123,7 @@ nlm_mosaicfield <- function(ncol,
     if (isTRUE(collect)) {
       names(mosaicfield_list) <- seq_along(mosaicfield_list)
       mosaicfield_list <-
-        lappy(seq_along(mosaicfield_list), function(i) {
+        lapply(seq_along(mosaicfield_list), function(i) {
           mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
         })
 

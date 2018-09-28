@@ -1,6 +1,6 @@
-## Resubmission
+## Version update
 
-Fixed invalid URL in documentation.
+Minor update with bugfixes and improvements on the documentation.
 
 ## Test environments
 
@@ -17,9 +17,7 @@ Fixed invalid URL in documentation.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-1 Note about rev as author role. Here we credit both reviewers from rOpenSci.
+0 errors | 0 warnings | 0 note
 
 ## Reverse dependencies
 
