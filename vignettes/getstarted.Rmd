@@ -20,7 +20,7 @@ library(rasterVis)
 `NLMR` is a `R` package designed to generate neutral landscape models (NLMs), 
 simulated landscapes used to explore landscape scale ecological patterns and 
 processes. The `NLMR` package was designed with a similar philosophy to the 
-Python package `NLMpy` [see @EtheringtonNLMR2015], offering a general numeric 
+Python package `NLMpy` [see @Etheringtonnlmr2015], offering a general numeric 
 framework allowing for a high degree of flexibility. Most of the common NLMs, 
 as described by the relevant literature, can be produced using NLMR. 
 Additionally, NLMR allows users to merge multiple landscapes, classify landscape
@@ -29,6 +29,10 @@ produced take the form of two-dimensional raster arrays with specified row and
 column dimensions and cell values ranging between 0 and 1. By returning raster 
 arrays, NLMs are easily integrated into the workflow of many useful spatial
 analysis packages, notably the `raster` package.
+
+For further information on neutral landscape models, the authors goals for
+this package, and additional use case examples please see the associated
+publication Sciani, Fritsch, Scherer and Simpkins [-@Sciani2018]
 
 ## Basic landscape generation
 
