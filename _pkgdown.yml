@@ -26,8 +26,6 @@ navbar:
     - text: "How To"
       icon: fa-graduation-cap
       menu:
-      -  text: NLM Concepts + Terminology
-         href: articles/articles/background.html
       -  text: NLMR Overview + Tips
          href: articles/articles/overview_tips.html
       -  text: NLMR Software Heritage
@@ -38,9 +36,6 @@ navbar:
       icon: fa-file-text-o
       href: articles/articles/publication_record.html
   right:
-    - text: "faq"
-      icon: fa-question-circle-o
-      href: articles/faq.html
     - icon: fa-newspaper-o
       text: "news"
       href: news/index.html

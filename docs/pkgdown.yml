@@ -2,8 +2,6 @@ pandoc: 2.2.1
 pkgdown: 1.1.0.9000
 pkgdown_sha: b62fef53d0a5633adea58b9c503d35e465a9af43
 articles:
-  background: articles/background.html
-  faq: articles/faq.html
   nlm_software_heritage: articles/nlm_software_heritage.html
   overview_tips: articles/overview_tips.html
   publication_record: articles/publication_record.html

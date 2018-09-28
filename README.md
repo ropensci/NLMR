@@ -86,13 +86,13 @@ Description
 
 <th style="text-align:left;">
 
-Reference
+Crossreference
 
 </th>
 
 <th style="text-align:left;">
 
-V4
+Reference
 
 </th>
 
@@ -493,13 +493,13 @@ clusters
 
 <td style="text-align:left;">
 
-Saura and Martínez-Millán (2000)
+Figure 1n
 
 </td>
 
 <td style="text-align:left;">
 
-NA
+Saura and Martínez-Millán (2000)
 
 </td>
 
@@ -552,14 +552,14 @@ landscape is filled
 
 <td style="text-align:left;">
 
-Gustafson and Parker
-(1992)
+Figure 1o
 
 </td>
 
 <td style="text-align:left;">
 
-NA
+Gustafson and Parker
+(1992)
 
 </td>
 

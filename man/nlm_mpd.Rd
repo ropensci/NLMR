@@ -56,14 +56,6 @@ It performs the following steps:
 
 At each iteration the roughness, an approximation to common Hurst exponent,
 is reduced.
-
-The image below shows the steps involved in running the diamond-square
-algorithm on a 5 × 5 matrix:
-
-\if{html}{\figure{Diamond_Square.png}{options: width="300\%" alt=""}}
-
-(By Christopher Ewin - Own work, CC BY-SA 4.0,
-https://commons.wikimedia.org/w/index.php?curid=42510593)
 }
 \examples{
 

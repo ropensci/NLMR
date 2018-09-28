@@ -76,7 +76,7 @@ library(magrittr)
 library(knitr)
 library(kableExtra)
 
-function_tibble <- tibble(Function = character(), Description = character(), Reference = character())
+function_tibble <- tibble(Function = character(), Description = character(), 	Crossreference = character(), Reference = character())
 
 # nlm_curds
 function_tibble[1,1] <- "nlm_curds"
@@ -153,7 +153,7 @@ function_tibble[12,4] <- "With and Crist (1995)"
 function_tibble[13,1] <- "nlm_randomcluster"
 function_tibble[13,2] <- "Simulates a random cluster nearest‐neighbour neutral landscape. The parameter ai controls for the number and abundance of land cover classes and p controls for proportion of elements randomly selected to form clusters"
 function_tibble[13,3] <- "Figure 1n"
-function_tibble[13,3] <- "Saura and Martínez-Millán (2000)"
+function_tibble[13,4] <- "Saura and Martínez-Millán (2000)"
 
 # nlm_mpd
 function_tibble[14,1] <- "nlm_mpd"
@@ -165,7 +165,7 @@ function_tibble[14,4] <- "Peitgen and Saupe (1988)"
 function_tibble[15,1] <- "nlm_randomrectangularcluster"
 function_tibble[15,2] <- "Simulates a random rectangular cluster neutral landscape model. The algorithm randomly distributes overlapping rectangles until the landscape is filled"
 function_tibble[15,3] <- "Figure 1o"
-function_tibble[15,3] <- "Gustafson and Parker (1992)"
+function_tibble[15,4] <- "Gustafson and Parker (1992)"
 
 kable(function_tibble) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))

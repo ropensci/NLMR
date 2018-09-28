@@ -1,10 +1,11 @@
 ____________________________________________________________________________________
 
-## nlmr 0.3.0 Release Notes
+## NLMR 0.3.1 Release Notes
 
-v0.3.0 was released on 26/03/2018
+- Minor bug fixes
+- Updated documentation
 
-### Changes
+## NLMR 0.3.0 Release Notes
 
 - successful review through rOpenSci
 - split package into two packages:
@@ -15,21 +16,13 @@ v0.3.0 was released on 26/03/2018
 - small bug fixes
 - `nlm_fBm` is now `nlm_fbm`
 
-## nlmr 0.2.1 Release Notes
-
-v0.2.1 was released on 13/02/2018
-
-### Changes
+## NLMR 0.2.1 Release Notes
 
 - Skip one test on CRAN to keep the Roboto font available
 - Function `util_facetplot` to plot a list of rasters as ggplot2 facet
 - Small updates to the webpage
 
-## nlmr 0.2 Release Notes
-
-v0.2 was released on 09/01/2018
-
-### Changes
+## NLMR 0.2 Release Notes
 
 - Small bug fixes
 - New neutral landscape models
@@ -41,10 +34,8 @@ v0.2 was released on 09/01/2018
 - We now have unit tests covering the main functionality of the package
 - Removed several packages as dependencies 
 
-## nlmr 0.1.0 Release Notes
+## NLMR 0.1.0 Release Notes
 
 v0.1.0 was released on 30/11/2017
 
-### Major changes
-
-First stable release of nlmr
+- First stable release of NLMR
