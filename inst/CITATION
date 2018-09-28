@@ -1,21 +1,21 @@
 year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
-citHeader("To cite nlmr in publications use:")
+citHeader("To cite NLMR in publications use:")
 
-citEntry(entry = "misc",
-  title        = "{nlmr}: Simulating neutral landscape models.",
-  author       = personList(as.person("Marco Sciaini"),
-                            as.person("Matthias Fritsch"),
-                            as.person("Cedric Scherer"),
-                            as.person("Craig E. Simpkins")),
-  year         = "2018",
-  note         = "R package version 0.3.0",
-  url          = "https://CRAN.R-project.org/package=NLMR",
+citEntry(entry = "Article",
+         title        = "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
+         author       = personList(as.person("Marco Sciaini"),
+                                   as.person("Matthias Fritsch"),
+                                   as.person("Cedric Scherer"),
+                                   as.person("Craig E. Simpkins")),
+         journal = "Methods in Ecololgy and Evolution",
+         volume = "00",
+         pages = "1--9",
+         year         = "2018",
+         url          = "https://doi.org/10.1111/2041-210X.13076",
 
-  textVersion  =
-  paste("Marco Sciaini, Matthias Fritsch, Cedric Scherer, Craig E. Simpkins (2018).",
-        "{nlmr}: Simulating neutral landscape models.",
-        "R package version 0.3.0.",
-        "URL https://CRAN.R-project.org/package=NLMR")
-)
+         textVersion  =
+           paste("Sciaini M, Fritsch M, Scherer C, Simpkins CE. NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. Methods in Ecololgy and Evolution. 2018; 00:1–9. https://doi.org/10.1111/2041-210X.13076)"
+           ))
+
