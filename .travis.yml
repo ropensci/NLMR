@@ -4,7 +4,7 @@ sudo: true
 dist: trusty
 cache: packages
 latex: false
-fortran: false
+fortran: true
 warnings_are_errors: false
 
 matrix:
@@ -19,9 +19,6 @@ matrix:
 r_packages:
 - abind
 - deldir
-- goftest
-- polyclip
-- tensor
 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
