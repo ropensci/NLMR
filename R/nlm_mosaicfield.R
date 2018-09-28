@@ -123,12 +123,12 @@ nlm_mosaicfield <- function(ncol,
     if (isTRUE(collect)) {
       names(mosaicfield_list) <- seq_along(mosaicfield_list)
       mosaicfield_list <-
-        purrr::map(seq_along(mosaicfield_list), function(i) {
+        lappy(seq_along(mosaicfield_list), function(i) {
           mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
         })
 
       mosaicfield_list <-
-        purrr::map(seq_along(mosaicfield_list), function(i) {
+        lapply(seq_along(mosaicfield_list), function(i) {
           # coerce spatstat image list to raster and set proper resolution ----
           mosaicfield_list[[i]] <- raster::rasterFromXYZ(
             as.data.frame(mosaicfield_list[[i]]))

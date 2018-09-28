@@ -41,7 +41,7 @@ To install the developmental version of **NLMR**, use the following R code:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("ropensci/NLMR", ref = "develop")
+devtools::install_github("ropensci/NLMR")
 ```
 
 ## Example

@@ -34,7 +34,7 @@ code:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ropensci/NLMR", ref = "develop")
+devtools::install_github("ropensci/NLMR")
 ```
 
 ## Example
