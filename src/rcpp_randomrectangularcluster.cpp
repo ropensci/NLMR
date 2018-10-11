@@ -12,7 +12,6 @@ inline bool is_still_na(NumericMatrix matrix);
 inline int mod(int divident, int divisor); // R-style molulo
 
 
-//' @export
 // [[Rcpp::export]]
 NumericMatrix rcpp_randomrectangularcluster(int ncol, int nrow, int minl, int maxl) {
 
