@@ -63,30 +63,11 @@ nlm_randomrectangularcluster <-
     checkmate::assert_true(minl <= maxl)
     checkmate::assert_logical(rescale)
 
-    # Create an empty matrix of correct dimensions ----
-    matrix <- matrix(NA, ncol, nrow)
-
-    # Keep applying random clusters until all elements have a value -----
-    while (any(is.na(matrix))) {
-      width <- sample(minl:maxl, 1)
-      height <- sample(minl:maxl, 1)
-
-      row <- sample(1:nrow, 1)
-      col <- sample(1:ncol, 1)
-
-      matrix[
-        if ( (row + width) < nrow) {
-          row:(row + width)
-        } else {
-          row:nrow
-        },
-        if ( (col + height) < ncol) {
-          col:(col + height)
-        } else {
-          col:ncol
-        }
-      ] <- stats::runif(1, 0, 1)
-    }
+    # Create the landscape matrix with rcpp_randomrectangularcluster  ----
+    matrix <- rcpp_randomrectangularcluster(ncol = ncol,
+                                            nrow = nrow,
+                                            minl = minl,
+                                            maxl = maxl)
 
     # Transform to raster ----
     rndreccluster_raster <- raster::raster(matrix)

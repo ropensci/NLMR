@@ -44,7 +44,8 @@ Imports:
     stats,
     tibble,
     fasterize,
-    sf
+    sf,
+    Rcpp
 URL: https://ropensci.github.io/NLMR/
 BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
@@ -55,4 +56,5 @@ Suggests:
     lintr,
     classInt,
     rasterVis
+LinkingTo: Rcpp
 VignetteBuilder: knitr

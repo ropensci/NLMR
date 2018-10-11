@@ -11,7 +11,8 @@
 #' handle the simulations.}
 #' }
 #'
-
+#' @useDynLib NLMR
+#' @importFrom Rcpp sourceCpp
 # nocov start
 # nolint start
 "_PACKAGE"
