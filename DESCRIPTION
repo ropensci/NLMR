@@ -14,7 +14,7 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
     person("Jeffrey", "Hollister", role = "rev",
        comment = "Jeffrey reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"),
-    person("Sebastian", "Hanss", role = "ctb",
+    person("Sebastian", "Hanß", role = "ctb",
        comment = "Reimplemented nlm_randomrectangularcluster in Rcpp"))
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
 Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
