@@ -33,8 +33,7 @@
 #'                                                           maxl = 10)
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(randomrectangular_cluster, margin = FALSE,
-#' par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(randomrectangular_cluster)
 #' }
 #'
 #' @aliases nlm_randomrectangularcluster

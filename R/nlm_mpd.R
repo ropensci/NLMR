@@ -51,8 +51,7 @@
 #'                                  roughness = 0.61)
 #'\dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(midpoint_displacememt, margin = FALSE,
-#' par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(midpoint_displacememt)
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
@@ -104,21 +103,21 @@ nlm_mpd <- function(ncol,
 
     # Diamond step  ----
     for (row in seq(1, size, by = half.side)) {
-      for (col in seq( (col + half.side) %% side.length, size, side.length)) {
+      for (col in seq( (row + half.side) %% side.length, size, side.length)) {
         avg <- mean(c(
-          mpd_raster[(row - half.side + size) %% size, col], # above
+          mpd_raster[(row - half.side) %% size, col], # above
           mpd_raster[(row + half.side) %% size, col], # below
           mpd_raster[row, (col + half.side) %% size], # right
           mpd_raster[row, (col - half.side) %% size] # left
         ))
         mpd_raster[row, col] <- avg + stats::rnorm(1, 0, rand_dev)
 
-        if (row == 0) {
-          mpd_raster[size - 1, col] <- avg
-        }
-        if (col == 0) {
-          mpd_raster[row, size - 1] <- avg
-        }
+        # if (row == 0) {
+        #   mpd_raster[size - 1, col] <- avg
+        # }
+        # if (col == 0) {
+        #   mpd_raster[row, size - 1] <- avg
+        # }
       }
     }
 

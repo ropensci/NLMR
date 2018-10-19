@@ -42,7 +42,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(gaussian_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(gaussian_field)
 #' }
 #'
 #' @aliases nlm_gaussianfield

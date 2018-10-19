@@ -39,7 +39,7 @@
 #'                                 collect = FALSE)
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(mosaic_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(mosaic_field)
 #' }
 #'
 #' @aliases nlm_mosaicfield

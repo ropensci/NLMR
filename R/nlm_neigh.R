@@ -54,7 +54,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(neigh_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(neigh_raster)
 #' }
 #'
 #' @aliases nlm_neigh

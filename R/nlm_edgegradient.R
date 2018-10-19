@@ -27,7 +27,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' rasterVis::levelplot(edge_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
+#' landscapetools::util_plot(edge_gradient)
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
