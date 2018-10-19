@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">NLMR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>NLMR Software Heritage</h1>
                         <h4 class="author">Marco Sciaini</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-10-19</h4>
       
       
       <div class="hidden name"><code>nlm_software_heritage.Rmd</code></div>
@@ -183,7 +183,7 @@
 <a class="sourceLine" id="cb2-23" data-line-number="23">  <span class="co"># In this use case we are interested in a categorical metric,</span></a>
 <a class="sourceLine" id="cb2-24" data-line-number="24">  <span class="co"># which is why we reclassify the continous result in three categories</span></a>
 <a class="sourceLine" id="cb2-25" data-line-number="25">  landscape &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/nlm_mosaictess.html">nlm_mosaictess</a></span>(<span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">germs =</span> <span class="dv">50</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_classify">util_classify</a></span>(<span class="kw">c</span>(<span class="fl">0.33</span>, <span class="fl">0.33</span>, <span class="fl">0.33</span>))</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_classify">util_classify</a></span>(<span class="dt">n =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27">  </a>
 <a class="sourceLine" id="cb2-28" data-line-number="28">  <span class="co"># We are interested in the Euclidean Nearest Neighbor Distance Distribution</span></a>
 <a class="sourceLine" id="cb2-29" data-line-number="29">  enn_value &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapemetrics/topics/lsm_l_enn_mn">lsm_l_enn_mn</a></span>(landscape) <span class="op">%&gt;%</span></a>
@@ -218,7 +218,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer, Sebastian Hanß.</p>
 </div>
 
 <div class="pkgdown">

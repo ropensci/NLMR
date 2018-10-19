@@ -47,7 +47,7 @@ Neutral landscapes are generated using fractional Brownian motion,
 fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(fbm_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(fbm_raster)
 }
 }
 \references{

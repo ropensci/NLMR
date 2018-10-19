@@ -37,7 +37,7 @@ random <- nlm_random(ncol = 200, nrow = 100)
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(random, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(random)
 }
 
 }

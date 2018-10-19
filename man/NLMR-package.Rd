@@ -34,6 +34,7 @@ Authors:
   \item Matthias Fritsch \email{matthias.fritsch@forst.uni-goettingen.de}
   \item Craig Simpkins \email{simpkinscraig063@gmail.com} (0000-0003-3212-1379)
   \item Cédric Scherer \email{cedricphilippscherer@gmail.com} (0000-0003-0465-2543)
+  \item Sebastian Hanß (0000-0002-3990-4897)
 }
 
 Other contributors:

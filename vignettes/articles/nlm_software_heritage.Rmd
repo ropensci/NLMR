@@ -84,7 +84,7 @@ while (n < 6) {
   # In this use case we are interested in a categorical metric,
   # which is why we reclassify the continous result in three categories
   landscape <- nlm_mosaictess(100, 100, germs = 50) %>%
-  util_classify(c(0.33, 0.33, 0.33))
+  util_classify(n = 3)
   
   # We are interested in the Euclidean Nearest Neighbor Distance Distribution
   enn_value <- lsm_l_enn_mn(landscape) %>%

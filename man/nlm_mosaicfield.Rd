@@ -52,7 +52,7 @@ mosaic_field <- nlm_mosaicfield(ncol = 100,
                                 collect = FALSE)
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(mosaic_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(mosaic_field)
 }
 
 }

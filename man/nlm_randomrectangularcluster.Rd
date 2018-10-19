@@ -35,14 +35,13 @@ for more details see Galerne & Goussea (2012).
 }
 \examples{
 # simulate random rectangular cluster
-randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
+randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 50,
                                                           nrow = 30,
                                                           minl = 5,
                                                           maxl = 10)
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(randomrectangular_cluster, margin = FALSE,
-par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(randomrectangular_cluster)
 }
 
 }

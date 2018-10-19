@@ -40,7 +40,7 @@ mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(mosaictess, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(mosaictess)
 }
 
 }

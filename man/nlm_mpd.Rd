@@ -65,8 +65,7 @@ midpoint_displacememt <- nlm_mpd(ncol = 100,
                                  roughness = 0.61)
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(midpoint_displacememt, margin = FALSE,
-par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(midpoint_displacememt)
 }
 }
 \references{

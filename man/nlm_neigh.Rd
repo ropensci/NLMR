@@ -67,7 +67,7 @@ neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(neigh_raster, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(neigh_raster)
 }
 
 }

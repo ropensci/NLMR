@@ -39,7 +39,7 @@ planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(planar_gradient, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(planar_gradient)
 }
 
 }

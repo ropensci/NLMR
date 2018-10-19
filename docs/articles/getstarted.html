@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NLMR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2018-09-28</h4>
+            <h4 class="date">2018-10-19</h4>
       
       
       <div class="hidden name"><code>getstarted.Rmd</code></div>
@@ -152,7 +152,7 @@
 <pre><code>nlm_modeltype(ncol, nrow, resolution, ...)</code></pre>
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">rasterVis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods">levelplot</a></span>(x, <span class="dt">margin =</span> <span class="ot">FALSE</span>, <span class="dt">par.settings =</span> <span class="kw">viridisTheme</span>())</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2">landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(x)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="merging-landscapes" class="section level2">
@@ -164,7 +164,7 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2">  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">                               <span class="dt">nrow =</span> <span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  rasterVis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods">levelplot</a></span>(pL, <span class="dt">margin =</span> <span class="ot">FALSE</span>, <span class="dt">par.settings =</span> <span class="kw">viridisTheme</span>())</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(pL)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">  <span class="co">#Create secondary landscape rasters</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,</a>
@@ -175,40 +175,29 @@
 <a class="sourceLine" id="cb4-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  mL1 &lt;-<span class="st"> </span>pL <span class="op">+</span><span class="st"> </span>(sL1 <span class="op">+</span><span class="st"> </span>sL2)</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  rasterVis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods">levelplot</a></span>(mL1, <span class="dt">margin =</span> <span class="ot">FALSE</span>, <span class="dt">par.settings =</span> <span class="kw">viridisTheme</span>())</a></code></pre></div>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(mL1)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
 <h2 class="hasAnchor">
 <a href="#classifying-categories" class="anchor"></a>Classifying categories</h2>
-<p>Landscape rasters generated by <code>NLMR</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code>. The number of classes and the proportion of the NLM raster assigned to each class is determined using a <code>weighting</code> vector. If the weighting vector does not sum to 1, the sum of the weightings is divided by the number of vector elements and these are used to define the class proportions. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>. The number of cells contained by each class can be calculated using <code>metric_area</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_randomcluster">nlm_randomcluster</a></span>(<span class="dt">ncol =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                              <span class="dt">nrow =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">                              <span class="dt">resolution =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">                              <span class="dt">neighbourhood =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">                              <span class="dt">p =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<pre><code>## Loading required namespace: igraph</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">breaks &lt;-<span class="st"> </span><span class="kw">classIntervals</span>(raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getValues">getValues</a></span>(nr), <span class="dt">n=</span><span class="dv">5</span>, <span class="dt">style=</span><span class="st">"jenks"</span>)</a></code></pre></div>
-<pre><code>## Warning in classIntervals(raster::getValues(nr), n = 5, style = "jenks"):
-## n greater than number of different finite values\nn reset to number of
-## different finite values</code></pre>
-<pre><code>## Warning in classIntervals(raster::getValues(nr), n = 5, style = "jenks"): n
-## same as number of different finite values\neach different finite value is a
-## separate class</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">cr &lt;-<span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/cut">cut</a></span>(nr, <span class="dt">breaks=</span>breaks<span class="op">$</span>brks, <span class="dt">include.lowest=</span>T)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">rasterVis<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rasterVis/topics/levelplot-methods">levelplot</a></span>(cr, <span class="dt">margin =</span> <span class="ot">FALSE</span>, <span class="dt">par.settings =</span> <span class="kw">viridisTheme</span>())</a></code></pre></div>
+<p>Landscape rasters generated by <code>NLMR</code> contain continuous values between 0 and 1, though these can be converted into categorical values using <code>util_classify</code> from <strong>landscapetools</strong>. By default classes are numerical starting from 1. If non-numerical levels are required, <code>level_names</code> can be specified. These classes can be plotted by selecting <code>discrete = TRUE</code> in <code>util_plot</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">nr &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_fbm">nlm_fbm</a></span>(<span class="dv">50</span>, <span class="dv">100</span>, <span class="dt">fract_dim =</span> <span class="fl">1.2</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                              </a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">nr_classified &lt;-<span class="st"> </span>landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_classify">util_classify</a></span>(nr, <span class="dt">n =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(nr_classified, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>##References</p>
 <div id="refs" class="references">
 <div id="ref-Etheringtonnlmr2015">
-<p>Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2014. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” <em>Methods in Ecology and Evolution</em> 6 (2): 164–68. <a href="https://doi.org/10.1111/2041-210X.12308" class="uri">https://doi.org/10.1111/2041-210X.12308</a>.</p>
+<p>Etherington, Thomas R., E. Penelope Holland, and David O’Sullivan. 2014. “NLMpy: A Python Software Package for the Creation of Neutral Landscape Models Within a General Numerical Framework.” <em>Methods in Ecology and Evolution</em> 6 (2): 164–68. <a href="https://doi.org/10.1111/2041-210X.12308">https://doi.org/10.1111/2041-210X.12308</a>.</p>
 </div>
 <div id="ref-Palmer1992">
-<p>Palmer, Michael W. 1992. “The Coexistence of Species in Fractal Landscapes.” <em>The American Naturalist</em> 139 (2): 375–97. <a href="https://doi.org/10.1086/285332" class="uri">https://doi.org/10.1086/285332</a>.</p>
+<p>Palmer, Michael W. 1992. “The Coexistence of Species in Fractal Landscapes.” <em>The American Naturalist</em> 139 (2): 375–97. <a href="https://doi.org/10.1086/285332">https://doi.org/10.1086/285332</a>.</p>
 </div>
 <div id="ref-Sciani2018">
-<p>Sciaini, Marco, Matthias Fritsch, Cédric Scherer, and Craig Eric Simpkins. 2018. “NLMR and Landscapetools: An Integrated Environment for Simulating and Modifying Neutral Landscape Models in R.” <em>Methods in Ecology and Evolution</em> 0 (0). <a href="https://doi.org/10.1111/2041-210X.13076" class="uri">https://doi.org/10.1111/2041-210X.13076</a>.</p>
+<p>Sciaini, Marco, Matthias Fritsch, Cédric Scherer, and Craig Eric Simpkins. 2018. “NLMR and Landscapetools: An Integrated Environment for Simulating and Modifying Neutral Landscape Models in R.” <em>Methods in Ecology and Evolution</em> 0 (0). <a href="https://doi.org/10.1111/2041-210X.13076">https://doi.org/10.1111/2041-210X.13076</a>.</p>
 </div>
 </div>
 </div>
@@ -230,7 +219,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer.</p>
+  <p>Developed by Marco Sciaini, Matthias Fritsch, Craig Simpkins, Cédric Scherer, Sebastian Hanß.</p>
 </div>
 
 <div class="pkgdown">

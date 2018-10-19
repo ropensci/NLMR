@@ -48,7 +48,7 @@ random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
                                      ai = c(0.25, 0.25, 0.5))
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(random_cluster, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(random_cluster)
 }
 
 }

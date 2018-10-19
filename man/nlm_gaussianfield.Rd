@@ -56,7 +56,7 @@ gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(gaussian_field, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(gaussian_field)
 }
 
 }

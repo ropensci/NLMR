@@ -56,7 +56,7 @@ mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
 
 \dontrun{
 # visualize the NLM
-rasterVis::levelplot(mosaicgibbs, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(mosaicgibbs)
 }
 
 }

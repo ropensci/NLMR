@@ -54,8 +54,8 @@ The amount of cells and hence dimension of the raster is given by the vector pro
                               wheyes = c(0.1, 0.05, 0.2)))
 \dontrun{
 # Visualize the NLMs
-rasterVis::levelplot(random_curdling, margin = FALSE, par.settings = rasterVis::viridisTheme())
-rasterVis::levelplot(wheyed_curdling, margin = FALSE, par.settings = rasterVis::viridisTheme())
+landscapetools::util_plot(random_curdling)
+landscapetools::util_plot(wheyed_curdling)
 }
 
 }
