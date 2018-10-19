@@ -20,12 +20,33 @@ knitr::opts_chunk$set(
 
 ### Core models
 
-<img src="https://raw.githubusercontent.com/ropensci/NLMR/develop/vignettes/articles/bestiary_full.png"  width="100%" />
+<img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" />
 
 ### Selection of possible merges
 
-```{r, , echo=FALSE, message=FALSE, dpi = 200, fig.align='center'}
-knitr::include_graphics("bestiary_merges.png")
+```{r, warning=FALSE, dpi = 200, fig.align='center'}
+
+# 1.
+edge_nlm <- nlm_edgegradient(100, 100)
+distance_nlm <- nlm_distancegradient(100, 100, origin = c(20, 20,10, 10))
+random_nlm <- nlm_random(100, 100)
+
+# 2.
+gauss_nlm <- nlm_gaussianfield(100, 100)
+rectan_nlm <- nlm_randomrectangularcluster(100, 100, maxl = 30, minl = 10)
+
+# 3.
+mosaic_nlm <- nlm_mosaicfield(100, 100)
+
+# 4.
+planar_nlm <- nlm_planargradient(100, 100)
+tess_nlm <- nlm_mosaictess(100, 100, germs = 200)
+
+# plot it
+landscapetools::util_facetplot(list("a" = landscapetools::util_merge(edge_nlm, list(distance_nlm, random_nlm)),
+                                    "b" = landscapetools::util_merge(gauss_nlm, rectan_nlm),
+                                    "c" = landscapetools::util_merge(mosaic_nlm, list(random_nlm)),
+                                    "d" = landscapetools::util_merge(planar_nlm, list(distance_nlm, tess_nlm))))
 ```
 
 ## Tips
