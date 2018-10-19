@@ -7,15 +7,15 @@ Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role 
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
        role =  "aut", comment = c(ORCID = '0000-0003-3212-1379')),
     person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", 
-       role =  c("aut"), comment = c(ORCID = '0000-0003-0465-2543')), 
+       role =  c("aut"), comment = c(ORCID = '0000-0003-0465-2543')),
+    person("Sebastian", "Hanß", role = "aut", comment = c(ORCID = '0000-0002-3990-4897')), 
     person("Laura", "Graham", role = "rev",
        comment = "Laura reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"),
     person("Jeffrey", "Hollister", role = "rev",
        comment = "Jeffrey reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"),
-    person("Sebastian", "Hanß", role = "ctb",
-       comment = "Reimplemented nlm_randomrectangularcluster in Rcpp"))
+    person("Sebastian", "Hanß", role = "aut")
 Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
 Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     <http://sci-hub.tw/10.1007/bf02275262>).  
@@ -56,7 +56,6 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    classInt,
-    rasterVis
+    landscapetools
 LinkingTo: Rcpp
 VignetteBuilder: knitr
