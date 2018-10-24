@@ -24,6 +24,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_neigh2
+NumericMatrix rcpp_neigh2(int nrow, int ncol, NumericMatrix mat, int cat, NumericVector no_cat, int neighbourhood, float p_neigh, float p_empty);
+RcppExport SEXP _NLMR_rcpp_neigh2(SEXP nrowSEXP, SEXP ncolSEXP, SEXP matSEXP, SEXP catSEXP, SEXP no_catSEXP, SEXP neighbourhoodSEXP, SEXP p_neighSEXP, SEXP p_emptySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
+    Rcpp::traits::input_parameter< int >::type ncol(ncolSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< int >::type cat(catSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type no_cat(no_catSEXP);
+    Rcpp::traits::input_parameter< int >::type neighbourhood(neighbourhoodSEXP);
+    Rcpp::traits::input_parameter< float >::type p_neigh(p_neighSEXP);
+    Rcpp::traits::input_parameter< float >::type p_empty(p_emptySEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_randomrectangularcluster
 NumericMatrix rcpp_randomrectangularcluster(int ncol, int nrow, int minl, int maxl);
 RcppExport SEXP _NLMR_rcpp_randomrectangularcluster(SEXP ncolSEXP, SEXP nrowSEXP, SEXP minlSEXP, SEXP maxlSEXP) {
@@ -41,6 +59,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_NLMR_rcpp_neigh", (DL_FUNC) &_NLMR_rcpp_neigh, 8},
+    {"_NLMR_rcpp_neigh2", (DL_FUNC) &_NLMR_rcpp_neigh2, 8},
     {"_NLMR_rcpp_randomrectangularcluster", (DL_FUNC) &_NLMR_rcpp_randomrectangularcluster, 4},
     {NULL, NULL, 0}
 };

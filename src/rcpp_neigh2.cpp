@@ -1,9 +1,9 @@
-#include <Rcpp.h>
+#include <RcppArmadillo.h>
 
 using namespace Rcpp;
 using namespace std;
 
-NumericMatrix rcpp_which(const NumericMatrix& X, int what) {
+NumericMatrix rcpp_which2(const NumericMatrix& X, int what) {
 
   int n_rows = X.nrow();
 
@@ -25,7 +25,7 @@ NumericMatrix rcpp_which(const NumericMatrix& X, int what) {
 }
 
 // [[Rcpp::export]]
-NumericMatrix rcpp_neigh(int nrow,
+NumericMatrix rcpp_neigh2(int nrow,
                          int ncol,
                          NumericMatrix mat,
                          int cat,
@@ -44,7 +44,7 @@ NumericMatrix rcpp_neigh(int nrow,
 
       NumericMatrix s;
 
-      s = rcpp_which(mat(Range(1, nrow), Range(1, ncol)), 0);
+      s = rcpp_which2(mat(Range(1, nrow), Range(1, ncol)), 0);
 
       int row_pos = as<int>(Rcpp::sample(s.nrow(), 1));
       int row = s(row_pos, 0) + 1;
@@ -91,7 +91,8 @@ NumericMatrix rcpp_neigh(int nrow,
         }
 
       } else {
-
+        arma::arma_rng::set_seed_random();
+        arma::vec rnd_num = arma::vec(arma::fill::randu);
         double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
 
         if (rnd_num < p_empty) {
@@ -123,6 +124,6 @@ p_empty = 0.2
 neighbourhood = 4
 mat <- matrix(0, nrow + 2, ncol + 2)
 no_cat <- rep(floor(nrow * ncol / categories), categories)
-table(rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty))
+table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty))
 */
 

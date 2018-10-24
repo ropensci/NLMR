@@ -5,6 +5,10 @@ rcpp_neigh <- function(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_e
     .Call('_NLMR_rcpp_neigh', PACKAGE = 'NLMR', nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)
 }
 
+rcpp_neigh2 <- function(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty) {
+    .Call('_NLMR_rcpp_neigh2', PACKAGE = 'NLMR', nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)
+}
+
 rcpp_randomrectangularcluster <- function(ncol, nrow, minl, maxl) {
     .Call('_NLMR_rcpp_randomrectangularcluster', PACKAGE = 'NLMR', ncol, nrow, minl, maxl)
 }

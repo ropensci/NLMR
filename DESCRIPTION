@@ -56,5 +56,5 @@ Suggests:
     rmarkdown,
     lintr,
     landscapetools
-LinkingTo: Rcpp, RcppArmadillo 
+LinkingTo: Rcpp, RcppArmadillo
 VignetteBuilder: knitr
