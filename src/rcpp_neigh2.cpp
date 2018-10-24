@@ -82,20 +82,18 @@ NumericMatrix rcpp_neigh2(int nrow,
 
       if (adjacent > 0){
 
-        double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
+        NumericVector rnd_num = wrap(vectorise(arma::mat(1,1, arma::fill::randu)));
 
-        if (rnd_num < p_neigh) {
+        if (rnd_num[0] < p_neigh) {
           mat(row, col) = cat;
           // Rcout << "The value of mat(row, col) : " << mat(row, col) << "\n";
           j++;
         }
 
       } else {
-        arma::arma_rng::set_seed_random();
-        arma::vec rnd_num = arma::vec(arma::fill::randu);
-        double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
+        NumericVector rnd_num = wrap(vectorise(arma::mat(1,1, arma::fill::randu)));
 
-        if (rnd_num < p_empty) {
+        if (rnd_num[0] < p_empty) {
           mat(row, col) = cat;
           // Rcout << "The value of mat(row, col) : " << mat(row, col) << "\n";
           j++;
@@ -117,13 +115,16 @@ NumericMatrix rcpp_neigh2(int nrow,
 /*** R
 categories = 15
 cat = categories - 1
-ncol = 300
-nrow = 300
+ncol = 30
+nrow = 30
 p_neigh = 0.6
 p_empty = 0.2
 neighbourhood = 4
 mat <- matrix(0, nrow + 2, ncol + 2)
 no_cat <- rep(floor(nrow * ncol / categories), categories)
-table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty))
+microbenchmark::microbenchmark(
+rcpp =  table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)),
+arma =  table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)),
+times = 100)
 */
 
