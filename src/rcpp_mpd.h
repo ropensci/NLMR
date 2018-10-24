@@ -2,7 +2,6 @@
 #define RCPP_MPD_H
 #include <Rcpp.h>
 #include <random>
-//[[Rcpp::plugins("cpp11")]]
 
 void mpd(std::vector<std::vector<double> > &mpd_raster,
          std::vector<double> &rand_dev_vec);
@@ -15,8 +14,7 @@ double diamond(const std::vector<std::vector<double> > &map,
                unsigned col, unsigned row, unsigned half_length);
 double square(const std::vector<std::vector<double> > &map,
                unsigned col, unsigned row, unsigned half_length);
-void make_autocorrellation_vec(std::vector<double> &rand_dev_vec,
-                                             unsigned size,
+std::vector<double> make_autocorrellation_vec(std::vector<double> &roughness_vec,
                                              double rand_dev,
-                                             double roughness);
+                                             unsigned size);
 #endif // RCPP_MPD_H

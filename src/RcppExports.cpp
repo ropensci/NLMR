@@ -6,16 +6,16 @@
 using namespace Rcpp;
 
 // rcpp_mpd
-Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector roughness_vec);
-RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP roughness_vecSEXP) {
+Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness);
+RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< unsigned >::type ncol(ncolSEXP);
     Rcpp::traits::input_parameter< unsigned >::type nrow(nrowSEXP);
     Rcpp::traits::input_parameter< double >::type rand_dev(rand_devSEXP);
-    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type roughness_vec(roughness_vecSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, roughness_vec));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rcpp_roughness(rcpp_roughnessSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, rcpp_roughness));
     return rcpp_result_gen;
 END_RCPP
 }

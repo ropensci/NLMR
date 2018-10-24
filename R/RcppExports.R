@@ -2,8 +2,8 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @export
-rcpp_mpd <- function(ncol, nrow, rand_dev, roughness_vec) {
-    .Call('_NLMR_rcpp_mpd', PACKAGE = 'NLMR', ncol, nrow, rand_dev, roughness_vec)
+rcpp_mpd <- function(ncol, nrow, rand_dev, rcpp_roughness) {
+    .Call('_NLMR_rcpp_mpd', PACKAGE = 'NLMR', ncol, nrow, rand_dev, rcpp_roughness)
 }
 
 #' @export

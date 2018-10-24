@@ -2,12 +2,13 @@
 #include <math.h> // log
 #include "rcpp_helper_functions.h"
 
+
 //[[Rcpp::plugins("cpp11")]]
 
 //' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
-                             double rand_dev, Rcpp::NumericVector roughness_vec) {
+                             double rand_dev, Rcpp::NumericVector rcpp_roughness) {
 
     // setup matrix ----
     // (width and height must be an odd number)
@@ -22,8 +23,8 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
 
     // setup random decay (and hence spatial autocorrelation) ----
     unsigned n_steps = static_cast<unsigned>(std::ceil(std::log2(mpd_raster_size - 1)));
-    std::vector<double> rand_dev_vec(roughness_vec.begin(), roughness_vec.end());
-    make_autocorrellation_vec(rand_dev_vec, n_steps, rand_dev, roughness_vec[0]);
+    std::vector<double> roughness_vec(rcpp_roughness.begin(), rcpp_roughness.end());
+    std::vector<double> rand_dev_vec = make_autocorrellation_vec(roughness_vec, rand_dev, n_steps);
 
     // the landscape generator ----
     mpd(mpd_raster, rand_dev_vec);
@@ -183,20 +184,20 @@ double square(const std::vector<std::vector<double> > &map,
     return (0.25 * (a + b + c + d));
 }
 
-void make_autocorrellation_vec(std::vector<double> &rand_dev_vec,
-                                             unsigned size,
-                                             double rand_dev,
-                                             double roughness)
+std::vector<double> make_autocorrellation_vec(std::vector<double> &roughness_vec,
+                                              double rand_dev,
+                                             unsigned size)
 {
-    if(rand_dev_vec.size() == 1) {
-        rand_dev_vec.resize(size);
-        rand_dev_vec[0] *= rand_dev;
+    std::vector<double> rand_dev_vec(size);
+    if(roughness_vec.size() == 1) {
+        rand_dev_vec[0] = rand_dev;
         for (int i = 1; i < size; i++) {
-            rand_dev_vec[i] = rand_dev_vec[i - 1] * roughness;
+            rand_dev_vec[i] = rand_dev_vec[i - 1] * roughness_vec[0];
         }
     } else {
-        for (auto &rand_dev_ : rand_dev_vec) {
-            rand_dev_ *= rand_dev;
+        for (int i = 0; i < size; i++) {
+            rand_dev_vec[i] = roughness_vec[i] * rand_dev;
         }
     }
+    return rand_dev_vec;
 }
