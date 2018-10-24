@@ -1,4 +1,6 @@
 #include <RcppArmadillo.h>
+#include <Rcpp.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 
 using namespace Rcpp;
 using namespace std;
@@ -82,7 +84,7 @@ NumericMatrix rcpp_neigh2(int nrow,
 
       if (adjacent > 0){
 
-        NumericVector rnd_num = wrap(vectorise(arma::mat(1,1, arma::fill::randu)));
+        arma::vec rnd_num = arma::randu<arma::vec>(1);
 
         if (rnd_num[0] < p_neigh) {
           mat(row, col) = cat;
@@ -91,7 +93,7 @@ NumericMatrix rcpp_neigh2(int nrow,
         }
 
       } else {
-        NumericVector rnd_num = wrap(vectorise(arma::mat(1,1, arma::fill::randu)));
+        arma::vec rnd_num = arma::randu<arma::vec>(1);
 
         if (rnd_num[0] < p_empty) {
           mat(row, col) = cat;
@@ -113,18 +115,18 @@ NumericMatrix rcpp_neigh2(int nrow,
 }
 
 /*** R
-categories = 15
+categories = 3
 cat = categories - 1
-ncol = 30
-nrow = 30
+ncol = 10
+nrow = 10
 p_neigh = 0.6
 p_empty = 0.2
 neighbourhood = 4
 mat <- matrix(0, nrow + 2, ncol + 2)
 no_cat <- rep(floor(nrow * ncol / categories), categories)
 microbenchmark::microbenchmark(
-rcpp =  table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)),
+rcpp =  table(rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)),
 arma =  table(rcpp_neigh2(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)),
-times = 100)
+times = 10)
 */
 
