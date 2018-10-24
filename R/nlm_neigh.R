@@ -102,7 +102,9 @@ nlm_neigh <-
     while (cat > 0) {
       j <- 0
 
-      while (j < no_cat[cat + 1]) {
+      ncat = no_cat[cat + 1]
+
+      while (j < ncat) {
         # Pick random cell within correct dimensions and with value 0 ----
         s <-
           which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
@@ -132,7 +134,8 @@ nlm_neigh <-
                         # lower left
                         matrix[row + 1, col],
                         # lower
-                        matrix[row + 1, col + 1]) # lower right
+                        matrix[row + 1, col + 1])
+                        # lower right
         }
 
         if (sum(adjacent, na.rm = TRUE) > 0) {
