@@ -21,12 +21,6 @@ NumericMatrix rcpp_neigh(int nrow,
 
         while (n_cells > 0) {
 
-            // NumericMatrix s = rcpp_which(mat(Range(1, nrow),
-            //                                  Range(1, ncol)), 0);
-
-            //int row_pos = as<int>(Rcpp::sample(s.nrow(), 1));
-            //            int row = s(row_pos, 0) + 1; // why + 1 ?
-            //            int col = s(row_pos, 1) + 1;
             assert(!cell_index.empty());
             int col = cell_index.back().first;
             int row = cell_index.back().second;
@@ -77,6 +71,7 @@ NumericMatrix rcpp_neigh(int nrow,
             } else {
 
                 double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
+                // arma::vec rnd_num = arma::randu<arma::vec>(1);
 
                 if (rnd_num < p_empty) {
                     mat(row, col) = cat;
@@ -114,27 +109,6 @@ std::vector<std::pair<int, int> > random_cell_indecies(int ncol, int nrow, int o
 
     return cell_index;
 }
-
-//NumericMatrix rcpp_which(const NumericMatrix& X, int what) {
-
-//    int n_rows = X.nrow();
-
-//    NumericVector rows(0);
-//    NumericVector cols(0);
-
-//    for(int ii = 0; ii < n_rows * n_rows; ii++)
-//    {
-//        if(X[ii] == what)
-//        {
-//            rows.push_back(ii % n_rows); // rows.push_back(ii % n_rows + 1);
-//            cols.push_back(floor(ii / n_rows)); // cols.push_back(floor(ii / n_rows) + 1);
-//        }
-//    }
-//    NumericMatrix out (rows.size(), 2);
-//    out(_,0) = rows; out(_,1)=cols;
-//    return out;
-
-//}
 
 /*** R
 categories = 15
