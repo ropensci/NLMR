@@ -1,5 +1,14 @@
 ____________________________________________________________________________________
 
+## NLMR 0.4 Release Notes
+
+- Rcpp stuff
+- xxx
+
+## NLMR 0.3.2 Release Notes
+
+- Update citation 
+
 ## NLMR 0.3.1 Release Notes
 
 - Minor bug fixes
