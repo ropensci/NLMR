@@ -49,7 +49,7 @@
 #'
 #' @examples
 #' # simulate neighborhood model
-#' neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.3,
+#' neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.03,
 #'                     categories = 5, neighbourhood = 4)
 #'
 #' \dontrun{
@@ -85,13 +85,13 @@ nlm_neigh <-
 
     if (!is.na(proportions)) checkmate::assert_true(sum(proportions) == 1)
 
-    # Determine cells per categorie
+    # Determine cells per category
     # -1 because remaining cells are category
     cat <- categories - 1
     if (is.double(proportions)) {
-      no_cat <- proportions * nrow * ncol
+      cells_per_cat <- proportions * nrow * ncol
     } else {
-      no_cat <- rep(floor(nrow * ncol / categories), cat + 1)
+      cells_per_cat <- rep(floor(nrow * ncol / categories), cat + 1)
     }
 
     # Create an empty matrix of correct dimensions + additional 2 rows and
@@ -102,9 +102,7 @@ nlm_neigh <-
     while (cat > 0) {
       j <- 0
 
-      ncat = no_cat[cat + 1]
-
-      while (j < ncat) {
+      while (j < cells_per_cat[cat + 1]) {
         # Pick random cell within correct dimensions and with value 0 ----
         s <-
           which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
@@ -134,8 +132,7 @@ nlm_neigh <-
                         # lower left
                         matrix[row + 1, col],
                         # lower
-                        matrix[row + 1, col + 1])
-                        # lower right
+                        matrix[row + 1, col + 1]) # lower right
         }
 
         if (sum(adjacent, na.rm = TRUE) > 0) {
