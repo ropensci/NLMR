@@ -5,7 +5,6 @@
 
 //[[Rcpp::plugins("cpp11")]]
 
-//' @export
 // [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
                              double rand_dev, Rcpp::NumericVector rcpp_roughness) {

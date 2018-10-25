@@ -8,7 +8,6 @@ using namespace Rcpp;
 
 //[[Rcpp::plugins("cpp11")]]
 
-//' @export
 // [[Rcpp::export]]
 NumericMatrix rcpp_randomrectangularcluster(int ncol, int nrow, int minl, int maxl) {
 

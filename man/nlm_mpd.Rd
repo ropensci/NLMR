@@ -62,7 +62,7 @@ is reduced.
 # simulate midpoint displacement
 midpoint_displacememt <- nlm_mpd(ncol = 100,
                                  nrow = 100,
-                                 roughness = 0.61)
+                                 roughness = 0.3)
 \dontrun{
 # visualize the NLM
 landscapetools::util_plot(midpoint_displacememt)

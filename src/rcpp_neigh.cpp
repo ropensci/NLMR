@@ -1,6 +1,7 @@
 #include "rcpp_neigh.h"
 using namespace Rcpp;
 using namespace std;
+#include <random> // mersenne twister
 
 // [[Rcpp::export]]
 NumericMatrix rcpp_neigh(int nrow,
@@ -14,6 +15,8 @@ NumericMatrix rcpp_neigh(int nrow,
 
     std::vector<std::pair<int, int> > cell_index =
             random_cell_indecies(ncol, nrow, 1);
+    std::uniform_real_distribution<double> random_unif(0, 1);
+    std::mt19937 mt;
 
     for (int cat = n_categories; cat >= 0; cat--)
     {
@@ -57,7 +60,7 @@ NumericMatrix rcpp_neigh(int nrow,
 
             if (adjacent > 0) {
 
-                double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
+                double rnd_num = random_unif(mt);
 
                 if (rnd_num < p_neigh) {
                     mat(row, col) = cat;
@@ -65,13 +68,12 @@ NumericMatrix rcpp_neigh(int nrow,
                     n_cells--;
                     cell_index.pop_back();
                 } else {
-                    std::random_shuffle(cell_index.begin(), cell_index.end());
+                    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
                 }
 
             } else {
 
-                double rnd_num = Rcpp::as<double>(Rcpp::runif(1));
-                // arma::vec rnd_num = arma::randu<arma::vec>(1);
+                double rnd_num = random_unif(mt);
 
                 if (rnd_num < p_empty) {
                     mat(row, col) = cat;
@@ -79,7 +81,7 @@ NumericMatrix rcpp_neigh(int nrow,
                     n_cells--;
                     cell_index.pop_back();
                 } else {
-                    std::random_shuffle(cell_index.begin(), cell_index.end());
+                    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
                 }
 
             }
@@ -105,10 +107,12 @@ std::vector<std::pair<int, int> > random_cell_indecies(int ncol, int nrow, int o
             cntr++;
         }
     }
-    std::random_shuffle(cell_index.begin(), cell_index.end());
+
+    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
 
     return cell_index;
 }
+
 
 /*** R
 categories = 15

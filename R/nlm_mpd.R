@@ -94,7 +94,7 @@ nlm_mpd <- function(ncol,
   }
 
   if (verbose == TRUE) {
-    message("Warning: nlm_mpd has changed the dimensions of the RasterLayer, so that fits in the dimension 2^n+1")
+    warning("nlm_mpd changes the dimensions of the RasterLayer if even ncols/nrows are choosen.")
   }
 
   return(mpd_raster)

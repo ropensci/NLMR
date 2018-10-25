@@ -13,7 +13,6 @@ vignette: >
 ```{r global_options, include=FALSE}
 library(raster)
 library(NLMR)
-library(rasterVis)
 ```
 
 `NLMR` is a `R` package designed to generate neutral landscape models (NLMs), 
