@@ -96,70 +96,14 @@ nlm_neigh <-
 
     # Create an empty matrix of correct dimensions + additional 2 rows and
     # columns ----
-    matrix <- matrix(0, nrow + 2, ncol + 2)
+    mat <- matrix(0, nrow + 2, ncol + 2)
 
     # Keep applying random clusters until all elements have a value -----
-    while (cat > 0) {
-      j <- 0
-
-      while (j < no_cat[cat + 1]) {
-        # Pick random cell within correct dimensions and with value 0 ----
-        s <-
-          which(matrix[2:(nrow + 1), 2:(ncol + 1)] == 0, arr.ind = TRUE)
-        s <- s[sample(nrow(s), 1), ]
-        row <- as.integer(s[1]) + 1
-        col <- as.integer(s[2]) + 1
-
-        # Check neighbourhood of that cell ----
-        if (neighbourhood == 4) {
-          adjacent <- c(matrix[row - 1, col], # upper
-                        matrix[row, col - 1], # left
-                        matrix[row, col + 1], # right
-                        matrix[row + 1, col]) # lower
-        }
-        if (neighbourhood == 8) {
-          adjacent <- c(matrix[row - 1, col - 1],
-                        # upper left
-                        matrix[row - 1, col],
-                        # upper
-                        matrix[row - 1, col + 1],
-                        # upper right
-                        matrix[row, col - 1],
-                        # left
-                        matrix[row, col + 1],
-                        # right
-                        matrix[row + 1, col - 1],
-                        # lower left
-                        matrix[row + 1, col],
-                        # lower
-                        matrix[row + 1, col + 1]) # lower right
-        }
-
-        if (sum(adjacent, na.rm = TRUE) > 0) {
-          if (stats::runif(1, 0, 1) < p_neigh) {
-            matrix[row, col] <- cat
-            j <- j + 1
-          }
-        } else {
-          if (stats::runif(1, 0, 1) < p_empty) {
-            matrix[row, col] <- cat
-            j <- j + 1
-          }
-        }
-
-        # Update boundary conditions
-        matrix[1, ]         <- matrix[nrow + 1, ]
-        matrix[nrow + 2, ]  <- matrix[2, ]
-        matrix[, 1]         <- matrix[, ncol + 1]
-        matrix[, ncol + 2]  <- matrix[, 2]
-      } # close while j
-
-      cat <- cat - 1
-    } # close while i
+    mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)
 
     # Cut additional cells and transform to raster ----
-    rndneigh_raster <- raster::raster(matrix[1:nrow + 1,
-                                             1:ncol + 1])
+    rndneigh_raster <- raster::raster(mat[1:nrow + 1,
+                                          1:ncol + 1])
 
     # specify resolution ----
     raster::extent(rndneigh_raster) <- c(0,
@@ -173,4 +117,4 @@ nlm_neigh <-
     }
 
     return(rndneigh_raster)
-}
+  }
