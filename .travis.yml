@@ -10,11 +10,14 @@ warnings_are_errors: false
 matrix:
   include:
     - os: linux
-    - os: osx
-      osx_image: xcode9.2
-      before_install:
-        - brew install curl
-        - brew link --force curl
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"rce curl
 
 r_packages:
 - abind
