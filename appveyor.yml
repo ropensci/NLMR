@@ -15,6 +15,7 @@ cache:
 
 # Adapt as necessary starting from here
 environment:
+  PKGTYPE: source
   USE_RTOOLS: true
 
 build_script:
