@@ -46,7 +46,8 @@ Imports:
     tibble,
     fasterize,
     sf,
-    Rcpp
+    Rcpp,
+    Rcpp11
 URL: https://ropensci.github.io/NLMR/
 BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
@@ -56,5 +57,5 @@ Suggests:
     rmarkdown,
     lintr,
     landscapetools
-LinkingTo: Rcpp, RcppArmadillo
+LinkingTo: Rcpp, Rcpp11
 VignetteBuilder: knitr
