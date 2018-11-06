@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -qq install gcc   
   - mkdir ~/.R
-  - echo -e "CXXFLAGS += -Ofast -march=native\nCXX_STD = CXX11\nMAKE = make -j8" > ~/.R/Makevars
+  - echo -e "CXXFLAGS = -Ofast -march=native -std=c++11\nMAKE = make -j8" > ~/.R/Makevars
 
 
 after_success:
