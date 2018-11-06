@@ -112,7 +112,7 @@ specified. These classes can be plotted by selecting `discrete = TRUE` in
 ```{r fig.height=7, fig.width=7, fig.align='center'}
 nr <- NLMR::nlm_fbm(50, 100, fract_dim = 1.2)
                               
-nr_classified <- landscapetools::util_classify(nr, n = 5)
+nr_classified <- landscapetools::util_classify(nr, weightings = c(0.3, 0.3, 0.3))
 
 landscapetools::util_plot(nr_classified, discrete = TRUE)
 ```
