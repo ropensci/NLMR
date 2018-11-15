@@ -11,12 +11,13 @@ NumericMatrix rcpp_neigh(int nrow,
                          NumericVector cells_per_cat,
                          int neighbourhood,
                          float p_neigh,
-                         float p_empty) {
+                         float p_empty,
+                         unsigned long seed) {
 
+    // get a random number as seed from R
+    mt.seed(seed);
     std::vector<std::pair<int, int> > cell_index =
             random_cell_indecies(ncol, nrow, 1);
-    std::uniform_real_distribution<double> random_unif(0, 1);
-    std::mt19937 mt;
 
     for (int cat = n_categories; cat >= 0; cat--)
     {

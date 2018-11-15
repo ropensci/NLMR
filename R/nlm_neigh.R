@@ -99,7 +99,8 @@ nlm_neigh <-
     mat <- matrix(0, nrow + 2, ncol + 2)
 
     # Keep applying random clusters until all elements have a value -----
-    mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty)
+    seed <- sample.int(.Machine$integer.max, 1)
+    mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty, seed)
 
     # Cut additional cells and transform to raster ----
     rndneigh_raster <- raster::raster(mat[1:nrow + 1,

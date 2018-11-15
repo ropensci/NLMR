@@ -63,10 +63,12 @@ nlm_randomrectangularcluster <-
     checkmate::assert_logical(rescale)
 
     # Create the landscape matrix with rcpp_randomrectangularcluster  ----
+    seed <- sample.int(.Machine$integer.max, 1)
     matrix <- rcpp_randomrectangularcluster(ncol = ncol,
                                             nrow = nrow,
                                             minl = minl,
-                                            maxl = maxl)
+                                            maxl = maxl,
+                                            seed)
 
     # Transform to raster ----
     rndreccluster_raster <- raster::raster(matrix)

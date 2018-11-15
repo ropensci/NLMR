@@ -4,7 +4,7 @@
 #include <random>
 
 void mpd(std::vector<std::vector<double> > &mpd_raster,
-         std::vector<double> &rand_dev_vec);
+         std::vector<double> &rand_dev_vec, unsigned long seed = 0);
 
 void diamond_step(unsigned side_length, double rand_dev,
                   std::vector<std::vector<double> > &map, std::mt19937 &mt);

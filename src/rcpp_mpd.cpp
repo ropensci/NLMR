@@ -1,5 +1,6 @@
 #include "rcpp_mpd.h"
 #include <math.h> // log
+#include <limits>
 #include "rcpp_helper_functions.h"
 
 
@@ -7,7 +8,7 @@
 
 // [[Rcpp::export]]
 Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
-                             double rand_dev, Rcpp::NumericVector rcpp_roughness) {
+                             double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed) {
 
     // setup matrix ----
     // (width and height must be an odd number)
@@ -25,8 +26,9 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
     std::vector<double> roughness_vec(rcpp_roughness.begin(), rcpp_roughness.end());
     std::vector<double> rand_dev_vec = make_autocorrellation_vec(roughness_vec, rand_dev, n_steps);
 
+    // get a random number as seed from R
     // the landscape generator ----
-    mpd(mpd_raster, rand_dev_vec);
+    mpd(mpd_raster, rand_dev_vec, seed);
 
     // prepare everything for R ----
     Rcpp::NumericMatrix rcpp_mpd_raster(mpd_raster_size, mpd_raster_size);
@@ -40,9 +42,10 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
 }
 
 void mpd(std::vector<std::vector<double> > &mpd_raster,
-         std::vector<double> &rand_dev_vec)
+         std::vector<double> &rand_dev_vec, unsigned long seed)
 {
     std::mt19937 mt;
+    mt.seed(seed);
     std::uniform_real_distribution<double> runif(0, 1);
     auto matrix_size = mpd_raster.size();
     unsigned n_steps = static_cast<unsigned>(std::ceil(std::log2(matrix_size - 1)));
