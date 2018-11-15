@@ -1,6 +1,5 @@
 ## Version update
-
-Minor update with bugfixes and improvements on the documentation.
+Some functions refactored in Rcpp, some minor bugfixes.
 
 ## Test environments
 

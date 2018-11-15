@@ -9,14 +9,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  cache = TRUE
-)
-```
-
 As the ever growing R package environment can be a rough terrain to navigate and find the appropriate tools to achieve one's goals, this vignette is meant to point out some ways to overcome initial problems with visualizing neutral landscape models or more general raster data. This is probably a heavily biased view on packages and functions and I am sure there are other good R packages out there to achieve the same (if so - feel free to point that out to me and I will include it!). However, I am also sure this collection can at least be a kickstart for quickly visualizing your results and help you to communicate them.
 
 ## Static plots
@@ -114,7 +106,7 @@ plot(landscape)
 
 ### Perspective plot
 
-```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("raster")
 library("NLMR")
 landscape <- nlm_fbm(ncol = 50, nrow = 50, fract_dim = 1.3)
@@ -132,7 +124,7 @@ persp(landscape,
 
 ### Contour plots
 
-```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("rasterVis")
 
@@ -152,7 +144,7 @@ levelplot(landscape,
 
 ### rgl + rasterVis
 
-```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("rgl")
 library("rasterVis")
 library("viridis")
@@ -165,7 +157,6 @@ plot3D(landscape,
        col=colorRampPalette(magma(11)))
 
 rglwidget()
-
 ```
 
 
@@ -197,3 +188,95 @@ plot_ly(z = as.matrix(landscape_matrix), type = "surface", colors = viridis::mag
 
 
 
+### rayshader
+```{r fig.height=7, fig.width=7, eval=FALSE}
+library(rayshader)
+library(NLMR)
+library(raster)
+library(rgl)
+
+set.seed(123)
+
+landscape <- nlm_mpd(1000, 1000, roughness = 0.6, rescale = FALSE) * 500
+landscape <- raster::focal(landscape, w=matrix(1, 31, 31), mean, pad = TRUE, padValue=0)
+landscape <- raster::as.matrix(landscape)
+
+shadow = ray_shade(landscape,
+                   zscale=1,
+                   lambert=FALSE)
+amb = ambient_shade(landscape,
+                    zscale=1,
+                    sunbreaks = 15, 
+                    maxsearch = 100)
+
+landscape %>%
+  sphere_shade(zscale=5,texture = "imhof1") %>% 
+  add_water(detect_water(landscape, min_area = 4000)) %>%
+  add_shadow(shadow,0.7) %>%
+  add_shadow(amb) %>%
+  add_shadow(lamb_shade(landscape)) %>%
+  plot_3d(landscape,
+          zscale=5,
+          fov=0,
+          theta=-45,
+          phi=45,
+          windowsize=c(1200,1200),
+          zoom=1.2,
+          water=TRUE, 
+          wateralpha = 0.8,
+          watercolor = "lightblue",
+          waterlinecolor = "white",
+          waterlinealpha = 0.3,
+          solid = FALSE) 
+```
+![](rayshader.gif)
+
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center',results='hide',fig.keep='all'}
+library(rayshader)
+library(NLMR)
+library(raster)
+library(rgl)
+
+set.seed(123)
+
+landscape <- nlm_mpd(1000, 1000, roughness = 0.6, rescale = FALSE) * 500
+landscape <- raster::focal(landscape, w=matrix(1, 31, 31), mean, pad = TRUE, padValue=0)
+landscape <- raster::as.matrix(landscape)
+
+shadow = ray_shade(landscape,
+                   zscale=1,
+                   lambert=FALSE)
+amb = ambient_shade(landscape,
+                    zscale=1,
+                    sunbreaks = 15, 
+                    maxsearch = 100)
+
+landscape %>%
+  sphere_shade(zscale=5,texture = "imhof1") %>% 
+  add_water(detect_water(landscape, min_area = 4000)) %>%
+  add_shadow(shadow,0.7) %>%
+  add_shadow(amb) %>%
+  add_shadow(lamb_shade(landscape)) %>%
+  plot_3d(landscape,
+          zscale = 5,
+          fov = 0,
+          theta = -45,
+          phi = 45,
+          windowsize = c(1200, 1200),
+          zoom = 1.2,
+          water = TRUE,
+          wateralpha = 0.8,
+          watercolor = "lightblue",
+          waterlinecolor = "white",
+          waterlinealpha = 0.3,
+          solid = TRUE,
+          solidcolor = "grey75")
+
+render_depth(
+  focallength = 30,
+  fstop = 2,
+  bokehshape = "hex",
+  bokehintensity = 5,
+  progbar = FALSE
+)
+```

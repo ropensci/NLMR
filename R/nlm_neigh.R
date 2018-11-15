@@ -49,7 +49,7 @@
 #'
 #' @examples
 #' # simulate neighborhood model
-#' neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.1, p_empty = 0.001,
+#' neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.7, p_empty = 0.1,
 #'                     categories = 5, neighbourhood = 4)
 #'
 #' \dontrun{

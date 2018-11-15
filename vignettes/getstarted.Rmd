@@ -70,8 +70,6 @@ x <- NLMR::nlm_random(20,20)
 landscapetools::util_plot(x)
 ```
 
-
-
 ## Merging landscapes
 
 Multiple NLM rasters can be merged or merged together to create new landscape 
