@@ -75,7 +75,8 @@ nlm_mpd <- function(ncol,
   checkmate::assert_logical(rescale)
 
   # create the landscape with rcpp_mpd ----
-  mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness)
+  seed <- sample.int(.Machine$integer.max, 1)
+  mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed)
 
   # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)

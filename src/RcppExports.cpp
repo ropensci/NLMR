@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // rcpp_mpd
-Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness);
-RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP) {
+Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed);
+RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -15,13 +15,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< unsigned >::type nrow(nrowSEXP);
     Rcpp::traits::input_parameter< double >::type rand_dev(rand_devSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rcpp_roughness(rcpp_roughnessSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, rcpp_roughness));
+    Rcpp::traits::input_parameter< unsigned long >::type seed(seedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, rcpp_roughness, seed));
     return rcpp_result_gen;
 END_RCPP
 }
 // rcpp_neigh
-NumericMatrix rcpp_neigh(int nrow, int ncol, NumericMatrix mat, int n_categories, NumericVector cells_per_cat, int neighbourhood, float p_neigh, float p_empty);
-RcppExport SEXP _NLMR_rcpp_neigh(SEXP nrowSEXP, SEXP ncolSEXP, SEXP matSEXP, SEXP n_categoriesSEXP, SEXP cells_per_catSEXP, SEXP neighbourhoodSEXP, SEXP p_neighSEXP, SEXP p_emptySEXP) {
+NumericMatrix rcpp_neigh(int nrow, int ncol, NumericMatrix mat, int n_categories, NumericVector cells_per_cat, int neighbourhood, float p_neigh, float p_empty, unsigned long seed);
+RcppExport SEXP _NLMR_rcpp_neigh(SEXP nrowSEXP, SEXP ncolSEXP, SEXP matSEXP, SEXP n_categoriesSEXP, SEXP cells_per_catSEXP, SEXP neighbourhoodSEXP, SEXP p_neighSEXP, SEXP p_emptySEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -33,13 +34,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type neighbourhood(neighbourhoodSEXP);
     Rcpp::traits::input_parameter< float >::type p_neigh(p_neighSEXP);
     Rcpp::traits::input_parameter< float >::type p_empty(p_emptySEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_neigh(nrow, ncol, mat, n_categories, cells_per_cat, neighbourhood, p_neigh, p_empty));
+    Rcpp::traits::input_parameter< unsigned long >::type seed(seedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_neigh(nrow, ncol, mat, n_categories, cells_per_cat, neighbourhood, p_neigh, p_empty, seed));
     return rcpp_result_gen;
 END_RCPP
 }
 // rcpp_randomrectangularcluster
-NumericMatrix rcpp_randomrectangularcluster(int ncol, int nrow, int minl, int maxl);
-RcppExport SEXP _NLMR_rcpp_randomrectangularcluster(SEXP ncolSEXP, SEXP nrowSEXP, SEXP minlSEXP, SEXP maxlSEXP) {
+NumericMatrix rcpp_randomrectangularcluster(int ncol, int nrow, int minl, int maxl, unsigned long seed);
+RcppExport SEXP _NLMR_rcpp_randomrectangularcluster(SEXP ncolSEXP, SEXP nrowSEXP, SEXP minlSEXP, SEXP maxlSEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -47,15 +49,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
     Rcpp::traits::input_parameter< int >::type minl(minlSEXP);
     Rcpp::traits::input_parameter< int >::type maxl(maxlSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_randomrectangularcluster(ncol, nrow, minl, maxl));
+    Rcpp::traits::input_parameter< unsigned long >::type seed(seedSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_randomrectangularcluster(ncol, nrow, minl, maxl, seed));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_NLMR_rcpp_mpd", (DL_FUNC) &_NLMR_rcpp_mpd, 4},
-    {"_NLMR_rcpp_neigh", (DL_FUNC) &_NLMR_rcpp_neigh, 8},
-    {"_NLMR_rcpp_randomrectangularcluster", (DL_FUNC) &_NLMR_rcpp_randomrectangularcluster, 4},
+    {"_NLMR_rcpp_mpd", (DL_FUNC) &_NLMR_rcpp_mpd, 5},
+    {"_NLMR_rcpp_neigh", (DL_FUNC) &_NLMR_rcpp_neigh, 9},
+    {"_NLMR_rcpp_randomrectangularcluster", (DL_FUNC) &_NLMR_rcpp_randomrectangularcluster, 5},
     {NULL, NULL, 0}
 };
 
