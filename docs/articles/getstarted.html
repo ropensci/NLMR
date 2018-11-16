@@ -109,7 +109,7 @@
       <h1>Basic Usage of NLMR</h1>
                         <h4 class="author">Marco Sciaini &amp; Craig E.Simpkins</h4>
             
-            <h4 class="date">2018-11-15</h4>
+            <h4 class="date">2018-11-16</h4>
       
       
       <div class="hidden name"><code>getstarted.Rmd</code></div>
@@ -152,7 +152,7 @@
 <pre><code>nlm_modeltype(ncol, nrow, resolution, ...)</code></pre>
 <p>For example, to produce a simple random neutral landscape one could use the following code:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_random">nlm_random</a></span>(<span class="dv">20</span>,<span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(x)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">plot</span>(x)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="merging-landscapes" class="section level2">
@@ -164,7 +164,7 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2">  pL &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_edgegradient">nlm_edgegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">                               <span class="dt">nrow =</span> <span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(pL)</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="kw">plot</span>(pL)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">  <span class="co">#Create secondary landscape rasters</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  sL1 &lt;-<span class="st"> </span>NLMR<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/NLMR/topics/nlm_distancegradient">nlm_distancegradient</a></span>(<span class="dt">ncol =</span> <span class="dv">100</span>,</a>
@@ -175,7 +175,7 @@
 <a class="sourceLine" id="cb4-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">  mL1 &lt;-<span class="st"> </span>pL <span class="op">+</span><span class="st"> </span>(sL1 <span class="op">+</span><span class="st"> </span>sL2)</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(mL1)</a></code></pre></div>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="kw">plot</span>(mL1)</a></code></pre></div>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="classifying-categories" class="section level2">
@@ -186,7 +186,16 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2">                              </a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">nr_classified &lt;-<span class="st"> </span>landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_classify">util_classify</a></span>(nr, <span class="dt">weighting =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>))</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">landscapetools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/landscapetools/topics/util_plot">util_plot</a></span>(nr_classified, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">plot</span>(nr_classified, <span class="dt">discrete =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## Warning in plot.window(...): "discrete" is not a graphical parameter</code></pre>
+<pre><code>## Warning in plot.xy(xy, type, ...): "discrete" is not a graphical parameter</code></pre>
+<pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): "discrete" is
+## not a graphical parameter
+
+## Warning in axis(side = side, at = at, labels = labels, ...): "discrete" is
+## not a graphical parameter</code></pre>
+<pre><code>## Warning in box(...): "discrete" is not a graphical parameter</code></pre>
+<pre><code>## Warning in title(...): "discrete" is not a graphical parameter</code></pre>
 <p><img src="getstarted_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>##References</p>
 <div id="refs" class="references">

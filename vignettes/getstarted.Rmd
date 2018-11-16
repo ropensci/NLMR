@@ -67,7 +67,7 @@ following code:
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
 x <- NLMR::nlm_random(20,20)
-landscapetools::util_plot(x)
+plot(x)
 ```
 
 ## Merging landscapes
@@ -84,7 +84,7 @@ The `util_merge` function is used to merge the rasters as in the example below:
   pL <- NLMR::nlm_edgegradient(ncol = 100,
                                nrow = 100)
 
-  landscapetools::util_plot(pL)
+  plot(pL)
 
   #Create secondary landscape rasters
   sL1 <- NLMR::nlm_distancegradient(ncol = 100,
@@ -95,7 +95,7 @@ The `util_merge` function is used to merge the rasters as in the example below:
 
   mL1 <- pL + (sL1 + sL2)
   
-  landscapetools::util_plot(mL1)
+  plot(mL1)
 ```
 
 ## Classifying categories
@@ -112,7 +112,7 @@ nr <- NLMR::nlm_fbm(50, 100, fract_dim = 1.2)
                               
 nr_classified <- landscapetools::util_classify(nr, weighting = c(0.3, 0.3, 0.3))
 
-landscapetools::util_plot(nr_classified, discrete = TRUE)
+plot(nr_classified, discrete = TRUE)
 ```
 
 ##References
