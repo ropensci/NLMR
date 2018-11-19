@@ -1,9 +1,10 @@
 ## Version update
+
 Some functions refactored in Rcpp, some minor bugfixes.
 
 ## Test environments
 
-* local Ubuntu Linux 16.04 LTS install
+* local Ubuntu Linux 18.10 LTS install
 * Ubuntu 14.04 (on travis-ci)
 * Windows Server 2012 R2 x64 (build 9600) (on appveyor)
 * Rhub
