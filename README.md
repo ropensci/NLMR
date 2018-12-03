@@ -1,6 +1,4 @@
-
-[![Build
-Status](https://travis-ci.org/ropensci/NLMR.svg?branch=develop)](https://travis-ci.org/ropensci/NLMR)[![Build
+[![Build Status](https://travis-ci.org/ropensci/NLMR.svg?branch=master)](https://travis-ci.org/ropensci/NLMR)[![Build
 status](https://ci.appveyor.com/api/projects/status/djw840fitcvolbxg?svg=true)](https://ci.appveyor.com/project/ropensci/NLMR)
 [![codecov](https://codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR)
