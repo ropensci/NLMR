@@ -1,4 +1,4 @@
-´citHeader("To cite NLMR in publications use:")
+citHeader("To cite NLMR in publications use:")
 
 citEntry(entry = "Article",
          title        = "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
