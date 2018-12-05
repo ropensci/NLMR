@@ -1,7 +1,4 @@
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
-
-citHeader("To cite NLMR in publications use:")
+´citHeader("To cite NLMR in publications use:")
 
 citEntry(entry = "Article",
          title        = "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
@@ -14,8 +11,6 @@ citEntry(entry = "Article",
          pages = "1--9",
          year         = "2018",
          url          = "https://doi.org/10.1111/2041-210X.13076",
-
+         
          textVersion  =
-           paste("Sciaini M, Fritsch M, Scherer C, Simpkins CE. NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. Methods in Ecololgy and Evolution. 2018; 00:1–9. https://doi.org/10.1111/2041-210X.13076)"
-           ))
-
+             paste("Sciaini M, Fritsch M, Scherer C, Simpkins CE. NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. Methods Ecol Evol. 2018;9:2240–2248."))
