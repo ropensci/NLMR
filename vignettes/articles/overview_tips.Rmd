@@ -43,7 +43,7 @@ planar_nlm <- nlm_planargradient(100, 100)
 tess_nlm <- nlm_mosaictess(100, 100, germs = 200)
 
 # plot it
-landscapetools::util_facetplot(list("a" = landscapetools::util_merge(edge_nlm, list(distance_nlm, random_nlm)),
+landscapetools::show_landscape(list("a" = landscapetools::util_merge(edge_nlm, list(distance_nlm, random_nlm)),
                                     "b" = landscapetools::util_merge(gauss_nlm, rectan_nlm),
                                     "c" = landscapetools::util_merge(mosaic_nlm, list(random_nlm)),
                                     "d" = landscapetools::util_merge(planar_nlm, list(distance_nlm, tess_nlm))))
@@ -108,7 +108,7 @@ param_df = expand.grid(roughness = c(0.2, 0.9),
 nlm_list = param_df %>% pmap(simulate_landscape)
 
 # look at the results
-util_facetplot(nlm_list)
+show_landscape(nlm_list)
 ```
 
 
@@ -130,7 +130,7 @@ low_autocorrelation <- nlm_fbm(ncol = 100, nrow = 100, fract_dim = 0.5)
 ecotones <- util_merge(low_autocorrelation, high_autocorrelation)
 
 # look at the results
-util_facetplot(list("Low autocorrelation" = low_autocorrelation,
+show_landscape(list("Low autocorrelation" = low_autocorrelation,
                     "High autocorrelation" = high_autocorrelation,
                     "Ecotones" = ecotones
                     ))

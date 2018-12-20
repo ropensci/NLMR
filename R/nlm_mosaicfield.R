@@ -39,7 +39,7 @@
 #'                                 collect = FALSE)
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(mosaic_field)
+#' landscapetools::show_landscape(mosaic_field)
 #' }
 #'
 #' @aliases nlm_mosaicfield

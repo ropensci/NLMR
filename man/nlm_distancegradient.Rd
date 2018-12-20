@@ -44,7 +44,7 @@ distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
                                            origin = c(20, 30, 10, 15))
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(distance_gradient)
+landscapetools::show_landscape(distance_gradient)
 }
 }
 \seealso{

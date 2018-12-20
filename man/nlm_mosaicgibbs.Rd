@@ -56,7 +56,7 @@ mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(mosaicgibbs)
+landscapetools::show_landscape(mosaicgibbs)
 }
 
 }

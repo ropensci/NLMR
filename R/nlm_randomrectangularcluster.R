@@ -33,7 +33,7 @@
 #'                                                           maxl = 10)
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(randomrectangular_cluster)
+#' landscapetools::show_landscape(randomrectangular_cluster)
 #' }
 #'
 #' @aliases nlm_randomrectangularcluster

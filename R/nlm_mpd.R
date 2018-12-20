@@ -51,7 +51,7 @@
 #'                                  roughness = 0.3)
 #'\dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(midpoint_displacememt)
+#' landscapetools::show_landscape(midpoint_displacememt)
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
@@ -91,7 +91,7 @@ nlm_mpd <- function(ncol,
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
-    mpd_raster <- landscapetools::util_rescale(mpd_raster)
+    mpd_raster <- util_rescale(mpd_raster)
   }
 
   if (verbose == TRUE) {

@@ -58,7 +58,7 @@ simulate_landscape = function(x) {
 landscape_list <- rerun(5, simulate_landscape()) 
 
 # look at the result
-util_facetplot(landscape_list)
+show_landscape(landscape_list)
 ```
 
 ### Landscape metrics
@@ -72,7 +72,7 @@ An examplary workflow for this could look like this:
 ```{r warning=FALSE}
 library(NLMR)
 library(landscapetools)
-library(landscapemetrics) # devtools::install_github("marcosci/landscapemetrics")
+library(landscapemetrics)
 library(dplyr)
 
 # simulation helpers
@@ -99,5 +99,5 @@ while (n < 6) {
 }
 
 # look at the result
-util_facetplot(sim_results)
+show_landscape(sim_results)
 ```

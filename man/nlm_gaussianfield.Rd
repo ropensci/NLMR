@@ -56,7 +56,7 @@ gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(gaussian_field)
+landscapetools::show_landscape(gaussian_field)
 }
 
 }

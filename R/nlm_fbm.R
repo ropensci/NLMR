@@ -35,7 +35,7 @@
 #' \dontrun{
 #'
 #' # visualize the NLM
-#' landscapetools::util_plot(fbm_raster)
+#' landscapetools::show_landscape(fbm_raster)
 #'
 #' }
 #'

@@ -15,7 +15,7 @@ As the ever growing R package environment can be a rough terrain to navigate and
 
 ### landscapetools
 
-**landscapetools** function `util_plot` was developed to help users to adhere to
+**landscapetools** function `show_landscape` was developed to help users to adhere to
 some standards concerning color scales and typographie. This means for example 
 that by default the [viridis color scale](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) 
 is applied which makes your plots easier to read by those with colorblindness.
@@ -27,17 +27,17 @@ library("landscapetools")
 landscape <- nlm_mosaictess(200, 200, germs = 444)
 
 # default theme
-util_plot(landscape)
+show_landscape(landscape)
 
 # ... chose another color scale from viridis ("E" = cividis)
-util_plot(landscape, viridis_scale = "E")
+show_landscape(landscape, viridis_scale = "E")
 
 # ... chose any other scale:
-# util_plot returns a ggplot2 object, so you can follow your usual ggplot2
+# show_landscape returns a ggplot2 object, so you can follow your usual ggplot2
 # workflow and change the color, axis labels, ...
 library(ggplot2)
 library(pals)
-util_plot(landscape)  + 
+show_landscape(landscape)  + 
   scale_fill_gradientn(colours=pals::parula(100)) + # parula color scale
   theme_void() +  # minimal theme
   guides(fill = FALSE) # remove legend

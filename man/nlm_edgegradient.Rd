@@ -41,7 +41,7 @@ edge_gradient <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80)
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(edge_gradient)
+landscapetools::show_landscape(edge_gradient)
 }
 
 }

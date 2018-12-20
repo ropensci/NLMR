@@ -41,7 +41,7 @@ The simulation of a random percolation map is accomplished in two steps:
 percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5)
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(percolation)
+landscapetools::show_landscape(percolation)
 }
 }
 \references{

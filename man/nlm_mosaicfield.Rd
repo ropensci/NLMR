@@ -52,7 +52,7 @@ mosaic_field <- nlm_mosaicfield(ncol = 100,
                                 collect = FALSE)
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(mosaic_field)
+landscapetools::show_landscape(mosaic_field)
 }
 
 }

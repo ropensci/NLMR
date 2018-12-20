@@ -67,7 +67,7 @@ neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.7, p_empty = 0.1,
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(neigh_raster)
+landscapetools::show_landscape(neigh_raster)
 }
 
 }

@@ -25,7 +25,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(random)
+#' landscapetools::show_landscape(random)
 #' }
 #'
 #' @aliases nlm_random

@@ -37,7 +37,7 @@ random <- nlm_random(ncol = 200, nrow = 100)
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(random)
+landscapetools::show_landscape(random)
 }
 
 }

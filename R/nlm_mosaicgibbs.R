@@ -39,7 +39,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(mosaicgibbs)
+#' landscapetools::show_landscape(mosaicgibbs)
 #' }
 #'
 #' @references

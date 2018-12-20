@@ -30,7 +30,7 @@
 #'                                            origin = c(20, 30, 10, 15))
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(distance_gradient)
+#' landscapetools::show_landscape(distance_gradient)
 #' }
 #' @seealso \code{\link{nlm_edgegradient}},
 #' \code{\link{nlm_planargradient}}

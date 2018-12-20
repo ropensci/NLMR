@@ -39,7 +39,7 @@ planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 
 \dontrun{
 # visualize the NLM
-landscapetools::util_plot(planar_gradient)
+landscapetools::show_landscape(planar_gradient)
 }
 
 }

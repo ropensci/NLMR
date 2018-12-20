@@ -42,7 +42,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(gaussian_field)
+#' landscapetools::show_landscape(gaussian_field)
 #' }
 #'
 #' @aliases nlm_gaussianfield

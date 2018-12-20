@@ -25,7 +25,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::util_plot(planar_gradient)
+#' landscapetools::show_landscape(planar_gradient)
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},

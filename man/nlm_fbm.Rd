@@ -49,7 +49,7 @@ fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 \dontrun{
 
 # visualize the NLM
-landscapetools::util_plot(fbm_raster)
+landscapetools::show_landscape(fbm_raster)
 
 }
 

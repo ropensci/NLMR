@@ -32,7 +32,7 @@ ________________________________________________________________________________
 ## NLMR 0.2.1 Release Notes
 
 - Skip one test on CRAN to keep the Roboto font available
-- Function `util_facetplot` to plot a list of rasters as ggplot2 facet
+- Function `show_landscape` to plot a list of rasters as ggplot2 facet
 - Small updates to the webpage
 
 ## NLMR 0.2 Release Notes
