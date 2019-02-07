@@ -115,4 +115,4 @@ nr_classified <- landscapetools::util_classify(nr, weighting = c(0.3, 0.3, 0.3))
 plot(nr_classified)
 ```
 
-##References
+## References

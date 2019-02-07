@@ -17,8 +17,6 @@ of the \emph{NLMR} package. The vignettes in this package are listed below.
 Quickstart Guide}}{Short walk-through of the \emph{NLMR} package and how to
 handle the simulations.}
 }
-
-#' @useDynLib NLMR, .registration=TRUE
 }
 \seealso{
 Useful links:

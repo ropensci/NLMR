@@ -43,7 +43,7 @@ The method works in principal like the tessellation method (\code{nlm_mosaictess
 but instead of a random point pattern the algorithm fits a simulated realization of the Strauss
 process. The Strauss process starts with a given number of points and
 uses a minimization approach to fit a point pattern with a given interaction
-parameter (0 - hardcore process; 1 - Poission process) and interaction radius
+parameter (0 - hardcore process; 1 - Poisson process) and interaction radius
 (distance of points/germs being apart).
 }
 \examples{

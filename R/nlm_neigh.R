@@ -10,8 +10,8 @@
 #'  Von-Neumann-neighborhood (4 cells), otherwise it is based on \code{p_empty}. To create
 #'  clustered neutral landscape models, \code{p_empty} should be (significantly) smaller than
 #'  \code{p_neigh}. By default, the Von-Neumann-neighborhood is used to check adjacent
-#'  cells. The algorithm starts with the highest categorial value. If the
-#'  proportion of cells with this value is reached, the categorial value is
+#'  cells. The algorithm starts with the highest categorical value. If the
+#'  proportion of cells with this value is reached, the categorical value is
 #'  reduced by 1. By default, a uniform distribution of the categories is
 #'  applied.
 #'
