@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 rcpp_mpd <- function(ncol, nrow, rand_dev, rcpp_roughness, seed) {
-    .Call('_NLMR_rcpp_mpd', PACKAGE = 'NLMR', ncol, nrow, rand_dev, rcpp_roughness, seed)
+    .Call(`_NLMR_rcpp_mpd`, ncol, nrow, rand_dev, rcpp_roughness, seed)
 }
 
 rcpp_neigh <- function(nrow, ncol, mat, n_categories, cells_per_cat, neighbourhood, p_neigh, p_empty, seed) {
-    .Call('_NLMR_rcpp_neigh', PACKAGE = 'NLMR', nrow, ncol, mat, n_categories, cells_per_cat, neighbourhood, p_neigh, p_empty, seed)
+    .Call(`_NLMR_rcpp_neigh`, nrow, ncol, mat, n_categories, cells_per_cat, neighbourhood, p_neigh, p_empty, seed)
 }
 
 rcpp_randomrectangularcluster <- function(ncol, nrow, minl, maxl, seed) {
-    .Call('_NLMR_rcpp_randomrectangularcluster', PACKAGE = 'NLMR', ncol, nrow, minl, maxl, seed)
+    .Call(`_NLMR_rcpp_randomrectangularcluster`, ncol, nrow, minl, maxl, seed)
 }
 

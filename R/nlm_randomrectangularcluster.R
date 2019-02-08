@@ -14,7 +14,7 @@
 #' with rectangles defined by \code{minl} and \code{maxl} until the surface
 #' of the landscape is completely covered.
 #' This is one type of realisation of a "falling/dead leaves" algorithm,
-#' for more details see Galerne & Goussea (2012).
+#' for more details see Galerne & Gousseau (2012).
 #'
 #' @return RasterLayer
 #'

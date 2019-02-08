@@ -61,6 +61,6 @@ landscapetools::show_landscape(gaussian_field)
 
 }
 \references{
-Kéry & Royle (2016) \emph{Applied Hierarachical Modeling in Ecology}
+Kéry & Royle (2016) \emph{Applied Hierarchical Modeling in Ecology}
 Chapter 20
 }

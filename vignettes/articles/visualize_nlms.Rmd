@@ -16,7 +16,7 @@ As the ever growing R package environment can be a rough terrain to navigate and
 ### landscapetools
 
 **landscapetools** function `show_landscape` was developed to help users to adhere to
-some standards concerning color scales and typographie. This means for example 
+some standards concerning color scales and typography. This means for example 
 that by default the [viridis color scale](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) 
 is applied which makes your plots easier to read by those with colorblindness.
 
@@ -45,7 +45,7 @@ show_landscape(landscape)  +
 
 ### rasterVis
 
-**rasterVis** also offers some convience functions to plot raster, for example:
+**rasterVis** also offers some convenience functions to plot raster, for example:
 
 ```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
