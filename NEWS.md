@@ -1,5 +1,9 @@
 ____________________________________________________________________________________
 
+## NLMR 0.4.1 Release Notes
+
+- Bugfix in nlm_mpd to not rely on landscapetools
+
 ## NLMR 0.4 Release Notes
 
 - nlm_neigh, nlm_mpd and nlm_randomrectangularcluster are now implemented in Rcpp

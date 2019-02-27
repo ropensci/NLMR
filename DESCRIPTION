@@ -1,7 +1,7 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.4
+Version: 0.4.1
 Authors@R: c(person("Marco", "Sciaini", email = "sciaini.marco@gmail.com", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
