@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 # NLMR <img src="man/figures/logo.png" align="right" width="150" />
 
 **NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-**NLMR** builds on the advantages of the **raster** package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compability to common GIS tasks and a flexible and simple usage.
+**NLMR** builds on the advantages of the **raster** package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compatibility to common GIS tasks and a flexible and simple usage.
 Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
@@ -65,7 +65,7 @@ midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
 
 ## Overview
 
-**NLMR** supplies 15 NLM algorithms, with several options to simulate derivates of
+**NLMR** supplies 15 NLM algorithms, with several options to simulate derivatives of
 them. The algorithms differ from each other in spatial auto-correlation, from 
 no auto-correlation (random NLM) to a constant gradient (planar gradients):  
 
@@ -109,7 +109,7 @@ function_tibble[5,4] <- "Schlather et al. (2015)"
 
 # nlm_mosaicfield
 function_tibble[6,1] <- "nlm_mosaicfield"
-function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model. The algorithm imitates fault lines by repeatedly bisecting the landscape and lowering the values of cells in one half and increasing the values in the other half. If one sets the parameter infinit to TRUE, the algorithm approaches a fractal pattern"
+function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model. The algorithm imitates fault lines by repeatedly bisecting the landscape and lowering the values of cells in one half and increasing the values in the other half. If one sets the parameter infinite to TRUE, the algorithm approaches a fractal pattern"
 function_tibble[6,3] <- "Figure 1f"
 function_tibble[6,4] <- "Schlather et al. (2015)"
 
@@ -175,7 +175,7 @@ kable(function_tibble) %>%
 ## See also
 
 **NLMR** was split during its development process - to have a minimal dependency version
-for simulating neutral landscape models and an utility toolbox to facilate workflows
+for simulating neutral landscape models and an utility toolbox to facilitate workflows
 with raster data.
 If you are interested in merging, visualizing or further handling neutral landscape models
 have a look at the [landscapetools](https://github.com/ropensci/landscapetools/) package.
