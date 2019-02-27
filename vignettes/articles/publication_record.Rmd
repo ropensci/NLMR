@@ -4,7 +4,8 @@ output: github_document
 
 We try to maintain a list here of publications that have used the `nlmr` package. If you have used `nlmr` in your own work, we would love to hear from you. Please [file an issue on GitHub](https://github.com/marcosci/nlmr/issues/new/) so we can add your work to this list.
 
-
+* Fletcher R., Fortin MJ. (2018) Land-Cover Pattern and Change. In: Spatial Ecology and Conservation Modeling. Springer, Cham. https://doi.org/10.1007/978-3-030-01989-1_3
+* Langhammer, Maria, Jule Thober, Martin Lange, Karin Frank, and Volker Grimm. “Agricultural Landscape Generators for Simulation Models: A Review of Existing Solutions and an Outline of Future Directions.” Ecological Modelling 393 (February 2019): 135–51. https://doi.org/10.1016/j.ecolmodel.2018.12.010.
 * Poggi S, Papaïx J, Lavigne C et al. Issues and challenges in landscape models for agriculture: from the representation of agroecosystems to the design of management strategies. Landscape Ecol. 2018;00:1-12. https://doi.org/10.1007/s10980-018-0699-8
 * Nowosad, J., & Stepinski, T. (2018). Information-theoretical approach to measuring landscape complexity. https://doi.org/10.1101/383281
 * Sciaini M, Fritsch M, Scherer C, Simpkins CE. NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. Methods Ecol Evol. 2018;00:1–9. https://doi.org/10.1111/2041-210X.13076
