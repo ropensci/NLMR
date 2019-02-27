@@ -167,7 +167,7 @@ nlm_mosaicfield <- function(ncol,
       scale = .2,
       saveLambda = TRUE
     )
-    mosaicfield_inf <- RandomFields::log(attr(X, "Lambda"))
+    mosaicfield_inf <- log(attr(X, "Lambda"))
 
     # coerce spatstat image to raster and set proper resolution ----
     mosaicfield_raster <-
