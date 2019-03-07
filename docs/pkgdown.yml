@@ -1,0 +1,10 @@
+pandoc: 2.3.1
+pkgdown: 1.3.0.9000
+pkgdown_sha: 45892dd5fe3c9904e09509694deede0c34d01af9
+articles:
+  nlm_software_heritage: articles/nlm_software_heritage.html
+  overview_tips: articles/overview_tips.html
+  publication_record: articles/publication_record.html
+  visualize_nlms: articles/visualize_nlms.html
+  getstarted: getstarted.html
+

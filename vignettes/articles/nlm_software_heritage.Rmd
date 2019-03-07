@@ -58,7 +58,7 @@ simulate_landscape = function(x) {
 landscape_list <- rerun(5, simulate_landscape()) 
 
 # look at the result
-show_landscape(landscape_list)
+show_landscape(stack(landscape_list))
 ```
 
 ### Landscape metrics
@@ -99,5 +99,5 @@ while (n < 6) {
 }
 
 # look at the result
-show_landscape(sim_results)
+show_landscape(stack(sim_results))
 ```

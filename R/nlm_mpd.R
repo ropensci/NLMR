@@ -77,7 +77,12 @@ nlm_mpd <- function(ncol,
   # create the landscape with rcpp_mpd ----
   seed <- sample.int(.Machine$integer.max, 1)
   mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed)
-
+  
+  mpd_raster <- mpd_raster[-1,]
+  mpd_raster <- mpd_raster[,-1]
+  mpd_raster <- mpd_raster[-nrow(mpd_raster),]
+  mpd_raster <- mpd_raster[,-ncol(mpd_raster)]
+  
   # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)
 
