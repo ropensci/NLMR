@@ -1,4 +1,7 @@
 ____________________________________________________________________________________
+## NLMR 0.4.2 Release Notes
+
+- Bugfix in nlm_mosaicfield to rely on new version of RandomFields
 
 ## NLMR 0.4.1 Release Notes
 
