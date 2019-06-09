@@ -9,11 +9,11 @@ test_that("nlm_mpd behaves like it should", {
 })
 
 test_that("nlm_mpd produces the right number of rows", {
-  expect_equal(mpd_raster@nrows, 65)
+  expect_equal(mpd_raster@nrows, 64)
 })
 
 test_that("nlm_mpd produces the right number of columns", {
-  expect_equal(mpd_raster@ncols, 65)
+  expect_equal(mpd_raster@ncols, 64)
 })
 
 # test_that("nlm_mpd produces the right hurst coefficient", {
