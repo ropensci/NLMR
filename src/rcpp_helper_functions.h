@@ -14,12 +14,12 @@ inline bool is_still_na(Rcpp::NumericMatrix matrix) {
 }
 
 // from Armen Tsirunyan @ http://stackoverflow.com/questions/4003232/how-to-code-a-modulo-operator-in-c-c-obj-c-that-handles-negative-numbers
-inline int mod(int divident, int divisor)
+inline unsigned mod(int divident, int divisor)
 {
   int ret = divident % divisor;
   if(ret < 0)
     ret += divisor;
-  return ret;
+  return(static_cast<unsigned>(ret));
 }
 
 #endif // RCPP_HELPER_FUNCTIONS_H
