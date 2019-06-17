@@ -7,8 +7,12 @@
 //[[Rcpp::plugins("cpp11")]]
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
-                             double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed) {
+Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, 
+                             unsigned nrow,
+                             double rand_dev,
+                             Rcpp::NumericVector rcpp_roughness,
+                             unsigned long seed,
+                             bool torus) {
 
     // setup matrix ----
     // (width and height must be an odd number)
@@ -28,7 +32,7 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
 
     // get a random number as seed from R
     // the landscape generator ----
-    mpd(mpd_raster, rand_dev_vec, seed);
+    mpd(mpd_raster, rand_dev_vec, seed, torus);
 
     // prepare everything for R ----
     Rcpp::NumericMatrix rcpp_mpd_raster(mpd_raster_size, mpd_raster_size);

@@ -33,6 +33,7 @@
 #' @param rand_dev [\code{numerical(1)}]\cr
 #' Initial standard deviation for the displacement step (default == 1), sets the
 #' scale of the overall variance in the resulting landscape.
+#' @param   [\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
@@ -63,6 +64,7 @@ nlm_mpd <- function(ncol,
                     resolution = 1,
                     roughness = 0.5,
                     rand_dev = 1,
+                    torus = FALSE,
                     rescale = TRUE,
                     verbose = TRUE) {
 
@@ -76,7 +78,7 @@ nlm_mpd <- function(ncol,
 
   # create the landscape with rcpp_mpd ----
   seed <- sample.int(.Machine$integer.max, 1)
-  mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed)
+  mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed, torus)
   
   mpd_raster <- mpd_raster[-1,]
   mpd_raster <- mpd_raster[,-1]
