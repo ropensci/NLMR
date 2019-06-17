@@ -33,7 +33,7 @@
 #' @param rand_dev [\code{numerical(1)}]\cr
 #' Initial standard deviation for the displacement step (default == 1), sets the
 #' scale of the overall variance in the resulting landscape.
-#' @param   [\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)
+#' @param torus [\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
