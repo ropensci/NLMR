@@ -5,7 +5,7 @@
 \title{nlm_mpd}
 \usage{
 nlm_mpd(ncol, nrow, resolution = 1, roughness = 0.5, rand_dev = 1,
-  rescale = TRUE, verbose = TRUE)
+  torus = FALSE, rescale = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -30,6 +30,8 @@ are rescaled between 0-1.}
 \item{verbose}{[\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
 a warning that the functions changes the dimensions to an appropriate one for
 the algorithm.}
+
+\item{[\code{logical(1)}]\cr}{Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)}
 }
 \value{
 RasterLayer

@@ -7,8 +7,12 @@
 //[[Rcpp::plugins("cpp11")]]
 
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
-                             double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed) {
+Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, 
+                             unsigned nrow,
+                             double rand_dev,
+                             Rcpp::NumericVector rcpp_roughness,
+                             unsigned long seed,
+                             bool torus) {
 
     // setup matrix ----
     // (width and height must be an odd number)
@@ -28,7 +32,7 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
 
     // get a random number as seed from R
     // the landscape generator ----
-    mpd(mpd_raster, rand_dev_vec, seed);
+    mpd(mpd_raster, rand_dev_vec, seed, torus);
 
     // prepare everything for R ----
     Rcpp::NumericMatrix rcpp_mpd_raster(mpd_raster_size, mpd_raster_size);
@@ -42,7 +46,7 @@ Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow,
 }
 
 void mpd(std::vector<std::vector<double> > &mpd_raster,
-         std::vector<double> &rand_dev_vec, unsigned long seed)
+         std::vector<double> &rand_dev_vec, unsigned long seed, bool torus)
 {
     std::mt19937 mt;
     mt.seed(seed);
@@ -68,7 +72,7 @@ void mpd(std::vector<std::vector<double> > &mpd_raster,
         unsigned side_length = side_length_vector[step];
 
         diamond_step(side_length, rand_dev, mpd_raster, mt);
-        square_step(side_length, rand_dev, mpd_raster, mt);
+        square_step(side_length, rand_dev, mpd_raster, mt, torus);
     }
 
 }
@@ -92,7 +96,7 @@ void diamond_step(unsigned side_length, double rand_dev,
 
 void square_step(unsigned side_length, double rand_dev,
                  std::vector<std::vector<double> > &map,
-                 std::mt19937 &mt) {
+                 std::mt19937 &mt, bool torus) {
     auto matrix_size = map.size(); // map is a square
     unsigned half_length = side_length / 2;
 
@@ -107,7 +111,7 @@ void square_step(unsigned side_length, double rand_dev,
 
         for (unsigned row = row_start; row < matrix_size; row += side_length) {
             std::normal_distribution<double> rnorm(0, rand_dev);
-            map[col][row] = square(map, col, row, half_length) + rnorm(mt);
+            map[col][row] = square(map, col, row, half_length, torus) + rnorm(mt);
         }
     }
 }
@@ -150,8 +154,8 @@ double diamond(const std::vector<std::vector<double> > &map,
     return (0.25 * (a + b + c + d));
 }
 
-double square(const std::vector<std::vector<double> > &map,
-              unsigned col, unsigned row, unsigned half_length) {
+double square_non_torus(const std::vector<std::vector<double> > &map,
+                        unsigned col, unsigned row, unsigned half_length) {
     int coordinate[4][2] = {{0, 0},{0, 0},{0, 0},{0, 0}};
     unsigned matrix_size = map.size(); // map is a square
     double a = map[col][row];
@@ -186,9 +190,37 @@ double square(const std::vector<std::vector<double> > &map,
     return (0.25 * (a + b + c + d));
 }
 
+double square_torus(const std::vector<std::vector<double> > &map,
+                    unsigned col, unsigned row, unsigned half_length) {
+    unsigned coordinate[4][2] = {{0, 0},{0, 0},{0, 0},{0, 0}};
+    unsigned matrix_size = map.size(); // map is always a square!
+    double a = map[col][row];
+    double b = map[col][row];
+    double c = map[col][row];
+    double d = map[col][row];
+
+    coordinate[0][0] = mod(col - half_length, matrix_size);
+    coordinate[0][1] = row;
+    a = map[coordinate[0][0]][coordinate[0][1]];
+
+    coordinate[1][0] = col;
+    coordinate[1][1] = mod(row + half_length, matrix_size);
+    b = map[coordinate[1][0]][coordinate[1][1]];
+
+    coordinate[2][0] = mod(col + half_length, matrix_size);
+    coordinate[2][1] = row;
+    c = map[coordinate[2][0]][coordinate[2][1]];
+
+    coordinate[3][0] = col;
+    coordinate[3][1] = mod(row - half_length, matrix_size);
+    d = map[coordinate[3][0]][coordinate[3][1]];
+
+    return (0.25 * (a + b + c + d));
+}
+
 std::vector<double> make_autocorrellation_vec(std::vector<double> &roughness_vec,
                                               double rand_dev,
-                                             unsigned size)
+                                              unsigned size)
 {
     std::vector<double> rand_dev_vec(size);
     if(roughness_vec.size() == 1) {
@@ -202,4 +234,17 @@ std::vector<double> make_autocorrellation_vec(std::vector<double> &roughness_vec
         }
     }
     return rand_dev_vec;
+}
+
+double square(const std::vector<std::vector<double> > &map, unsigned col,
+              unsigned row, unsigned half_length, bool torus)
+{
+    double result = 0;
+
+    if (torus) {
+        result = square_torus(map, col, row, half_length);
+    } else
+        result = square_non_torus(map, col, row, half_length);
+
+    return result;
 }

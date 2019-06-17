@@ -6,8 +6,8 @@
 using namespace Rcpp;
 
 // rcpp_mpd
-Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed);
-RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP, SEXP seedSEXP) {
+Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed, bool torus);
+RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP, SEXP seedSEXP, SEXP torusSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,7 +16,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type rand_dev(rand_devSEXP);
     Rcpp::traits::input_parameter< Rcpp::NumericVector >::type rcpp_roughness(rcpp_roughnessSEXP);
     Rcpp::traits::input_parameter< unsigned long >::type seed(seedSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, rcpp_roughness, seed));
+    Rcpp::traits::input_parameter< bool >::type torus(torusSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_mpd(ncol, nrow, rand_dev, rcpp_roughness, seed, torus));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -56,7 +57,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_NLMR_rcpp_mpd", (DL_FUNC) &_NLMR_rcpp_mpd, 5},
+    {"_NLMR_rcpp_mpd", (DL_FUNC) &_NLMR_rcpp_mpd, 6},
     {"_NLMR_rcpp_neigh", (DL_FUNC) &_NLMR_rcpp_neigh, 9},
     {"_NLMR_rcpp_randomrectangularcluster", (DL_FUNC) &_NLMR_rcpp_randomrectangularcluster, 5},
     {NULL, NULL, 0}
