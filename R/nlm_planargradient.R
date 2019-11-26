@@ -64,8 +64,8 @@ nlm_planargradient <- function(ncol,
   southness <- cos( (pi / 180) * direction) * -1
 
   # Create arrays of row and column index ----
-  col_index <- matrix(0:(ncol - 1), nrow, ncol)
-  row_index <- matrix(0:(nrow - 1), nrow, ncol, byrow = TRUE)
+  col_index <- matrix(0:(ncol - 1), nrow, ncol, byrow = TRUE)
+  row_index <- matrix(0:(nrow - 1), nrow, ncol, byrow = FALSE)
 
   # Create gradient matrix ----
   gradient_matrix <-
