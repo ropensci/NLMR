@@ -53,6 +53,7 @@ BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
     testthat,
     covr,
+    igraph,
     knitr,
     rmarkdown,
     lintr,
