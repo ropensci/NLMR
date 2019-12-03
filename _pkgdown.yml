@@ -46,7 +46,7 @@ navbar:
       text: "github"
       href: https://github.com/marcosci/nlmr
 
-
-
-
-
+extra_packages:
+  - bindrcpp
+  - igraph
+  - landscapemetrics

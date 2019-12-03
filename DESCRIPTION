@@ -53,8 +53,7 @@ BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
     testthat,
     covr,
-    igraph,
-    landscapemetrics,
+    captioner,
     knitr,
     rmarkdown,
     lintr,
