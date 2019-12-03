@@ -54,6 +54,7 @@ Suggests:
     testthat,
     covr,
     igraph,
+    landscapemetrics,
     knitr,
     rmarkdown,
     lintr,
