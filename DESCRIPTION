@@ -36,13 +36,14 @@ Depends:
     R (>= 3.1.0)
 SystemRequirements: C++11
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Imports: 
     checkmate,
     dplyr,
     RandomFields,
     raster,
-    spatstat,
+    spatstat.core,
+    spatstat.geom,
     stats,
     tibble,
     fasterize,

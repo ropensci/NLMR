@@ -4,8 +4,15 @@
 \alias{nlm_randomcluster}
 \title{nlm_randomcluster}
 \usage{
-nlm_randomcluster(ncol, nrow, resolution = 1, p, ai = c(0.5, 0.5),
-  neighbourhood = 4, rescale = TRUE)
+nlm_randomcluster(
+  ncol,
+  nrow,
+  resolution = 1,
+  p,
+  ai = c(0.5, 0.5),
+  neighbourhood = 4,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{integer(1)}]\cr

@@ -4,8 +4,17 @@
 \alias{nlm_neigh}
 \title{nlm_neigh}
 \usage{
-nlm_neigh(ncol, nrow, resolution = 1, p_neigh, p_empty, categories = 3,
-  neighbourhood = 4, proportions = NA, rescale = TRUE)
+nlm_neigh(
+  ncol,
+  nrow,
+  resolution = 1,
+  p_neigh,
+  p_empty,
+  categories = 3,
+  neighbourhood = 4,
+  proportions = NA,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

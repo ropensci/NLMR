@@ -4,8 +4,15 @@
 \alias{nlm_fbm}
 \title{nlm_fbm}
 \usage{
-nlm_fbm(ncol, nrow, resolution = 1, fract_dim = 1, user_seed = NULL,
-  rescale = TRUE, ...)
+nlm_fbm(
+  ncol,
+  nrow,
+  resolution = 1,
+  fract_dim = 1,
+  user_seed = NULL,
+  rescale = TRUE,
+  ...
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
