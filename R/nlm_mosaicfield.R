@@ -71,8 +71,8 @@ nlm_mosaicfield <- function(ncol,
   mosaicfields_return <- list()
 
   if (!is.na(n)) {
-    mosaicfield_result <- spatstat::rMosaicField(
-      spatstat::rpoislinetess(4),
+    mosaicfield_result <- spatstat.core::rMosaicField(
+      spatstat.core::rpoislinetess(4),
       stats::rnorm,
       dimyx = c(nrow, ncol),
       rgenargs = list(mean = mosaic_mean,
@@ -85,8 +85,8 @@ nlm_mosaicfield <- function(ncol,
     }
 
     for (i in 2:n) {
-      mosaicfield_n <- spatstat::rMosaicField(
-        spatstat::rpoislinetess(4),
+      mosaicfield_n <- spatstat.core::rMosaicField(
+        spatstat.core::rpoislinetess(4),
         stats::rnorm,
         dimyx = c(nrow, ncol),
         rgenargs = list(mean = mosaic_mean,
@@ -159,7 +159,7 @@ nlm_mosaicfield <- function(ncol,
 
   if (isTRUE(infinit)) {
     # INFINITE STEPS:
-    X <- spatstat::rLGCP(
+    X <- spatstat.core::rLGCP(
       "exp",
       4,
       var = 1,

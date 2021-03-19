@@ -4,8 +4,7 @@
 \alias{nlm_edgegradient}
 \title{nlm_edgegradient}
 \usage{
-nlm_edgegradient(ncol, nrow, resolution = 1, direction = NA,
-  rescale = TRUE)
+nlm_edgegradient(ncol, nrow, resolution = 1, direction = NA, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

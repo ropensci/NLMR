@@ -4,8 +4,7 @@
 \alias{nlm_distancegradient}
 \title{nlm_distancegradient}
 \usage{
-nlm_distancegradient(ncol, nrow, resolution = 1, origin,
-  rescale = TRUE)
+nlm_distancegradient(ncol, nrow, resolution = 1, origin, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

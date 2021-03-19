@@ -4,8 +4,7 @@
 \alias{nlm_planargradient}
 \title{nlm_planargradient}
 \usage{
-nlm_planargradient(ncol, nrow, resolution = 1, direction = NA,
-  rescale = TRUE)
+nlm_planargradient(ncol, nrow, resolution = 1, direction = NA, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

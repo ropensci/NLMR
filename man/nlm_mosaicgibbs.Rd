@@ -4,8 +4,15 @@
 \alias{nlm_mosaicgibbs}
 \title{nlm_mosaicgibbs}
 \usage{
-nlm_mosaicgibbs(ncol, nrow, resolution = 1, germs, R, patch_classes,
-  rescale = TRUE)
+nlm_mosaicgibbs(
+  ncol,
+  nrow,
+  resolution = 1,
+  germs,
+  R,
+  patch_classes,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

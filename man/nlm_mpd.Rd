@@ -4,8 +4,16 @@
 \alias{nlm_mpd}
 \title{nlm_mpd}
 \usage{
-nlm_mpd(ncol, nrow, resolution = 1, roughness = 0.5, rand_dev = 1,
-  torus = FALSE, rescale = TRUE, verbose = TRUE)
+nlm_mpd(
+  ncol,
+  nrow,
+  resolution = 1,
+  roughness = 0.5,
+  rand_dev = 1,
+  torus = FALSE,
+  rescale = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -24,14 +32,14 @@ Controls the level of spatial autocorrelation (!= Hurst exponent)}
 Initial standard deviation for the displacement step (default == 1), sets the
 scale of the overall variance in the resulting landscape.}
 
+\item{torus}{[\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)}
+
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
 
 \item{verbose}{[\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
 a warning that the functions changes the dimensions to an appropriate one for
 the algorithm.}
-
-\item{[\code{logical(1)}]\cr}{Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)}
 }
 \value{
 RasterLayer

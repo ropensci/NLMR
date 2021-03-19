@@ -70,11 +70,11 @@ nlm_mosaicgibbs <- function(ncol,
   checkmate::assert_logical(rescale)
 
   # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
-  x <- spatstat::rSSI(R, germs, win = spatstat::owin(c(0, ncol), c(0, nrow)))
+  x <- spatstat.core::rSSI(R, germs, win = spatstat.geom::owin(c(0, ncol), c(0, nrow)))
 
   # ... and randomly allocate attribute class (here point pattern mark)
   m <- sample(rep(1:patch_classes, length.out = germs))
-  spatstat::marks(x) <- m
+  spatstat.geom::marks(x) <- m
 
   # Coerce to SpatialPointsDataFrame to preserve marks for interpolation ----
   strauss_points <- sf::st_as_sf(data.frame(x), coords = c("x", "y"))

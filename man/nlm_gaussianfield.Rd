@@ -4,9 +4,17 @@
 \alias{nlm_gaussianfield}
 \title{nlm_gaussianfield}
 \usage{
-nlm_gaussianfield(ncol, nrow, resolution = 1, autocorr_range = 10,
-  mag_var = 5, nug = 0.2, mean = 0.5, user_seed = NULL,
-  rescale = TRUE)
+nlm_gaussianfield(
+  ncol,
+  nrow,
+  resolution = 1,
+  autocorr_range = 10,
+  mag_var = 5,
+  nug = 0.2,
+  mean = 0.5,
+  user_seed = NULL,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr

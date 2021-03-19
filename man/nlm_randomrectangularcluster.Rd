@@ -4,8 +4,14 @@
 \alias{nlm_randomrectangularcluster}
 \title{nlm_randomrectangularcluster}
 \usage{
-nlm_randomrectangularcluster(ncol, nrow, resolution = 1, minl, maxl,
-  rescale = TRUE)
+nlm_randomrectangularcluster(
+  ncol,
+  nrow,
+  resolution = 1,
+  minl,
+  maxl,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr Number of columns forming the raster.}
