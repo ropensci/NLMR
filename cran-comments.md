@@ -1,6 +1,6 @@
 ## Version update
 
-Fix error coming from RandomFields dependency-
+Update spatstat dep 
 
 ## Test environments
 
