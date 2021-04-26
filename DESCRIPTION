@@ -1,8 +1,8 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.5
-Authors@R: c(person("Marco", "Sciaini", email = "marco.sciaini@indblik.io", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
+Version: 0.6
+Authors@R: c(person("Marco", "Sciaini", email = "marco.sciaini@posteo.net", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"), 
     person("Maximilian", "Hesselbarth", email = "mhk.hesselbarth@gmail.com", role = "aut"),
     person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
@@ -16,7 +16,7 @@ Authors@R: c(person("Marco", "Sciaini", email = "marco.sciaini@indblik.io", role
     person("Jeffrey", "Hollister", role = "rev",
        comment = "Jeffrey reviewed the package for rOpenSci, see 
                   https://github.com/ropensci/onboarding/issues/188"))
-Maintainer: Marco Sciaini <sciaini.marco@gmail.com>
+Maintainer: Marco Sciaini <marco.sciaini@posteo.net>
 Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     <http://sci-hub.tw/10.1007/bf02275262>).  
     Neutral landscape models range from "hard" 
