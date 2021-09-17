@@ -23,7 +23,7 @@ Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     neutral models (completely random distributed), to "soft" neutral models 
     (definable spatial characteristics) and generate landscape patterns that are 
     independent of ecological processes.
-    Thus, these patterns can be used as null models in landscape ecology. 'nlmr' 
+    Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
     combines a large number of algorithms from other published software for 
     simulating neutral landscapes. The simulation results are obtained in a
     geospatial data format (raster* objects from the 'raster' package) and can,
@@ -55,7 +55,6 @@ BugReports: https://github.com/ropensci/NLMR/issues/
 Suggests:
     testthat,
     covr,
-    captioner,
     knitr,
     rmarkdown,
     lintr,
