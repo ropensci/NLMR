@@ -31,7 +31,7 @@ ________________________________________________________________________________
 - split package into two packages:
   - `NLMR` 
     - contains now only the neutral landscape models, minimal dependencies
-  - [`landscapetools`](https://github.com/marcosci/landscapetools)
+  - [`landscapetools`](https://github.com/ropensci/landscapetools)
     - contains now only utility functions
 - small bug fixes
 - `nlm_fBm` is now `nlm_fbm`

@@ -6,7 +6,7 @@ We love collaboration.
 
 ### Bugs?
 
-* Submit an issue on the Issues page [here](https://github.com/marcosci/nlmr/issues)
+* Submit an issue on the Issues page [here](https://github.com/ropensci/nlmr/issues)
 
 ### Code contributions
 

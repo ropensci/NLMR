@@ -1,7 +1,7 @@
 Package: NLMR
 Type: Package
 Title: Simulating Neutral Landscape Models
-Version: 0.6
+Version: 1.1
 Authors@R: c(person("Marco", "Sciaini", email = "marco.sciaini@posteo.net", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
     person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"), 
     person("Maximilian", "Hesselbarth", email = "mhk.hesselbarth@gmail.com", role = "aut"),
@@ -26,7 +26,7 @@ Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
     combines a large number of algorithms from other published software for 
     simulating neutral landscapes. The simulation results are obtained in a
-    geospatial data format (raster* objects from the 'raster' package) and can,
+    spatial data format (raster* objects from the 'raster' package) and can,
     therefore, be used in any sort of raster data operation that is performed 
     with standard observation data.                                                                                                  
 License: GPL-3
@@ -45,6 +45,7 @@ Imports:
     raster,
     spatstat.core,
     spatstat.geom,
+    igraph,
     stats,
     tibble,
     fasterize,
