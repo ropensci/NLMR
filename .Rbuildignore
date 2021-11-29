@@ -4,11 +4,9 @@
 ^README\.md$
 ^README-.*\.png$
 man-roxygen
-^\.travis\.yml$
 ^docs$
 ^codecov\.yml$
 ^_pkgdown\.yml$
-^appveyor\.yml$
 ^index\.Rmd$
 ^pkgdown$
 ^revdep$
