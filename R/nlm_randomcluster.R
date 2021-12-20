@@ -18,8 +18,10 @@
 #' This directly controls the number of types via the given length.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param crs [\code{character(1)}]\cr
+#' The crs for the new raster. If blank, defaults to WGS 84.
 #'
-#' @return Raster with random values ranging from 0-1.
+#' @return SpatRaster with random values ranging from 0-1.
 #'
 #' @details
 #' This is a direct implementation of steps A - D of the modified random clusters algorithm
@@ -52,7 +54,8 @@ nlm_randomcluster <- function(ncol, nrow,
                               p,
                               ai = c(0.5, 0.5),
                               neighbourhood = 4,
-                              rescale = TRUE) {
+                              rescale = TRUE, 
+                              crs = "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs") {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
@@ -65,7 +68,7 @@ nlm_randomcluster <- function(ncol, nrow,
   checkmate::assert_logical(rescale)
 
   # Step A - Create percolation map
-  ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution)
+  ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution, crs = crs)
 
   # Step B - Cluster identification (clustering of adjoining pixels)
   ranclumap <- terra::patches(x = ranclumap, directions = neighbourhood, zeroAsNA = T)
@@ -123,7 +126,7 @@ nlm_randomcluster <- function(ncol, nrow,
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
-    ranclumap <- ranclumap
+    ranclumap <- ranclumap / max(ranclumap[])
   }
 
   return(ranclumap)
