@@ -82,7 +82,7 @@ nlm_randomcluster <- function(ncol, nrow,
   # write back new category nr
   class_df <- data.frame('is' = unique(ranclumap[][!is.na(ranclumap[])]),
                          'becomes' = clutyp)
-  ranclumap <- classify(ranclumap, rcl = class_df, include.lowest=T)
+  ranclumap <- terra::classify(ranclumap, rcl = class_df, include.lowest=T)
 
   # Step D - Filling the map
   # helperfuction to choose values
