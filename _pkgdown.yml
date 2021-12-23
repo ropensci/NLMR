@@ -50,3 +50,5 @@ extra_packages:
   - bindrcpp
   - igraph
   - landscapemetrics
+  - rasterVis
+  - pals
