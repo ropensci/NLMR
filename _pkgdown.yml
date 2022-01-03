@@ -52,3 +52,4 @@ extra_packages:
   - landscapemetrics
   - rasterVis
   - pals
+  - rgl

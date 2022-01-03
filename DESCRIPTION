@@ -59,7 +59,6 @@ Suggests:
     knitr,
     rmarkdown,
     lintr,
-    landscapetools,
-    rgl
+    landscapetools
 LinkingTo: Rcpp
 VignetteBuilder: knitr
