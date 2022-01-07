@@ -4,7 +4,7 @@ author: "Marco Sciaini"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Bestiary}
+  %\VignetteIndexEntry{NLMR Overview and Tips}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
