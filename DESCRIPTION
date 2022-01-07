@@ -1,74 +1,77 @@
-Package: NLMR
 Type: Package
+Package: NLMR
 Title: Simulating Neutral Landscape Models
 Version: 1.1
-Authors@R: c(person("Marco", "Sciaini", email = "marco.sciaini@posteo.net", role = c("aut", "cre"), comment = c(ORCID = '0000-0002-3042-5435')), 
-    person("Matthias", "Fritsch", email = "matthias.fritsch@forst.uni-goettingen.de", role = "aut"), 
-    person("Maximilian", "Hesselbarth", email = "mhk.hesselbarth@gmail.com", role = "aut"),
-    person("Craig", "Simpkins", email = "simpkinscraig063@gmail.com",
-       role =  "aut", comment = c(ORCID = '0000-0003-3212-1379')),
-    person("Cédric", "Scherer", email = "cedricphilippscherer@gmail.com", 
-       role =  c("aut"), comment = c(ORCID = '0000-0003-0465-2543')),
-    person("Sebastian", "Hanß", role = "aut", comment = c(ORCID = '0000-0002-3990-4897')), 
+Authors@R: c(
+    person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3042-5435")),
+    person("Matthias", "Fritsch", , "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
+    person("Maximilian", "Hesselbarth", , "mhk.hesselbarth@gmail.com", role = "aut"),
+    person("Craig", "Simpkins", , "simpkinscraig063@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0003-3212-1379")),
+    person("Cédric", "Scherer", , "cedricphilippscherer@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0003-0465-2543")),
+    person("Sebastian", "Hanß", role = "aut",
+           comment = c(ORCID = "0000-0002-3990-4897")),
     person("Laura", "Graham", role = "rev",
-       comment = "Laura reviewed the package for rOpenSci, see 
-                  https://github.com/ropensci/onboarding/issues/188"),
+           comment = "Laura reviewed the package for rOpenSci, see \n                  https://github.com/ropensci/onboarding/issues/188"),
     person("Jeffrey", "Hollister", role = "rev",
-       comment = "Jeffrey reviewed the package for rOpenSci, see 
-                  https://github.com/ropensci/onboarding/issues/188"))
+           comment = "Jeffrey reviewed the package for rOpenSci, see \n                  https://github.com/ropensci/onboarding/issues/188")
+  )
 Maintainer: Marco Sciaini <marco.sciaini@posteo.net>
 Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
-    <http://sci-hub.tw/10.1007/bf02275262>).  
-    Neutral landscape models range from "hard" 
-    neutral models (completely random distributed), to "soft" neutral models 
-    (definable spatial characteristics) and generate landscape patterns that are 
-    independent of ecological processes.
-    Thus, these patterns can be used as null models in landscape ecology. 'NLMR' 
-    combines a large number of algorithms from other published software for 
-    simulating neutral landscapes. The simulation results are obtained in a
-    spatial data format (raster* objects from the 'raster' package) and can,
-    therefore, be used in any sort of raster data operation that is performed 
-    with standard observation data.                                                                                                  
+    <http://sci-hub.tw/10.1007/bf02275262>).  Neutral landscape models
+    range from "hard" neutral models (completely random distributed), to
+    "soft" neutral models (definable spatial characteristics) and generate
+    landscape patterns that are independent of ecological processes.
+    Thus, these patterns can be used as null models in landscape ecology.
+    'NLMR' combines a large number of algorithms from other published
+    software for simulating neutral landscapes. The simulation results are
+    obtained in a spatial data format (raster* objects from the 'raster'
+    package) and can, therefore, be used in any sort of raster data
+    operation that is performed with standard observation data.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
-ByteCompile: true
+URL: https://ropensci.github.io/NLMR/
+BugReports: https://github.com/ropensci/NLMR/issues/
 Depends:
     R (>= 3.1.0)
-SystemRequirements: C++11
-Roxygen: list(roclets = c("rd", "namespace", "collate"))
-RoxygenNote: 7.1.1
 Imports: 
     checkmate,
     dplyr,
+    fasterize,
     RandomFields,
     raster,
+    Rcpp,
+    sf,
     spatstat.core,
     spatstat.geom,
-    igraph,
     stats,
-    tibble,
-    fasterize,
-    sf,
-    Rcpp
-URL: https://ropensci.github.io/NLMR/
-BugReports: https://github.com/ropensci/NLMR/issues/
+    tibble
 Suggests:
-    testthat,
-    covr,
+    ggplot2,
+    highcharter,
     knitr,
+    landscapemetrics,
+    landscapetools,
+    magrittr,
+    pals,
+    plotly,
+    purrr,
+    rasterVis,
+    rayshader,
+    rgl,
     rmarkdown,
-    lintr,
-    landscapetools
-LinkingTo: Rcpp
-VignetteBuilder: knitr
-Config/Needs/website:
-  bindrcpp,
-  igraph,
-  landscapemetrics,
-  rasterVis,
-  pals,
-  rgl,
-  viridis,
-  plotly,
-  rayshader
+    testthat,
+    viridis
+LinkingTo: 
+    Rcpp
+VignetteBuilder: 
+    knitr
+ByteCompile: true
+Config/Needs/website:bindrcpp, igraph, landscapemetrics, rasterVis, pals,
+    rgl, viridis, plotly, rayshader
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(roclets = c("rd", "namespace", "collate"))
+RoxygenNote: 7.1.2
+SystemRequirements: C++11
