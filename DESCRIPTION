@@ -62,3 +62,13 @@ Suggests:
     landscapetools
 LinkingTo: Rcpp
 VignetteBuilder: knitr
+Config/Needs/website:
+  bindrcpp,
+  igraph,
+  landscapemetrics,
+  rasterVis,
+  pals,
+  rgl,
+  viridis,
+  plotly,
+  rayshader

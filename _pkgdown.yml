@@ -53,3 +53,6 @@ extra_packages:
   - rasterVis
   - pals
   - rgl
+  - viridis
+  - plotly
+  - rayshader
