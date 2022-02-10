@@ -43,7 +43,7 @@ Imports:
     raster,
     Rcpp,
     sf,
-    spatstat.core,
+    spatstat.random,
     spatstat.geom,
     stats,
     tibble
