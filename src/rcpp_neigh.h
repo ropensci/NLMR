@@ -6,7 +6,7 @@
 static std::uniform_real_distribution<double> random_unif(0, 1);
 static std::mt19937 mt;
 
-std::vector<std::pair<int, int> > random_cell_indecies(int ncol, int nrow, int offset = 0);
+std::vector<std::pair<int, int> > random_cell_indices(int ncol, int nrow, int offset = 0);
 inline int randWrapper( const int n ) {
     return floor(random_unif(mt) * n); };
 #endif // RCPP_NEIGH_H
