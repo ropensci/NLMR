@@ -85,7 +85,7 @@ nlm_neigh <-
 
     if (!is.na(proportions)) checkmate::assert_true(sum(proportions) == 1)
 
-    # Determine cells per categorie
+    # Determine cells per category
     # -1 because remaining cells are category
     cat <- categories - 1
     if (is.double(proportions)) {

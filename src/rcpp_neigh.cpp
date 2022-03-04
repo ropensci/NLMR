@@ -17,7 +17,7 @@ NumericMatrix rcpp_neigh(int nrow,
     // get a random number as seed from R
     mt.seed(seed);
     std::vector<std::pair<int, int> > cell_index =
-            random_cell_indecies(ncol, nrow, 1);
+            random_cell_indicies(ncol, nrow, 1);
 
     for (int cat = n_categories; cat >= 0; cat--)
     {
@@ -25,7 +25,6 @@ NumericMatrix rcpp_neigh(int nrow,
 
         while (n_cells > 0) {
 
-            assert(!cell_index.empty());
             int col = cell_index.back().first;
             int row = cell_index.back().second;
 
@@ -65,11 +64,14 @@ NumericMatrix rcpp_neigh(int nrow,
 
                 if (rnd_num < p_neigh) {
                     mat(row, col) = cat;
-                    // Rcout << "The value of mat(row, col) : " << mat(row, col) << "\n";
                     n_cells--;
                     cell_index.pop_back();
                 } else {
-                    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
+                    const unsigned back = cell_index.size() - 1;
+                    const unsigned idx = randWrapper(back);
+                    const auto tmp = cell_index[idx];
+                    cell_index[idx] = cell_index[back];
+                    cell_index[back] = tmp;
                 }
 
             } else {
@@ -78,11 +80,14 @@ NumericMatrix rcpp_neigh(int nrow,
 
                 if (rnd_num < p_empty) {
                     mat(row, col) = cat;
-                    // Rcout << "The value of mat(row, col) : " << mat(row, col) << "\n";
                     n_cells--;
                     cell_index.pop_back();
                 } else {
-                    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
+                    const unsigned back = cell_index.size() - 1;
+                    const unsigned idx = randWrapper(back);
+                    const auto tmp = cell_index[idx];
+                    cell_index[idx] = cell_index[back];
+                    cell_index[back] = tmp;
                 }
 
             }
@@ -97,7 +102,7 @@ NumericMatrix rcpp_neigh(int nrow,
     return mat;
 }
 
-std::vector<std::pair<int, int> > random_cell_indecies(int ncol, int nrow, int offset)
+std::vector<std::pair<int, int> > random_cell_indicies(int ncol, int nrow, int offset)
 {
     std::vector<std::pair<int, int> > cell_index(nrow * ncol);
     int cntr = 0;
