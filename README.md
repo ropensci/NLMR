@@ -9,17 +9,13 @@ NLMR <img src="man/figures/logo.png" align="right" width="150" />
 Installation
 ------------
 
-Install the release version from CRAN:
+NLMR is not available on CRAN at the moment (see #95). The only way to install NLMR at the moment is:
 
-``` r
-install.packages("NLMR")
-```
+```r
+# install.packages("remotes")
 
-To install the developmental version of **NLMR**, use the following R code:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("ropensci/NLMR")
+remotes::install_github("cran/RandomFields")
+remotes::install_github("ropensci/NLMR")
 ```
 
 Example
