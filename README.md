@@ -14,6 +14,7 @@ NLMR is not available on CRAN at the moment (see #95). The only way to install N
 ```r
 # install.packages("remotes")
 
+remotes::install_github("cran/RandomFieldsUtils")
 remotes::install_github("cran/RandomFields")
 remotes::install_github("ropensci/NLMR")
 ```
@@ -25,18 +26,18 @@ Each neutral landscape models is simulated with a single function (all starting 
 
 ``` r
 random_cluster <- NLMR::nlm_randomcluster(nrow = 100,
-                                      ncol = 100,
-                                      p    = 0.5,
-                                      ai   = c(0.3, 0.6, 0.1),
-                                      rescale = FALSE)
+                                          ncol = 100,
+                                          p    = 0.5,
+                                          ai   = c(0.3, 0.6, 0.1),
+                                          rescale = FALSE)
 
 random_curdling <- NLMR::nlm_curds(curds = c(0.5, 0.3, 0.6),
-                              recursion_steps = c(32, 6, 2))
+                                   recursion_steps = c(32, 6, 2))
 
 
 midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
-                                 nrow = 100,
-                                 roughness = 0.61)
+                                       nrow = 100,
+                                       roughness = 0.61)
 ```
 
 Overview

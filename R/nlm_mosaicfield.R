@@ -46,8 +46,7 @@
 #' @rdname nlm_mosaicfield
 #'
 #' @export
-
-
+#' 
 nlm_mosaicfield <- function(ncol,
                             nrow,
                             resolution  = 1,
@@ -57,142 +56,147 @@ nlm_mosaicfield <- function(ncol,
                             collect     = FALSE,
                             infinit     = FALSE,
                             rescale     = TRUE) {
-  # Check function arguments ----
-  checkmate::assert_count(ncol, positive = TRUE)
-  checkmate::assert_count(nrow, positive = TRUE)
-  checkmate::assert_numeric(resolution)
-  checkmate::assert_count(n, positive = TRUE, na.ok = TRUE)
-  checkmate::assert_numeric(mosaic_mean)
-  checkmate::assert_numeric(mosaic_sd)
-  checkmate::assert_logical(collect)
-  checkmate::assert_logical(infinit)
-  checkmate::assert_logical(rescale)
 
-  mosaicfields_return <- list()
-
-  if (!is.na(n)) {
-    mosaicfield_result <- spatstat.random::rMosaicField(
-      spatstat.random::rpoislinetess(4),
-      stats::rnorm,
-      dimyx = c(nrow, ncol),
-      rgenargs = list(mean = mosaic_mean,
-                      sd = mosaic_sd)
-    )
-
-    if (isTRUE(collect)) {
-      mosaicfield_list <- list()
-      mosaicfield_list[[1]] <- mosaicfield_result
-    }
-
-    for (i in 2:n) {
-      mosaicfield_n <- spatstat.random::rMosaicField(
+  if (requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
+    # Check function arguments ----
+    checkmate::assert_count(ncol, positive = TRUE)
+    checkmate::assert_count(nrow, positive = TRUE)
+    checkmate::assert_numeric(resolution)
+    checkmate::assert_count(n, positive = TRUE, na.ok = TRUE)
+    checkmate::assert_numeric(mosaic_mean)
+    checkmate::assert_numeric(mosaic_sd)
+    checkmate::assert_logical(collect)
+    checkmate::assert_logical(infinit)
+    checkmate::assert_logical(rescale)
+  
+    mosaicfields_return <- list()
+  
+    if (!is.na(n)) {
+      mosaicfield_result <- spatstat.random::rMosaicField(
         spatstat.random::rpoislinetess(4),
         stats::rnorm,
         dimyx = c(nrow, ncol),
         rgenargs = list(mean = mosaic_mean,
                         sd = mosaic_sd)
       )
-
-      mosaicfield_result <- mosaicfield_result + mosaicfield_n
-
-      ### COLLECT STEPS IN LIST
+  
       if (isTRUE(collect)) {
-        mosaicfield_list[[i]] <- mosaicfield_n
-        i <- i + 1
+        mosaicfield_list <- list()
+        mosaicfield_list[[1]] <- mosaicfield_result
       }
-    }
-
-    # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_raster <- raster::rasterFromXYZ(
-      as.data.frame(mosaicfield_result))
-
-    raster::extent(mosaicfield_raster) <- c(
-      0,
-      ncol(mosaicfield_raster) * resolution,
-      0,
-      nrow(mosaicfield_raster) * resolution
-    )
-
-    # Rescale values to 0-1
-    if (rescale == TRUE) {
-      mosaicfield_raster <- util_rescale(mosaicfield_raster)
-    }
-
-    mosaicfields_return$mosaicfield_raster <- mosaicfield_raster
-
-    if (isTRUE(collect)) {
-      names(mosaicfield_list) <- seq_along(mosaicfield_list)
-      mosaicfield_list <-
-        lapply(seq_along(mosaicfield_list), function(i) {
-          mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
-        })
-
-      mosaicfield_list <-
-        lapply(seq_along(mosaicfield_list), function(i) {
-          # coerce spatstat image list to raster and set proper resolution ----
-          mosaicfield_list[[i]] <- raster::rasterFromXYZ(
-            as.data.frame(mosaicfield_list[[i]]))
-
-          raster::extent(mosaicfield_list[[i]]) <- c(
-            0,
-            ncol(mosaicfield_list[[i]]) * resolution,
-            0,
-            nrow(mosaicfield_list[[i]]) * resolution
-          )
-
-          mosaicfield_list[[i]]
-        })
-
-      mosaicfields_brick <- raster::brick(mosaicfield_list)
-      names(mosaicfields_brick) <-
-        paste("Step: ", seq_along(mosaicfield_list))
-
+  
+      for (i in 2:n) {
+        mosaicfield_n <- spatstat.random::rMosaicField(
+          spatstat.random::rpoislinetess(4),
+          stats::rnorm,
+          dimyx = c(nrow, ncol),
+          rgenargs = list(mean = mosaic_mean,
+                          sd = mosaic_sd)
+        )
+  
+        mosaicfield_result <- mosaicfield_result + mosaicfield_n
+  
+        ### COLLECT STEPS IN LIST
+        if (isTRUE(collect)) {
+          mosaicfield_list[[i]] <- mosaicfield_n
+          i <- i + 1
+        }
+      }
+  
+      # coerce spatstat image to raster and set proper resolution ----
+      mosaicfield_raster <- raster::rasterFromXYZ(
+        as.data.frame(mosaicfield_result))
+  
+      raster::extent(mosaicfield_raster) <- c(
+        0,
+        ncol(mosaicfield_raster) * resolution,
+        0,
+        nrow(mosaicfield_raster) * resolution
+      )
+  
       # Rescale values to 0-1
       if (rescale == TRUE) {
-        mosaicfields_brick <- util_rescale(mosaicfields_brick)
+        mosaicfield_raster <- util_rescale(mosaicfield_raster)
       }
-
-
-      mosaicfields_return$steps <- mosaicfields_brick
+  
+      mosaicfields_return$mosaicfield_raster <- mosaicfield_raster
+  
+      if (isTRUE(collect)) {
+        names(mosaicfield_list) <- seq_along(mosaicfield_list)
+        mosaicfield_list <-
+          lapply(seq_along(mosaicfield_list), function(i) {
+            mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
+          })
+  
+        mosaicfield_list <-
+          lapply(seq_along(mosaicfield_list), function(i) {
+            # coerce spatstat image list to raster and set proper resolution ----
+            mosaicfield_list[[i]] <- raster::rasterFromXYZ(
+              as.data.frame(mosaicfield_list[[i]]))
+  
+            raster::extent(mosaicfield_list[[i]]) <- c(
+              0,
+              ncol(mosaicfield_list[[i]]) * resolution,
+              0,
+              nrow(mosaicfield_list[[i]]) * resolution
+            )
+  
+            mosaicfield_list[[i]]
+          })
+  
+        mosaicfields_brick <- raster::brick(mosaicfield_list)
+        names(mosaicfields_brick) <-
+          paste("Step: ", seq_along(mosaicfield_list))
+  
+        # Rescale values to 0-1
+        if (rescale == TRUE) {
+          mosaicfields_brick <- util_rescale(mosaicfields_brick)
+        }
+  
+  
+        mosaicfields_return$steps <- mosaicfields_brick
+      }
     }
-  }
-
-  if (isTRUE(infinit)) {
-    # INFINITE STEPS:
-    X <- spatstat.random::rLGCP(
-      "exp",
-      4,
-      var = 1,
-      dimyx = c(nrow, ncol),
-      scale = .2,
-      saveLambda = TRUE
-    )
-    mosaicfield_inf <- log(attr(X, "Lambda"))
-
-    # coerce spatstat image to raster and set proper resolution ----
-    mosaicfield_raster <-
-      raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
-
-    raster::extent(mosaicfield_raster) <- c(
-      0,
-      ncol(mosaicfield_raster) * resolution,
-      0,
-      nrow(mosaicfield_raster) * resolution
-    )
-
-    # Rescale values to 0-1
-    if (rescale == TRUE) {
-      mosaicfield_raster <- util_rescale(mosaicfield_raster)
+  
+    if (isTRUE(infinit)) {
+      # INFINITE STEPS:
+      X <- spatstat.random::rLGCP(
+        "exp",
+        4,
+        var = 1,
+        dimyx = c(nrow, ncol),
+        scale = .2,
+        saveLambda = TRUE
+      )
+      mosaicfield_inf <- log(attr(X, "Lambda"))
+  
+      # coerce spatstat image to raster and set proper resolution ----
+      mosaicfield_raster <-
+        raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
+  
+      raster::extent(mosaicfield_raster) <- c(
+        0,
+        ncol(mosaicfield_raster) * resolution,
+        0,
+        nrow(mosaicfield_raster) * resolution
+      )
+  
+      # Rescale values to 0-1
+      if (rescale == TRUE) {
+        mosaicfield_raster <- util_rescale(mosaicfield_raster)
+      }
+  
+  
+      mosaicfields_return$mosaicfield_inf <- mosaicfield_raster
     }
-
-
-    mosaicfields_return$mosaicfield_inf <- mosaicfield_raster
+  
+  
+    if (length(mosaicfields_return) == 1) {
+      mosaicfields_return <- mosaicfields_return[[1]]
+    }
+  
+    return(mosaicfields_return)
+  } else {
+    stop(.messageRandomFields)
   }
-
-
-  if (length(mosaicfields_return) == 1) {
-    mosaicfields_return <- mosaicfields_return[[1]]
-  }
-
-  return(mosaicfields_return)
 }
