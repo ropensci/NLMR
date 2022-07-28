@@ -13,11 +13,14 @@ NLMR is not available on CRAN at the moment (see #95). The only way to install N
 
 ```r
 # install.packages("remotes")
-
 remotes::install_github("cran/RandomFieldsUtils")
 remotes::install_github("cran/RandomFields")
 remotes::install_github("ropensci/NLMR")
 ```
+**Windows users** need to install RTools first. Rtools provides a compiler and some helpers to compile code for R in Windows. Download Rtools from here: <https://cran.r-project.org/bin/windows/Rtools/> and select the appropriate Rtools version (4.0 with R 4.x.x)
+
+Install Rtools in a directory with no fancy characters in its path, e.g. `C:\R\Rtools` is safe. To install, right click on the `Rtools40.exe` and select “Run as administrator”. During the installation make sure to select "Add Rtools to PATH". Otherwise, accept all defaults for everything else.
+
 
 Example
 -------
