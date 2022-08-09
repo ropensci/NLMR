@@ -34,9 +34,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          extra-repositories: https://predictiveecology.r-universe.dev/ ## TODO: use ropensci universe
-          r-version: ${{ matrix.config.r }}
+          extra-repositories: 'https://predictiveecology.r-universe.dev/' ## TODO: use ropensci universe
           http-user-agent: ${{ matrix.config.http-user-agent }}
+          r-version: ${{ matrix.config.r }}
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
