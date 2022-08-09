@@ -24,9 +24,10 @@ jobs:
           extra-repositories: https://predictiveecology.r-universe.dev/ ## TODO: use ropensci universe
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: covr
+          extra-packages: |
+            any::covr
 
       - name: Test coverage
         run: covr::codecov()
