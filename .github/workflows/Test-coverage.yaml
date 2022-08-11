@@ -28,6 +28,7 @@ jobs:
         with:
           extra-packages: |
             any::covr
+            any::XML
 
       - name: Test coverage
         run: covr::codecov()
