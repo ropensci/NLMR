@@ -48,13 +48,13 @@ jobs:
       - name: Install additional package dependencies
         run: |
           repos.orig <- getOption('repos')
-          options(repos = c(PE = "https://predictiveecology.r-universe.dev") ## TODO: use ropensci universe
+          options(repos = c(PE = "https://predictiveecology.r-universe.dev")) ## TODO: use ropensci universe
           pak::pkg_install("RandomFields")
           options(repos = repos.orig)
         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
-      
+
       - name: Show testthat output
         if: always()
         run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
