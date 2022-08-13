@@ -41,8 +41,17 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            RandomFields=?ignore
             any::rcmdcheck
             any::XML
+
+      - name: Install additional package dependencies
+        run: |
+          repos.orig <- getOption('repos')
+          options(repos = c(PE = "https://predictiveecology.r-universe.dev") ## TODO: use ropensci universe
+          pak::pkg_install("RandomFields")
+          options(repos = repos.orig)
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
       
