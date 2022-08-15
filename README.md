@@ -29,18 +29,18 @@ Each neutral landscape models is simulated with a single function (all starting 
 
 ``` r
 random_cluster <- NLMR::nlm_randomcluster(nrow = 100,
-                                      ncol = 100,
-                                      p    = 0.5,
-                                      ai   = c(0.3, 0.6, 0.1),
-                                      rescale = FALSE)
+                                          ncol = 100,
+                                          p    = 0.5,
+                                          ai   = c(0.3, 0.6, 0.1),
+                                          rescale = FALSE)
 
 random_curdling <- NLMR::nlm_curds(curds = c(0.5, 0.3, 0.6),
-                              recursion_steps = c(32, 6, 2))
+                                   recursion_steps = c(32, 6, 2))
 
 
 midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
-                                 nrow = 100,
-                                 roughness = 0.61)
+                                       nrow = 100,
+                                       roughness = 0.61)
 ```
 
 Overview
@@ -96,7 +96,7 @@ Etherington, Holland, and O’Sullivan (2015)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_edgegradient
+nlm_edgegradient
 </td>
 <td style="text-align:left;">
 Simulates a linear gradient orientated neutral model. The gradient has a specified or random direction that has a central peak, which runs perpendicular to the gradient direction
@@ -124,7 +124,7 @@ Schlather et al. (2015)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_gaussianfield
+nlm_gaussianfield
 </td>
 <td style="text-align:left;">
 Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelation
@@ -138,7 +138,7 @@ Schlather et al. (2015)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_mosaicfield
+nlm_mosaicfield
 </td>
 <td style="text-align:left;">
 Simulates a mosaic random field neutral landscape model. The algorithm imitates fault lines by repeatedly bisecting the landscape and lowering the values of cells in one half and increasing the values in the other half. If one sets the parameter infinite to TRUE, the algorithm approaches a fractal pattern
@@ -152,7 +152,7 @@ Schlather et al. (2015)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_neigh
+nlm_neigh
 </td>
 <td style="text-align:left;">
 Simulates a neutral landscape model with land cover classes and clustering based on neighbourhood characteristics. The cluster are based on the surrounding cells. If there is a neighbouring cell of the current value/type, the target cell will more likely turned into a cell of that type/value
@@ -166,7 +166,7 @@ Scherer et al. (2016)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_percolation
+nlm_percolation
 </td>
 <td style="text-align:left;">
 Simulates a binary neutral landscape model based on percolation theory. The probability for a cell to be assigned habitat is drawn from a uniform distribution
@@ -180,7 +180,7 @@ Gardner et al. (1989)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_planargradient
+nlm_planargradient
 </td>
 <td style="text-align:left;">
 Simulates a planar gradient neutral landscape model. The gradient is sloping in a specified or (by default) random direction between 0 and 360 degree
@@ -194,7 +194,7 @@ Palmer (1992)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_mosaictess
+nlm_mosaictess
 </td>
 <td style="text-align:left;">
 Simulates a patchy mosaic neutral landscape model based on the tessellation of a random point process. The algorithm randomly places points (parameter germs) in the landscape, which are used as the centroid points for a voronoi tessellation. A higher number of points therefore leads to a more fragmented landscape
@@ -208,7 +208,7 @@ Gaucherel (2008), Method 1
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_mosaicgibbs
+nlm_mosaicgibbs
 </td>
 <td style="text-align:left;">
 Simulates a patchy mosaic neutral landscape model based on the tessellation of an inhibition point process. This inhibition point process starts with a given number of points and uses a minimisation approach to fit a point pattern with a given interaction parameter (0 - hardcore process; 1 - Poisson process) and interaction radius (distance of points/germs being apart)
@@ -222,7 +222,7 @@ Gaucherel (2008), Method 2
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_random
+nlm_random
 </td>
 <td style="text-align:left;">
 Simulates a spatially random neutral landscape model with values drawn a uniform distribution
@@ -236,7 +236,7 @@ With and Crist (1995)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_randomcluster
+nlm_randomcluster
 </td>
 <td style="text-align:left;">
 Simulates a random cluster nearest-neighbour neutral landscape. The parameter ai controls for the number and abundance of land cover classes and p controls for proportion of elements randomly selected to form clusters
@@ -250,7 +250,7 @@ Saura and Martínez-Millán (2000)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_mpd
+nlm_mpd
 </td>
 <td style="text-align:left;">
 Simulates a midpoint displacement neutral landscape model where the parameter roughness controls the level of spatial autocorrelation
@@ -264,7 +264,7 @@ Peitgen and Saupe (1988)
 </tr>
 <tr>
 <td style="text-align:left;">
-nlm\_randomrectangularcluster
+nlm_randomrectangularcluster
 </td>
 <td style="text-align:left;">
 Simulates a random rectangular cluster neutral landscape model. The algorithm randomly distributes overlapping rectangles until the landscape is filled

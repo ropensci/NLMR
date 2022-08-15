@@ -1,4 +1,8 @@
 ____________________________________________________________________________________
+## NLMR 1.1.0.9000 Release Notes
+
+- move `RandomFields` and `RandomFieldsUtils` to Suggests and use AdditionalRepositories to provide these packages since they are no longer available from CRAN (with #95)
+
 ## NLMR 0.4.2 Release Notes
 
 - Bugfix in nlm_mosaicfield to rely on new version of RandomFields
