@@ -70,10 +70,10 @@ VignetteBuilder:
     knitr
 Additional_repositories: https://predictiveecology.r-universe.dev/
 ByteCompile: true
-Config/Needs/website:bindrcpp, igraph, landscapemetrics, rasterVis, pals,
+Config/Needs/website: bindrcpp, igraph, landscapemetrics, rasterVis, pals,
     rgl, viridis, plotly, rayshader
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 SystemRequirements: C++11
