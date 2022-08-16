@@ -27,16 +27,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_neigh
-NumericMatrix rcpp_neigh(int nrow, int ncol, NumericMatrix mat, int n_categories, NumericVector cells_per_cat, int neighbourhood, float p_neigh, float p_empty, unsigned long seed);
+IntegerMatrix rcpp_neigh(int nrow, int ncol, IntegerMatrix mat, int n_categories, IntegerVector cells_per_cat, int neighbourhood, float p_neigh, float p_empty, unsigned long seed);
 RcppExport SEXP _NLMR_rcpp_neigh(SEXP nrowSEXP, SEXP ncolSEXP, SEXP matSEXP, SEXP n_categoriesSEXP, SEXP cells_per_catSEXP, SEXP neighbourhoodSEXP, SEXP p_neighSEXP, SEXP p_emptySEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< int >::type nrow(nrowSEXP);
     Rcpp::traits::input_parameter< int >::type ncol(ncolSEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type mat(matSEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type mat(matSEXP);
     Rcpp::traits::input_parameter< int >::type n_categories(n_categoriesSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type cells_per_cat(cells_per_catSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type cells_per_cat(cells_per_catSEXP);
     Rcpp::traits::input_parameter< int >::type neighbourhood(neighbourhoodSEXP);
     Rcpp::traits::input_parameter< float >::type p_neigh(p_neighSEXP);
     Rcpp::traits::input_parameter< float >::type p_empty(p_emptySEXP);
