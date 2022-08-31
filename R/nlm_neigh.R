@@ -72,7 +72,7 @@ nlm_neigh <-
            neighbourhood = 4,
            proportions = NA,
            rescale = TRUE) {
-    
+
     # Check function arguments ----
     checkmate::assert_count(ncol, positive = TRUE)
     checkmate::assert_count(nrow, positive = TRUE)
@@ -82,10 +82,13 @@ nlm_neigh <-
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_vector(proportions)
     checkmate::assert_logical(rescale)
-    
+
     suppressWarnings(
-      if (!is.na(proportions)) checkmate::assert_true(sum(proportions) == 1))
-    
+      if (!anyNA(proportions)) {
+        checkmate::assert_true(sum(proportions) == 1)
+        }
+      )
+
     # Determine cells per category
     # -1 because remaining cells are category
     cat <- categories - 1
@@ -94,27 +97,27 @@ nlm_neigh <-
     } else {
       no_cat <- rep(floor(nrow * ncol / categories), cat + 1)
     }
-    
+
     # Create an empty matrix of correct dimensions ----
     mat <- matrix(as.integer(0), nrow, ncol)
-    
+
     # Keep applying random clusters until all elements have a value -----
     seed <- sample.int(.Machine$integer.max, 1)
     mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty, seed)
-    
+
     # Transform to raster ----
     rndneigh_raster <- raster::raster(mat)
-    
+
     # specify resolution ----
     raster::extent(rndneigh_raster) <- c(0,
                                          ncol(rndneigh_raster) * resolution,
                                          0,
                                          nrow(rndneigh_raster) * resolution)
-    
+
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
       rndneigh_raster <- util_rescale(rndneigh_raster)
     }
-    
+
     return(rndneigh_raster)
   }

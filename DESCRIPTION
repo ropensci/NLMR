@@ -1,7 +1,7 @@
 Type: Package
 Package: NLMR
 Title: Simulating Neutral Landscape Models
-Version: 1.1.0.9000
+Version: 1.1.1
 Authors@R: c(
     person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3042-5435")),
