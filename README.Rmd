@@ -78,6 +78,7 @@ no auto-correlation (random NLM) to a constant gradient (planar gradients):
 library(tibble)
 library(magrittr)
 library(knitr)
+library(kable)
 library(kableExtra)
 
 function_tibble <- tibble(Function = character(), Description = character(), 	Crossreference = character(), Reference = character())
