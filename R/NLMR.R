@@ -13,6 +13,7 @@
 #'
 #' @useDynLib NLMR, .registration=TRUE
 #' @importFrom Rcpp sourceCpp
+#' @keywords internal
 # nocov start
 # nolint start
 "_PACKAGE"
