@@ -50,6 +50,7 @@ Suggests:
     ggplot2,
     highcharter,
     knitr,
+    kableExtra,
     landscapemetrics,
     landscapetools,
     magrittr,
