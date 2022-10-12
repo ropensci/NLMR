@@ -25,11 +25,27 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            RandomFields=?ignore
             any::pkgdown
             any::XML
+          needs: website
 
-      - name: Deploy package
+      - name: Install additional package dependencies
         run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+          repos.orig <- getOption('repos')
+          options(repos = c(PE = "https://predictiveecology.r-universe.dev")) ## TODO: use ropensci universe
+          pak::pkg_install("RandomFields")
+          options(repos = repos.orig)
+        shell: Rscript {0}
+
+      - name: Build site
+        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        shell: Rscript {0}
+
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          clean: false
+          branch: gh-pages
+          folder: docs
