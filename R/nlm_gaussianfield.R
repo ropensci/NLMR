@@ -59,55 +59,53 @@ nlm_gaussianfield <- function(ncol,
                               mean = 0.5,
                               user_seed = NULL,
                               rescale = TRUE) {
-  
-  if (requireNamespace("RandomFields", quietly = TRUE)) {
-    # Check function arguments ----
-    checkmate::assert_count(ncol, positive = TRUE)
-    checkmate::assert_count(nrow, positive = TRUE)
-    checkmate::assert_numeric(resolution, lower = 0)
-    checkmate::assert_count(autocorr_range, positive = TRUE)
-    checkmate::assert_numeric(mag_var, lower = 0)
-    checkmate::assert_numeric(nug, lower = 0)
-    checkmate::assert_numeric(mean)
-    checkmate::assert_logical(rescale)
-  
-  
-    # specify RandomFields options ----
-    RandomFields::RFoptions(cPrintlevel = 0)
-    RandomFields::RFoptions(spConform = FALSE)
-  
-    # set RF seed ----
-    RandomFields::RFoptions(seed = user_seed)
-  
-  
-    # formulate gaussian random model
-    model <- RandomFields::RMexp(var = mag_var, scale = autocorr_range) +
-      RandomFields::RMnugget(var = nug) + # nugget
-      RandomFields::RMtrend(mean = mean) # and mean
-  
-    # simulate
-    simu <-
-      RandomFields::RFsimulate(model,
-                               y = seq(ncol),
-                               x = seq(nrow),
-                               grid =  TRUE)
-  
-    # coerce to raster
-    pred_raster <- raster::raster(simu)
-  
-    # specify resolution ----
-    raster::extent(pred_raster) <- c(0,
-                                     ncol(pred_raster) * resolution,
-                                     0,
-                                     nrow(pred_raster) * resolution)
-  
-    # Rescale values to 0-1 ----
-    if (rescale == TRUE) {
-      pred_raster <- util_rescale(pred_raster)
-    }
-  
-    return(pred_raster)
-  } else {
-    stop(.messageRandomFields)
+
+  hasData()
+
+  # Check function arguments ----
+  checkmate::assert_count(ncol, positive = TRUE)
+  checkmate::assert_count(nrow, positive = TRUE)
+  checkmate::assert_numeric(resolution, lower = 0)
+  checkmate::assert_count(autocorr_range, positive = TRUE)
+  checkmate::assert_numeric(mag_var, lower = 0)
+  checkmate::assert_numeric(nug, lower = 0)
+  checkmate::assert_numeric(mean)
+  checkmate::assert_logical(rescale)
+
+
+  # specify RandomFields options ----
+  RandomFields::RFoptions(cPrintlevel = 0)
+  RandomFields::RFoptions(spConform = FALSE)
+
+  # set RF seed ----
+  RandomFields::RFoptions(seed = user_seed)
+
+
+  # formulate gaussian random model
+  model <- RandomFields::RMexp(var = mag_var, scale = autocorr_range) +
+    RandomFields::RMnugget(var = nug) + # nugget
+    RandomFields::RMtrend(mean = mean) # and mean
+
+  # simulate
+  simu <-
+    RandomFields::RFsimulate(model,
+                             y = seq(ncol),
+                             x = seq(nrow),
+                             grid =  TRUE)
+
+  # coerce to raster
+  pred_raster <- raster::raster(simu)
+
+  # specify resolution ----
+  raster::extent(pred_raster) <- c(0,
+                                   ncol(pred_raster) * resolution,
+                                   0,
+                                   nrow(pred_raster) * resolution)
+
+  # Rescale values to 0-1 ----
+  if (rescale == TRUE) {
+    pred_raster <- util_rescale(pred_raster)
   }
+
+  return(pred_raster)
 }
