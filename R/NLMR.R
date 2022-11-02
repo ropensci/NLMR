@@ -20,13 +20,5 @@
 
 globalVariables(c("x", "value", ".", "ctf"))
 
-.cranLikeRepo <- "https://predictiveecology.r-universe.dev/"
-.messageRandomFields <- paste(
-  "Package 'RandomFields' is required, but no longer available on CRAN.",
-  "Try installing the most recent archived version:",
-  sprintf("  install.packages('RandomFields', repos = '%s')", .cranLikeRepo),
-  sep = "\n"
-)
-
 # nolint end
 # nocov end
