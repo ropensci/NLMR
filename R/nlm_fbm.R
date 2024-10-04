@@ -52,7 +52,6 @@
 #'
 #' @export
 #'
-
 nlm_fbm <- function(ncol,
                     nrow,
                     resolution = 1,
@@ -60,6 +59,9 @@ nlm_fbm <- function(ncol,
                     user_seed = NULL,
                     rescale = TRUE,
                     ...) {
+
+  hasData()
+
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
@@ -105,4 +107,5 @@ nlm_fbm <- function(ncol,
   }
 
   return(fbm_raster)
+
 }

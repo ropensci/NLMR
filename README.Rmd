@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
  <!-- badges: start -->
  
- [![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
+[![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
 [![codecov](https://codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -35,18 +35,18 @@ Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
 
-Install the release version from CRAN:
+NLMR is not available on CRAN at the moment (see #95). The only way to install NLMR at the moment is:
 
-```{r eval = FALSE}
-install.packages("NLMR")
+```{r, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("cran/RandomFieldsUtils")
+remotes::install_github("cran/RandomFields")
+remotes::install_github("ropensci/NLMR")
 ```
 
-To install the developmental version of **NLMR**, use the following R code:
+Windows users need to install RTools first. Rtools provides a compiler and some helpers to compile code for R in Windows. Download Rtools from here: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/) and select the appropriate Rtools version (4.0 with R 4.x.x)
 
-```{r eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("ropensci/NLMR")
-```
+Install Rtools in a directory with no fancy characters in its path, e.g. `C:\R\Rtools` is safe. To install, right click on the `Rtools40.exe` and select “Run as administrator”. During the installation make sure to select "Add Rtools to PATH". Otherwise, accept all defaults for everything else.
 
 ## Example
 

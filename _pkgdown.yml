@@ -19,12 +19,18 @@ reference:
       - '`nlm_randomrectangularcluster`'
 navbar:
   title: nlmr | Neutral landscape models with R
-  left:
-    - text: "Get Started"
+  structure:
+    left: [intro, howto, record]
+    right: [news, reference, search, github]
+  components:
+    intro:
+      text: "Get Started"
       icon: fa fa-magic
       href: articles/getstarted.html
-    - text: "How To"
+    howto:
+      text: "How To"
       icon: fa-graduation-cap
+      aria-label: tutorials
       menu:
       -  text: NLMR Overview + Tips
          href: articles/articles/overview_tips.html
@@ -32,19 +38,10 @@ navbar:
          href: articles/articles/nlm_software_heritage.html
       -  text: Visualize Neutral Landscape Models
          href: articles/articles/visualize_nlms.html
-    - text: "Publication Record"
+    record:
+      text: "Publication Record"
       icon: fa-file-text-o
       href: articles/articles/publication_record.html
-  right:
-    - icon: fa-newspaper-o
-      text: "news"
-      href: news/index.html
-    - icon: fa-gears
-      text: "functions"
-      href: reference/index.html
-    - icon: fa-github fa-lg
-      text: "github"
-      href: https://github.com/ropensci/nlmr
 
 extra_packages:
   - bindrcpp
@@ -52,3 +49,10 @@ extra_packages:
   - landscapemetrics
   - rasterVis
   - pals
+  - rgl
+  - viridis
+  - plotly
+  - rayshader
+
+template:
+  bootstrap: 5

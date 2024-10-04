@@ -50,7 +50,6 @@
 #'
 #' @export
 #'
-
 nlm_gaussianfield <- function(ncol,
                               nrow,
                               resolution = 1,
@@ -60,6 +59,8 @@ nlm_gaussianfield <- function(ncol,
                               mean = 0.5,
                               user_seed = NULL,
                               rescale = TRUE) {
+
+  hasData()
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)

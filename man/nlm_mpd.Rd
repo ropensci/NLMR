@@ -57,7 +57,7 @@ It performs the following steps:
  \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n.
  Setup matrix of size (n^2 + 1)*(n^2 + 1).
  Afterwards, assign a random value to the four corners of the matrix.}
- \item{Diamond Step: }{ For each square in the matrix, assign the average of
+ \item{Square Step: }{ For each square in the matrix, assign the average of
  the four corner points plus a random value to the midpoint of that square.}
  \item{Diamond Step: }{ For each diamond in the matrix, assign the average
   of the four corner points plus a random value to the midpoint of that

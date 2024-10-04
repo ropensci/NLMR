@@ -1,7 +1,7 @@
 ---
 title: "Visualize Neutral Landscape Models"
 author: "Marco Sciaini"
-date: "2022-02-14"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Visualize Neutral Landscape Models}
@@ -20,8 +20,7 @@ some standards concerning color scales and typography. This means for example
 that by default the [viridis color scale](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) 
 is applied which makes your plots easier to read by those with colorblindness.
 
-
-```r
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("landscapetools")
 
@@ -29,18 +28,10 @@ landscape <- nlm_mosaictess(200, 200, germs = 444)
 
 # default theme
 show_landscape(landscape)
-```
 
-<img src="figure/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
-
-```r
 # ... chose another color scale from viridis ("E" = cividis)
 show_landscape(landscape, viridis_scale = "E")
-```
 
-<img src="figure/unnamed-chunk-1-2.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
-
-```r
 # ... chose any other scale:
 # show_landscape returns a ggplot2 object, so you can follow your usual ggplot2
 # workflow and change the color, axis labels, ...
@@ -52,14 +43,11 @@ show_landscape(landscape)  +
   guides(fill = FALSE) # remove legend
 ```
 
-<img src="figure/unnamed-chunk-1-3.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" />
-
 ### rasterVis
 
 **rasterVis** also offers some convenience functions to plot raster, for example:
 
-
-```r
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("rasterVis")
 
@@ -68,13 +56,10 @@ landscape <- nlm_mosaictess(200, 200, germs = 444)
 levelplot(landscape, , margin = FALSE)
 ```
 
-<img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
-
 Another nice function from **rasterVis** is `gplot()`, a wrapper to use ggplot2
 with raster data without reshaping your data as long data.frame:
 
-
-```r
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("rasterVis")
 
@@ -85,15 +70,12 @@ gplot(landscape) +
   coord_equal()
 ```
 
-<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
-
 
 ### ggplot2
 
 If you want to start from scratch with ggplot2:
 
-
-```r
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("raster")
 library("ggplot2")
@@ -109,14 +91,11 @@ ggplot(landscape_long, aes(x,y)) +
   coord_equal()
 ```
 
-<img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
-
 ### raster + plot()
 
 ... if you are in a lot of hurry, raster itself also has a plot method for raster:
 
-
-```r
+```{r , fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("raster")
 
@@ -125,33 +104,13 @@ landscape <- nlm_mosaictess(200, 200, germs = 444)
 plot(landscape)
 ```
 
-<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
-
 ### Perspective plot
 
-
-```r
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("raster")
 library("NLMR")
 landscape <- nlm_fbm(ncol = 50, nrow = 50, fract_dim = 1.3)
-```
 
-```
-## 'RandomFields' will NOT use OMP
-## The package 'RandomFieldsUtils' has been compiled without appropriate SIMD/AVX2 flags. So, calculations can be slow. If the package is recompiled with the necessary flags, the calculations might be faster.
-## R should be restarted after re-compiling. The argument 'install.control' might be used to run the re-compilation without asking and to pass further arguments to 'install.packages', e.g., 'RFoptions(install.control=list(verbose=TRUE))'
-## To avoid this feedback, set 'RFoptions(install="no")' or 'RFoptions(install="install")' before calling any other function of 'RandomFieldsUtils'.
-## 
-## RandomFieldsUtils sees SSE2,  but not GPU, AVX2, AVX,OMP.
-## 
-## 
-## Or call 'RFoptions(install="no")' after loading to avoid being asked again.
-## Searching for tar balls... 
-## The following package will be re-installed:
-## 	RandomFieldsUtils_1.1.0 from cran
-```
-
-```r
 persp(landscape,
       exp=0.5,
       maxpixels = 5000,
@@ -163,12 +122,9 @@ persp(landscape,
       shade = 0.45)
 ```
 
-<img src="figure/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
-
 ### Contour plots
 
-
-```r
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("NLMR")
 library("rasterVis")
 
@@ -177,25 +133,18 @@ landscape <- nlm_mpd(ncol = 50, nrow = 50, roughness = 0.6)
 
 contourplot(landscape,
             pretty = TRUE) 
-```
 
-<img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
-
-```r
 levelplot(landscape,
           contour = TRUE,
           pretty = TRUE)
 ```
-
-<img src="figure/unnamed-chunk-7-2.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
 
 ## Interactive plots
 
 ### rgl + rasterVis
 
-
-```r
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library("rgl")
 library("rasterVis")
 library("viridis")
@@ -210,13 +159,10 @@ plot3D(landscape,
 rglwidget()
 ```
 
-<img src="/var/folders/md/ms6zrv3d6rd4506k3hd7dt140000gn/T//RtmpgJLShi/file23963908c863.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
-
 
 ### highcharter + plotly
 
-
-```r
+```{r message=FALSE, warning=FALSE}
 library("highcharter")
 library("magrittr")
 library("plotly")
@@ -235,22 +181,15 @@ hchart(landscape_matrix) %>%
   hc_exporting(
     enabled = TRUE
   )
-```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
-
-```r
 # With plotly we can combine the interactive approach with the 3D Visualization
 plot_ly(z = as.matrix(landscape_matrix), type = "surface", colors = viridis::magma(8))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png)
-
 
 
 ### rayshader
-
-```r
+```{r fig.height=7, fig.width=7, eval=FALSE}
 library(rayshader)
 library(NLMR)
 library(raster)
@@ -292,8 +231,7 @@ landscape %>%
 ```
 ![](rayshader.gif)
 
-
-```r
+```{r fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center',results='hide',fig.keep='all'}
 library(rayshader)
 library(NLMR)
 library(raster)
@@ -342,5 +280,3 @@ render_depth(
   progbar = FALSE
 )
 ```
-
-<img src="figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
