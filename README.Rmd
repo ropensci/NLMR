@@ -19,10 +19,8 @@ knitr::opts_chunk$set(
  
 [![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
 [![codecov](https://codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/NLMR)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR) 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html) 
-[![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
+[![Lifecycle](https://img.shields.io/badge/Lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![ropensci](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
 [![DOI:10.1111/2041-210X.13076](https://zenodo.org/badge/DOI/10.1111/2041-210X.13076.svg)](https://doi.org/10.1111/2041-210X.13076)
 
 <!-- badges: end -->

@@ -28,9 +28,9 @@ Generates a random percolation neutral landscape model.
 \details{
 The simulation of a random percolation map is accomplished in two steps:
 
-\itemize{
- \item{Initialization: }{ Setup matrix of size (\code{ncol}*\code{nrow})}
- \item{Map generation: }{ For each cell in the matrix a single uniformly
+\describe{
+ \item{Initialization:}{Setup matrix of size (\code{ncol}*\code{nrow})}
+ \item{Map generation:}{For each cell in the matrix a single uniformly
  distributed random number is generated and tested against a probability
  \code{prob}. If the random number is smaller than \code{prob}, the cell is set to
  TRUE - if it is higher the cell is set to FALSE.}

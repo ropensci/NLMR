@@ -7,14 +7,14 @@
 #' algorithm.
 #' It performs the following steps:
 #'
-#' \itemize{
-#'  \item{Initialization: }{ Determine the smallest fit of
-#'  \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n.
-#'  Setup matrix of size (n^2 + 1)*(n^2 + 1).
-#'  Afterwards, assign a random value to the four corners of the matrix.}
-#'  \item{Square Step: }{ For each square in the matrix, assign the average of
+#' \describe{
+#'  \item{Initialization:}{Determine the smallest fit of
+#'  \code{max(ncol, nrow)} in \emph{n^2 + 1} and assign value to n. Setup matrix of
+#'  size (n^2 + 1)*(n^2 + 1). Afterwards, assign a random value to the four corners
+#'  of the matrix.}
+#'  \item{Square Step:}{For each square in the matrix, assign the average of
 #'  the four corner points plus a random value to the midpoint of that square.}
-#'  \item{Diamond Step: }{ For each diamond in the matrix, assign the average
+#'  \item{Diamond Step:}{For each diamond in the matrix, assign the average
 #'   of the four corner points plus a random value to the midpoint of that
 #'   diamond.}
 #' }
@@ -79,12 +79,12 @@ nlm_mpd <- function(ncol,
   # create the landscape with rcpp_mpd ----
   seed <- sample.int(.Machine$integer.max, 1)
   mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed, torus)
-  
+
   mpd_raster <- mpd_raster[-1,]
   mpd_raster <- mpd_raster[,-1]
   mpd_raster <- mpd_raster[-nrow(mpd_raster),]
   mpd_raster <- mpd_raster[,-ncol(mpd_raster)]
-  
+
   # Convert matrix to raster ----
   mpd_raster <- raster::raster(mpd_raster)
 

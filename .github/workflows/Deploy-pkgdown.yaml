@@ -32,10 +32,8 @@ jobs:
 
       - name: Install additional package dependencies
         run: |
-          repos.orig <- getOption('repos')
-          options(repos = c(PE = "https://predictiveecology.r-universe.dev")) ## TODO: use ropensci universe
-          pak::pkg_install("RandomFields")
-          options(repos = repos.orig)
+          pak::pkg_install("cran/RandomFieldsUtils")
+          pak::pkg_install("cran/RandomFields")
         shell: Rscript {0}
 
       - name: Build site
