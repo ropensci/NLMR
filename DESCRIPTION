@@ -70,6 +70,7 @@ LinkingTo:
 VignetteBuilder: 
     knitr
 Additional_repositories: https://predictiveecology.r-universe.dev/
+Config/Needs/website: bindrcpp, igraph, landscapemetrics, rasterVis, pals, rgl, viridis, plotly, rayshader
 ByteCompile: true
 Config/Needs/website: bindrcpp, igraph, landscapemetrics, rasterVis, pals,
     rgl, viridis, plotly, rayshader
