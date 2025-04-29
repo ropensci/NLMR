@@ -72,8 +72,6 @@ VignetteBuilder:
 Additional_repositories: https://predictiveecology.r-universe.dev/
 Config/Needs/website: bindrcpp, igraph, landscapemetrics, rasterVis, pals, rgl, viridis, plotly, rayshader
 ByteCompile: true
-Config/Needs/website: bindrcpp, igraph, landscapemetrics, rasterVis, pals,
-    rgl, viridis, plotly, rayshader
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
