@@ -10,6 +10,8 @@
 #' Resolution of the raster.
 #' @param prob [\code{numerical(1)}]\cr
 #' Probability value for setting a cell to 1.
+#' @param crs [\code{character(1)}]\cr
+#' Coordinate reference system for new raster. If blank, defaults to WGS 84.
 #'
 #' @details
 #' The simulation of a random percolation map is accomplished in two steps:
@@ -22,7 +24,7 @@
 #'  TRUE - if it is higher the cell is set to FALSE.}
 #' }
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #' # simulate percolation model
@@ -49,7 +51,8 @@
 nlm_percolation <- function(ncol,
                             nrow,
                             resolution = 1,
-                            prob = 0.5) {
+                            prob = 0.5,
+                            crs = "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs") {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
@@ -57,27 +60,16 @@ nlm_percolation <- function(ncol,
   checkmate::assert_numeric(resolution)
   checkmate::assert_true(prob <= 1, na.ok = FALSE)
   checkmate::assert_true(prob >= 0, na.ok = FALSE)
-
-  percolation_matrix <- matrix(NA, nrow = nrow, ncol = ncol)
-
-  percolation_matrix[] <- vapply(
-    percolation_matrix,
-    function(x) {
-      ifelse(stats::runif(1, 0, 1) < prob, TRUE, FALSE)
-    },
-    logical(1)
-  )
-
-  percolation_raster <-
-    raster::raster(percolation_matrix)
-
-  # specify resolution ----
-  raster::extent(percolation_raster) <- c(
-    0,
-    ncol(percolation_raster) * resolution,
-    0,
-    nrow(percolation_raster) * resolution
-  )
+    
+  percolation_raster = terra::rast(nrows = nrow, ncols = ncol, nlyrs=1,
+                                   resolution = resolution,
+                                   extent = c(0, ncol * resolution,
+                                              0, nrow * resolution),
+                                   crs = crs,
+                                   vals = sample(c(0,1), 
+                                                 size = ncol * nrow, 
+                                                 replace = T, 
+                                                 prob = c(1-prob, prob)))
 
   return(percolation_raster)
 }

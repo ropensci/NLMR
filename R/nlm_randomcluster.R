@@ -18,8 +18,10 @@
 #' This directly controls the number of types via the given length.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
+#' @param crs [\code{character(1)}]\cr
+#' The crs for the new raster. If blank, defaults to WGS 84.
 #'
-#' @return Raster with random values ranging from 0-1.
+#' @return SpatRaster with random values ranging from 0-1.
 #'
 #' @details
 #' This is a direct implementation of steps A - D of the modified random clusters algorithm
@@ -52,7 +54,8 @@ nlm_randomcluster <- function(ncol, nrow,
                               p,
                               ai = c(0.5, 0.5),
                               neighbourhood = 4,
-                              rescale = TRUE) {
+                              rescale = TRUE, 
+                              crs = "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs") {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
@@ -65,26 +68,29 @@ nlm_randomcluster <- function(ncol, nrow,
   checkmate::assert_logical(rescale)
 
   # Step A - Create percolation map
-  ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution)
+  ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution, crs = crs)
 
   # Step B - Cluster identification (clustering of adjoining pixels)
-  ranclumap <- raster::clump(ranclumap, direction = neighbourhood, gaps = FALSE)
-
+  ranclumap <- terra::patches(x = ranclumap, directions = neighbourhood, zeroAsNA = T)
+  #terra::values(ranclumap)[is.na(terra::values(ranclumap))] <- 0
+  
   # Step C - Cluster type assignation
   # number of different cluster
-  numclu <- max(raster::values(ranclumap), na.rm = TRUE)
+  numclu <- length(unique(ranclumap[][!is.na(ranclumap[])]))
   # assign to each cluster nr a new category given by Ai
   clutyp <- sample(seq_along(ai), numclu, replace = TRUE, prob = ai)
   # write back new category nr
-  raster::values(ranclumap) <- clutyp[raster::values(ranclumap)]
+  class_df <- data.frame('is' = unique(ranclumap[][!is.na(ranclumap[])]),
+                         'becomes' = clutyp)
+  ranclumap <- terra::classify(ranclumap, rcl = class_df, include.lowest=T)
 
   # Step D - Filling the map
   # helperfuction to choose values
   fillit <- function(cid) {
     # get neighbour cells
-    nbrs <- raster::adjacent(ranclumap, cid, directions = 8, pairs = FALSE)
+    nbrs <- terra::adjacent(ranclumap, cid, directions = 8, pairs = FALSE)
     # count neighbour values (exclude NA see Saura 2000 paper)
-    vals <- table(raster::values(ranclumap)[nbrs])
+    vals <- table(terra::values(ranclumap)[nbrs])
     # check if everything is NA
     if (!length(vals)) {
       # be a rebel get your own value
@@ -103,24 +109,24 @@ nlm_randomcluster <- function(ncol, nrow,
 
   # identify unfilled cells
   gaps <- dplyr::rowwise(tibble::tibble(
-    ctf = (1:(ncol * nrow))[is.na(raster::values(ranclumap))]
+    ctf = (1:(ncol * nrow))[is.na(terra::values(ranclumap))]
     ))
   # get values for the gaps
   gaps <- dplyr::mutate(gaps, val = fillit(ctf))
   # feed it back in the map
-  raster::values(ranclumap)[gaps$ctf] <- gaps$val
+  terra::values(ranclumap)[gaps$ctf] <- gaps$val
 
   # specify resolution ----
-  raster::extent(ranclumap) <- c(
-    0,
-    ncol(ranclumap) * resolution,
-    0,
-    nrow(ranclumap) * resolution
-  )
+  # raster::extent(ranclumap) <- c(
+  #   0,
+  #   ncol(ranclumap) * resolution,
+  #   0,
+  #   nrow(ranclumap) * resolution
+  # )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
-    ranclumap <- util_rescale(ranclumap)
+    ranclumap <- ranclumap / max(ranclumap[])
   }
 
   return(ranclumap)

@@ -45,7 +45,9 @@ Imports:
     spatstat.random,
     spatstat.geom,
     stats,
-    tibble
+    tibble,
+    Rcpp,
+    terra
 Suggests:
     ggplot2,
     highcharter,
