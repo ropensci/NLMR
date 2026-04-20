@@ -26,7 +26,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::show_landscape(mosaictess)
+#' raster::plot(mosaictess)
 #' }
 #'
 #' @references

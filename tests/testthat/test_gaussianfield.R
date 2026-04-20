@@ -1,9 +1,6 @@
 # nolint start
 context("nlm_gaussianfield")
 
-testthat::skip_if_not_installed("RandomFields")
-testthat::skip_if_not_installed("RandomFieldsUtils")
-
 test_that("nlm_gaussianfield behaves like it should", {
   gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 30,
                                       autocorr_range = 75, mag_var = 0.4)

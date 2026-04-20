@@ -30,19 +30,15 @@
 #' methodology and applications with R. CRC Press, 2015.
 #'
 #' @examples
-#'
-#' if (requireNamespace("RandomFields", quietly = TRUE) &&
-#'     requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
-#'   # simulate mosaic random field
-#'   mosaic_field <- nlm_mosaicfield(ncol = 100,
-#'                                   nrow = 200,
-#'                                   n = NA,
-#'                                   infinit = TRUE,
-#'                                   collect = FALSE)
-#'   \dontrun{
-#'   # visualize the NLM
-#'   landscapetools::show_landscape(mosaic_field)
-#'   }
+#' # simulate mosaic random field
+#' mosaic_field <- nlm_mosaicfield(ncol = 100,
+#'                                 nrow = 200,
+#'                                 n = NA,
+#'                                 infinit = TRUE,
+#'                                 collect = FALSE)
+#' \dontrun{
+#' # visualize the NLM
+#' raster::plot(mosaic_field)
 #' }
 #'
 #' @aliases nlm_mosaicfield
@@ -59,8 +55,6 @@ nlm_mosaicfield <- function(ncol,
                             collect     = FALSE,
                             infinit     = FALSE,
                             rescale     = TRUE) {
-
-  hasData()
 
     # Check function arguments ----
     checkmate::assert_count(ncol, positive = TRUE)

@@ -33,9 +33,7 @@ Set random seed for the simulation}
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 
-\item{...}{Other options to RandomFields::RFoptions, especially if using
-a fractal dimension between ~ 1.6 and 1.9 one must set the option
-\code{modus_operandi = "sloppy"}.}
+\item{...}{Unused}
 }
 \value{
 RasterLayer
@@ -50,17 +48,14 @@ Neutral landscapes are generated using fractional Brownian motion,
    relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.
 }
 \examples{
-if (requireNamespace("RandomFields", quietly = TRUE) &&
-    requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
-  # simulate fractional brownian motion
-  fbm_raster <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
+# simulate fractional brownian motion
+fbm_raster <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 
-  \dontrun{
+\dontrun{
 
-  # visualize the NLM
-  landscapetools::show_landscape(fbm_raster)
+# visualize the NLM
+raster::plot(fbm_raster)
 
-  }
 }
 
 }

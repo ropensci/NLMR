@@ -40,7 +40,7 @@ mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 
 \dontrun{
 # visualize the NLM
-landscapetools::show_landscape(mosaictess)
+raster::plot(mosaictess)
 }
 
 }

@@ -1,9 +1,6 @@
 # nolint start
 context("nlm_fBm")
 
-testthat::skip_if_not_installed("RandomFields")
-testthat::skip_if_not_installed("RandomFieldsUtils")
-
 fbm_raster <- nlm_fbm(ncol = 9, nrow = 12, fract_dim = 0.5)
 
 test_that("nlm_fBm behaves like it should", {

@@ -43,10 +43,16 @@ planar_nlm <- nlm_planargradient(100, 100)
 tess_nlm <- nlm_mosaictess(100, 100, germs = 200)
 
 # plot it
-landscapetools::show_landscape(list("a" = landscapetools::util_merge(edge_nlm, list(distance_nlm, random_nlm)),
-                                    "b" = landscapetools::util_merge(gauss_nlm, rectan_nlm),
-                                    "c" = landscapetools::util_merge(mosaic_nlm, list(random_nlm)),
-                                    "d" = landscapetools::util_merge(planar_nlm, list(distance_nlm, tess_nlm))))
+merge_rasters <- function(...) {
+  raster::calc(raster::stack(...), mean, na.rm = TRUE)
+}
+
+raster::plot(list(
+  "a" = merge_rasters(edge_nlm, distance_nlm, random_nlm),
+  "b" = merge_rasters(gauss_nlm, rectan_nlm),
+  "c" = merge_rasters(mosaic_nlm, random_nlm),
+  "d" = merge_rasters(planar_nlm, distance_nlm, tess_nlm)
+))
 ```
 
 ## Tips

@@ -52,7 +52,7 @@
 #'                                  roughness = 0.3)
 #'\dontrun{
 #' # visualize the NLM
-#' landscapetools::show_landscape(midpoint_displacememt)
+#' raster::plot(midpoint_displacememt)
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd

@@ -13,8 +13,6 @@ vignette: >
 ```{r global_options, include=FALSE}
 library(raster)
 library(NLMR)
-has_randomfields <- requireNamespace("RandomFields", quietly = TRUE) &&
-  requireNamespace("RandomFieldsUtils", quietly = TRUE)
 ```
 
 `NLMR` is a `R` package designed to generate neutral landscape models (NLMs), 
@@ -109,12 +107,16 @@ If non-numerical levels are required, `level_names` can be
 specified. These classes can be plotted by selecting `discrete = TRUE` in 
 `show_landscape`.
 
-```{r fig.height=7, fig.width=7, fig.align='center', eval=has_randomfields}
+```{r fig.height=7, fig.width=7, fig.align='center'}
 nr <- NLMR::nlm_fbm(50, 100, fract_dim = 1.2)
                               
-nr_classified <- landscapetools::util_classify(nr, weighting = c(0.3, 0.3, 0.3))
+# get quantile breaks
+breaks <- quantile(nr, probs = c(0, 0.3, 0.6, 1), na.rm = TRUE)
 
-plot(nr_classified)
+# classify
+nr_classified <- raster::cut(nr, breaks = breaks, include.lowest = TRUE)
+
+raster::plot(nr_classified)
 ```
 
 ## References

@@ -54,7 +54,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::show_landscape(neigh_raster)
+#' raster::plot(neigh_raster)
 #' }
 #'
 #' @aliases nlm_neigh
