@@ -19,6 +19,6 @@ please do write some tests to cover the new functionality.
 * Push up to your account
 * Submit a pull request to home base at `ropensci/nlmr`
 
-### Questions? Get in touch: [sciaini.marco@gmail.com](mailto:sciaini.marco@gmail.com)
+### Questions? Get in touch: [nowosad.jakub@gmail.com](mailto:nowosad.jakub@gmail.com)
 
 ### Thanks for contributing!
