@@ -50,14 +50,17 @@ Neutral landscapes are generated using fractional Brownian motion,
    relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.
 }
 \examples{
-# simulate fractional brownian motion
-fbm_raster  <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
+if (requireNamespace("RandomFields", quietly = TRUE) &&
+    requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
+  # simulate fractional brownian motion
+  fbm_raster <- nlm_fbm(ncol = 20, nrow = 30, fract_dim = 0.8)
 
-\dontrun{
+  \dontrun{
 
-# visualize the NLM
-landscapetools::show_landscape(fbm_raster)
+  # visualize the NLM
+  landscapetools::show_landscape(fbm_raster)
 
+  }
 }
 
 }

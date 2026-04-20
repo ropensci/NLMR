@@ -1,9 +1,9 @@
 Type: Package
 Package: NLMR
 Title: Simulating Neutral Landscape Models
-Version: 1.1.1
+Version: 1.1.2.9000
 Authors@R: c(
-    person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = c("aut", "cre"),
+    person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = "aut",
            comment = c(ORCID = "0000-0002-3042-5435")),
     person("Matthias", "Fritsch", , "matthias.fritsch@forst.uni-goettingen.de", role = "aut"),
     person("Maximilian", "Hesselbarth", , "mhk.hesselbarth@gmail.com", role = "aut"),
@@ -13,12 +13,13 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-0465-2543")),
     person("Sebastian", "Hanß", role = "aut",
            comment = c(ORCID = "0000-0002-3990-4897")),
+    person("Jakub", "Nowosad", , "nowosad.jakub@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1057-3721")),
     person("Laura", "Graham", role = "rev",
            comment = "Laura reviewed the package for rOpenSci, see \n                  https://github.com/ropensci/onboarding/issues/188"),
     person("Jeffrey", "Hollister", role = "rev",
            comment = "Jeffrey reviewed the package for rOpenSci, see \n                  https://github.com/ropensci/onboarding/issues/188")
   )
-Maintainer: Marco Sciaini <marco.sciaini@posteo.net>
 Description: Provides neutral landscape models (<doi:10.1007/BF02275262>,
     <http://sci-hub.tw/10.1007/bf02275262>).  Neutral landscape models
     range from "hard" neutral models (completely random distributed), to
@@ -49,6 +50,7 @@ Imports:
 Suggests:
     ggplot2,
     highcharter,
+    igraph,
     knitr,
     kableExtra,
     landscapemetrics,
@@ -75,5 +77,4 @@ ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
-RoxygenNote: 7.2.1
-SystemRequirements: C++11
+RoxygenNote: 7.3.3

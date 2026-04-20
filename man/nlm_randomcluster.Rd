@@ -51,8 +51,8 @@ by Saura & Martínez-Millán (2000), which creates naturalistic patchy patterns.
 \examples{
 # simulate random clustering
 random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
-                                     p = 0.4,
-                                     ai = c(0.25, 0.25, 0.5))
+                                    p = 0.4,
+                                    ai = c(0.25, 0.25, 0.5))
 \dontrun{
 # visualize the NLM
 landscapetools::show_landscape(random_cluster)

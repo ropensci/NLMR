@@ -31,15 +31,18 @@
 #'
 #' @examples
 #'
-#' # simulate mosaic random field
-#' mosaic_field <- nlm_mosaicfield(ncol = 100,
-#'                                 nrow = 200,
-#'                                 n = NA,
-#'                                 infinit = TRUE,
-#'                                 collect = FALSE)
-#' \dontrun{
-#' # visualize the NLM
-#' landscapetools::show_landscape(mosaic_field)
+#' if (requireNamespace("RandomFields", quietly = TRUE) &&
+#'     requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
+#'   # simulate mosaic random field
+#'   mosaic_field <- nlm_mosaicfield(ncol = 100,
+#'                                   nrow = 200,
+#'                                   n = NA,
+#'                                   infinit = TRUE,
+#'                                   collect = FALSE)
+#'   \dontrun{
+#'   # visualize the NLM
+#'   landscapetools::show_landscape(mosaic_field)
+#'   }
 #' }
 #'
 #' @aliases nlm_mosaicfield

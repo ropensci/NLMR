@@ -1,3 +1,9 @@
+## NLMR 1.1.2.9000 (WIP)
+
+- Guard RandomFields-dependent examples, vignettes, and tests when optional packages are missing.
+- Replace deprecated std::random_shuffle with std::shuffle in C++ code.
+- Fix Rd list formatting for nlm_mpd and nlm_percolation.
+
 ## NLMR 1.1.1 Release Notes
 
 - Adding onload function and help for users that dont have `RandomFields`
