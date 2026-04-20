@@ -27,10 +27,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Marco Sciaini \email{marco.sciaini@posteo.net} (\href{https://orcid.org/0000-0002-3042-5435}{ORCID})
+\strong{Maintainer}: Jakub Nowosad \email{nowosad.jakub@gmail.com} (\href{https://orcid.org/0000-0002-1057-3721}{ORCID})
 
 Authors:
 \itemize{
+  \item Marco Sciaini \email{marco.sciaini@posteo.net} (\href{https://orcid.org/0000-0002-3042-5435}{ORCID})
   \item Matthias Fritsch \email{matthias.fritsch@forst.uni-goettingen.de}
   \item Maximilian Hesselbarth \email{mhk.hesselbarth@gmail.com}
   \item Craig Simpkins \email{simpkinscraig063@gmail.com} (\href{https://orcid.org/0000-0003-3212-1379}{ORCID})
