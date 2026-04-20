@@ -34,15 +34,18 @@
 #' Chapter 20
 #'
 #' @examples
-#' # simulate random gaussian field
-#' gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
-#'                                     autocorr_range = 60,
-#'                                     mag_var = 8,
-#'                                     nug = 5)
+#' if (requireNamespace("RandomFields", quietly = TRUE) &&
+#'     requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
+#'   # simulate random gaussian field
+#'   gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+#'                                       autocorr_range = 60,
+#'                                       mag_var = 8,
+#'                                       nug = 5)
 #'
-#' \dontrun{
-#' # visualize the NLM
-#' landscapetools::show_landscape(gaussian_field)
+#'   \dontrun{
+#'   # visualize the NLM
+#'   landscapetools::show_landscape(gaussian_field)
+#'   }
 #' }
 #'
 #' @aliases nlm_gaussianfield

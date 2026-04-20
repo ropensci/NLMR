@@ -2,6 +2,7 @@
 #include "rcpp_helper_functions.h"
 using namespace std;
 #include <random> // mersenne twister
+#include <algorithm>
 #include <iostream>
 
 IntegerMatrix rcpp_neigh(int nrow,
@@ -80,7 +81,7 @@ std::vector<std::pair<int, int> > random_cell_indices(int ncol, int nrow, int of
         }
     }
 
-    std::random_shuffle(cell_index.begin(), cell_index.end(), randWrapper);
+    std::shuffle(cell_index.begin(), cell_index.end(), mt);
 
     return cell_index;
 }

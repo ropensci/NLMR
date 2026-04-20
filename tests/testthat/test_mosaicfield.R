@@ -1,6 +1,9 @@
 # nolint start
 context("nlm_mosaicfield")
 
+testthat::skip_if_not_installed("RandomFields")
+testthat::skip_if_not_installed("RandomFieldsUtils")
+
 mosaic_field <- nlm_mosaicfield(
   ncol = 20,
   nrow = 30,

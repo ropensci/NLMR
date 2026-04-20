@@ -1,7 +1,7 @@
 Type: Package
 Package: NLMR
 Title: Simulating Neutral Landscape Models
-Version: 1.1.1
+Version: 1.1.2.9000
 Authors@R: c(
     person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = "aut",
            comment = c(ORCID = "0000-0002-3042-5435")),
@@ -50,6 +50,7 @@ Imports:
 Suggests:
     ggplot2,
     highcharter,
+    igraph,
     knitr,
     kableExtra,
     landscapemetrics,
@@ -77,4 +78,3 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(roclets = c("rd", "namespace", "collate"))
 RoxygenNote: 7.3.3
-SystemRequirements: C++11
