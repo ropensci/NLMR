@@ -3,9 +3,9 @@
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 name: R-CMD-check
 
@@ -28,7 +28,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -41,17 +41,8 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            RandomFields=?ignore
             any::rcmdcheck
             any::XML
-
-      - name: Install additional package dependencies
-        run: |
-          repos.orig <- getOption('repos')
-          options(repos = c(PE = "https://predictiveecology.r-universe.dev")) ## TODO: use ropensci universe
-          pak::pkg_install("RandomFields")
-          options(repos = repos.orig)
-        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
 
@@ -62,7 +53,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check

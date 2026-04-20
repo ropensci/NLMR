@@ -3,7 +3,7 @@
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     tags: ['*']
 
 name: Deploy-pkgdown
@@ -11,10 +11,12 @@ name: Deploy-pkgdown
 jobs:
   deploy-pkgdown:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -25,18 +27,9 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            RandomFields=?ignore
             any::pkgdown
             any::XML
           needs: website
-
-      - name: Install additional package dependencies
-        run: |
-          repos.orig <- getOption('repos')
-          options(repos = c(PE = "https://predictiveecology.r-universe.dev")) ## TODO: use ropensci universe
-          pak::pkg_install("RandomFields")
-          options(repos = repos.orig)
-        shell: Rscript {0}
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
@@ -44,7 +37,7 @@ jobs:
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           clean: false
           branch: gh-pages
