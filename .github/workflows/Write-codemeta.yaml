@@ -23,6 +23,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          dependencies: hard
           extra-packages: codemeta
 
       - name: Write codemeta file
