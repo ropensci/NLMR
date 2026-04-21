@@ -10,6 +10,18 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// rcpp_get_jenksbreaks
+Rcpp::NumericVector rcpp_get_jenksbreaks(const Rcpp::NumericVector& d, int k);
+RcppExport SEXP _NLMR_rcpp_get_jenksbreaks(SEXP dSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector& >::type d(dSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_jenksbreaks(d, k));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_mpd
 Rcpp::NumericMatrix rcpp_mpd(unsigned ncol, unsigned nrow, double rand_dev, Rcpp::NumericVector rcpp_roughness, unsigned long seed, bool torus);
 RcppExport SEXP _NLMR_rcpp_mpd(SEXP ncolSEXP, SEXP nrowSEXP, SEXP rand_devSEXP, SEXP rcpp_roughnessSEXP, SEXP seedSEXP, SEXP torusSEXP) {
@@ -62,6 +74,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_NLMR_rcpp_get_jenksbreaks", (DL_FUNC) &_NLMR_rcpp_get_jenksbreaks, 2},
     {"_NLMR_rcpp_mpd", (DL_FUNC) &_NLMR_rcpp_mpd, 6},
     {"_NLMR_rcpp_neigh", (DL_FUNC) &_NLMR_rcpp_neigh, 9},
     {"_NLMR_rcpp_randomrectangularcluster", (DL_FUNC) &_NLMR_rcpp_randomrectangularcluster, 5},
