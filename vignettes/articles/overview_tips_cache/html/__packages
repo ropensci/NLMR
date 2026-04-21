@@ -1,9 +1,5 @@
-base
 NLMR
 sp
 raster
-dplyr
-bindrcpp
-landscapetools
 purrr
 tibble
