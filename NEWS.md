@@ -1,8 +1,10 @@
-## NLMR 1.1.2.9000 (WIP)
+## NLMR 1.1.9.9000 (WIP)
 
-- Guard RandomFields-dependent examples, vignettes, and tests when optional packages are missing.
 - Replace deprecated std::random_shuffle with std::shuffle in C++ code.
 - Fix Rd list formatting for nlm_mpd and nlm_percolation.
+- Cleans vignettes
+- Update `nlm_fbm()` to use a new post-`RandomFields` approximation for fractional Brownian landscapes. The current implementation generates an isotropic frequency-based surface for `fract_dim < 2`, then recentres and rescales it based on one-cell differences, while the endpoint `fract_dim = 2` is treated as the smooth linear limit.
+- Update `nlm_gaussianfield()` to use a new post-`RandomFields` approximation based on an exponential covariance surface, with optional nugget noise and a user-defined mean added afterward. In practice, this means that `autocorr_range` now acts more directly on the spatial structure of the landscape, `mag_var` controls the variance of the correlated component, and `nug` adds fine-scale local variation on top of that broader pattern.
 
 ## NLMR 1.1.1 Release Notes
 
