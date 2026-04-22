@@ -106,41 +106,55 @@ simulate_gaussian_field <- function(nrow, ncol,
 
   if (!is.null(seed)) set.seed(seed)
 
-  # white noise
-  z <- matrix(stats::rnorm(nrow * ncol), nrow, ncol)
+  z <- simulate_gaussian_field_exp(
+    nrow = nrow,
+    ncol = ncol,
+    autocorr_range = autocorr_range,
+    mag_var = mag_var
+  )
 
-  # smooth
-  z <- smooth_fft(z, autocorr_range)
+  if (nug > 0) {
+    z <- z + matrix(
+      stats::rnorm(nrow * ncol, sd = sqrt(nug)),
+      nrow = nrow,
+      ncol = ncol
+    )
+  }
 
-  # scale
-  z <- scale(z) * mag_var + mean
-
-  # nugget
-  z <- z + matrix(stats::rnorm(nrow * ncol, sd = nug), nrow, ncol)
-
-  z
+  z + mean
 }
 
-smooth_fft <- function(z, autocorr_range) {
+simulate_gaussian_field_exp <- function(nrow, ncol,
+                                        autocorr_range,
+                                        mag_var) {
+  dx <- seq.int(0L, 2L * nrow - 1L)
+  dx <- pmin(dx, 2L * nrow - dx)
+  dy <- seq.int(0L, 2L * ncol - 1L)
+  dy <- pmin(dy, 2L * ncol - dy)
 
-  nr <- nrow(z)
-  nc <- ncol(z)
+  distance <- sqrt(outer(dx^2, dy^2, "+"))
+  cov_embed <- mag_var * exp(-distance / autocorr_range)
 
-  # frequency grid
-  x <- seq(-floor(nc/2), ceiling(nc/2)-1)
-  y <- seq(-floor(nr/2), ceiling(nr/2)-1)
+  eigenvalues <- Re(stats::fft(cov_embed))
+  # Small negative values can appear numerically in the embedding.
+  eigenvalues[eigenvalues < 0] <- 0
 
-  gx <- exp(-(x^2)/(2 * autocorr_range^2))
-  gy <- exp(-(y^2)/(2 * autocorr_range^2))
+  z <- matrix(
+    stats::rnorm(length(eigenvalues)),
+    nrow = nrow(eigenvalues),
+    ncol = ncol(eigenvalues)
+  ) + 1i * matrix(
+    stats::rnorm(length(eigenvalues)),
+    nrow = nrow(eigenvalues),
+    ncol = ncol(eigenvalues)
+  )
 
-  kernel <- outer(gy, gx)
-  kernel <- kernel / sum(kernel)
+  field <- Re(stats::fft(
+    sqrt(eigenvalues) * z,
+    inverse = TRUE
+  )) / sqrt(length(eigenvalues))
 
-  # FFT convolution
-  fft_z <- stats::fft(z)
-  fft_k <- stats::fft(kernel)
-
-  Re(stats::fft(fft_z * fft_k, inverse = TRUE)) / (nr * nc)
+  field[seq_len(nrow), seq_len(ncol), drop = FALSE]
 }
 
 # nlm_gaussianfield <- function(ncol,
