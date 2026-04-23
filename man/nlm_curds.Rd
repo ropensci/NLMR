@@ -4,7 +4,13 @@
 \alias{nlm_curds}
 \title{nlm_curds}
 \usage{
-nlm_curds(curds, recursion_steps, wheyes = NULL, resolution = 1)
+nlm_curds(
+  curds,
+  recursion_steps,
+  wheyes = NULL,
+  resolution = 1,
+  user_seed = NULL
+)
 }
 \arguments{
 \item{curds}{[\code{numerical(x)}]\cr
@@ -21,6 +27,9 @@ additional step with habitat.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the resulting raster.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 }
 \value{
 raster

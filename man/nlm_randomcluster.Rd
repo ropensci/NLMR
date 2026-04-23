@@ -11,6 +11,7 @@ nlm_randomcluster(
   p,
   ai = c(0.5, 0.5),
   neighbourhood = 4,
+  user_seed = NULL,
   rescale = TRUE
 )
 }
@@ -34,6 +35,9 @@ This directly controls the number of types via the given length.}
 \item{neighbourhood}{[\code{numerical(1)}]\cr
 Clusters are defined using a set of neighbourhood structures,
  4 (Rook's or von Neumann neighbourhood) (default), 8 (Queen's or Moore neighbourhood).}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}

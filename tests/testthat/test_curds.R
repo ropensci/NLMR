@@ -14,5 +14,11 @@ test_that("nlm_curds with wheyed option is functional", {
   expect_equal(length(unique(curds@data@values)), 2)
 })
 
+test_that("nlm_curds reproduces output with user_seed", {
+  curds_a <- nlm_curds(c(0.5, 0.3), c(6, 2), user_seed = 123)
+  curds_b <- nlm_curds(c(0.5, 0.3), c(6, 2), user_seed = 123)
+  expect_equal(raster::values(curds_a), raster::values(curds_b))
+})
+
 
 # nolint end

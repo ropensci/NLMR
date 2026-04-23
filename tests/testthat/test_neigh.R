@@ -24,6 +24,14 @@ test_that("nlm_neigh produces the right number of categories", {
   expect_equal(length(unique(neigh_raster@data@values)), 5)
 })
 
+test_that("nlm_neigh reproduces output with user_seed", {
+  neigh_a <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
+                       categories = 5, neighbourhood = 4, user_seed = 123)
+  neigh_b <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
+                       categories = 5, neighbourhood = 4, user_seed = 123)
+  expect_equal(raster::values(neigh_a), raster::values(neigh_b))
+})
+
 neigh_raster  <- nlm_neigh(ncol = 20,
                            nrow = 20,
                            p_neigh = 0.1,

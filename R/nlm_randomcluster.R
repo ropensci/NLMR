@@ -16,6 +16,8 @@
 #' clusters.
 #' @param ai Vector with the cluster type distribution (percentages of occupancy).
 #' This directly controls the number of types via the given length.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -52,6 +54,7 @@ nlm_randomcluster <- function(ncol, nrow,
                               p,
                               ai = c(0.5, 0.5),
                               neighbourhood = 4,
+                              user_seed = NULL,
                               rescale = TRUE) {
 
   if (!requireNamespace("igraph", quietly = TRUE)) {
@@ -67,7 +70,12 @@ nlm_randomcluster <- function(ncol, nrow,
   checkmate::assert_true(p <= 1)
   checkmate::assert_numeric(ai)
   checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   # Step A - Create percolation map
   ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution)

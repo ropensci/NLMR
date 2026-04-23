@@ -14,6 +14,8 @@
 #' Number of rows forming the raster.
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -37,13 +39,19 @@
 nlm_random <- function(ncol,
                        nrow,
                        resolution = 1,
+                       user_seed = NULL,
                        rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   # Assign random values to raster cells ----
   random_raster <-

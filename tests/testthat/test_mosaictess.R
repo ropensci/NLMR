@@ -21,4 +21,10 @@ test_that("nlm_polylands uses the right number of germs", {
   expect_equal(length(raster::unique(mosaictess)), 20)
 })
 
+test_that("nlm_mosaictess reproduces output with user_seed", {
+  tess_a <- nlm_mosaictess(ncol = 40, nrow = 30, germs = 20, user_seed = 123)
+  tess_b <- nlm_mosaictess(ncol = 40, nrow = 30, germs = 20, user_seed = 123)
+  expect_equal(raster::values(tess_a), raster::values(tess_b))
+})
+
 # nolint end

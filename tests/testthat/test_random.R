@@ -26,4 +26,10 @@ test_that("nlm_random produces values with a uniform distribution", {
   suppressWarnings(example_nlm_random_test <- chisq.test(example_nlm_random[]))
   expect_true(example_nlm_random_test$p.value == 1)
 })
+
+test_that("nlm_random reproduces output with user_seed", {
+  random_a <- nlm_random(ncol = 20, nrow = 20, user_seed = 123)
+  random_b <- nlm_random(ncol = 20, nrow = 20, user_seed = 123)
+  expect_equal(raster::values(random_a), raster::values(random_b))
+})
 # nolint end

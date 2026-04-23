@@ -15,6 +15,8 @@
 #' Resolution of the raster.
 #' @param germs [\code{numerical(1)}]\cr
 #' Intensity parameter (non-negative integer).
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -43,6 +45,7 @@ nlm_mosaictess <- function(ncol,
                            nrow,
                            resolution = 1,
                            germs,
+                           user_seed = NULL,
                            rescale = TRUE) {
 
   # Check function arguments ----
@@ -50,6 +53,11 @@ nlm_mosaictess <- function(ncol,
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(germs)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   # bounding box placing germs and clipping ----
   bounding_box <-  sf::st_sfc(sf::st_polygon(list(rbind(c(0, 0),

@@ -4,7 +4,7 @@
 \alias{nlm_percolation}
 \title{nlm_percolation}
 \usage{
-nlm_percolation(ncol, nrow, resolution = 1, prob = 0.5)
+nlm_percolation(ncol, nrow, resolution = 1, prob = 0.5, user_seed = NULL)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -18,6 +18,9 @@ Resolution of the raster.}
 
 \item{prob}{[\code{numerical(1)}]\cr
 Probability value for setting a cell to 1.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 }
 \value{
 RasterLayer

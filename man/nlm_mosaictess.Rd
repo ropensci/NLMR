@@ -5,7 +5,14 @@
 \alias{nlm_polylands}
 \title{nlm_mosaictess}
 \usage{
-nlm_mosaictess(ncol, nrow, resolution = 1, germs, rescale = TRUE)
+nlm_mosaictess(
+  ncol,
+  nrow,
+  resolution = 1,
+  germs,
+  user_seed = NULL,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -19,6 +26,9 @@ Resolution of the raster.}
 
 \item{germs}{[\code{numerical(1)}]\cr
 Intensity parameter (non-negative integer).}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}

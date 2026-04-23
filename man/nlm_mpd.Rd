@@ -10,6 +10,7 @@ nlm_mpd(
   resolution = 1,
   roughness = 0.5,
   rand_dev = 1,
+  user_seed = NULL,
   torus = FALSE,
   rescale = TRUE,
   verbose = TRUE
@@ -31,6 +32,9 @@ Controls the level of spatial autocorrelation (!= Hurst exponent)}
 \item{rand_dev}{[\code{numerical(1)}]\cr
 Initial standard deviation for the displacement step (default == 1), sets the
 scale of the overall variance in the resulting landscape.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{torus}{[\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)}
 

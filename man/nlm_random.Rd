@@ -4,7 +4,7 @@
 \alias{nlm_random}
 \title{nlm_random}
 \usage{
-nlm_random(ncol, nrow, resolution = 1, rescale = TRUE)
+nlm_random(ncol, nrow, resolution = 1, user_seed = NULL, rescale = TRUE)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -15,6 +15,9 @@ Number of rows forming the raster.}
 
 \item{resolution}{[\code{numerical(1)}]\cr
 Resolution of the raster.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}

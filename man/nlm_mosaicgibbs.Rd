@@ -11,6 +11,7 @@ nlm_mosaicgibbs(
   germs,
   R,
   patch_classes,
+  user_seed = NULL,
   rescale = TRUE
 )
 }
@@ -33,6 +34,9 @@ pattern process - the min. distance between germs in map units.}
 
 \item{patch_classes}{[\code{numerical(1)}]\cr
 Number of classes for germs.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}

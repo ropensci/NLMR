@@ -24,4 +24,10 @@ test_that("nlm_planargradient uses the right direction", {
   expect_equal(raster::as.matrix(planar_gradient)[100,80], 1)
 })
 
+test_that("nlm_planargradient reproduces random direction with user_seed", {
+  planar_a <- nlm_planargradient(ncol = 80, nrow = 100, direction = NA, user_seed = 123)
+  planar_b <- nlm_planargradient(ncol = 80, nrow = 100, direction = NA, user_seed = 123)
+  expect_equal(raster::values(planar_a), raster::values(planar_b))
+})
+
 # nolint end

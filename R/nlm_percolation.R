@@ -10,6 +10,8 @@
 #' Resolution of the raster.
 #' @param prob [\code{numerical(1)}]\cr
 #' Probability value for setting a cell to 1.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #'
 #' @details
 #' The simulation of a random percolation map is accomplished in two steps:
@@ -49,7 +51,8 @@
 nlm_percolation <- function(ncol,
                             nrow,
                             resolution = 1,
-                            prob = 0.5) {
+                            prob = 0.5,
+                            user_seed = NULL) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
@@ -57,6 +60,11 @@ nlm_percolation <- function(ncol,
   checkmate::assert_numeric(resolution)
   checkmate::assert_true(prob <= 1, na.ok = FALSE)
   checkmate::assert_true(prob >= 0, na.ok = FALSE)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   percolation_matrix <- matrix(NA, nrow = nrow, ncol = ncol)
 

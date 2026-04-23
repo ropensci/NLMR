@@ -24,4 +24,12 @@ test_that("nlm_mosaicgibbs uses the right number of patch_classes", {
   expect_equal(length(raster::unique(nlm_mosaicgibbs)), 12)
 })
 
+test_that("nlm_mosaicgibbs reproduces output with user_seed", {
+  gibbs_a <- nlm_mosaicgibbs(ncol = 40, nrow = 30, germs = 20, R = 0.02,
+                             patch_classes = 12, user_seed = 123)
+  gibbs_b <- nlm_mosaicgibbs(ncol = 40, nrow = 30, germs = 20, R = 0.02,
+                             patch_classes = 12, user_seed = 123)
+  expect_equal(raster::values(gibbs_a), raster::values(gibbs_b))
+})
+
 # nolint end

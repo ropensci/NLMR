@@ -33,6 +33,8 @@
 #' @param rand_dev [\code{numerical(1)}]\cr
 #' Initial standard deviation for the displacement step (default == 1), sets the
 #' scale of the overall variance in the resulting landscape.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param torus [\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
@@ -64,6 +66,7 @@ nlm_mpd <- function(ncol,
                     resolution = 1,
                     roughness = 0.5,
                     rand_dev = 1,
+                    user_seed = NULL,
                     torus = FALSE,
                     rescale = TRUE,
                     verbose = TRUE) {
@@ -74,10 +77,11 @@ nlm_mpd <- function(ncol,
   checkmate::assert_numeric(resolution)
   checkmate::assert_numeric(roughness)
   checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
 
   # create the landscape with rcpp_mpd ----
-  seed <- sample.int(.Machine$integer.max, 1)
+  seed <- if (is.null(user_seed)) sample.int(.Machine$integer.max, 1) else as.integer(user_seed)
   mpd_raster <- rcpp_mpd(ncol + 1, nrow + 1, rand_dev, roughness, seed, torus)
   
   mpd_raster <- mpd_raster[-1,]

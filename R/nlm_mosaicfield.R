@@ -14,6 +14,8 @@
 #' Mean value of the mosaic displacement distribution
 #' @param mosaic_sd [\code{numerical(1)}]\cr
 #' Standard deviation of the mosaic displacement distribution
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param collect [\code{logical(1)}]\cr
 #' return \code{RasterBrick} of all steps 1:\code{n}
 #' @param infinit [\code{logical(1)}]\cr
@@ -52,6 +54,7 @@ nlm_mosaicfield <- function(ncol,
                             n           = 20,
                             mosaic_mean = 0.5,
                             mosaic_sd   = 0.5,
+                            user_seed   = NULL,
                             collect     = FALSE,
                             infinit     = FALSE,
                             rescale     = TRUE) {
@@ -63,9 +66,14 @@ nlm_mosaicfield <- function(ncol,
     checkmate::assert_count(n, positive = TRUE, na.ok = TRUE)
     checkmate::assert_numeric(mosaic_mean)
     checkmate::assert_numeric(mosaic_sd)
+    checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
     checkmate::assert_logical(collect)
     checkmate::assert_logical(infinit)
     checkmate::assert_logical(rescale)
+
+    if (!is.null(user_seed)) {
+      set.seed(as.integer(user_seed))
+    }
 
     mosaicfields_return <- list()
 

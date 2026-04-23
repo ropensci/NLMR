@@ -7,6 +7,7 @@
 #' @param resolution  [\code{numerical(1)}]\cr Resolution of the raster.
 #' @param minl [\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.
 #' @param maxl [\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.
+#' @param user_seed [\code{numerical(1)}]\cr Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
 #' @details
@@ -48,6 +49,7 @@ nlm_randomrectangularcluster <-
            resolution = 1,
            minl,
            maxl,
+           user_seed = NULL,
            rescale = TRUE) {
     # Check function arguments ----
     checkmate::assert_count(ncol, positive = TRUE)
@@ -60,10 +62,11 @@ nlm_randomrectangularcluster <-
     checkmate::assert_true(maxl <= ncol)
     checkmate::assert_true(maxl <= nrow)
     checkmate::assert_true(minl <= maxl)
+    checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
     checkmate::assert_logical(rescale)
 
     # Create the landscape matrix with rcpp_randomrectangularcluster  ----
-    seed <- sample.int(.Machine$integer.max, 1)
+    seed <- if (is.null(user_seed)) sample.int(.Machine$integer.max, 1) else as.integer(user_seed)
     matrix <- rcpp_randomrectangularcluster(ncol = ncol,
                                             nrow = nrow,
                                             minl = minl,

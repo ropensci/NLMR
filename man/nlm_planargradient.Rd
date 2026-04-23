@@ -4,7 +4,14 @@
 \alias{nlm_planargradient}
 \title{nlm_planargradient}
 \usage{
-nlm_planargradient(ncol, nrow, resolution = 1, direction = NA, rescale = TRUE)
+nlm_planargradient(
+  ncol,
+  nrow,
+  resolution = 1,
+  direction = NA,
+  user_seed = NULL,
+  rescale = TRUE
+)
 }
 \arguments{
 \item{ncol}{[\code{numerical(1)}]\cr
@@ -19,6 +26,9 @@ Resolution of the raster.}
 \item{direction}{[\code{numerical(1)}]\cr
 Direction of the gradient in degrees, if unspecified the direction is randomly
 determined.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}

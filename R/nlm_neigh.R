@@ -37,6 +37,8 @@
 #' The algorithm uses uniform proportions for each category by default. A vector
 #' with as many proportions as categories and that sums up to 1 can be used for
 #' other distributions.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @return RasterLayer
@@ -71,6 +73,7 @@ nlm_neigh <-
            categories = 3,
            neighbourhood = 4,
            proportions = NA,
+           user_seed = NULL,
            rescale = TRUE) {
 
     # Check function arguments ----
@@ -81,6 +84,7 @@ nlm_neigh <-
     checkmate::assert_count(categories, positive = TRUE)
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
     checkmate::assert_vector(proportions)
+    checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
     checkmate::assert_logical(rescale)
 
     suppressWarnings(
@@ -102,7 +106,7 @@ nlm_neigh <-
     mat <- matrix(as.integer(0), nrow, ncol)
 
     # Keep applying random clusters until all elements have a value -----
-    seed <- sample.int(.Machine$integer.max, 1)
+    seed <- if (is.null(user_seed)) sample.int(.Machine$integer.max, 1) else as.integer(user_seed)
     mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty, seed)
 
     # Transform to raster ----

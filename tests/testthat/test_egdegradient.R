@@ -24,5 +24,11 @@ test_that("nlm_edgegradient uses the right direction", {
   expect_equal(raster::as.matrix(edge_gradient)[100,100], 0)
 })
 
+test_that("nlm_edgegradient reproduces random direction with user_seed", {
+  edge_a <- nlm_edgegradient(ncol = 30, nrow = 30, direction = NA, user_seed = 123)
+  edge_b <- nlm_edgegradient(ncol = 30, nrow = 30, direction = NA, user_seed = 123)
+  expect_equal(raster::values(edge_a), raster::values(edge_b))
+})
+
 
 # nolint end

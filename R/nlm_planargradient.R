@@ -11,6 +11,8 @@
 #' @param direction [\code{numerical(1)}]\cr
 #' Direction of the gradient in degrees, if unspecified the direction is randomly
 #' determined.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
@@ -46,13 +48,19 @@ nlm_planargradient <- function(ncol,
                                nrow,
                                resolution = 1,
                                direction = NA,
+                               user_seed = NULL,
                                rescale = TRUE) {
 
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
   checkmate::assert_numeric(direction)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   # If direction was not set, give it a random value between 0 and 360 ----
   if (is.na(direction)) {

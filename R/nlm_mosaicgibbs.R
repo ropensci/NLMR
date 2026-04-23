@@ -25,6 +25,8 @@
 #' pattern process - the min. distance between germs in map units.
 #' @param patch_classes [\code{numerical(1)}]\cr
 #' Number of classes for germs.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @return RasterLayer
@@ -58,6 +60,7 @@ nlm_mosaicgibbs <- function(ncol,
                             germs,
                             R,
                             patch_classes,
+                            user_seed = NULL,
                             rescale = TRUE) {
 
   # Check function arguments ----
@@ -67,7 +70,12 @@ nlm_mosaicgibbs <- function(ncol,
   checkmate::assert_numeric(germs)
   checkmate::assert_numeric(R)
   checkmate::assert_count(patch_classes, positive = TRUE)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
 
   # create point pattern (germs); step 2 in section 2.2 of Gauchel 2008
   x <- spatstat.random::rSSI(R, germs, win = spatstat.geom::owin(c(0, ncol), c(0, nrow)))

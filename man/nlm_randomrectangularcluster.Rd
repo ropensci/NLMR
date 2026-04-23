@@ -10,6 +10,7 @@ nlm_randomrectangularcluster(
   resolution = 1,
   minl,
   maxl,
+  user_seed = NULL,
   rescale = TRUE
 )
 }
@@ -23,6 +24,8 @@ nlm_randomrectangularcluster(
 \item{minl}{[\code{numerical(1)}]\cr The minimum possible width and height for each random rectangular cluster.}
 
 \item{maxl}{[\code{numerical(1)}]\cr The maximum possible width and height for each random rectangular cluster.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }

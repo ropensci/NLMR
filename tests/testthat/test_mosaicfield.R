@@ -46,4 +46,10 @@ test_that("nlm_mosaicfield stores collection as rasterbrick",
             expect_that(mosaic_field2$steps, is_a("RasterBrick"))
           })
 
+test_that("nlm_mosaicfield reproduces output with user_seed", {
+  mosaic_a <- nlm_mosaicfield(ncol = 20, nrow = 20, n = 3, user_seed = 123)
+  mosaic_b <- nlm_mosaicfield(ncol = 20, nrow = 20, n = 3, user_seed = 123)
+  expect_equal(raster::values(mosaic_a), raster::values(mosaic_b))
+})
+
 # nolint end

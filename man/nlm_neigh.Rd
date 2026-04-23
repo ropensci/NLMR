@@ -13,6 +13,7 @@ nlm_neigh(
   categories = 3,
   neighbourhood = 4,
   proportions = NA,
+  user_seed = NULL,
   rescale = TRUE
 )
 }
@@ -46,6 +47,9 @@ surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 The algorithm uses uniform proportions for each category by default. A vector
 with as many proportions as categories and that sums up to 1 can be used for
 other distributions.}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}

@@ -26,6 +26,8 @@
 #' additional step with habitat.
 #' @param resolution [\code{numerical(1)}]\cr
 #' Resolution of the resulting raster.
+#' @param user_seed [\code{numerical(1)}]\cr
+#' Set random seed for the simulation.
 #'
 #' @return raster
 #'
@@ -60,13 +62,19 @@
 nlm_curds <- function(curds,
                       recursion_steps,
                       wheyes = NULL,
-                      resolution = 1) {
+                      resolution = 1,
+                      user_seed = NULL) {
 
   checkmate::assert_numeric(curds)
   if(!is.null(wheyes))checkmate::assert_numeric(wheyes)
   checkmate::assert_integerish(recursion_steps)
+  checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   if (length(curds) != length(recursion_steps))
     stop("Length of p and s differs.")
+
+  if (!is.null(user_seed)) {
+    set.seed(as.integer(user_seed))
+  }
   # maybe recycle percentages
   # convenient if only one is given!?
 

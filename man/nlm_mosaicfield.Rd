@@ -11,6 +11,7 @@ nlm_mosaicfield(
   n = 20,
   mosaic_mean = 0.5,
   mosaic_sd = 0.5,
+  user_seed = NULL,
   collect = FALSE,
   infinit = FALSE,
   rescale = TRUE
@@ -34,6 +35,9 @@ Mean value of the mosaic displacement distribution}
 
 \item{mosaic_sd}{[\code{numerical(1)}]\cr
 Standard deviation of the mosaic displacement distribution}
+
+\item{user_seed}{[\code{numerical(1)}]\cr
+Set random seed for the simulation.}
 
 \item{collect}{[\code{logical(1)}]\cr
 return \code{RasterBrick} of all steps 1:\code{n}}
