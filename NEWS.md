@@ -8,6 +8,7 @@
 - Replace deprecated std::random_shuffle with std::shuffle in C++ code.
 - Cleans vignettes
 - Disables nlm_fbm and nlm_gaussianfield functions for now, until they can be reimplemented with the new approach, eliminating the need for RandomFields
+- Adds `user_seed` argument to most functions
 
 ## NLMR 1.1.1 Release Notes
 
