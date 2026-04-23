@@ -195,7 +195,7 @@ levelplot(landscape,
 ### rgl + rasterVis
 
 
-```{r, eval = FALSE}
+```r
 library("rgl")
 library("rasterVis")
 library("viridis")
@@ -250,7 +250,7 @@ plot_ly(z = as.matrix(landscape_matrix), type = "surface", colors = viridis::mag
 
 ### rayshader
 
-```{r, eval = FALSE}
+```r
 library(rayshader)
 library(NLMR)
 library(raster)
@@ -293,7 +293,7 @@ landscape %>%
 ![](rayshader.gif)
 
 
-```{r, eval = FALSE}
+```r
 library(rayshader)
 library(NLMR)
 library(raster)
