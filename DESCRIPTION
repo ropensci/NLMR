@@ -46,7 +46,9 @@ Imports:
     spatstat.random,
     spatstat.geom,
     stats,
-    tibble
+    tibble,
+    Rcpp,
+    terra
 Suggests:
     igraph,
     knitr,
