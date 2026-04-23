@@ -27,7 +27,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' landscapetools::show_landscape(edge_gradient)
+#' raster::plot(edge_gradient)
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},

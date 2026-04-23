@@ -75,7 +75,7 @@ midpoint_displacememt <- nlm_mpd(ncol = 100,
                                  roughness = 0.3)
 \dontrun{
 # visualize the NLM
-landscapetools::show_landscape(midpoint_displacememt)
+raster::plot(midpoint_displacememt)
 }
 }
 \references{

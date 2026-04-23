@@ -45,6 +45,9 @@ Set random seed for the simulation}
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
+\value{
+character(1) Temporary maintenance message.
+}
 \description{
 Simulates a spatially correlated random fields (Gaussian random
 fields) neutral landscape model.
@@ -56,18 +59,15 @@ them with spatial autocorrelation, meaning that objects which distant are more
 distinct from one another than they are to closer objects.
 }
 \examples{
-if (requireNamespace("RandomFields", quietly = TRUE) &&
-    requireNamespace("RandomFieldsUtils", quietly = TRUE)) {
-  # simulate random gaussian field
-  gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
-                                      autocorr_range = 60,
-                                      mag_var = 8,
-                                      nug = 5)
+# simulate random gaussian field
+gaussian_field <- nlm_gaussianfield(ncol = 90, nrow = 90,
+                                    autocorr_range = 60,
+                                    mag_var = 8,
+                                    nug = 5)
 
-  \dontrun{
-  # visualize the NLM
-  landscapetools::show_landscape(gaussian_field)
-  }
+\dontrun{
+# visualize the NLM
+raster::plot(gaussian_field)
 }
 
 }

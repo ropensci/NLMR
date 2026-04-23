@@ -25,26 +25,16 @@ reproducible framework.
 
 ## Installation
 
-NLMR is not available on CRAN at the moment (see #95). The only way to
+NLMR is not available on CRAN at the moment (see \#95). The only way to
 install NLMR at the moment is:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("cran/RandomFieldsUtils")
-remotes::install_github("cran/RandomFields")
 remotes::install_github("ropensci/NLMR")
 ```
 
-Windows users need to install RTools first. Rtools provides a compiler
-and some helpers to compile code for R in Windows. Download Rtools from
-here: <https://cran.r-project.org/bin/windows/Rtools/> and select the
-appropriate Rtools version (4.0 with R 4.x.x)
-
-Install Rtools in a directory with no fancy characters in its path,
-e.g. `C:\R\Rtools` is safe. To install, right click on the
-`Rtools40.exe` and select “Run as administrator”. During the
-installation make sure to select “Add Rtools to PATH”. Otherwise, accept
-all defaults for everything else.
+<!-- Windows users need to install RTools first. Rtools provides a compiler and some helpers to compile code for R in Windows. Download Rtools from here: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/). -->
+<!-- Install Rtools in a directory with no fancy characters in its path, e.g. `C:\R\Rtools` is safe. To install, right click on the `Rtools40.exe` and select “Run as administrator”. During the installation make sure to select "Add Rtools to PATH". Otherwise, accept all defaults for everything else. -->
 
 ## Example
 
@@ -346,34 +336,19 @@ Gustafson and Parker (1992)
 </tr>
 </tbody>
 </table>
-
-<img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" />
-
-## See also
-
-**NLMR** was split during its development process - to have a minimal
-dependency version for simulating neutral landscape models and an
-utility toolbox to facilitate workflows with raster data. If you are
-interested in merging, visualizing or further handling neutral landscape
-models have a look at the
-[landscapetools](https://github.com/ropensci/landscapetools/) package.
+<!-- <img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" /> -->
 
 ## Meta
 
--   Please [report any issues or
-    bugs](https://github.com/ropensci/NLMR/issues/new/).
--   License: GPL3
--   Get citation information for `NLMR` in R doing
-    `citation(package = 'NLMR')`
-    -   Additionally, we keep a [record of
-        publications](https://ropensci.github.io/NLMR/articles/publication_record.html/)
-        that use **NLMR**. Hence, if you used **NLMR** please [file an
-        issue on GitHub](https://github.com/ropensci/NLMR/issues/new/)
-        so we can add it to the list.
--   We are very open to contributions - if you are interested check out
-    our [Contributor Guidelines](CONTRIBUTING.md).
-    -   Please note that this project is released with a [Contributor
-        Code of Conduct](CONDUCT.md). By participating in this project
-        you agree to abide by its terms.
+- Please [report any issues or
+  bugs](https://github.com/ropensci/NLMR/issues/new/).
+- License: GPL3
+- Get citation information for `NLMR` in R doing
+  `citation(package = 'NLMR')`
+- We are very open to contributions - if you are interested check out
+  our [Contributor Guidelines](CONTRIBUTING.md).
+  - Please note that this project is released with a [Contributor Code
+    of Conduct](CONDUCT.md). By participating in this project you agree
+    to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

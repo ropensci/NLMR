@@ -47,7 +47,7 @@ randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 50,
                                                           maxl = 10)
 \dontrun{
 # visualize the NLM
-landscapetools::show_landscape(randomrectangular_cluster)
+raster::plot(randomrectangular_cluster)
 }
 
 }

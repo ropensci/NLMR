@@ -54,8 +54,8 @@ The amount of cells and hence dimension of the raster is given by the vector pro
                               wheyes = c(0.1, 0.05, 0.2)))
 \dontrun{
 # Visualize the NLMs
-landscapetools::show_landscape(random_curdling)
-landscapetools::show_landscape(wheyed_curdling)
+raster::plot(random_curdling)
+raster::plot(wheyed_curdling)
 }
 
 }
