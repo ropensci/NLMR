@@ -78,7 +78,7 @@ nlm_mpd <- function(ncol,
 
   # create the landscape with rcpp_mpd ----
   seed <- sample.int(.Machine$integer.max, 1)
-  mpd_raster <- rcpp_mpd(ncol, nrow, rand_dev, roughness, seed, torus)
+  mpd_raster <- rcpp_mpd(ncol + 1, nrow + 1, rand_dev, roughness, seed, torus)
   
   mpd_raster <- mpd_raster[-1,]
   mpd_raster <- mpd_raster[,-1]
@@ -102,7 +102,9 @@ nlm_mpd <- function(ncol,
   }
 
   if (verbose == TRUE) {
-    warning("nlm_mpd changes the dimensions of the RasterLayer if even ncols/nrows are choosen.")
+    if (ncol %% 2 == 0 | nrow %% 2 == 0) {
+      warning("nlm_mpd changes the dimensions of the RasterLayer if even ncols/nrows are choosen.")
+    }
   }
 
   return(mpd_raster)
