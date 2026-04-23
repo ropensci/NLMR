@@ -210,7 +210,7 @@ plot3D(landscape,
 rglwidget()
 ```
 
-<img src="/var/folders/md/ms6zrv3d6rd4506k3hd7dt140000gn/T//RtmpgJLShi/file23963908c863.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<!-- <img src="/var/folders/md/ms6zrv3d6rd4506k3hd7dt140000gn/T//RtmpgJLShi/file23963908c863.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" /> -->
 
 
 ### highcharter + plotly
