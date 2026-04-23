@@ -63,7 +63,6 @@ An exemplary workflow for this could look like this:
 ```{r warning=FALSE}
 library(NLMR)
 library(landscapemetrics)
-library(dplyr)
 
 # simulation helpers
 n <- 1 # counter and index variable
@@ -73,21 +72,20 @@ sim_results <- list() # list to store simulation results
 while (n < 6) {
   # In this use case we are interested in a categorical metric,
   # which is why we reclassify the continous result in three categories
-  landscape <- nlm_mosaictess(100, 100, germs = 50) %>%
-  util_classify(n = 3)
+  landscape <- nlm_mosaictess(100, 100, germs = 50) |>
+    util_classify(n = 3)
   
   # We are interested in the Euclidean Nearest Neighbor Distance Distribution
-  enn_value <- lsm_l_enn_mn(landscape) %>%
-  pull(value)
+  enn_value <- lsm_l_enn_mn(landscape)$value
   
   # ... and we want to keep simulation results that have a mean ENN
   # between 7.5 and 8
   if (enn_value > 7.5 | enn_value < 8) {
-    sim_results[n] <- landscape
+    sim_results[[n]] <- landscape
     n = n + 1
   }
 }
 
-# look at the result
+# look at the results
 plot(stack(sim_results))
 ```
