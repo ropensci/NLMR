@@ -2,11 +2,10 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
-[![codecov](https://codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://codecov.io/gh/ropensci/NLMR)
+[![codecov](https://app.codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://app.codecov.io/gh/ropensci/NLMR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](http://cran.rstudio.com/web/packages/NLMR/index.html)
-[![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/onboarding/issues/188)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](https://cran.r-project.org/package=NLMR)
+[![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/software-review/issues/188)
 [![DOI:10.1111/2041-210X.13076](https://zenodo.org/badge/DOI/10.1111/2041-210X.13076.svg)](https://doi.org/10.1111/2041-210X.13076)
 
 <!-- badges: end -->
@@ -15,7 +14,7 @@
 
 **NLMR** is an `R` package for simulating **n**eutral **l**andscape
 **m**odels (NLM). Designed to be a generic framework like
-[NLMpy](https://pypi.python.org/pypi/nlmpy), it leverages the ability to
+[NLMpy](https://pypi.org/project/nlmpy/), it leverages the ability to
 simulate the most common NLM that are described in the ecological
 literature. **NLMR** builds on the advantages of the **raster** package
 and returns all simulation as `RasterLayer` objects, thus ensuring a
@@ -34,6 +33,7 @@ remotes::install_github("ropensci/NLMR")
 ```
 
 <!-- Windows users need to install RTools first. Rtools provides a compiler and some helpers to compile code for R in Windows. Download Rtools from here: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/). -->
+
 <!-- Install Rtools in a directory with no fancy characters in its path, e.g. `C:\R\Rtools` is safe. To install, right click on the `Rtools40.exe` and select “Run as administrator”. During the installation make sure to select "Add Rtools to PATH". Otherwise, accept all defaults for everything else. -->
 
 ## Example
@@ -65,28 +65,46 @@ auto-correlation, from no auto-correlation (random NLM) to a constant
 gradient (planar gradients):
 
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;">
+
 Function
 </th>
+
 <th style="text-align:left;">
+
 Description
 </th>
+
 <th style="text-align:left;">
+
 Crossreference
 </th>
+
 <th style="text-align:left;">
+
 Reference
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_curds
 </td>
+
 <td style="text-align:left;">
+
 Simulates a randomly curdled or wheyed neutral landscape model. Random
 curdling recursively subdivides the landscape into blocks. At each level
 of the recursion, a fraction of these blocks is declared as habitat
@@ -95,168 +113,268 @@ wheyed curdling model, where previously selected cells that were
 declared matrix during recursion, can now contain a proportion of
 habitat cells
 </td>
+
 <td style="text-align:left;">
+
 Figure 1a,p
 </td>
+
 <td style="text-align:left;">
+
 O’Neill, Gardner, and Turner (1992); Keitt (2000)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_distancegradient
 </td>
+
 <td style="text-align:left;">
+
 Simulates a distance gradient neutral landscape model. The gradient is
 always measured from a rectangle that one has to specify in the function
 (parameter origin)
 </td>
+
 <td style="text-align:left;">
+
 Figure 1b
 </td>
+
 <td style="text-align:left;">
+
 Etherington, Holland, and O’Sullivan (2015)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_edgegradient
 </td>
+
 <td style="text-align:left;">
+
 Simulates a linear gradient orientated neutral model. The gradient has a
 specified or random direction that has a central peak, which runs
 perpendicular to the gradient direction
 </td>
+
 <td style="text-align:left;">
+
 Figure 1c
 </td>
+
 <td style="text-align:left;">
+
 Travis and Dytham (2004); Schlather et al. (2015)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_fbm
 </td>
+
 <td style="text-align:left;">
+
 Simulates neutral landscapes using fractional Brownian motion (fBm). fBm
 is an extension of Brownian motion in which the amount of spatial
 autocorrelation between steps is controlled by the Hurst coefficient H
 </td>
+
 <td style="text-align:left;">
+
 Figure 1d
 </td>
+
 <td style="text-align:left;">
+
 Schlather et al. (2015)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_gaussianfield
 </td>
+
 <td style="text-align:left;">
+
 Simulates a spatially correlated random fields (Gaussian random fields)
 model, where one can control the distance and magnitude of spatial
 autocorrelation
 </td>
+
 <td style="text-align:left;">
+
 Figure 1e
 </td>
+
 <td style="text-align:left;">
+
 Schlather et al. (2015)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_mosaicfield
 </td>
+
 <td style="text-align:left;">
+
 Simulates a mosaic random field neutral landscape model. The algorithm
 imitates fault lines by repeatedly bisecting the landscape and lowering
 the values of cells in one half and increasing the values in the other
 half. If one sets the parameter infinite to TRUE, the algorithm
 approaches a fractal pattern
 </td>
+
 <td style="text-align:left;">
+
 Figure 1f
 </td>
+
 <td style="text-align:left;">
+
 Schlather et al. (2015)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_neigh
 </td>
+
 <td style="text-align:left;">
+
 Simulates a neutral landscape model with land cover classes and
 clustering based on neighbourhood characteristics. The cluster are based
 on the surrounding cells. If there is a neighbouring cell of the current
 value/type, the target cell will more likely turned into a cell of that
 type/value
 </td>
+
 <td style="text-align:left;">
+
 Figure 1g
 </td>
+
 <td style="text-align:left;">
+
 Scherer et al. (2016)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_percolation
 </td>
+
 <td style="text-align:left;">
+
 Simulates a binary neutral landscape model based on percolation theory.
 The probability for a cell to be assigned habitat is drawn from a
 uniform distribution
 </td>
+
 <td style="text-align:left;">
+
 Figure 1h
 </td>
+
 <td style="text-align:left;">
+
 Gardner et al. (1989)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_planargradient
 </td>
+
 <td style="text-align:left;">
+
 Simulates a planar gradient neutral landscape model. The gradient is
 sloping in a specified or (by default) random direction between 0 and
 360 degree
 </td>
+
 <td style="text-align:left;">
+
 Figure 1i
 </td>
+
 <td style="text-align:left;">
+
 Palmer (1992)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_mosaictess
 </td>
+
 <td style="text-align:left;">
+
 Simulates a patchy mosaic neutral landscape model based on the
 tessellation of a random point process. The algorithm randomly places
 points (parameter germs) in the landscape, which are used as the
 centroid points for a voronoi tessellation. A higher number of points
 therefore leads to a more fragmented landscape
 </td>
+
 <td style="text-align:left;">
+
 Figure 1k
 </td>
+
 <td style="text-align:left;">
+
 Gaucherel (2008), Method 1
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_mosaicgibbs
 </td>
+
 <td style="text-align:left;">
+
 Simulates a patchy mosaic neutral landscape model based on the
 tessellation of an inhibition point process. This inhibition point
 process starts with a given number of points and uses a minimisation
@@ -264,78 +382,126 @@ approach to fit a point pattern with a given interaction parameter (0 ‐
 hardcore process; 1 ‐ Poisson process) and interaction radius (distance
 of points/germs being apart)
 </td>
+
 <td style="text-align:left;">
+
 Figure 1l
 </td>
+
 <td style="text-align:left;">
+
 Gaucherel (2008), Method 2
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_random
 </td>
+
 <td style="text-align:left;">
+
 Simulates a spatially random neutral landscape model with values drawn a
 uniform distribution
 </td>
+
 <td style="text-align:left;">
+
 Figure 1m
 </td>
+
 <td style="text-align:left;">
+
 With and Crist (1995)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_randomcluster
 </td>
+
 <td style="text-align:left;">
+
 Simulates a random cluster nearest‐neighbour neutral landscape. The
 parameter ai controls for the number and abundance of land cover classes
 and p controls for proportion of elements randomly selected to form
 clusters
 </td>
+
 <td style="text-align:left;">
+
 Figure 1n
 </td>
+
 <td style="text-align:left;">
+
 Saura and Martínez-Millán (2000)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_mpd
 </td>
+
 <td style="text-align:left;">
+
 Simulates a midpoint displacement neutral landscape model where the
 parameter roughness controls the level of spatial autocorrelation
 </td>
+
 <td style="text-align:left;">
+
 Figure 1n
 </td>
+
 <td style="text-align:left;">
+
 Peitgen and Saupe (1988)
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 nlm_randomrectangularcluster
 </td>
+
 <td style="text-align:left;">
+
 Simulates a random rectangular cluster neutral landscape model. The
 algorithm randomly distributes overlapping rectangles until the
 landscape is filled
 </td>
+
 <td style="text-align:left;">
+
 Figure 1o
 </td>
+
 <td style="text-align:left;">
+
 Gustafson and Parker (1992)
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 <!-- <img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" /> -->
 
 ## Meta
@@ -351,4 +517,4 @@ Gustafson and Parker (1992)
     of Conduct](CONDUCT.md). By participating in this project you agree
     to abide by its terms.
 
-[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)
