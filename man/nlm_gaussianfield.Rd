@@ -45,6 +45,9 @@ Set random seed for the simulation}
 \item{rescale}{[\code{numeric(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
+\value{
+character(1) Temporary maintenance message.
+}
 \description{
 Simulates a spatially correlated random fields (Gaussian random
 fields) neutral landscape model.

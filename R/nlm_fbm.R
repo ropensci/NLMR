@@ -23,7 +23,7 @@
 #'   steps is controlled by \code{frac_dim}. A high value of \code{frac_dim} produces a
 #'    relatively smooth, correlated surface while a low value produces a rough, uncorrelated one.
 #'
-#' @return RasterLayer
+#' @return character(1) Temporary maintenance message.
 #'
 #' @examples
 #' # simulate fractional brownian motion
@@ -57,28 +57,31 @@ nlm_fbm <- function(ncol,
                     user_seed = NULL,
                     rescale = TRUE,
                     ...) {
-  checkmate::assert_count(ncol, positive = TRUE)
-  checkmate::assert_count(nrow, positive = TRUE)
-  checkmate::assert_numeric(resolution, lower = 0)
-  checkmate::assert_number(fract_dim, lower = 0, upper = 2)
-  checkmate::assert_true(fract_dim > 0)
-  checkmate::assert_logical(rescale)
+  # Previous post-RandomFields implementation kept for reference:
+  # checkmate::assert_count(ncol, positive = TRUE)
+  # checkmate::assert_count(nrow, positive = TRUE)
+  # checkmate::assert_numeric(resolution, lower = 0)
+  # checkmate::assert_number(fract_dim, lower = 0, upper = 2)
+  # checkmate::assert_true(fract_dim > 0)
+  # checkmate::assert_logical(rescale)
+  #
+  # fbm_simu <- simulate_fbm(
+  #   nrow = nrow,
+  #   ncol = ncol,
+  #   fract_dim = fract_dim,
+  #   seed = user_seed
+  # )
+  #
+  # fbm_raster <- raster::raster(fbm_simu)
+  # raster::extent(fbm_raster) <- c(
+  #   0, ncol(fbm_raster) * resolution,
+  #   0, nrow(fbm_raster) * resolution
+  # )
+  #
+  # if (isTRUE(rescale)) fbm_raster <- util_rescale(fbm_raster)
+  # fbm_raster
 
-  fbm_simu <- simulate_fbm(
-    nrow = nrow,
-    ncol = ncol,
-    fract_dim = fract_dim,
-    seed = user_seed
-  )
-
-  fbm_raster <- raster::raster(fbm_simu)
-  raster::extent(fbm_raster) <- c(
-    0, ncol(fbm_raster) * resolution,
-    0, nrow(fbm_raster) * resolution
-  )
-
-  if (isTRUE(rescale)) fbm_raster <- util_rescale(fbm_raster)
-  fbm_raster
+  "We are working on reimplementation of this function."
 }
 
 simulate_fbm <- function(nrow, ncol, fract_dim, seed = NULL) {

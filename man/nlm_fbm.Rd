@@ -36,7 +36,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 \item{...}{Unused}
 }
 \value{
-RasterLayer
+character(1) Temporary maintenance message.
 }
 \description{
 Creates a two-dimensional fractional Brownian motion neutral landscape model.

@@ -23,6 +23,8 @@
 #' @param rescale [\code{numeric(1)}]\cr
 #'  If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
+#' @return character(1) Temporary maintenance message.
+#'
 #' @details
 #' Gaussian random fields are a collection of random numbers on a spatially
 #' discrete set of coordinates (landscape raster). Natural sciences often apply
@@ -59,42 +61,45 @@ nlm_gaussianfield <- function(ncol,
                               mean = 0.5,
                               user_seed = NULL,
                               rescale = TRUE) {
+  # Previous post-RandomFields implementation kept for reference:
+  #
+  # # Check function arguments ----
+  # checkmate::assert_count(ncol, positive = TRUE)
+  # checkmate::assert_count(nrow, positive = TRUE)
+  # checkmate::assert_numeric(resolution, lower = 0)
+  # checkmate::assert_count(autocorr_range, positive = TRUE)
+  # checkmate::assert_numeric(mag_var, lower = 0)
+  # checkmate::assert_numeric(nug, lower = 0)
+  # checkmate::assert_numeric(mean)
+  # checkmate::assert_logical(rescale)
+  #
+  # simu <- simulate_gaussian_field(
+  #   nrow = nrow,
+  #   ncol = ncol,
+  #   autocorr_range = autocorr_range,
+  #   mag_var = mag_var,
+  #   nug = nug,
+  #   mean = mean,
+  #   seed = user_seed
+  # )
+  #
+  # # coerce to raster
+  # pred_raster <- raster::raster(simu)
+  #
+  # # specify resolution ----
+  # raster::extent(pred_raster) <- c(0,
+  #                                  ncol(pred_raster) * resolution,
+  #                                  0,
+  #                                  nrow(pred_raster) * resolution)
+  #
+  # # Rescale values to 0-1 ----
+  # if (rescale == TRUE) {
+  #   pred_raster <- util_rescale(pred_raster)
+  # }
+  #
+  # return(pred_raster)
 
-  # Check function arguments ----
-  checkmate::assert_count(ncol, positive = TRUE)
-  checkmate::assert_count(nrow, positive = TRUE)
-  checkmate::assert_numeric(resolution, lower = 0)
-  checkmate::assert_count(autocorr_range, positive = TRUE)
-  checkmate::assert_numeric(mag_var, lower = 0)
-  checkmate::assert_numeric(nug, lower = 0)
-  checkmate::assert_numeric(mean)
-  checkmate::assert_logical(rescale)
-
-  simu <- simulate_gaussian_field(
-    nrow = nrow,
-    ncol = ncol,
-    autocorr_range = autocorr_range,
-    mag_var = mag_var,
-    nug = nug,
-    mean = mean,
-    seed = user_seed
-  )
-
-  # coerce to raster
-  pred_raster <- raster::raster(simu)
-
-  # specify resolution ----
-  raster::extent(pred_raster) <- c(0,
-                                   ncol(pred_raster) * resolution,
-                                   0,
-                                   nrow(pred_raster) * resolution)
-
-  # Rescale values to 0-1 ----
-  if (rescale == TRUE) {
-    pred_raster <- util_rescale(pred_raster)
-  }
-
-  return(pred_raster)
+  "We are working on reimplementation of this function."
 }
 
 simulate_gaussian_field <- function(nrow, ncol,
