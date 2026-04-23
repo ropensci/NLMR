@@ -17,6 +17,10 @@ reference:
       - '`nlm_randomcluster`'
       - '`nlm_random`'
       - '`nlm_randomrectangularcluster`'
+  - title: Utility functions
+    desc: ~
+    contents:
+      - '`util_classify`'
 navbar:
   title: nlmr | Neutral landscape models with R
   structure:
@@ -38,10 +42,6 @@ navbar:
          href: articles/articles/nlm_software_heritage.html
       -  text: Visualize Neutral Landscape Models
          href: articles/articles/visualize_nlms.html
-    record:
-      text: "Publication Record"
-      icon: fa-file-text-o
-      href: articles/articles/publication_record.html
 
 template:
   bootstrap: 5
