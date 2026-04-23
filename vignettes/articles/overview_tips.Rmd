@@ -12,7 +12,8 @@ vignette: >
 
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
-  cache = TRUE
+  cache = TRUE,
+  eval = FALSE
 )
 ```
 
