@@ -99,7 +99,7 @@ nlm_gaussianfield <- function(ncol,
   #
   # return(pred_raster)
 
-  "We are working on reimplementation of this function."
+  message("Function nlm_fbm is currently under disabled. We are working on reimplementation of this function.")
 }
 
 simulate_gaussian_field <- function(nrow, ncol,

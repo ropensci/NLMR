@@ -81,7 +81,7 @@ nlm_fbm <- function(ncol,
   # if (isTRUE(rescale)) fbm_raster <- util_rescale(fbm_raster)
   # fbm_raster
 
-  "We are working on reimplementation of this function."
+  message("Function nlm_fbm is currently under disabled. We are working on reimplementation of this function.")
 }
 
 simulate_fbm <- function(nrow, ncol, fract_dim, seed = NULL) {
