@@ -1,7 +1,7 @@
 Type: Package
 Package: NLMR
 Title: Simulating Neutral Landscape Models
-Version: 1.2.0
+Version: 1.3.1
 Authors@R: c(
     person("Marco", "Sciaini", , "marco.sciaini@posteo.net", role = "aut",
            comment = c(ORCID = "0000-0002-3042-5435")),
@@ -41,6 +41,7 @@ Imports:
     dplyr,
     fasterize,
     raster,
+    terra,
     Rcpp,
     sf,
     spatstat.random,

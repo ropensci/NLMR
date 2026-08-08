@@ -1,24 +1,24 @@
 # nolint start
 context("nlm_random")
 
-test_that("nlm_random inherits from `RasterLayer`", {
+test_that("nlm_random inherits from `SpatRaster`", {
   example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
-  expect_that(example_nlm_random, is_a("RasterLayer"))
+  expect_that(example_nlm_random, is_a("SpatRaster"))
 })
 
 test_that("nlm_random produces the correct number of columns", {
   example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
-  expect_equal(example_nlm_random@ncols, 5)
+  expect_equal(terra::ncol(example_nlm_random), 5)
 })
 
-test_that("nlm_random produces the correct number of columns", {
+test_that("nlm_random produces the correct number of rows", {
   example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
-  expect_equal(example_nlm_random@nrows, 3)
+  expect_equal(terra::nrow(example_nlm_random), 3)
 })
 
 test_that("nlm_random produces more than 0 values", {
   example_nlm_random <- nlm_random(3, 3)
-  expect_false(length(example_nlm_random@data@values) == 0)
+  expect_false(terra::ncell(example_nlm_random) == 0)
 })
 
 test_that("nlm_random produces values with a uniform distribution", {

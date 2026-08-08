@@ -5,7 +5,7 @@
 #'
 #' @details
 #' The function takes the number of columns and rows as input and creates a
-#' RasterLayer with the same extent. Each raster cell is randomly assigned a
+#' SpatRaster with the same extent. Each raster cell is randomly assigned a
 #' value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 #'
 #' @param ncol [\code{numerical(1)}]\cr
@@ -19,7 +19,7 @@
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #' # simulate spatially random model
@@ -27,15 +27,13 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(random)
+#' terra::plot(random)
 #' }
 #'
 #' @aliases nlm_random
 #' @rdname nlm_random
 #'
 #' @export
-#'
-
 nlm_random <- function(ncol,
                        nrow,
                        resolution = 1,
@@ -55,10 +53,10 @@ nlm_random <- function(ncol,
 
   # Assign random values to raster cells ----
   random_raster <-
-    raster::raster(matrix(stats::runif(ncol * nrow, 0, 1), nrow, ncol))
+    terra::rast(matrix(stats::runif(ncol * nrow, 0, 1), nrow, ncol))
 
   # specify resolution ----
-  raster::extent(random_raster) <- c(
+  terra::ext(random_raster) <- c(
     0,
     ncol(random_raster) * resolution,
     0,
