@@ -20,7 +20,7 @@
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #' # simulate polygonal landscapes
@@ -28,7 +28,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(mosaictess)
+#' terra::plot(mosaictess)
 #' }
 #'
 #' @references
@@ -39,8 +39,6 @@
 #' @rdname nlm_mosaictess
 #'
 #' @export
-#'
-
 nlm_mosaictess <- function(ncol,
                            nrow,
                            resolution = 1,
@@ -80,6 +78,7 @@ nlm_mosaictess <- function(ncol,
   # (f)rasterize with lightning speed ----
   r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
   r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+  r <- terra::rast(r)
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
