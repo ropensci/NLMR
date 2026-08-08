@@ -16,7 +16,7 @@
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @details
 #' Simulates a linear gradient orientated on a specified or random direction
@@ -29,7 +29,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(edge_gradient)
+#' terra::plot(edge_gradient)
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
@@ -44,8 +44,6 @@
 #' @rdname nlm_edgegradient
 #'
 #' @export
-#'
-
 nlm_edgegradient <- function(ncol,
                              nrow,
                              resolution = 1,
@@ -75,17 +73,18 @@ nlm_edgegradient <- function(ncol,
                                         resolution = resolution,
                                         direction =  direction,
                                         user_seed = user_seed)
+  gradient_raster <- terra::rast(gradient_raster)
 
   # Transform to a central gradient ----
   edgegradient_raster <-
     (abs(0.5 - gradient_raster) * -2) + 1
 
   # specify resolution ----
-  raster::extent(edgegradient_raster) <- c(
+  terra::ext(edgegradient_raster) <- c(
     0,
-    ncol(edgegradient_raster) * resolution,
+    terra::ncol(edgegradient_raster) * resolution,
     0,
-    nrow(edgegradient_raster) * resolution
+    terra::nrow(edgegradient_raster) * resolution
   )
 
   # Rescale values to 0-1 ----
