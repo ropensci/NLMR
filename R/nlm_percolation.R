@@ -24,14 +24,14 @@
 #'  TRUE; if it is higher the cell is set to FALSE.}
 #' }
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #' # simulate percolation model
 #' percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5)
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(percolation)
+#' terra::plot(percolation)
 #' }
 #' @references
 #' 1. Gardner RH, O'Neill R V, Turner MG, Dale VH. 1989. Quantifying
@@ -46,8 +46,6 @@
 #' @rdname nlm_percolation
 #'
 #' @export
-#'
-
 nlm_percolation <- function(ncol,
                             nrow,
                             resolution = 1,
@@ -76,15 +74,14 @@ nlm_percolation <- function(ncol,
     logical(1)
   )
 
-  percolation_raster <-
-    raster::raster(percolation_matrix)
+  percolation_raster <- terra::rast(percolation_matrix)
 
   # specify resolution ----
-  raster::extent(percolation_raster) <- c(
+  terra::ext(percolation_raster) <- c(
     0,
-    ncol(percolation_raster) * resolution,
+    terra::ncol(percolation_raster) * resolution,
     0,
-    nrow(percolation_raster) * resolution
+    terra::nrow(percolation_raster) * resolution
   )
 
   return(percolation_raster)
