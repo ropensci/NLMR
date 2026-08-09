@@ -23,7 +23,7 @@ Set random seed for the simulation.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates a spatially random neutral landscape model with values
@@ -31,7 +31,7 @@ drawn a uniform distribution.
 }
 \details{
 The function takes the number of columns and rows as input and creates a
-RasterLayer with the same extent. Each raster cell is randomly assigned a
+SpatRaster with the same extent. Each raster cell is randomly assigned a
 value between 0 and 1 drawn from an uniform distribution (\code{runif(1,0,1)}).
 }
 \examples{
@@ -40,7 +40,7 @@ random <- nlm_random(ncol = 200, nrow = 100)
 
 \dontrun{
 # visualize the NLM
-raster::plot(random)
+terra::plot(random)
 }
 
 }

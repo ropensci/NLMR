@@ -34,7 +34,7 @@ Set random seed for the simulation.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates an edge-gradient neutral landscape model.
@@ -50,7 +50,7 @@ edge_gradient <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80)
 
 \dontrun{
 # visualize the NLM
-raster::plot(edge_gradient)
+terra::plot(edge_gradient)
 }
 
 }

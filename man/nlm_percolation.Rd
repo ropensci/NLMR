@@ -23,7 +23,7 @@ Probability value for setting a cell to 1.}
 Set random seed for the simulation.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Generates a random percolation neutral landscape model.
@@ -44,7 +44,7 @@ The simulation of a random percolation map is accomplished in two steps:
 percolation <- nlm_percolation(ncol = 100, nrow = 100, prob = 0.5)
 \dontrun{
 # visualize the NLM
-raster::plot(percolation)
+terra::plot(percolation)
 }
 }
 \references{

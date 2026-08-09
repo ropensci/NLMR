@@ -30,7 +30,7 @@ nlm_randomrectangularcluster(
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates a random rectangular clusters neutral landscape model with values ranging 0-1.
