@@ -2,10 +2,20 @@
 % Please edit documentation in R/util_classify.R
 \name{util_classify}
 \alias{util_classify}
+\alias{util_classify.SpatRaster}
 \alias{util_classify.RasterLayer}
 \title{util_classify}
 \usage{
 util_classify(x, n, weighting, level_names, real_land, mask_val)
+
+\method{util_classify}{SpatRaster}(
+  x,
+  n = NULL,
+  weighting = NULL,
+  level_names = NULL,
+  real_land = NULL,
+  mask_val = NULL
+)
 
 \method{util_classify}{RasterLayer}(
   x,
@@ -17,7 +27,7 @@ util_classify(x, n, weighting, level_names, real_land, mask_val)
 )
 }
 \arguments{
-\item{x}{raster}
+\item{x}{Raster* object or SpatRaster}
 
 \item{n}{Number of classes}
 
@@ -25,12 +35,12 @@ util_classify(x, n, weighting, level_names, real_land, mask_val)
 
 \item{level_names}{Vector of names for the factor levels.}
 
-\item{real_land}{Raster with real landscape (see details)}
+\item{real_land}{RasterLayer or SpatRaster with real landscape (see details)}
 
 \item{mask_val}{Value to mask (refers to real_land)}
 }
 \value{
-RasterLayer
+RasterLayer or SpatRaster
 }
 \description{
 Classify continuous landscapes into landscapes with discrete classes
