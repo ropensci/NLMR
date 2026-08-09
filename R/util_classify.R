@@ -20,14 +20,14 @@
 #'     overwritten in this case!). If an optional mask value is given the corresponding
 #'     class from the 'real' landscape is cut from the landscape beforehand.
 #'
-#' @param x raster
+#' @param x Raster* object or SpatRaster
 #' @param n Number of classes
 #' @param weighting Vector of numeric values that are considered to be habitat percentages (see details)
 #' @param level_names Vector of names for the factor levels.
-#' @param real_land Raster with real landscape (see details)
+#' @param real_land RasterLayer or SpatRaster with real landscape (see details)
 #' @param mask_val Value to mask (refers to real_land)
 #'
-#' @return RasterLayer
+#' @return RasterLayer or SpatRaster
 #'
 #' @examples
 #' \dontrun{
@@ -73,6 +73,67 @@ util_classify <- function(x,
 
 #' @name util_classify
 #' @export
+util_classify.SpatRaster <- function(x,
+                          n = NULL,
+                          weighting = NULL,
+                          level_names = NULL,
+                          real_land = NULL,
+                          mask_val = NULL) {
+
+  if (!inherits(x, "SpatRaster")) {
+    x <- terra::rast(x)
+  }
+
+  if (!is.null(real_land)) {
+    if (inherits(real_land, "RasterLayer")) {
+      real_land <- terra::rast(real_land)
+    } else if (!inherits(real_land, "SpatRaster")) {
+      stop("real_land must be a RasterLayer or SpatRaster object.")
+    }
+  }
+
+  if (!is.null(weighting) & !is.null(n)) {
+    warning("If n AND weighting are used, util_classify will fallback to weighting as classification method.")
+  }
+
+  if (!is.null(real_land)) {
+    if (!is.null(mask_val)) {
+      x <- terra::mask(x, real_land, maskvalues = mask_val)
+    }
+
+    real_vals <- as.vector(terra::values(real_land, mat = FALSE))
+    if (!is.null(mask_val)) {
+      real_vals <- real_vals[real_vals != mask_val]
+    }
+    weighting <- as.numeric(table(real_vals) / sum(table(real_vals)))
+    x <- .classify_spatraster(x, weighting)
+
+  } else {
+    if (is.null(weighting)) {
+      x_vals <- as.vector(terra::values(x, mat = FALSE))
+      x_vals <- x_vals[!is.na(x_vals)]
+      breaks <- .getJenksBreaks(x_vals, n)
+      terra::values(x) <- as.integer(base::cut(as.vector(terra::values(x, mat = FALSE)),
+                                               breaks = breaks,
+                                               include.lowest = TRUE,
+                                               labels = FALSE))
+    } else {
+      x <- .classify_spatraster(x, weighting)
+    }
+  }
+
+  if (!is.null(level_names)) {
+    x <- terra::as.factor(x)
+    lv <- levels(x)[[1]]
+    lv[[2]] <- level_names[lv$ID]
+    levels(x) <- list(lv)
+  }
+
+  x
+}
+
+#' @name util_classify
+#' @export
 util_classify.RasterLayer <- function(x,
                           n = NULL,
                           weighting = NULL,
@@ -80,67 +141,49 @@ util_classify.RasterLayer <- function(x,
                           real_land = NULL,
                           mask_val = NULL) {
 
-  # Check input
-  if (!is.null(weighting) & !is.null(n)) warning("If n AND weighting are used, util_classify will fallback to weighting as classification method.")
+  x_spat <- terra::rast(x)
 
-  # Classify based on real landscape ----
   if (!is.null(real_land)) {
-
-      if(!inherits(real_land, "RasterLayer")) stop("real_land muste be a RasterLayer object.")
-
-      frq <- raster::freq(real_land)
-      if (!is.null(mask_val)) {
-        frq <- frq[frq[,1] != mask_val, ]
-        x <- raster::mask(x, real_land, maskvalue = mask_val)
-      }
-      weighting <- frq[,2] / sum(frq[,2])
-
-      x <- .classify(x, weighting)
-
-  } else {
-
-    if (is.null(weighting)){
-      breaks <- .getJenksBreaks(raster::getValues(x), n)
-      x <-  raster::cut(x, breaks=breaks, include.lowest = TRUE)
-    } else {
-      x <- .classify(x, weighting)
+    if (inherits(real_land, "RasterLayer")) {
+      real_land <- terra::rast(real_land)
+    } else if (!inherits(real_land, "SpatRaster")) {
+      stop("real_land must be a RasterLayer or SpatRaster object.")
     }
-
   }
 
-  # If level_names are not NULL, add them as specified ----
-  if (!is.null(level_names)) {
+  result_spat <- util_classify.SpatRaster(
+    x = x_spat,
+    n = n,
+    weighting = weighting,
+    level_names = level_names,
+    real_land = real_land,
+    mask_val = mask_val
+  )
 
-    # Turn raster values into factors ----
-    x <- raster::as.factor(x)
-
-    c_r_levels <- raster::levels(x)[[1]]
-    c_r_levels[["Categories"]] <- level_names[c_r_levels$ID]
-    levels(x) <- c_r_levels
-  }
-
-  return(x)
+  raster::raster(result_spat)
 }
 
-.classify <- function(x, weighting){
+.classify_spatraster <- function(x, weighting){
 
   # Calculate cum. proportions and boundary values ----
   cumulative_proportions <- util_w2cp(weighting)
-  boundary_values <- util_calc_boundaries(raster::values(x),
+  x_vals <- as.vector(terra::values(x, mat = FALSE))
+  boundary_values <- util_calc_boundaries(x_vals,
                                           cumulative_proportions)
 
   # If there is just one boundary value, all categories are set to one ----
   if (length(unique(boundary_values)) == 1) {
-    raster::values(x) <- 1
+    terra::values(x) <- 1L
     return(x)
   }
 
   # Classify the matrix based on the boundary values ----
-  raster::values(x) <-  base::cut(raster::values(x),
-                                  breaks = c(0, boundary_values),
-                                  include.lowest = TRUE, labels = FALSE)
+  terra::values(x) <- as.integer(base::cut(as.vector(terra::values(x, mat = FALSE)),
+                                           breaks = c(0, boundary_values),
+                                           include.lowest = TRUE,
+                                           labels = FALSE))
 
-  return(x)
+  x
 
 }
 
