@@ -81,6 +81,9 @@ nlm_randomcluster <- function(ncol, nrow,
   ranclumap <- nlm_percolation(ncol, nrow, p, resolution = resolution)
 
   # Step B - Cluster identification (clustering of adjoining pixels)
+  if (inherits(ranclumap, "SpatRaster")) {
+    ranclumap <- raster::raster(ranclumap)
+  }
   ranclumap <- raster::clump(ranclumap, direction = neighbourhood, gaps = FALSE)
 
   # Step C - Cluster type assignation
