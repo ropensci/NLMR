@@ -17,7 +17,7 @@
 #' This is one type of realisation of a "falling/dead leaves" algorithm,
 #' for more details see Galerne & Gousseau (2012).
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @references
 #' Gustafson, E.J. & Parker, G.R. (1992). Relationships between landcover
@@ -74,14 +74,14 @@ nlm_randomrectangularcluster <-
                                             seed)
 
     # Transform to raster ----
-    rndreccluster_raster <- raster::raster(matrix)
+    rndreccluster_raster <- terra::rast(matrix)
 
     # specify resolution ----
-    raster::extent(rndreccluster_raster) <- c(
+    terra::ext(rndreccluster_raster) <- c(
       0,
-      ncol(rndreccluster_raster) * resolution,
+      terra::ncol(rndreccluster_raster) * resolution,
       0,
-      nrow(rndreccluster_raster) * resolution
+      terra::nrow(rndreccluster_raster) * resolution
     )
 
     # Rescale values to 0-1 ----
