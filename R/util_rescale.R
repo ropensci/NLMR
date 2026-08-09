@@ -24,6 +24,9 @@ util_rescale <- function(x) {
     (max_value - min_value)
 
   if (raster_input) {
+    if (terra::nlyr(rescaled_spat) > 1) {
+      return(raster::brick(rescaled_spat))
+    }
     return(raster::raster(rescaled_spat))
   }
 
