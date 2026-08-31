@@ -40,7 +40,7 @@ Standard deviation of the mosaic displacement distribution}
 Set random seed for the simulation.}
 
 \item{collect}{[\code{logical(1)}]\cr
-return \code{RasterBrick} of all steps 1:\code{n}}
+return \code{SpatRaster} of all steps 1:\code{n}}
 
 \item{infinit}{[\code{logical(1)}]\cr
 return raster of the random mosaic field algorithm with infinite steps}
@@ -49,7 +49,7 @@ return raster of the random mosaic field algorithm with infinite steps}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer or List with RasterLayer/s and/or RasterBrick
+SpatRaster or List with SpatRaster/s and/or SpatRaster stack
 }
 \description{
 Simulates a mosaic random field neutral landscape model.
@@ -63,7 +63,7 @@ mosaic_field <- nlm_mosaicfield(ncol = 100,
                                 collect = FALSE)
 \dontrun{
 # visualize the NLM
-raster::plot(mosaic_field)
+terra::plot(mosaic_field)
 }
 
 }

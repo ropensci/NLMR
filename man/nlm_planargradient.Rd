@@ -34,7 +34,7 @@ Set random seed for the simulation.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates a planar gradient neutral landscape model.
@@ -48,7 +48,7 @@ planar_gradient <- nlm_planargradient(ncol = 200, nrow = 200)
 
 \dontrun{
 # visualize the NLM
-raster::plot(planar_gradient)
+terra::plot(planar_gradient)
 }
 
 }

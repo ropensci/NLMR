@@ -43,7 +43,7 @@ Set random seed for the simulation.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-Raster with random values ranging from 0-1.
+SpatRaster with random values ranging from 0-1.
 }
 \description{
 Simulates a random cluster nearest-neighbour neutral landscape.
@@ -59,7 +59,7 @@ random_cluster <- nlm_randomcluster(ncol = 30, nrow = 30,
                                     ai = c(0.25, 0.25, 0.5))
 \dontrun{
 # visualize the NLM
-raster::plot(random_cluster)
+terra::plot(random_cluster)
 }
 
 }

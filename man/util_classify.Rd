@@ -3,10 +3,16 @@
 \name{util_classify}
 \alias{util_classify}
 \alias{util_classify.SpatRaster}
-\alias{util_classify.RasterLayer}
 \title{util_classify}
 \usage{
-util_classify(x, n, weighting, level_names, real_land, mask_val)
+util_classify(
+  x,
+  n = NULL,
+  weighting = NULL,
+  level_names = NULL,
+  real_land = NULL,
+  mask_val = NULL
+)
 
 \method{util_classify}{SpatRaster}(
   x,
@@ -16,18 +22,9 @@ util_classify(x, n, weighting, level_names, real_land, mask_val)
   real_land = NULL,
   mask_val = NULL
 )
-
-\method{util_classify}{RasterLayer}(
-  x,
-  n = NULL,
-  weighting = NULL,
-  level_names = NULL,
-  real_land = NULL,
-  mask_val = NULL
-)
 }
 \arguments{
-\item{x}{Raster* object or SpatRaster}
+\item{x}{SpatRaster}
 
 \item{n}{Number of classes}
 
@@ -35,12 +32,12 @@ util_classify(x, n, weighting, level_names, real_land, mask_val)
 
 \item{level_names}{Vector of names for the factor levels.}
 
-\item{real_land}{RasterLayer or SpatRaster with real landscape (see details)}
+\item{real_land}{SpatRaster with real landscape (see details)}
 
 \item{mask_val}{Value to mask (refers to real_land)}
 }
 \value{
-RasterLayer or SpatRaster
+SpatRaster
 }
 \description{
 Classify continuous landscapes into landscapes with discrete classes
@@ -56,7 +53,7 @@ Mode 2: The number of elements in the weighting vector determines the number of 
     If non-numerical levels are required, the user can specify a vector to turn the
     numerical factors into other data types, for example into character strings (i.e. class labels).
     If the numerical vector of weightings does not sum up to 1, the sum of the
-    weightings is divided by the number of elements in the weightings vector and this is then used for the classificat#'     .
+    weightings is divided by the number of elements in the weightings vector and this is then used for the classification.
 
 Mode 3: For a given 'real' landscape the number of classes and the weightings are
     extracted and used to classify the given landscape (any given weighting parameter is

@@ -7,10 +7,10 @@
 util_rescale(x)
 }
 \arguments{
-\item{x}{[\code{Raster* object} or \code{SpatRaster}]}
+\item{x}{[\code{SpatRaster}]}
 }
 \value{
-Raster* object or \code{SpatRaster} with values ranging from 0-1
+\code{SpatRaster} with values ranging from 0-1
 }
 \description{
 Linearly rescale element values in a raster to a range between 0 and 1

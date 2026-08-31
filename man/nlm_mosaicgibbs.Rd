@@ -42,7 +42,7 @@ Set random seed for the simulation.}
 are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulate a neutral landscape model using the Gibbs algorithm introduced in Gaucherel (2008).
@@ -67,7 +67,7 @@ mosaicgibbs <- nlm_mosaicgibbs(ncol = 40,
 
 \dontrun{
 # visualize the NLM
-raster::plot(mosaicgibbs)
+terra::plot(mosaicgibbs)
 }
 
 }

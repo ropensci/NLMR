@@ -46,7 +46,7 @@ a warning that the functions changes the dimensions to an appropriate one for
 the algorithm.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates a midpoint displacement neutral landscape model.
@@ -79,7 +79,7 @@ midpoint_displacememt <- nlm_mpd(ncol = 100,
                                  roughness = 0.3)
 \dontrun{
 # visualize the NLM
-raster::plot(midpoint_displacememt)
+terra::plot(midpoint_displacememt)
 }
 }
 \references{

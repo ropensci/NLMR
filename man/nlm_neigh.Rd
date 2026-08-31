@@ -55,7 +55,7 @@ Set random seed for the simulation.}
 are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Create a neutral landscape model with categories and clustering
@@ -80,7 +80,7 @@ neigh_raster <- nlm_neigh(ncol = 50, nrow = 50, p_neigh = 0.7, p_empty = 0.1,
 
 \dontrun{
 # visualize the NLM
-raster::plot(neigh_raster)
+terra::plot(neigh_raster)
 }
 
 }
