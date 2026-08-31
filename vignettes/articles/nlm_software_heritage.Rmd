@@ -34,7 +34,7 @@ Simulating replicates that have the same properties as the parameter of interest
 ```{r}
 library(NLMR)
 library(purrr)
-library(raster)
+library(terra)
 
 # write a simulation function with the desired parameters
 simulate_landscape = function(x) {
@@ -51,7 +51,7 @@ simulate_landscape = function(x) {
 landscape_list <- rerun(5, simulate_landscape()) 
 
 # look at the result
-plot(stack(landscape_list))
+terra::plot(terra::rast(landscape_list))
 ```
 
 ### Landscape metrics
@@ -87,5 +87,5 @@ while (n < 6) {
 }
 
 # look at the results
-plot(stack(sim_results))
+terra::plot(terra::rast(sim_results))
 ```
