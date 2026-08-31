@@ -29,7 +29,7 @@
 #' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #' # simulate polygonal landscapes
@@ -41,7 +41,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(mosaicgibbs)
+#' terra::plot(mosaicgibbs)
 #' }
 #'
 #' @references
@@ -103,15 +103,22 @@ nlm_mosaicgibbs <- function(ncol,
       geometry = sf::st_sfc(voronoi_tess)
     )
 
-  # (f)rasterize with lightning speed ----
-  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
-  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
+  # rasterize ----
+  r <- terra::rast(
+    ncol = ncol,
+    nrow = nrow,
+    xmin = 0,
+    xmax = ncol,
+    ymin = 0,
+    ymax = nrow
+  )
+  r <- terra::rasterize(terra::vect(voronoi_tess), r, field = "value", fun = "sum")
 
   # specify resolution ----
-  raster::extent(r) <- c(0,
-                         ncol(r) * resolution,
-                         0,
-                         nrow(r) * resolution)
+  terra::ext(r) <- c(0,
+                     terra::ncol(r) * resolution,
+                     0,
+                     terra::nrow(r) * resolution)
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
@@ -119,6 +126,5 @@ nlm_mosaicgibbs <- function(ncol,
   }
 
   return(r)
-
 }
 
