@@ -1,7 +1,16 @@
-## NLMR 1.3.0.9000 (WIP)
+<!-- ## NLMR 1.5.0.9000 (WIP) -->
 
 <!-- - Update `nlm_fbm()` to use a new post-`RandomFields` approximation for fractional Brownian landscapes. The current implementation generates an isotropic frequency-based surface for `fract_dim < 2`, then recentres and rescales it based on one-cell differences, while the endpoint `fract_dim = 2` is treated as the smooth linear limit.
 - Update `nlm_gaussianfield()` to use a new post-`RandomFields` approximation based on an exponential covariance surface, with optional nugget noise and a user-defined mean added afterward. In practice, this means that `autocorr_range` now acts more directly on the spatial structure of the landscape, `mag_var` controls the variance of the correlated component, and `nug` adds fine-scale local variation on top of that broader pattern. -->
+
+## NLMR 1.4.0
+
+- Migrate the package to `terra` for raster creation and output handling.
+- Standardize landscape outputs across the package.
+- Add `landscape_classify()` as the new classification helper.
+- Fix the `nlm_distancegradient()` origin order.
+- Clean up documentation and examples during the terra migration.
+- Keep `nlm_fbm()` and `nlm_gaussianfield()` temporarily disabled while they are reimplemented.
 
 ## NLMR 1.2.0
 
