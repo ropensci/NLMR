@@ -49,7 +49,7 @@ return raster of the random mosaic field algorithm with infinite steps}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-SpatRaster or List with SpatRaster/s and/or SpatRaster stack
+SpatRaster or List with SpatRasters
 }
 \description{
 Simulates a mosaic random field neutral landscape model.
