@@ -68,29 +68,12 @@ midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
 **NLMR** supplies 15 NLM algorithms, with several options to simulate derivatives of them. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients):
 
 ```{r overview-table, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
-library(tibble)
 library(kableExtra)
 
-model_info <- tibble::tribble(
-  ~Function, ~Description, ~Reference,
-  "nlm_random", "Uniform random landscapes.", "With and Crist (1995)",
-  "nlm_percolation", "Binary percolation landscapes.", "Gardner et al. (1989)",
-  "nlm_planargradient", "Planar gradients in a specified or random direction.", "Palmer (1992)",
-  "nlm_distancegradient", "Distance to a user-defined rectangular origin.", "Etherington, Holland, and O’Sullivan (2015)",
-  "nlm_edgegradient", "Directional gradient with a central peak.", "Travis and Dytham (2004); Schlather et al. (2015)",
-  "nlm_mosaicfield", "Mosaic random fields based on repeated bisection.", "Schlather et al. (2015)",
-  "nlm_mosaictess", "Voronoi tessellation from random points.", "Gaucherel (2008), Method 1",
-  "nlm_mosaicgibbs", "Inhibited point-pattern tessellation.", "Gaucherel (2008), Method 2",
-  "nlm_neigh", "Categorical landscapes shaped by neighbourhood effects.", "Scherer et al. (2016)",
-  "nlm_randomcluster", "Nearest-neighbour random clusters.", "Saura and Martínez‐Millán (2000)",
-  "nlm_randomrectangularcluster", "Overlapping rectangular clusters.", "Gustafson and Parker (1992)",
-  "nlm_mpd", "Midpoint displacement surfaces.", "Peitgen and Saupe (1988)",
-  "nlm_curds", "Randomly curdled or wheyed landscapes based on recursive subdivision.", "O’Neill, Gardner, and Turner (1992); Keitt (2000)",
-  "nlm_fbm", "Fractional Brownian motion surfaces.", "Schlather et al. (2015)",
-  "nlm_gaussianfield", "Gaussian random fields with spatial correlation.", "Schlather et al. (2015)"
-)
-
-knitr::kable(model_info) |>
+NLMR::catalog_nlm() |>
+  dplyr::select(algorithm, description, reference) |>
+  dplyr::rename(Function = algorithm) |>
+  knitr::kable() |>
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 

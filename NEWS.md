@@ -8,6 +8,7 @@
 - Migrate the package to `terra` for raster creation and output handling.
 - Standardize landscape outputs across the package.
 - Add `landscape_classify()` as the new classification helper.
+- Add `catalog_nlm()` as a browseable catalog of the package’s landscape generators.
 - Fix the `nlm_distancegradient()` origin order.
 - Clean up documentation and examples during the terra migration.
 - Keep `nlm_fbm()` and `nlm_gaussianfield()` temporarily disabled while they are reimplemented.
