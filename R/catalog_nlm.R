@@ -16,7 +16,7 @@
 #'
 #' @export
 catalog_nlm <- function() {
-  tibble::tibble(
+  catalog <- tibble::tibble(
     algorithm = c(
       "nlm_random",
       "nlm_percolation",
@@ -79,7 +79,7 @@ catalog_nlm <- function() {
       "Gaucherel (2008), Method 1",
       "Gaucherel (2008), Method 2",
       "Scherer et al. (2016)",
-      "Saura and Martínez‐Millán (2000)",
+      "Saura and Martinez-Millan (2000)",
       "Gustafson and Parker (1992)",
       "Peitgen and Saupe (1988)",
       "O'Neill, Gardner, and Turner (1992); Keitt (2000)",
@@ -87,4 +87,6 @@ catalog_nlm <- function() {
       "Schlather et al. (2015)"
     )
   )
+
+  catalog[order(catalog$group, catalog$algorithm), , drop = FALSE]
 }
