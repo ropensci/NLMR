@@ -2,19 +2,9 @@
 % Please edit documentation in R/landscape_classify.R
 \name{landscape_classify}
 \alias{landscape_classify}
-\alias{util_classify}
 \title{landscape_classify}
 \usage{
 landscape_classify(
-  x,
-  n = NULL,
-  weighting = NULL,
-  level_names = NULL,
-  real_land = NULL,
-  mask_val = NULL
-)
-
-util_classify(
   x,
   n = NULL,
   weighting = NULL,
