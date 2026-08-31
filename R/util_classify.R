@@ -13,21 +13,21 @@
 #'     If non-numerical levels are required, the user can specify a vector to turn the
 #'     numerical factors into other data types, for example into character strings (i.e. class labels).
 #'     If the numerical vector of weightings does not sum up to 1, the sum of the
-#'     weightings is divided by the number of elements in the weightings vector and this is then used for the classificat#'     .
+#'     weightings is divided by the number of elements in the weightings vector and this is then used for the classification.
 #'
 #' Mode 3: For a given 'real' landscape the number of classes and the weightings are
 #'     extracted and used to classify the given landscape (any given weighting parameter is
 #'     overwritten in this case!). If an optional mask value is given the corresponding
 #'     class from the 'real' landscape is cut from the landscape beforehand.
 #'
-#' @param x Raster* object or SpatRaster
+#' @param x SpatRaster
 #' @param n Number of classes
 #' @param weighting Vector of numeric values that are considered to be habitat percentages (see details)
 #' @param level_names Vector of names for the factor levels.
-#' @param real_land RasterLayer or SpatRaster with real landscape (see details)
+#' @param real_land SpatRaster with real landscape (see details)
 #' @param mask_val Value to mask (refers to real_land)
 #'
-#' @return RasterLayer or SpatRaster
+#' @return SpatRaster
 #'
 #' @examples
 #' \dontrun{
@@ -65,11 +65,17 @@
 #' @export
 
 util_classify <- function(x,
-                          n,
-                          weighting,
-                          level_names,
-                          real_land,
-                          mask_val) UseMethod("util_classify")
+                          n = NULL,
+                          weighting = NULL,
+                          level_names = NULL,
+                          real_land = NULL,
+                          mask_val = NULL) {
+  if (!inherits(x, "SpatRaster")) {
+    stop("util_classify() only supports SpatRaster inputs.")
+  }
+
+  UseMethod("util_classify")
+}
 
 #' @name util_classify
 #' @export
@@ -80,20 +86,29 @@ util_classify.SpatRaster <- function(x,
                           real_land = NULL,
                           mask_val = NULL) {
 
-  if (!inherits(x, "SpatRaster")) {
-    x <- terra::rast(x)
+  if (!is.null(n)) {
+    checkmate::assert_count(n, positive = TRUE)
+  }
+  if (!is.null(weighting)) {
+    checkmate::assert_numeric(weighting, any.missing = TRUE)
+  }
+  if (!is.null(level_names)) {
+    checkmate::assert_character(level_names, min.len = 1)
+  }
+  if (!is.null(mask_val)) {
+    checkmate::assert_numeric(mask_val, len = 1, any.missing = FALSE)
   }
 
-  if (!is.null(real_land)) {
-    if (inherits(real_land, "RasterLayer")) {
-      real_land <- terra::rast(real_land)
-    } else if (!inherits(real_land, "SpatRaster")) {
-      stop("real_land must be a RasterLayer or SpatRaster object.")
-    }
+  if (!is.null(real_land) && !inherits(real_land, "SpatRaster")) {
+    stop("real_land must be a SpatRaster object.")
   }
 
-  if (!is.null(weighting) & !is.null(n)) {
-    warning("If n AND weighting are used, util_classify will fallback to weighting as classification method.")
+  if (!is.null(real_land) && !terra::compareGeom(x, real_land, stopOnError = FALSE)) {
+    stop("x and real_land must have matching geometry.")
+  }
+
+  if (!is.null(weighting) && !is.null(n)) {
+    warning("If both n and weighting are used, util_classify() will use weighting.")
   }
 
   if (!is.null(real_land)) {
@@ -105,11 +120,18 @@ util_classify.SpatRaster <- function(x,
     if (!is.null(mask_val)) {
       real_vals <- real_vals[real_vals != mask_val]
     }
+    real_vals <- real_vals[!is.na(real_vals)]
+    if (length(real_vals) == 0) {
+      stop("real_land contains no values after masking.")
+    }
     weighting <- as.numeric(table(real_vals) / sum(table(real_vals)))
     x <- .classify_spatraster(x, weighting)
 
   } else {
     if (is.null(weighting)) {
+      if (is.null(n)) {
+        stop("Either n, weighting, or real_land must be supplied.")
+      }
       x_vals <- as.vector(terra::values(x, mat = FALSE))
       x_vals <- x_vals[!is.na(x_vals)]
       breaks <- .getJenksBreaks(x_vals, n)
@@ -125,42 +147,14 @@ util_classify.SpatRaster <- function(x,
   if (!is.null(level_names)) {
     x <- terra::as.factor(x)
     lv <- levels(x)[[1]]
+    if (length(level_names) < nrow(lv)) {
+      stop("level_names must have at least as many entries as classes.")
+    }
     lv[[2]] <- level_names[lv$ID]
     levels(x) <- list(lv)
   }
 
   x
-}
-
-#' @name util_classify
-#' @export
-util_classify.RasterLayer <- function(x,
-                          n = NULL,
-                          weighting = NULL,
-                          level_names = NULL,
-                          real_land = NULL,
-                          mask_val = NULL) {
-
-  x_spat <- terra::rast(x)
-
-  if (!is.null(real_land)) {
-    if (inherits(real_land, "RasterLayer")) {
-      real_land <- terra::rast(real_land)
-    } else if (!inherits(real_land, "SpatRaster")) {
-      stop("real_land must be a RasterLayer or SpatRaster object.")
-    }
-  }
-
-  result_spat <- util_classify.SpatRaster(
-    x = x_spat,
-    n = n,
-    weighting = weighting,
-    level_names = level_names,
-    real_land = real_land,
-    mask_val = mask_val
-  )
-
-  raster::raster(result_spat)
 }
 
 .classify_spatraster <- function(x, weighting){
@@ -198,13 +192,21 @@ util_classify.RasterLayer <- function(x,
 }
 
 util_w2cp <- function(weighting) {
-  
   na <- sum(is.na(weighting))
-  na_replace <- (1 - sum(weighting, na.rm = TRUE)) / na
-  weighting[is.na(weighting)] <- na_replace
-  
+  if (na > 0) {
+    na_replace <- (1 - sum(weighting, na.rm = TRUE)) / na
+    weighting[is.na(weighting)] <- na_replace
+  }
+
   w <- weighting
-  proportions <- w / sum(w)
+  if (any(w < 0, na.rm = TRUE)) {
+    stop("weighting must be non-negative.")
+  }
+  total <- sum(w, na.rm = TRUE)
+  if (isTRUE(all.equal(total, 0))) {
+    stop("weighting must sum to a positive value.")
+  }
+  proportions <- w / total
   cumulative_proportions <- cumsum(proportions)
   return(cumulative_proportions)
 }
