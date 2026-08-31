@@ -17,13 +17,13 @@
 #' @param user_seed [\code{numerical(1)}]\cr
 #' Set random seed for the simulation.
 #' @param collect [\code{logical(1)}]\cr
-#' return \code{RasterBrick} of all steps 1:\code{n}
+#' return \code{SpatRaster} of all steps 1:\code{n}
 #' @param infinit [\code{logical(1)}]\cr
 #' return raster of the random mosaic field algorithm with infinite steps
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer or List with RasterLayer/s and/or RasterBrick
+#' @return SpatRaster or List with SpatRasters
 #'
 #' @references
 #' Schwab, Dimitri, Martin Schlather, and Jürgen Potthoff. "A general class of
@@ -40,7 +40,7 @@
 #'                                 collect = FALSE)
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(mosaic_field)
+#' terra::plot(mosaic_field)
 #' }
 #'
 #' @aliases nlm_mosaicfield
@@ -110,14 +110,13 @@ nlm_mosaicfield <- function(ncol,
       }
 
       # coerce spatstat image to raster and set proper resolution ----
-      mosaicfield_raster <- raster::rasterFromXYZ(
-        as.data.frame(mosaicfield_result))
+      mosaicfield_raster <- terra::rast(as.data.frame(mosaicfield_result), type = "xyz")
 
-      raster::extent(mosaicfield_raster) <- c(
+      terra::ext(mosaicfield_raster) <- c(
         0,
-        ncol(mosaicfield_raster) * resolution,
+        terra::ncol(mosaicfield_raster) * resolution,
         0,
-        nrow(mosaicfield_raster) * resolution
+        terra::nrow(mosaicfield_raster) * resolution
       )
 
       # Rescale values to 0-1
@@ -137,20 +136,22 @@ nlm_mosaicfield <- function(ncol,
         mosaicfield_list <-
           lapply(seq_along(mosaicfield_list), function(i) {
             # coerce spatstat image list to raster and set proper resolution ----
-            mosaicfield_list[[i]] <- raster::rasterFromXYZ(
-              as.data.frame(mosaicfield_list[[i]]))
+            mosaicfield_list[[i]] <- terra::rast(
+              as.data.frame(mosaicfield_list[[i]]),
+              type = "xyz"
+            )
 
-            raster::extent(mosaicfield_list[[i]]) <- c(
+            terra::ext(mosaicfield_list[[i]]) <- c(
               0,
-              ncol(mosaicfield_list[[i]]) * resolution,
+              terra::ncol(mosaicfield_list[[i]]) * resolution,
               0,
-              nrow(mosaicfield_list[[i]]) * resolution
+              terra::nrow(mosaicfield_list[[i]]) * resolution
             )
 
             mosaicfield_list[[i]]
           })
 
-        mosaicfields_brick <- raster::brick(mosaicfield_list)
+        mosaicfields_brick <- terra::rast(mosaicfield_list)
         names(mosaicfields_brick) <-
           paste("Step: ", seq_along(mosaicfield_list))
 
@@ -177,14 +178,13 @@ nlm_mosaicfield <- function(ncol,
       mosaicfield_inf <- log(attr(X, "Lambda"))
 
       # coerce spatstat image to raster and set proper resolution ----
-      mosaicfield_raster <-
-        raster::rasterFromXYZ(as.data.frame(mosaicfield_inf))
+      mosaicfield_raster <- terra::rast(as.data.frame(mosaicfield_inf), type = "xyz")
 
-      raster::extent(mosaicfield_raster) <- c(
+      terra::ext(mosaicfield_raster) <- c(
         0,
-        ncol(mosaicfield_raster) * resolution,
+        terra::ncol(mosaicfield_raster) * resolution,
         0,
-        nrow(mosaicfield_raster) * resolution
+        terra::nrow(mosaicfield_raster) * resolution
       )
 
       # Rescale values to 0-1
