@@ -20,6 +20,7 @@ reference:
   - title: Utility functions
     desc: ~
     contents:
+      - '`catalog_nlm`'
       - '`landscape_classify`'
 navbar:
   title: nlmr | Neutral landscape models with R
