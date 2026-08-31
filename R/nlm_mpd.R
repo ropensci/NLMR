@@ -42,7 +42,7 @@
 #' a warning that the functions changes the dimensions to an appropriate one for
 #' the algorithm.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @references  \url{https://en.wikipedia.org/wiki/Diamond-square_algorithm}
 #'
@@ -54,7 +54,7 @@
 #'                                  roughness = 0.3)
 #'\dontrun{
 #' # visualize the NLM
-#' raster::plot(midpoint_displacememt)
+#' terra::plot(midpoint_displacememt)
 #' }
 #' @aliases nlm_mpd
 #' @rdname nlm_mpd
@@ -74,30 +74,29 @@ nlm_mpd <- function(ncol,
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
-  checkmate::assert_numeric(resolution)
-  checkmate::assert_numeric(roughness)
-  checkmate::assert_true(roughness <= 1.0 || roughness >= 0)
+  checkmate::assert_numeric(resolution, lower = 0)
+  checkmate::assert_number(roughness, lower = 0, upper = 1)
   checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
   checkmate::assert_logical(rescale)
 
   # create the landscape with rcpp_mpd ----
   seed <- if (is.null(user_seed)) sample.int(.Machine$integer.max, 1) else as.integer(user_seed)
-  mpd_raster <- rcpp_mpd(ncol + 1, nrow + 1, rand_dev, roughness, seed, torus)
+  mpd_matrix <- rcpp_mpd(ncol + 1, nrow + 1, rand_dev, roughness, seed, torus)
   
-  mpd_raster <- mpd_raster[-1,]
-  mpd_raster <- mpd_raster[,-1]
-  mpd_raster <- mpd_raster[-nrow(mpd_raster),]
-  mpd_raster <- mpd_raster[,-ncol(mpd_raster)]
+  mpd_matrix <- mpd_matrix[-1, ]
+  mpd_matrix <- mpd_matrix[, -1]
+  mpd_matrix <- mpd_matrix[-nrow(mpd_matrix), ]
+  mpd_matrix <- mpd_matrix[, -ncol(mpd_matrix)]
   
   # Convert matrix to raster ----
-  mpd_raster <- raster::raster(mpd_raster)
+  mpd_raster <- terra::rast(mpd_matrix)
 
   # specify resolution ----
-  raster::extent(mpd_raster) <- c(
+  terra::ext(mpd_raster) <- c(
     0,
-    ncol(mpd_raster) * resolution,
+    terra::ncol(mpd_raster) * resolution,
     0,
-    nrow(mpd_raster) * resolution
+    terra::nrow(mpd_raster) * resolution
   )
 
   # Rescale values to 0-1 ----
@@ -107,7 +106,7 @@ nlm_mpd <- function(ncol,
 
   if (verbose == TRUE) {
     if (ncol %% 2 == 0 | nrow %% 2 == 0) {
-      warning("nlm_mpd changes the dimensions of the RasterLayer if even ncols/nrows are choosen.")
+      warning("nlm_mpd changes the dimensions of the SpatRaster if even ncols/nrows are chosen.")
     }
   }
 
