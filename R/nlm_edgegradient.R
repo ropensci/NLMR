@@ -73,8 +73,6 @@ nlm_edgegradient <- function(ncol,
                                         resolution = resolution,
                                         direction =  direction,
                                         user_seed = user_seed)
-  gradient_raster <- terra::rast(gradient_raster)
-
   # Transform to a central gradient ----
   edgegradient_raster <-
     (abs(0.5 - gradient_raster) * -2) + 1
