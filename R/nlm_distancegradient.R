@@ -44,11 +44,6 @@ nlm_distancegradient <- function(ncol,
                                  resolution = 1,
                                  origin,
                                  rescale = TRUE) {
-  # raster::distance would produce an annyoing warning
-  # because of a missing CRS
-  suppressWarnings("In couldBeLonLat(x) : CRS is NA.
-                     Assuming it is longitude/latitude")
-
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
@@ -62,7 +57,7 @@ nlm_distancegradient <- function(ncol,
   distancegradient <-
     terra::rast(ncol = ncol, nrow = nrow,
                 xmin = 0, xmax = ncol,
-                ymin = 0, ymax = ncol)
+                ymin = 0, ymax = nrow)
   terra::values(distancegradient) <- NA
 
   # set origin to 1 ----
