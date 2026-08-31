@@ -99,7 +99,7 @@ simulate_landscape = function(roughness, weighting){
             nrow = 33,
             roughness = roughness,
             rescale = TRUE) |>
-        util_classify(weighting = weighting)
+        landscape_classify(weighting = weighting)
 }
 
 # paramter combinations we are interested in

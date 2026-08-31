@@ -1,4 +1,4 @@
-#' util_classify
+#' landscape_classify
 #'
 #' @description  Classify continuous landscapes into landscapes with discrete classes
 #'
@@ -32,59 +32,47 @@
 #' @examples
 #' \dontrun{
 #' # Mode 1
-#' util_classify(fractal_landscape,
-#'               n = 3,
-#'               level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
+#' landscape_classify(fractal_landscape,
+#'                    n = 3,
+#'                    level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
 #'
 #' # Mode 2
-#' util_classify(fractal_landscape,
-#'               weighting = c(0.5, 0.25, 0.25),
-#'               level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
+#' landscape_classify(fractal_landscape,
+#'                    weighting = c(0.5, 0.25, 0.25),
+#'                    level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
 #'
 #' # Mode 3
-#' real_land <- util_classify(gradient_landscape,
-#'               n = 3,
-#'               level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
+#' real_land <- landscape_classify(gradient_landscape,
+#'                                 n = 3,
+#'                                 level_names = c("Land Use 1", "Land Use 2", "Land Use 3"))
 #'
-#' fractal_landscape_real <- util_classify(fractal_landscape, real_land = real_land)
-#' fractal_landscape_mask <- util_classify(fractal_landscape, real_land = real_land, mask_val = 1)
+#' fractal_landscape_real <- landscape_classify(fractal_landscape, real_land = real_land)
+#' fractal_landscape_mask <- landscape_classify(fractal_landscape, real_land = real_land, mask_val = 1)
 #'
 #' landscapes <- list(
-#' '1 nlm' = fractal_landscape,
-#' '2 real' = real_land,
-#' '3 result' = fractal_landscape_real,
-#' '4 result with mask' = fractal_landscape_mask
+#'   '1 nlm' = fractal_landscape,
+#'   '2 real' = real_land,
+#'   '3 result' = fractal_landscape_real,
+#'   '4 result with mask' = fractal_landscape_mask
 #' )
 #'
-#' raster::plot(landscapes)
+#' terra::plot(landscapes)
 #' }
 #'
-#' @aliases util_classify
-#' @rdname util_classify
+#' @aliases landscape_classify util_classify
+#' @rdname landscape_classify
 #'
 #' @export
+landscape_classify <- function(x,
+                               n = NULL,
+                               weighting = NULL,
+                               level_names = NULL,
+                               real_land = NULL,
+                               mask_val = NULL) {
 
-util_classify <- function(x,
-                          n = NULL,
-                          weighting = NULL,
-                          level_names = NULL,
-                          real_land = NULL,
-                          mask_val = NULL) {
   if (!inherits(x, "SpatRaster")) {
-    stop("util_classify() only supports SpatRaster inputs.")
+    stop("landscape_classify() only supports SpatRaster inputs.")
   }
-
-  UseMethod("util_classify")
-}
-
-#' @name util_classify
-#' @export
-util_classify.SpatRaster <- function(x,
-                          n = NULL,
-                          weighting = NULL,
-                          level_names = NULL,
-                          real_land = NULL,
-                          mask_val = NULL) {
 
   if (!is.null(n)) {
     checkmate::assert_count(n, positive = TRUE)
@@ -108,7 +96,7 @@ util_classify.SpatRaster <- function(x,
   }
 
   if (!is.null(weighting) && !is.null(n)) {
-    warning("If both n and weighting are used, util_classify() will use weighting.")
+    warning("If both n and weighting are used, landscape_classify() will use weighting.")
   }
 
   if (!is.null(real_land)) {
@@ -155,6 +143,25 @@ util_classify.SpatRaster <- function(x,
   }
 
   x
+}
+
+#' @name landscape_classify
+#' @export
+util_classify <- function(x,
+                          n = NULL,
+                          weighting = NULL,
+                          level_names = NULL,
+                          real_land = NULL,
+                          mask_val = NULL) {
+  .Deprecated("landscape_classify")
+  landscape_classify(
+    x = x,
+    n = n,
+    weighting = weighting,
+    level_names = level_names,
+    real_land = real_land,
+    mask_val = mask_val
+  )
 }
 
 .classify_spatraster <- function(x, weighting){
@@ -239,7 +246,8 @@ util_calc_boundaries <- function(x, cumulative_proportions) {
   n_cells <- length(x)
 
   # Use number of cells to find index of upper boundary element ----
-  boundary_indexes <- as.integer( (cumulative_proportions * n_cells))
+  boundary_indexes <- as.integer((cumulative_proportions * n_cells))
+  boundary_indexes <- pmax(1L, pmin(length(x), boundary_indexes))
 
   # Get boundary values ----
   boundary_values <- sort(as.vector(x))[boundary_indexes]
