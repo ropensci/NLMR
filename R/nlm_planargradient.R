@@ -16,7 +16,7 @@
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @details
 #' Simulates a linear gradient sloping in a specified or random direction.
@@ -27,7 +27,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(planar_gradient)
+#' terra::plot(planar_gradient)
 #' }
 #'
 #' @seealso \code{\link{nlm_distancegradient}},
@@ -80,14 +80,14 @@ nlm_planargradient <- function(ncol,
     (southness * row_index + eastness * col_index)
 
   # Transform to raster ----
-  gradient_raster <- raster::raster(gradient_matrix)
+  gradient_raster <- terra::rast(gradient_matrix)
 
   # specify resolution ----
-  raster::extent(gradient_raster) <- c(
+  terra::ext(gradient_raster) <- c(
     0,
-    ncol(gradient_raster) * resolution,
+    terra::ncol(gradient_raster) * resolution,
     0,
-    nrow(gradient_raster) * resolution
+    terra::nrow(gradient_raster) * resolution
   )
 
   # Rescale values to 0-1 ----
