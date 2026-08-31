@@ -26,12 +26,13 @@ knitr::opts_chunk$set(
 # NLMR <img src="man/figures/logo.png" align="right" width="150" />
 
 **NLMR** is an ``R`` package for simulating **n**eutral **l**andscape **m**odels (NLM). Designed to be a generic framework like [NLMpy](https://pypi.org/project/nlmpy/), it leverages the ability to simulate the most common NLM that are described in the ecological literature. 
-**NLMR** builds on the advantages of the **raster** package and returns all simulation as ``RasterLayer`` objects, thus ensuring a direct compatibility to common GIS tasks and a flexible and simple usage.
+**NLMR** builds on the advantages of the **terra** package and returns all simulations as ``SpatRaster`` objects, thus ensuring direct compatibility with common GIS tasks and a flexible and simple usage.
 Furthermore, it simulates NLMs within a self-contained, reproducible framework.
 
 ## Installation
 
-NLMR is not available on CRAN at the moment (see #95). The only way to install NLMR at the moment is:
+NLMR is currently not available on CRAN. 
+The only way to install NLMR at the moment is:
 
 ```{r, eval = FALSE}
 # install.packages("remotes")
@@ -44,213 +45,93 @@ remotes::install_github("ropensci/NLMR")
 
 ## Example
 
-Each neutral landscape models is simulated with a single function (all starting with `nlm_`) in `NLMR`, e.g.:
+Each neutral landscape model is simulated with a single function (all starting with `nlm_`) in **NLMR**, e.g.:
 
 ```{r eval=FALSE}
 random_cluster <- NLMR::nlm_randomcluster(nrow = 100,
-                                      ncol = 100,
-                                      p    = 0.5,
-                                      ai   = c(0.3, 0.6, 0.1),
-                                      rescale = FALSE)
+                                          ncol = 100,
+                                          p    = 0.5,
+                                          ai   = c(0.3, 0.6, 0.1),
+                                          rescale = FALSE)
 
 random_curdling <- NLMR::nlm_curds(curds = c(0.5, 0.3, 0.6),
-                              recursion_steps = c(32, 6, 2))
+                                   recursion_steps = c(32, 6, 2))
 
 
 midpoint_displacememt <- NLMR::nlm_mpd(ncol = 100,
-                                 nrow = 100,
-                                 roughness = 0.61)
+                                       nrow = 100,
+                                       roughness = 0.61)
 ```
 
 ## Overview
 
-**NLMR** supplies 15 NLM algorithms, with several options to simulate derivatives of
-them. The algorithms differ from each other in spatial auto-correlation, from 
-no auto-correlation (random NLM) to a constant gradient (planar gradients):  
+**NLMR** supplies 15 NLM algorithms, with several options to simulate derivatives of them. The algorithms differ from each other in spatial auto-correlation, from no auto-correlation (random NLM) to a constant gradient (planar gradients):
 
-```{r warning=FALSE, message = FALSE, results='asis', echo=FALSE, cache=FALSE}
+```{r overview-table, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(tibble)
-library(magrittr)
-library(knitr)
 library(kableExtra)
 
-function_tibble <- tibble(Function = character(), 
-                          Description = character(), 	
-                          Crossreference = character(), 
-                          Reference = character())
+model_info <- tibble::tribble(
+  ~Function, ~Description, ~Reference,
+  "nlm_random", "Uniform random landscapes.", "With and Crist (1995)",
+  "nlm_percolation", "Binary percolation landscapes.", "Gardner et al. (1989)",
+  "nlm_planargradient", "Planar gradients in a specified or random direction.", "Palmer (1992)",
+  "nlm_distancegradient", "Distance to a user-defined rectangular origin.", "Etherington, Holland, and O’Sullivan (2015)",
+  "nlm_edgegradient", "Directional gradient with a central peak.", "Travis and Dytham (2004); Schlather et al. (2015)",
+  "nlm_mosaicfield", "Mosaic random fields based on repeated bisection.", "Schlather et al. (2015)",
+  "nlm_mosaictess", "Voronoi tessellation from random points.", "Gaucherel (2008), Method 1",
+  "nlm_mosaicgibbs", "Inhibited point-pattern tessellation.", "Gaucherel (2008), Method 2",
+  "nlm_neigh", "Categorical landscapes shaped by neighbourhood effects.", "Scherer et al. (2016)",
+  "nlm_randomcluster", "Nearest-neighbour random clusters.", "Saura and Martínez‐Millán (2000)",
+  "nlm_randomrectangularcluster", "Overlapping rectangular clusters.", "Gustafson and Parker (1992)",
+  "nlm_mpd", "Midpoint displacement surfaces.", "Peitgen and Saupe (1988)",
+  "nlm_curds", "Randomly curdled or wheyed landscapes based on recursive subdivision.", "O’Neill, Gardner, and Turner (1992); Keitt (2000)",
+  "nlm_fbm", "Fractional Brownian motion surfaces.", "Schlather et al. (2015)",
+  "nlm_gaussianfield", "Gaussian random fields with spatial correlation.", "Schlather et al. (2015)"
+)
 
-# nlm_curds
-function_tibble[1,1] <- "nlm_curds"
-function_tibble[1,2] <- "Simulates a randomly curdled or wheyed neutral landscape model. Random curdling recursively subdivides the landscape into blocks. At each level of the recursion, a fraction of these blocks is declared as habitat while the remaining stays matrix. When option q is set, it simulates a wheyed curdling model, where previously selected cells that were declared matrix during recursion, can now contain a proportion of habitat cells"
-function_tibble[1,3] <- "Figure 1a,p"
-function_tibble[1,4] <- "O’Neill, Gardner, and Turner (1992); Keitt (2000)"
-
-# nlm_distancegradient
-function_tibble[2,1] <- "nlm_distancegradient"
-function_tibble[2,2] <- "Simulates a distance gradient neutral landscape model. The gradient is always measured from a rectangle that one has to specify in the function (parameter origin)"
-function_tibble[2,3] <- "Figure 1b"
-function_tibble[2,4] <- "Etherington, Holland, and O’Sullivan (2015)"
-
-# nlm_edgegradient
-function_tibble[3,1] <- "nlm_edgegradient"
-function_tibble[3,2] <- "Simulates a linear gradient orientated neutral model. The gradient has a specified or random direction that has a central peak, which runs perpendicular to the gradient direction"
-function_tibble[3,3] <- "Figure 1c"
-function_tibble[3,4] <- "Travis and Dytham (2004); Schlather et al. (2015)"
-
-# nlm_edgegradient
-function_tibble[4,1] <- "nlm_fbm"
-function_tibble[4,2] <- "Simulates neutral landscapes using fractional Brownian motion (fBm). fBm is an extension of Brownian motion in which the amount of spatial autocorrelation between steps is controlled by the Hurst coefficient H"
-function_tibble[4,3] <- "Figure 1d"
-function_tibble[4,4] <- "Schlather et al. (2015)"
-
-# nlm_gaussianfield
-function_tibble[5,1] <- "nlm_gaussianfield"
-function_tibble[5,2] <- "Simulates a spatially correlated random fields (Gaussian random fields) model, where one can control the distance and magnitude of spatial autocorrelation	"
-function_tibble[5,3] <- "Figure 1e"
-function_tibble[5,4] <- "Schlather et al. (2015)"
-
-# nlm_mosaicfield
-function_tibble[6,1] <- "nlm_mosaicfield"
-function_tibble[6,2] <- "Simulates a mosaic random field neutral landscape model. The algorithm imitates fault lines by repeatedly bisecting the landscape and lowering the values of cells in one half and increasing the values in the other half. If one sets the parameter infinite to TRUE, the algorithm approaches a fractal pattern"
-function_tibble[6,3] <- "Figure 1f"
-function_tibble[6,4] <- "Schlather et al. (2015)"
-
-# nlm_neigh
-function_tibble[7,1] <- "nlm_neigh"
-function_tibble[7,2] <- "Simulates a neutral landscape model with land cover classes and clustering based on neighbourhood characteristics. The cluster are based on the surrounding cells. If there is a neighbouring cell of the current value/type, the target cell will more likely turned into a cell of that type/value"
-function_tibble[7,3] <- "Figure 1g"
-function_tibble[7,4] <- "Scherer et al. (2016)"
-
-# nlm_percolation
-function_tibble[8,1] <- "nlm_percolation"
-function_tibble[8,2] <- "Simulates a binary neutral landscape model based on percolation theory. The probability for a cell to be assigned habitat is drawn from a uniform distribution"
-function_tibble[8,3] <- "Figure 1h"
-function_tibble[8,4] <- "Gardner et al. (1989)"
-
-# nlm_planargradient
-function_tibble[9,1] <- "nlm_planargradient"
-function_tibble[9,2] <- "Simulates a planar gradient neutral landscape model. The gradient is sloping in a specified or (by default) random direction between 0 and 360 degree"
-function_tibble[9,3] <- "Figure 1i"
-function_tibble[9,4] <- "Palmer (1992)"
-
-# nlm_mosaictess
-function_tibble[10,1] <- "nlm_mosaictess"
-function_tibble[10,2] <- "Simulates a patchy mosaic neutral landscape model based on the tessellation of a random point process. The algorithm randomly places points (parameter germs) in the landscape, which are used as the centroid points for a voronoi tessellation. A higher number of points therefore leads to a more fragmented landscape"
-function_tibble[10,3] <- "Figure 1k"
-function_tibble[10,4] <- "Gaucherel (2008), Method 1"
-
-# nlm_mosaicgibbs	
-function_tibble[11,1] <- "nlm_mosaicgibbs	"
-function_tibble[11,2] <- "Simulates a patchy mosaic neutral landscape model based on the tessellation of an inhibition point process. This inhibition point process starts with a given number of points and uses a minimisation approach to fit a point pattern with a given interaction parameter (0 ‐ hardcore process; 1 ‐ Poisson process) and interaction radius (distance of points/germs being apart)"
-function_tibble[11,3] <- "Figure 1l"
-function_tibble[11,4] <- "Gaucherel (2008), Method 2"
-
-# nlm_random
-function_tibble[12,1] <- "nlm_random"
-function_tibble[12,2] <- "Simulates a spatially random neutral landscape model with values drawn a uniform distribution"
-function_tibble[12,3] <- "Figure 1m"
-function_tibble[12,4] <- "With and Crist (1995)"
-# nlm_randomcluster
-function_tibble[13,1] <- "nlm_randomcluster"
-function_tibble[13,2] <- "Simulates a random cluster nearest‐neighbour neutral landscape. The parameter ai controls for the number and abundance of land cover classes and p controls for proportion of elements randomly selected to form clusters"
-function_tibble[13,3] <- "Figure 1n"
-function_tibble[13,4] <- "Saura and Martínez-Millán (2000)"
-
-# nlm_mpd
-function_tibble[14,1] <- "nlm_mpd"
-function_tibble[14,2] <- "Simulates a midpoint displacement neutral landscape model where the parameter roughness controls the level of spatial autocorrelation"
-function_tibble[14,3] <- "Figure 1n"
-function_tibble[14,4] <- "Peitgen and Saupe (1988)"
-
-# nlm_randomrectangularcluster
-function_tibble[15,1] <- "nlm_randomrectangularcluster"
-function_tibble[15,2] <- "Simulates a random rectangular cluster neutral landscape model. The algorithm randomly distributes overlapping rectangles until the landscape is filled"
-function_tibble[15,3] <- "Figure 1o"
-function_tibble[15,4] <- "Gustafson and Parker (1992)"
-
-kable(function_tibble) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+knitr::kable(model_info) |>
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
 ## Algorithm examples
 
 Example outputs for the algorithms implemented in `NLMR`.
 
-```{r fig-algorithm-examples}
-#| eval: FALSE
-#| echo: FALSE
-# Generate example algorithms and save one overview figure for the README.
-
+```{r algorithm-gallery, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7, fig.height=12}
 library(NLMR)
-library(raster)
+library(terra)
 
-algo_names <- c(
-  "nlm_random",
-  "nlm_percolation",
-  "nlm_planargradient",
-  "nlm_distancegradient",
-  "nlm_edgegradient",
-  "nlm_mosaicfield",
-  "nlm_mosaictess",
-  "nlm_mosaicgibbs",
-  "nlm_neigh",
-  "nlm_randomcluster",
-  "nlm_randomrectangularcluster",
-  "nlm_mpd",
-  "nlm_curds",
-  "nlm_fbm",
-  "nlm_gaussianfield"
+model_info <- list(
+  nlm_random = function() nlm_random(ncol = 80, nrow = 80),
+  nlm_percolation = function() nlm_percolation(ncol = 80, nrow = 80, prob = 0.45),
+  nlm_planargradient = function() nlm_planargradient(ncol = 80, nrow = 80, direction = 45),
+  nlm_distancegradient = function() nlm_distancegradient(ncol = 80, nrow = 80, origin = c(10, 20, 10, 40)),
+  nlm_edgegradient = function() nlm_edgegradient(ncol = 80, nrow = 80, direction = 90),
+  nlm_mosaicfield = function() nlm_mosaicfield(ncol = 80, nrow = 80, n = 20, mosaic_mean = 0.5, mosaic_sd = 0.5),
+  nlm_mosaictess = function() nlm_mosaictess(ncol = 80, nrow = 80, germs = 30),
+  nlm_mosaicgibbs = function() nlm_mosaicgibbs(ncol = 80, nrow = 80, germs = 30, R = 1, patch_classes = 6),
+  nlm_neigh = function() nlm_neigh(ncol = 80, nrow = 80, p_neigh = 0.5, p_empty = 0.2, categories = 3),
+  nlm_randomcluster = function() nlm_randomcluster(ncol = 80, nrow = 80, p = 0.45, ai = c(0.4, 0.6)),
+  nlm_randomrectangularcluster = function() nlm_randomrectangularcluster(ncol = 80, nrow = 80, minl = 2, maxl = 8),
+  nlm_mpd = function() nlm_mpd(ncol = 81, nrow = 81, roughness = 0.8),
+  nlm_curds = function() nlm_curds(curds = c(0.4, 0.3, 0.3), recursion_steps = c(16, 4, 2)),
+  nlm_fbm = function() nlm_fbm(ncol = 80, nrow = 80),
+  nlm_gaussianfield = function() nlm_gaussianfield(ncol = 80, nrow = 80, autocorr_range = 10, mag_var = 1, nug = 0.2)
 )
 
-make_example <- function(name) {
-  switch(name,
-         nlm_random = nlm_random(ncol = 80, nrow = 80),
-         nlm_percolation = nlm_percolation(ncol = 80, nrow = 80, prob = 0.45),
-         nlm_planargradient = nlm_planargradient(ncol = 80, nrow = 80, direction = 45),
-         nlm_distancegradient = nlm_distancegradient(ncol = 80, nrow = 80, origin = c(10, 20, 10, 40)),
-         nlm_edgegradient = nlm_edgegradient(ncol = 80, nrow = 80, direction = 90),
-         nlm_mosaicfield = nlm_mosaicfield(ncol = 80, nrow = 80, n = 20, mosaic_mean = 0.5, mosaic_sd = 0.5),
-         nlm_mosaictess = nlm_mosaictess(ncol = 80, nrow = 80, germs = 30),
-         nlm_mosaicgibbs = nlm_mosaicgibbs(ncol = 80, nrow = 80, germs = 30, R = 1, patch_classes = 6),
-         nlm_neigh = nlm_neigh(ncol = 80, nrow = 80, p_neigh = 0.5, p_empty = 0.2, categories = 3),
-         nlm_randomcluster = nlm_randomcluster(ncol = 80, nrow = 80, p = 0.45, ai = c(0.4, 0.6)),
-         nlm_randomrectangularcluster = nlm_randomrectangularcluster(ncol = 80, nrow = 80, minl = 2, maxl = 8),
-         nlm_mpd = nlm_mpd(ncol = 81, nrow = 81, roughness = 0.8),
-         nlm_curds = nlm_curds(curds = c(0.4, 0.3, 0.3), recursion_steps = c(16, 4, 2)),
-         nlm_fbm = {
-           m <- simulate_fbm(80, 80, 1, seed = 42)
-           r <- raster::raster(m)
-           raster::extent(r) <- c(0, 80, 0, 80)
-           util_rescale(r)
-         },
-         nlm_gaussianfield = {
-           m <- simulate_gaussian_field(80, 80, autocorr_range = 10, mag_var = 1, nug = 0.2, mean = 0.5, seed = 42)
-           r <- raster::raster(m)
-           raster::extent(r) <- c(0, 80, 0, 80)
-           util_rescale(r)
-         }
-  )
+par(mfrow = c(5, 3), mar = c(0.8, 0.8, 1.8, 0.8))
+for (nm in names(model_info)) {
+  obj <- tryCatch(model_info[[nm]](), error = function(e) e)
+  if (is.null(obj) || inherits(obj, "error")) {
+    plot.new()
+    box()
+    title(main = nm, cex.main = 0.8)
+  } else {
+    terra::plot(obj, axes = FALSE, box = FALSE, main = nm, col = terrain.colors(100))
+  }
 }
-
-rasters <- lapply(algo_names, function(name) {
-  set.seed(42)
-  make_example(name)
-})
-
-png(filename = "man/figures/algorithm-examples.png", width = 1200, height = 2500, res = 200)
-par(mfrow = c(5, 3), mar = c(1.25, 1.25, 2.25, 0.5), oma = c(0, 0, 2, 0))
-for (i in seq_along(algo_names)) {
-  raster::plot(rasters[[i]], axes = FALSE, box = FALSE, main = algo_names[i], col = terrain.colors(100))
-}
-mtext("Example outputs from NLMR algorithms", outer = TRUE, cex = 1.4)
-dev.off()
 ```
-
-```{r fig-algorithm-examples2, echo=FALSE, out.width='100%'}
-knitr::include_graphics("man/figures/algorithm-examples.png")
-```
-
-<!-- <img src="https://wol-prod-cdn.literatumonline.com/cms/attachment/b963a726-ed88-4ede-863c-a65451f91d0f/mee313076-fig-0001-m.jpg"  width="100%" /> -->
 
 ## Meta
 
