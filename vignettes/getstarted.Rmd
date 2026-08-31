@@ -27,6 +27,7 @@ For more background on neutral landscape models and the package design, see the 
 `NLMR` exposes 15 exported landscape-generation functions covering 16 algorithm variants.
 The variants span a spectrum of spatial structure, from spatially random landscapes (`nlm_random`) through intermediate patterned forms to deterministic planar gradients (`nlm_planargradient`) [see @Palmer1992].
 The curdling generator, `nlm_curds()`, can produce either random curdling or wheyed curdling, which is why the package has one more algorithm variant than exported function.
+For a full browseable catalog of generators, use `catalog_nlm()`.
 
 The plot below shows a basic random landscape with no intentional spatial structure.
 
