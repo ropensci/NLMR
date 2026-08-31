@@ -29,7 +29,7 @@
 #' @param user_seed [\code{numerical(1)}]\cr
 #' Set random seed for the simulation.
 #'
-#' @return raster
+#' @return SpatRaster
 #'
 #' @examples
 #'
@@ -43,8 +43,8 @@
 #'                               wheyes = c(0.1, 0.05, 0.2)))
 #' \dontrun{
 #' # Visualize the NLMs
-#' raster::plot(random_curdling)
-#' raster::plot(wheyed_curdling)
+#' terra::plot(random_curdling)
+#' terra::plot(wheyed_curdling)
 #' }
 #'
 #' @references
@@ -79,7 +79,7 @@ nlm_curds <- function(curds,
   # convenient if only one is given!?
 
   # supposed to be faster if initialized with false and inverted in the end
-  curd_raster <- raster::raster(matrix(FALSE, 1, 1))
+  curd_raster <- terra::rast(matrix(FALSE, 1, 1))
 
   # convert amount of curds to amount of matrix to follow algorithm logic
   curds <- 1 - curds
@@ -87,12 +87,11 @@ nlm_curds <- function(curds,
   for (i in seq_along(recursion_steps)) {
 
     # "tile" the raster into smaller subdivisions
-    curd_raster <- raster::disaggregate(curd_raster, recursion_steps[i])
+    curd_raster <- terra::disagg(curd_raster, recursion_steps[i])
 
     # get tibble with values and ids
-    vl     <- raster::values(curd_raster)
-    vl_tib <- tibble::as_tibble(vl)
-    vl_tib <- tibble::rowid_to_column(vl_tib, "id")
+    vl     <- as.logical(as.vector(terra::values(curd_raster)))
+    vl_tib <- tibble::tibble(id = seq_along(vl), value = vl)
 
     # 'curdling' select ids randomly which are to be set to true and do so
     vl_tib_curd           <- dplyr::filter(vl_tib, !value)
@@ -109,18 +108,18 @@ nlm_curds <- function(curds,
     }
 
     # overwrite rastervalues
-    raster::values(curd_raster) <- vl_tib$value
+    terra::values(curd_raster) <- as.logical(vl_tib$value)
   }
 
   # invert raster
-  raster::values(curd_raster) <- !raster::values(curd_raster)
+  terra::values(curd_raster) <- !as.logical(terra::values(curd_raster))
 
   # set resolution ----
-  raster::extent(curd_raster) <- c(
+  terra::ext(curd_raster) <- c(
     0,
-    resolution * ncol(curd_raster),
+    resolution * terra::ncol(curd_raster),
     0,
-    resolution * nrow(curd_raster)
+    resolution * terra::nrow(curd_raster)
   )
 
   return(curd_raster)
