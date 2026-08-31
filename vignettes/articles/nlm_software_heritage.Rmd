@@ -1,6 +1,6 @@
 ---
 title: "NLMR Software Heritage"
-author: "Marco Sciaini"
+author: "Marco Sciaini, Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

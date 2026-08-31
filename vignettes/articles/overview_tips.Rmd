@@ -1,6 +1,6 @@
 ---
 title: "NLMR Overview and Tips"
-author: "Marco Sciaini"
+author: "Marco Sciaini, Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -46,10 +46,10 @@ tess_nlm <- nlm_mosaictess(100, 100, germs = 200)
 
 # plot it
 merge_rasters <- function(...) {
-  raster::calc(raster::stack(...), mean, na.rm = TRUE)
+  terra::app(terra::rast(list(...)), mean, na.rm = TRUE)
 }
 
-raster::plot(raster::stack(list(
+terra::plot(terra::rast(list(
   "a" = merge_rasters(edge_nlm, distance_nlm, random_nlm),
   "b" = merge_rasters(gauss_nlm, rectan_nlm),
   "c" = merge_rasters(mosaic_nlm, random_nlm),
@@ -59,7 +59,7 @@ raster::plot(raster::stack(list(
 
 ## Tips
 
-If you are new to the raster package, I hope to collect here some useful tips how to handle raster data in general. 
+If you are new to the terra package, I hope to collect here some useful tips how to handle raster data in general.
 Furthermore, this section also serves as a place to collect workflows on how to use **NLMR** and other R packages to simulate specific patterns one can find in the literature.
 
 ### Basics
@@ -71,17 +71,16 @@ One of them is:
 
 ```{r}
 library(NLMR)
-library(raster)
+library(terra)
 
 landscape <- nlm_curds(curds = c(0.5, 0.3, 0.6),
                        recursion_steps = c(32, 6, 2),
                        wheyes = c(0.1, 0.05, 0.2))
 
-plot(landscape)
+terra::plot(landscape)
 
 # count cells for each category (0 = Matrix, 1 = Habitat)
-landscape |> 
-  freq()
+terra::freq(landscape)
 ```
 
 ### More specific tips
@@ -90,7 +89,7 @@ landscape |>
 
 ```{r, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library(NLMR)
-library(raster)
+library(terra)
 library(purrr)
 library(tibble)
 
@@ -112,7 +111,7 @@ param_df = expand.grid(roughness = c(0.2, 0.9),
 nlm_list = param_df |> pmap(simulate_landscape)
 
 # look at the results
-raster::plot(raster::stack(nlm_list))
+terra::plot(terra::rast(nlm_list))
 ```
 
 #### Simulate ecotones
@@ -130,13 +129,13 @@ low_autocorrelation <- nlm_fbm(ncol = 100, nrow = 100, fract_dim = 0.5)
 
 # merge to derive ecotone
 merge_rasters <- function(...) {
-  raster::calc(raster::stack(...), mean, na.rm = TRUE)
+  terra::app(terra::rast(list(...)), mean, na.rm = TRUE)
 }
 
 ecotones <- merge_rasters(low_autocorrelation, high_autocorrelation)
 
 # look at the results
-raster::plot(raster::stack(list("Low autocorrelation" = low_autocorrelation,
+terra::plot(terra::rast(list("Low autocorrelation" = low_autocorrelation,
                                 "High autocorrelation" = high_autocorrelation,
                     "Ecotones" = ecotones
                     )))

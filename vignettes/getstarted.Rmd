@@ -1,6 +1,6 @@
 ---
 title: "Basic Usage of NLMR"
-author: "Marco Sciaini & Craig E.Simpkins"
+author: "Marco Sciaini, Craig E.Simpkins, Jakub Nowosad"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: Citations.bib
