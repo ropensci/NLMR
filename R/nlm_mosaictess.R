@@ -75,10 +75,24 @@ nlm_mosaictess <- function(ncol,
   voronoi_tess <- sf::st_sf(value = stats::runif(germs),
                             geometry = sf::st_sfc(voronoi_tess))
 
-  # (f)rasterize with lightning speed ----
-  r <- raster::raster(raster::extent(voronoi_tess), res = resolution)
-  r <- fasterize::fasterize(voronoi_tess, r, field = "value", fun = "sum")
-  r <- terra::rast(r)
+  # rasterize ----
+  r <- terra::rast(
+    ncol = ncol,
+    nrow = nrow,
+    xmin = 0,
+    xmax = ncol,
+    ymin = 0,
+    ymax = nrow
+  )
+  r <- terra::rasterize(terra::vect(voronoi_tess), r, field = "value", fun = "sum")
+
+  # specify resolution ----
+  terra::ext(r) <- c(
+    0,
+    terra::ncol(r) * resolution,
+    0,
+    terra::nrow(r) * resolution
+  )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
