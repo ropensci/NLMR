@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ```{r global_options, include=FALSE}
-library(raster)
+library(terra)
 library(NLMR)
 ```
 
@@ -19,8 +19,8 @@ library(NLMR)
 The `NLMR` package was designed with a similar philosophy to the Python package `NLMpy` [see @Etheringtonnlmr2015], offering a general numeric framework allowing for a high degree of flexibility.
 Most of the common NLMs, as described by the relevant literature, can be produced using NLMR. 
 Additionally, NLMR allows users to merge multiple landscapes, classify landscape elements categorically and measure basic landscape level metrics. 
-All NLMs produced take the form of two-dimensional raster arrays with specified row and column dimensions and cell values ranging between 0 and 1. 
-By returning raster arrays, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the `raster` package.
+All NLMs produced take the form of two-dimensional `SpatRaster` objects with specified row and column dimensions and cell values ranging between 0 and 1.
+By returning `SpatRaster` objects, NLMs are easily integrated into the workflow of many useful spatial analysis packages, notably the `terra` package.
 
 For further information on neutral landscape models, the authors goals for this package, and additional use case examples please see the associated publication Sciani, Fritsch, Scherer and Simpkins [-@Sciani2018].
 
@@ -58,7 +58,7 @@ For example, to produce a simple random neutral landscape one could use the foll
 
 ```{r, fig.height=7, fig.width=7, fig.align='center'}
 x <- NLMR::nlm_random(100, 100)
-plot(x)
+terra::plot(x)
 ```
 
 ## Merging landscapes
@@ -70,7 +70,7 @@ A single primary or base raster can be merged with any number of additional seco
 # Create primary landscape raster
 pL <- NLMR::nlm_edgegradient(ncol = 100,
                              nrow = 100)
-plot(pL)
+terra::plot(pL)
 # Create secondary landscape rasters
 sL1 <- NLMR::nlm_distancegradient(ncol = 100,
                                   nrow = 100,
@@ -81,7 +81,7 @@ sL2 <- NLMR::nlm_random(ncol = 100,
 # Merge rasters with scaling factors
 mL1 <- pL + (sL1 + sL2 * 0.2)
 
-plot(mL1)
+terra::plot(mL1)
 ```
 
 ## Classifying categories
@@ -95,7 +95,7 @@ nr <- NLMR::nlm_edgegradient(ncol = 100,
 
 nr_classified <- util_classify(nr, n = 4)
 
-raster::plot(nr_classified)
+terra::plot(nr_classified)
 ```
 
 ## References
