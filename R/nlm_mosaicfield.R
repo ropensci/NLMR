@@ -124,7 +124,7 @@ nlm_mosaicfield <- function(ncol,
         mosaicfield_raster <- util_rescale(mosaicfield_raster)
       }
 
-      mosaicfields_return$mosaicfield_raster <- mosaicfield_raster
+      mosaicfields_return$mosaicfield_raster <- util_update_metadata(mosaicfield_raster)
 
       if (isTRUE(collect)) {
         names(mosaicfield_list) <- seq_along(mosaicfield_list)
@@ -148,7 +148,7 @@ nlm_mosaicfield <- function(ncol,
               terra::nrow(mosaicfield_list[[i]]) * resolution
             )
 
-            mosaicfield_list[[i]]
+            util_update_metadata(mosaicfield_list[[i]])
           })
 
         mosaicfields_brick <- terra::rast(mosaicfield_list)
@@ -161,7 +161,7 @@ nlm_mosaicfield <- function(ncol,
         }
 
 
-        mosaicfields_return$steps <- mosaicfields_brick
+        mosaicfields_return$steps <- util_update_metadata(mosaicfields_brick)
       }
     }
 
@@ -193,7 +193,7 @@ nlm_mosaicfield <- function(ncol,
       }
 
 
-      mosaicfields_return$mosaicfield_inf <- mosaicfield_raster
+      mosaicfields_return$mosaicfield_inf <- util_update_metadata(mosaicfield_raster)
     }
 
 

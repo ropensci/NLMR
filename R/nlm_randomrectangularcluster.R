@@ -90,5 +90,7 @@ nlm_randomrectangularcluster <-
         util_rescale(rndreccluster_raster)
     }
 
+    rndreccluster_raster <- util_update_metadata(rndreccluster_raster)
+
     return(rndreccluster_raster)
   }

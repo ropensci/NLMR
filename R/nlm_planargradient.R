@@ -95,5 +95,7 @@ nlm_planargradient <- function(ncol,
     gradient_raster <- util_rescale(gradient_raster)
   }
 
+  gradient_raster <- util_update_metadata(gradient_raster)
+
   return(gradient_raster)
 }

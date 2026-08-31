@@ -61,7 +61,7 @@ nlm_distancegradient <- function(ncol,
   terra::values(distancegradient) <- NA
 
   # set origin to 1 ----
-  distancegradient[origin[3]:origin[4], origin[1]:origin[2]] <- 1
+  distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1
 
   # measure distance to origin ----
   suppressWarnings(distancegradient <-
@@ -79,6 +79,8 @@ nlm_distancegradient <- function(ncol,
   if (rescale == TRUE) {
     distancegradient <- util_rescale(distancegradient)
   }
+
+  distancegradient <- util_update_metadata(distancegradient)
 
   return(distancegradient)
 }

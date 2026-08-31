@@ -90,5 +90,7 @@ nlm_edgegradient <- function(ncol,
     edgegradient_raster <- util_rescale(edgegradient_raster)
   }
 
+  edgegradient_raster <- util_update_metadata(edgegradient_raster)
+
   return(edgegradient_raster)
 }

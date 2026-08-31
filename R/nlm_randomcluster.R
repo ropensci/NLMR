@@ -143,5 +143,7 @@ nlm_randomcluster <- function(ncol, nrow,
     ranclumap <- util_rescale(ranclumap)
   }
 
+  ranclumap <- util_update_metadata(ranclumap)
+
   return(ranclumap)
 }

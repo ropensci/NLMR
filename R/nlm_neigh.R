@@ -123,5 +123,7 @@ nlm_neigh <-
       rndneigh_raster <- util_rescale(rndneigh_raster)
     }
 
+    rndneigh_raster <- util_update_metadata(rndneigh_raster)
+
     return(rndneigh_raster)
   }

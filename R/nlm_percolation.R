@@ -84,5 +84,7 @@ nlm_percolation <- function(ncol,
     terra::nrow(percolation_raster) * resolution
   )
 
+  percolation_raster <- util_update_metadata(percolation_raster)
+
   return(percolation_raster)
 }

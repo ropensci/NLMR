@@ -68,5 +68,7 @@ nlm_random <- function(ncol,
     random_raster <- util_rescale(random_raster)
   }
 
+  random_raster <- util_update_metadata(random_raster)
+
   return(random_raster)
 }

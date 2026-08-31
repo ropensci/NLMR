@@ -110,5 +110,7 @@ nlm_mpd <- function(ncol,
     }
   }
 
+  mpd_raster <- util_update_metadata(mpd_raster)
+
   return(mpd_raster)
 }

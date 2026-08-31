@@ -99,6 +99,8 @@ nlm_mosaictess <- function(ncol,
     r <- util_rescale(r)
   }
 
+  r <- util_update_metadata(r)
+
   return(r)
 }
 

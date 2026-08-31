@@ -122,5 +122,7 @@ nlm_curds <- function(curds,
     resolution * terra::nrow(curd_raster)
   )
 
+  curd_raster <- util_update_metadata(curd_raster)
+
   return(curd_raster)
 }
