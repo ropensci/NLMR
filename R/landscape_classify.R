@@ -59,7 +59,7 @@
 #' terra::plot(landscapes)
 #' }
 #'
-#' @aliases landscape_classify util_classify
+#' @aliases landscape_classify
 #' @rdname landscape_classify
 #'
 #' @export
@@ -143,25 +143,6 @@ landscape_classify <- function(x,
   }
 
   x
-}
-
-#' @name landscape_classify
-#' @export
-util_classify <- function(x,
-                          n = NULL,
-                          weighting = NULL,
-                          level_names = NULL,
-                          real_land = NULL,
-                          mask_val = NULL) {
-  .Deprecated("landscape_classify")
-  landscape_classify(
-    x = x,
-    n = n,
-    weighting = weighting,
-    level_names = level_names,
-    real_land = real_land,
-    mask_val = mask_val
-  )
 }
 
 .classify_spatraster <- function(x, weighting){
