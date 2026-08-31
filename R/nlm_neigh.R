@@ -41,7 +41,7 @@
 #' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @references
 #' Scherer, Cédric, et al. "Merging trait-based and individual-based modelling:
@@ -56,7 +56,7 @@
 #'
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(neigh_raster)
+#' terra::plot(neigh_raster)
 #' }
 #'
 #' @aliases nlm_neigh
@@ -110,13 +110,13 @@ nlm_neigh <-
     mat <- rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty, seed)
 
     # Transform to raster ----
-    rndneigh_raster <- raster::raster(mat)
+    rndneigh_raster <- terra::rast(mat)
 
     # specify resolution ----
-    raster::extent(rndneigh_raster) <- c(0,
-                                         ncol(rndneigh_raster) * resolution,
-                                         0,
-                                         nrow(rndneigh_raster) * resolution)
+    terra::ext(rndneigh_raster) <- c(0,
+                                     terra::ncol(rndneigh_raster) * resolution,
+                                     0,
+                                     terra::nrow(rndneigh_raster) * resolution)
 
     # Rescale values to 0-1 ----
     if (rescale == TRUE) {
