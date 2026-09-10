@@ -25,6 +25,9 @@ jobs:
         with:
           extra-packages: codemeta
 
+      - name: Install NLMR
+        run: R CMD INSTALL .
+
       - name: Write codemeta file
         run: Rscript -e 'codemeta::write_codemeta()'
 

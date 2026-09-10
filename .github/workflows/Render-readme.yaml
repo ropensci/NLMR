@@ -31,6 +31,9 @@ jobs:
             any::rmarkdown
             any::XML
 
+      - name: Install NLMR
+        run: R CMD INSTALL .
+
       - name: Render README files
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
 
