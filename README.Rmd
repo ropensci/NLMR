@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
  <!-- badges: start -->
  
 [![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
-[![codecov](https://app.codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://app.codecov.io/gh/ropensci/NLMR)
+[![codecov](https://codecov.io/gh/ropensci/NLMR/branch/main/graph/badge.svg?token=MKCm2fVrDa)](https://app.codecov.io/gh/ropensci/NLMR)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](https://cran.r-project.org/package=NLMR) 
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/software-review/issues/188)
@@ -85,6 +85,8 @@ Example outputs for the algorithms implemented in `NLMR`.
 library(NLMR)
 library(terra)
 
+set.seed(88)
+
 model_info <- list(
   nlm_random = function() nlm_random(ncol = 80, nrow = 80),
   nlm_percolation = function() nlm_percolation(ncol = 80, nrow = 80, prob = 0.45),
@@ -111,7 +113,7 @@ for (nm in names(model_info)) {
     box()
     title(main = nm, cex.main = 0.8)
   } else {
-    terra::plot(obj, axes = FALSE, box = FALSE, main = nm, col = terrain.colors(100))
+    terra::plot(obj, axes = FALSE, box = FALSE, main = nm)
   }
 }
 ```

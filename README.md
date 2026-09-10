@@ -2,7 +2,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ropensci/NLMR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/NLMR/actions)
-[![codecov](https://app.codecov.io/gh/ropensci/NLMR/branch/develop/graph/badge.svg?token=MKCm2fVrDa)](https://app.codecov.io/gh/ropensci/NLMR)
+[![codecov](https://codecov.io/gh/ropensci/NLMR/branch/main/graph/badge.svg?token=MKCm2fVrDa)](https://app.codecov.io/gh/ropensci/NLMR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/NLMR)](https://cran.r-project.org/package=NLMR)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/NLMR)](https://cran.r-project.org/package=NLMR)
 [![](https://badges.ropensci.org/188_status.svg)](https://github.com/ropensci/software-review/issues/188)
