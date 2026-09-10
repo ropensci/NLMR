@@ -25,7 +25,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.
 Otherwise, the distance in raster units is calculated.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulates a distance-gradient neutral landscape model.
@@ -43,7 +43,7 @@ distance_gradient <- nlm_distancegradient(ncol = 100, nrow = 100,
                                            origin = c(20, 30, 10, 15))
 \dontrun{
 # visualize the NLM
-raster::plot(distance_gradient)
+terra::plot(distance_gradient)
 }
 }
 \seealso{

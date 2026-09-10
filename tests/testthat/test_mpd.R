@@ -2,25 +2,29 @@
 context("nlm_mpd")
 
 set.seed(1)
-suppressMessages(mpd_raster <- nlm_mpd(ncol = 64, nrow = 64, roughness  = 0.6))
+suppressWarnings(suppressMessages(mpd_raster <- nlm_mpd(ncol = 64, nrow = 64, roughness  = 0.6)))
 
 test_that("nlm_mpd behaves like it should", {
-  expect_that(mpd_raster, is_a("RasterLayer"))
+  expect_s4_class(mpd_raster, "SpatRaster")
 })
 
 test_that("nlm_mpd produces the right number of rows", {
-  expect_equal(mpd_raster@nrows, 63)
+  expect_equal(terra::nrow(mpd_raster), 63)
+})
+
+test_that("nlm_mpd rejects invalid roughness", {
+  expect_error(nlm_mpd(ncol = 10, nrow = 10, roughness = 1.5), "roughness")
 })
 
 test_that("nlm_mpd produces the right number of columns", {
-  expect_equal(mpd_raster@ncols, 63)
+  expect_equal(terra::ncol(mpd_raster), 63)
 })
 
 test_that("nlm_mpd reproduces output with user_seed", {
   raster_a <- nlm_mpd(ncol = 65, nrow = 65, roughness = 0.6, user_seed = 123)
   raster_b <- nlm_mpd(ncol = 65, nrow = 65, roughness = 0.6, user_seed = 123)
 
-  expect_equal(raster::values(raster_a), raster::values(raster_b))
+  expect_equal(terra::values(raster_a), terra::values(raster_b))
 })
 
 # test_that("nlm_mpd produces the right hurst coefficient", {

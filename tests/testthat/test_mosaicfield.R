@@ -10,15 +10,15 @@ mosaic_field <- nlm_mosaicfield(
 )
 
 test_that("nlm_mosaicfield behaves like it should", {
-  expect_that(mosaic_field$mosaicfield_raster, is_a("RasterLayer"))
+  expect_s4_class(mosaic_field$mosaicfield_raster, "SpatRaster")
 })
 
 test_that("nlm_mosaicfield produces the right number of rows", {
-  expect_equal(mosaic_field$mosaicfield_inf@nrows, 30)
+  expect_equal(terra::nrow(mosaic_field$mosaicfield_inf), 30)
 })
 
 test_that("nlm_mosaicfield produces the right number of columns", {
-  expect_equal(mosaic_field$mosaicfield_raster@ncols, 20)
+  expect_equal(terra::ncol(mosaic_field$mosaicfield_raster), 20)
 })
 
 test_that("nlm_mosaicfield stores at least 2 raster when infinit true
@@ -43,13 +43,13 @@ test_that("nlm_mosaicfield stores at least 3 raster when infinit true
 
 test_that("nlm_mosaicfield stores collection as rasterbrick",
           {
-            expect_that(mosaic_field2$steps, is_a("RasterBrick"))
+            expect_s4_class(mosaic_field2$steps, "SpatRaster")
           })
 
 test_that("nlm_mosaicfield reproduces output with user_seed", {
   mosaic_a <- nlm_mosaicfield(ncol = 20, nrow = 20, n = 3, user_seed = 123)
   mosaic_b <- nlm_mosaicfield(ncol = 20, nrow = 20, n = 3, user_seed = 123)
-  expect_equal(raster::values(mosaic_a), raster::values(mosaic_b))
+  expect_equal(terra::values(mosaic_a), terra::values(mosaic_b))
 })
 
 # nolint end

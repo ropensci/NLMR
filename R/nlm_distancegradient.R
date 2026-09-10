@@ -21,7 +21,7 @@
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #' Otherwise, the distance in raster units is calculated.
 #'
-#' @return RasterLayer
+#' @return SpatRaster
 #'
 #' @examples
 #'
@@ -30,7 +30,7 @@
 #'                                            origin = c(20, 30, 10, 15))
 #' \dontrun{
 #' # visualize the NLM
-#' raster::plot(distance_gradient)
+#' terra::plot(distance_gradient)
 #' }
 #' @seealso \code{\link{nlm_edgegradient}},
 #' \code{\link{nlm_planargradient}}
@@ -39,18 +39,11 @@
 #' @rdname nlm_distancegradient
 #'
 #' @export
-#'
-
 nlm_distancegradient <- function(ncol,
                                  nrow,
                                  resolution = 1,
                                  origin,
                                  rescale = TRUE) {
-  # raster::distance would produce an annyoing warning
-  # because of a missing CRS
-  suppressWarnings("In couldBeLonLat(x) : CRS is NA.
-                     Assuming it is longitude/latitude")
-
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
@@ -62,28 +55,32 @@ nlm_distancegradient <- function(ncol,
 
   # create empty raster ----
   distancegradient <-
-    raster::raster(ncol = ncol, nrow = nrow,
-                   ext = raster::extent(c(0, ncol, 0, ncol)))
+    terra::rast(ncol = ncol, nrow = nrow,
+                xmin = 0, xmax = ncol,
+                ymin = 0, ymax = nrow)
+  terra::values(distancegradient) <- NA
 
   # set origin to 1 ----
   distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1
 
   # measure distance to origin ----
   suppressWarnings(distancegradient <-
-    raster::distance(distancegradient))
+    terra::distance(distancegradient))
 
   # specify resolution ----
-  raster::extent(distancegradient) <- c(
+  terra::ext(distancegradient) <- c(
     0,
-    ncol(distancegradient) * resolution,
+    terra::ncol(distancegradient) * resolution,
     0,
-    nrow(distancegradient) * resolution
+    terra::nrow(distancegradient) * resolution
   )
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
     distancegradient <- util_rescale(distancegradient)
   }
+
+  distancegradient <- util_update_metadata(distancegradient)
 
   return(distancegradient)
 }

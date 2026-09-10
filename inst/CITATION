@@ -1,16 +1,34 @@
 citHeader("To cite NLMR in publications use:")
 
-citEntry(entry = "Article",
-         title        = "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
-         author       = personList(as.person("Marco Sciaini"),
-                                   as.person("Matthias Fritsch"),
-                                   as.person("Cedric Scherer"),
-                                   as.person("Craig E. Simpkins")),
-         journal = "Methods in Ecololgy and Evolution",
-         volume = "00",
-         pages = "1--9",
-         year         = "2018",
-         url          = "https://doi.org/10.1111/2041-210X.13076",
-         
-         textVersion  =
-             paste("Sciaini M, Fritsch M, Scherer C, Simpkins CE. NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R. Methods Ecol Evol. 2018;9:2240–2248."))
+bibentry(
+  bibtype = "Manual",
+  title = "NLMR: Simulating Neutral Landscape Models",
+  author = personList(
+    person("Marco", "Sciaini", role = c("aut", "cre"), email = "marco.sciaini@posteo.net", comment = c(ORCID = "0000-0002-3042-5435")),
+    person("Matthias", "Fritsch", role = "aut", email = "matthias.fritsch@forst.uni-goettingen.de"),
+    person("Maximilian", "Hesselbarth", role = "aut", email = "mhk.hesselbarth@gmail.com"),
+    person("Craig", "Simpkins", role = "aut", email = "simpkinscraig063@gmail.com", comment = c(ORCID = "0000-0003-3212-1379")),
+    person("Cédric", "Scherer", role = "aut", email = "cedricphilippscherer@gmail.com", comment = c(ORCID = "0000-0003-0465-2543")),
+    person("Sebastian", "Hanß", role = "aut", comment = c(ORCID = "0000-0002-3990-4897")),
+    person("Jakub", "Nowosad", role = c("aut", "cre"), email = "nowosad.jakub@gmail.com", comment = c(ORCID = "0000-0002-1057-3721"))
+  ),
+  year = "2026",
+  note = paste0("R package version ", utils::packageVersion("NLMR")),
+  url = "https://docs.ropensci.org/NLMR/"
+)
+
+bibentry(
+  bibtype = "Article",
+  title = "NLMR and landscapetools: An integrated environment for simulating and modifying neutral landscape models in R",
+  author = personList(
+    person("Marco", "Sciaini"),
+    person("Matthias", "Fritsch"),
+    person("Cedric", "Scherer"),
+    person("Craig", "Simpkins")
+  ),
+  journal = "Methods in Ecology and Evolution",
+  year = "2018",
+  volume = "9",
+  pages = "2240--2248",
+  doi = "10.1111/2041-210X.13076"
+)

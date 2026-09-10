@@ -34,7 +34,7 @@ Set random seed for the simulation.}
 If \code{TRUE} (default), the values are rescaled between 0-1.}
 }
 \value{
-RasterLayer
+SpatRaster
 }
 \description{
 Simulate a neutral landscape model using the tesselation approach introduced in Gaucherel (2008).
@@ -50,7 +50,7 @@ mosaictess <- nlm_mosaictess(ncol = 30, nrow = 60, germs = 200)
 
 \dontrun{
 # visualize the NLM
-raster::plot(mosaictess)
+terra::plot(mosaictess)
 }
 
 }

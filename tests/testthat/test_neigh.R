@@ -10,18 +10,18 @@ neigh_raster  <- nlm_neigh(ncol = 20,
                            )
 
 test_that("nlm_neigh behaves like it should", {
-  expect_that(neigh_raster, is_a("RasterLayer"))
+  expect_s4_class(neigh_raster, "SpatRaster")
 })
 test_that("nlm_neigh produces the right number of rows", {
-  expect_equal(neigh_raster@nrows, 20)
+  expect_equal(terra::nrow(neigh_raster), 20)
 })
 
 test_that("nlm_neigh produces the right number of columns", {
-  expect_equal(neigh_raster@ncols, 20)
+  expect_equal(terra::ncol(neigh_raster), 20)
 })
 
 test_that("nlm_neigh produces the right number of categories", {
-  expect_equal(length(unique(neigh_raster@data@values)), 5)
+  expect_equal(length(unique(stats::na.omit(terra::values(neigh_raster)))), 5)
 })
 
 test_that("nlm_neigh reproduces output with user_seed", {
@@ -29,7 +29,7 @@ test_that("nlm_neigh reproduces output with user_seed", {
                        categories = 5, neighbourhood = 4, user_seed = 123)
   neigh_b <- nlm_neigh(ncol = 20, nrow = 20, p_neigh = 0.1, p_empty = 0.3,
                        categories = 5, neighbourhood = 4, user_seed = 123)
-  expect_equal(raster::values(neigh_a), raster::values(neigh_b))
+  expect_equal(terra::values(neigh_a), terra::values(neigh_b))
 })
 
 neigh_raster  <- nlm_neigh(ncol = 20,
@@ -41,18 +41,18 @@ neigh_raster  <- nlm_neigh(ncol = 20,
 )
 
 test_that("nlm_neigh behaves like it should", {
-  expect_that(neigh_raster, is_a("RasterLayer"))
+  expect_s4_class(neigh_raster, "SpatRaster")
 })
 test_that("nlm_neigh produces the right number of rows", {
-  expect_equal(neigh_raster@nrows, 20)
+  expect_equal(terra::nrow(neigh_raster), 20)
 })
 
 test_that("nlm_neigh produces the right number of columns", {
-  expect_equal(neigh_raster@ncols, 20)
+  expect_equal(terra::ncol(neigh_raster), 20)
 })
 
 test_that("nlm_neigh produces the right number of categories", {
-  expect_equal(length(unique(neigh_raster@data@values)), 5)
+  expect_equal(length(unique(stats::na.omit(terra::values(neigh_raster)))), 5)
 })
 
 # nolint end
