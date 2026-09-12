@@ -20,6 +20,7 @@ catalog_nlm <- function() {
     algorithm = c(
       "nlm_random",
       "nlm_percolation",
+      "nlm_perlinnoise",
       "nlm_planargradient",
       "nlm_distancegradient",
       "nlm_edgegradient",
@@ -37,6 +38,7 @@ catalog_nlm <- function() {
     group = c(
       "random",
       "binary",
+      "fractal",
       "gradient",
       "gradient",
       "gradient",
@@ -54,6 +56,7 @@ catalog_nlm <- function() {
     description = c(
       "Independent random values drawn for each cell.",
       "Binary landscapes from thresholded random draws.",
+      "Hierarchical two-dimensional Perlin-noise surfaces.",
       "Linear gradients in a specified or random direction.",
       "Distance gradients measured from a rectangular origin.",
       "Directional gradients with a central peak.",
@@ -68,10 +71,11 @@ catalog_nlm <- function() {
       "Fractional Brownian motion surfaces.",
       "Spatially correlated Gaussian random fields."
     ),
-    variants = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 1L, 1L),
+    variants = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 1L, 1L),
     reference = c(
       "With and Crist (1995)",
       "Gardner et al. (1989)",
+      "Etherington (2022)",
       "Palmer (1992)",
       "Etherington, Holland, and O'Sullivan (2015)",
       "Travis and Dytham (2004); Schlather et al. (2015)",
