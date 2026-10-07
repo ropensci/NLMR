@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-One of the compelling reasons to actually use NLMR is to substitute any of the other software out there to simulate neutral landscape models. 
+One of the compelling reasons to actually use NLMR is to substitute any of the other software out there to simulate neutral landscape models.
 This vignette therefore aims to be a collection of code snippets that can be used to imitate the functionality of previous tools (e.g. QRULE).
 
 The list is very much work in progress, if this is of concerning to you it makes probably sense to revisit here in the future.
@@ -48,7 +48,7 @@ simulate_landscape = function(x) {
 }
 
 # rerun it for example 5 times
-landscape_list <- rerun(5, simulate_landscape()) 
+landscape_list <- rerun(5, simulate_landscape())
 
 # look at the result
 terra::plot(terra::rast(landscape_list))
@@ -71,13 +71,13 @@ sim_results <- list() # list to store simulation results
 # loop until we have 5 landscapes with the metric we are interested in
 while (n < 6) {
   # In this use case we are interested in a categorical metric,
-  # which is why we reclassify the continous result in three categories
+  # which is why we reclassify the continuous result in three categories
   landscape <- nlm_mosaictess(100, 100, germs = 50) |>
     landscape_classify(n = 3)
-  
+
   # We are interested in the Euclidean Nearest Neighbor Distance Distribution
   enn_value <- lsm_l_enn_mn(landscape)$value
-  
+
   # ... and we want to keep simulation results that have a mean ENN
   # between 7.5 and 8
   if (enn_value > 7.5 | enn_value < 8) {
