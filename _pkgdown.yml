@@ -25,7 +25,7 @@ reference:
 navbar:
   title: nlmr | Neutral landscape models with R
   structure:
-    left: [intro, howto, record]
+    left: [intro, record]
     right: [news, reference, search, github]
   components:
     intro:
@@ -44,3 +44,8 @@ navbar:
 
 template:
   bootstrap: 5
+
+articles:
+  exclude:
+    - overview_tips
+    - nlm_software_heritage
