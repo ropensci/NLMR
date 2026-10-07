@@ -35,7 +35,7 @@
 #' scale of the overall variance in the resulting landscape.
 #' @param user_seed [\code{numerical(1)}]\cr
 #' Set random seed for the simulation.
-#' @param torus [\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)
+#' @param torus [\code{logical(1)}]\cr  Logical value indicating whether the algorithm should be simulated on a torus (default FALSE)
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
 #'                are rescaled between 0-1.
 #' @param verbose [\code{logical(1)}]\cr If \code{TRUE} (default), the user gets
@@ -82,12 +82,12 @@ nlm_mpd <- function(ncol,
   # create the landscape with rcpp_mpd ----
   seed <- if (is.null(user_seed)) sample.int(.Machine$integer.max, 1) else as.integer(user_seed)
   mpd_matrix <- rcpp_mpd(ncol + 1, nrow + 1, rand_dev, roughness, seed, torus)
-  
+
   mpd_matrix <- mpd_matrix[-1, ]
   mpd_matrix <- mpd_matrix[, -1]
   mpd_matrix <- mpd_matrix[-nrow(mpd_matrix), ]
   mpd_matrix <- mpd_matrix[, -ncol(mpd_matrix)]
-  
+
   # Convert matrix to raster ----
   mpd_raster <- terra::rast(mpd_matrix)
 
