@@ -45,7 +45,3 @@ navbar:
 template:
   bootstrap: 5
 
-articles:
-  exclude:
-    - overview_tips
-    - nlm_software_heritage
