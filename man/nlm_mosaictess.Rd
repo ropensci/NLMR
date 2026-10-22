@@ -37,7 +37,7 @@ If \code{TRUE} (default), the values are rescaled between 0-1.}
 SpatRaster
 }
 \description{
-Simulate a neutral landscape model using the tesselation approach introduced in Gaucherel (2008).
+Simulate a neutral landscape model using the tessellation approach introduced in Gaucherel (2008).
 }
 \details{
 \code{nlm_mosaictess} offers the first option of simulating a neutral landscape model
