@@ -49,6 +49,9 @@ Mode 3: For a given 'real' landscape the number of classes and the weightings ar
     extracted and used to classify the given landscape (any given weighting parameter is
     overwritten in this case!). If an optional mask value is given the corresponding
     class from the 'real' landscape is cut from the landscape beforehand.
+
+Missing values are preserved. Tied values remain in the same class, so the
+result can contain fewer classes than requested.
 }
 \examples{
 \dontrun{

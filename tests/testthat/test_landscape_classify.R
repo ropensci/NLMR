@@ -54,3 +54,29 @@ test_that("landscape_classify rejects mismatched real_land geometry", {
 
   expect_error(landscape_classify(x, real_land = real_land), "matching geometry")
 })
+
+test_that("landscape_classify handles tied and degenerate values", {
+  tied <- rast(nrow = 1, ncol = 6, vals = c(0, 0, 1, 1, 2, NA))
+  expect_equal(
+    as.vector(values(landscape_classify(tied, n = 5), mat = FALSE)),
+    c(1L, 1L, 1L, 1L, 2L, NA)
+  )
+
+  negative <- rast(nrow = 1, ncol = 6,
+                   vals = c(-4, -4, -2, -1, -1, NA))
+  expect_equal(
+    as.vector(values(landscape_classify(
+      negative, weighting = c(0.5, 0.5)
+    ), mat = FALSE)),
+    c(1L, 1L, 2L, 2L, 2L, NA)
+  )
+
+  constant <- rast(nrow = 1, ncol = 3, vals = c(5, 5, NA))
+  expect_equal(
+    as.vector(values(landscape_classify(constant, n = 3), mat = FALSE)),
+    c(1L, 1L, NA)
+  )
+
+  missing <- rast(nrow = 1, ncol = 3, vals = NA_real_)
+  expect_true(all(is.na(values(landscape_classify(missing, n = 3)))))
+})

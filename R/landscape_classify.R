@@ -20,6 +20,9 @@
 #'     overwritten in this case!). If an optional mask value is given the corresponding
 #'     class from the 'real' landscape is cut from the landscape beforehand.
 #'
+#' Missing values are preserved. Tied values remain in the same class, so the
+#' result can contain fewer classes than requested.
+#'
 #' @param x SpatRaster
 #' @param n Number of classes
 #' @param weighting Vector of numeric values that are considered to be habitat percentages (see details)
@@ -120,10 +123,16 @@ landscape_classify <- function(x,
       if (is.null(n)) {
         stop("Either n, weighting, or real_land must be supplied.")
       }
-      x_vals <- as.vector(terra::values(x, mat = FALSE))
-      x_vals <- x_vals[!is.na(x_vals)]
+      values_x <- as.vector(terra::values(x, mat = FALSE))
+      x_vals <- values_x[!is.na(values_x)]
+      if (length(x_vals) == 0) {
+        return(x)
+      }
       breaks <- .getJenksBreaks(x_vals, n)
-      terra::values(x) <- as.integer(base::cut(as.vector(terra::values(x, mat = FALSE)),
+      if (length(breaks) == 1) {
+        breaks <- c(-Inf, Inf)
+      }
+      terra::values(x) <- as.integer(base::cut(values_x,
                                                breaks = breaks,
                                                include.lowest = TRUE,
                                                labels = FALSE))
@@ -132,7 +141,8 @@ landscape_classify <- function(x,
     }
   }
 
-  if (!is.null(level_names)) {
+  if (!is.null(level_names) &&
+      !all(is.na(terra::values(x, mat = FALSE)))) {
     x <- terra::as.factor(x)
     lv <- levels(x)[[1]]
     if (length(level_names) < nrow(lv)) {
@@ -150,18 +160,18 @@ landscape_classify <- function(x,
   # Calculate cum. proportions and boundary values ----
   cumulative_proportions <- util_w2cp(weighting)
   x_vals <- as.vector(terra::values(x, mat = FALSE))
-  boundary_values <- util_calc_boundaries(x_vals,
-                                          cumulative_proportions)
 
-  # If there is just one boundary value, all categories are set to one ----
-  if (length(unique(boundary_values)) == 1) {
-    terra::values(x) <- 1L
+  if (all(is.na(x_vals))) {
     return(x)
   }
 
+  boundary_values <- util_calc_boundaries(x_vals,
+                                          cumulative_proportions)
+  breaks <- unique(c(-Inf, boundary_values))
+
   # Classify the matrix based on the boundary values ----
-  terra::values(x) <- as.integer(base::cut(as.vector(terra::values(x, mat = FALSE)),
-                                           breaks = c(0, boundary_values),
+  terra::values(x) <- as.integer(base::cut(x_vals,
+                                           breaks = breaks,
                                            include.lowest = TRUE,
                                            labels = FALSE))
 
@@ -171,12 +181,15 @@ landscape_classify <- function(x,
 
 .getJenksBreaks <- function(var, k) {
 
-  #if more breaks than unique values, segfault, so avoid
-  if (k > length(unique(var))) {
-    k <- length(unique(var));
+  n_unique <- length(unique(var))
+  if (n_unique == 0) {
+    return(numeric())
   }
+
+  # if more breaks than unique values, segfault, so avoid
+  k <- min(k, n_unique)
   d <- sort(var)
-  return(rcpp_get_jenksbreaks(d, k))
+  unique(rcpp_get_jenksbreaks(d, k))
 }
 
 util_w2cp <- function(weighting) {
