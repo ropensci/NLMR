@@ -6,7 +6,8 @@ mosaic_field <- nlm_mosaicfield(
   nrow = 30,
   n = 3,
   infinit = TRUE,
-  collect = FALSE
+  collect = FALSE,
+  user_seed = 12112026
 )
 
 test_that("nlm_mosaicfield behaves like it should", {
@@ -32,7 +33,8 @@ mosaic_field2 <- nlm_mosaicfield(
   nrow = 30,
   n = 3,
   infinit = TRUE,
-  collect = TRUE
+  collect = TRUE,
+  user_seed = 12112026
 )
 
 test_that("nlm_mosaicfield stores at least 3 raster when infinit true

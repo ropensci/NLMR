@@ -2,14 +2,15 @@
 context("nlm_curds")
 
 test_that("nlm_curds is a good boy", {
-  curds <- nlm_curds(c(0.5, 0.3), c(6, 2))
+  curds <- nlm_curds(c(0.5, 0.3), c(6, 2), user_seed = 12112026)
   expect_s4_class(curds, "SpatRaster")
   expect_equal(length(unique(stats::na.omit(terra::values(curds)))), 2)
 })
 
 
 test_that("nlm_curds with wheyed option is functional", {
-  curds <- nlm_curds(c(0.5, 0.3), c(6, 2), c(0.2, 0.3))
+  curds <- nlm_curds(c(0.5, 0.3), c(6, 2), c(0.2, 0.3),
+                     user_seed = 12112026)
   expect_s4_class(curds, "SpatRaster")
   expect_equal(length(unique(stats::na.omit(terra::values(curds)))), 2)
 })

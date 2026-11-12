@@ -1,7 +1,8 @@
 # nolint start
 context("nlm_mosaictess")
 
-mosaictess  <- nlm_mosaictess(ncol = 40, nrow = 30, germs = 20)
+mosaictess  <- nlm_mosaictess(ncol = 40, nrow = 30, germs = 20,
+                              user_seed = 12112026)
 
 test_that("nlm_mosaictess behaves like it should", {
   expect_s4_class(mosaictess, "SpatRaster")

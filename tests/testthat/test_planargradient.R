@@ -1,7 +1,8 @@
 # nolint start
 context("nlm_planargradient")
 
-planar_gradient <- nlm_planargradient(ncol = 9, nrow = 12)
+planar_gradient <- nlm_planargradient(ncol = 9, nrow = 12,
+                                      user_seed = 12112026)
 
 test_that("nlm_planargradient behaves like it should", {
   expect_s4_class(planar_gradient, "SpatRaster")

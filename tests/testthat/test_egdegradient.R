@@ -1,7 +1,8 @@
 # nolint start
 context("nlm_edgegradient")
 
-edge_gradient <- nlm_edgegradient(ncol = 9, nrow = 12)
+edge_gradient <- nlm_edgegradient(ncol = 9, nrow = 12,
+                                  user_seed = 12112026)
 
 test_that("nlm_edgegradient behaves like it should", {
   expect_that(edge_gradient, is_a("SpatRaster"))

@@ -2,7 +2,8 @@
 context("nlm_randomcluster")
 
 suppressWarnings(random_cluster  <- nlm_randomcluster(ncol = 40, nrow = 30,
-                                     neighbourhood = 4, p = 0.4))
+                                     neighbourhood = 4, p = 0.4,
+                                     user_seed = 12112026))
 
 test_that("nlm_randomcluster behaves like it should", {
   expect_s4_class(random_cluster, "SpatRaster")

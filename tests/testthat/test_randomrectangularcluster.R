@@ -4,7 +4,8 @@ context("nlm_randomrectangularcluster")
 randomrectangular_cluster <- nlm_randomrectangularcluster(ncol = 30,
                                                           nrow = 30,
                                                           minl = 5,
-                                                          maxl = 10)
+                                                          maxl = 10,
+                                                          user_seed = 12112026)
 
 test_that("nlm_randomrectangularcluster behaves like it should", {
   expect_that(randomrectangular_cluster , is_a("SpatRaster"))

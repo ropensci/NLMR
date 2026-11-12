@@ -5,7 +5,8 @@ nlm_mosaicgibbs  <- nlm_mosaicgibbs(ncol = 40,
                                     nrow = 30,
                                     germs = 20,
                                     R = 0.02,
-                                    patch_classes = 12)
+                                    patch_classes = 12,
+                                    user_seed = 12112026)
 
 test_that("nlm_mosaicgibbs behaves like it should", {
   expect_s4_class(nlm_mosaicgibbs, "SpatRaster")

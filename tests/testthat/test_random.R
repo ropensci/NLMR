@@ -2,27 +2,31 @@
 context("nlm_random")
 
 test_that("nlm_random inherits from `SpatRaster`", {
-  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3,
+                                   user_seed = 12112026)
   expect_that(example_nlm_random, is_a("SpatRaster"))
 })
 
 test_that("nlm_random produces the correct number of columns", {
-  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3,
+                                   user_seed = 12112026)
   expect_equal(terra::ncol(example_nlm_random), 5)
 })
 
 test_that("nlm_random produces the correct number of rows", {
-  example_nlm_random <- nlm_random(ncol = 5, nrow = 3)
+  example_nlm_random <- nlm_random(ncol = 5, nrow = 3,
+                                   user_seed = 12112026)
   expect_equal(terra::nrow(example_nlm_random), 3)
 })
 
 test_that("nlm_random produces more than 0 values", {
-  example_nlm_random <- nlm_random(3, 3)
+  example_nlm_random <- nlm_random(3, 3, user_seed = 12112026)
   expect_false(terra::ncell(example_nlm_random) == 0)
 })
 
 test_that("nlm_random produces values with a uniform distribution", {
-  example_nlm_random <- nlm_random(100, 100, rescale = FALSE)
+  example_nlm_random <- nlm_random(100, 100, rescale = FALSE,
+                                   user_seed = 12112026)
   suppressWarnings(example_nlm_random_test <- chisq.test(example_nlm_random[]))
   expect_true(example_nlm_random_test$p.value == 1)
 })

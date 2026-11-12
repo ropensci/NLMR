@@ -1,7 +1,8 @@
 # nolint start
 context("nlm_percolation")
 
-percolation  <- nlm_percolation(ncol = 9, nrow = 12, prob = 0.5)
+percolation  <- nlm_percolation(ncol = 9, nrow = 12, prob = 0.5,
+                                user_seed = 12112026)
 
 test_that("nlm_percolation behaves like it should", {
   expect_that(percolation , is_a("SpatRaster"))

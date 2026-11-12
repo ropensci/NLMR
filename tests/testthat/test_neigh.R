@@ -6,7 +6,8 @@ neigh_raster  <- nlm_neigh(ncol = 20,
                            p_neigh = 0.1,
                            p_empty = 0.3,
                            categories = 5,
-                           neighbourhood = 4
+                           neighbourhood = 4,
+                           user_seed = 12112026
                            )
 
 test_that("nlm_neigh behaves like it should", {
@@ -60,7 +61,8 @@ neigh_raster  <- nlm_neigh(ncol = 20,
                            p_neigh = 0.1,
                            p_empty = 0.3,
                            categories = 5,
-                           neighbourhood = 8
+                           neighbourhood = 8,
+                           user_seed = 12112026
 )
 
 test_that("nlm_neigh behaves like it should", {
