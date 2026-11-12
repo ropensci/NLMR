@@ -91,7 +91,7 @@ nlm_mosaicfield <- function(ncol,
         mosaicfield_list[[1]] <- mosaicfield_result
       }
 
-      for (i in 2:n) {
+      for (i in seq_len(n)[-1L]) {
         mosaicfield_n <- spatstat.random::rMosaicField(
           spatstat.random::rpoislinetess(4),
           stats::rnorm,
@@ -105,7 +105,6 @@ nlm_mosaicfield <- function(ncol,
         ### COLLECT STEPS IN LIST
         if (isTRUE(collect)) {
           mosaicfield_list[[i]] <- mosaicfield_n
-          i <- i + 1
         }
       }
 
