@@ -17,7 +17,9 @@
 #' @param user_seed [\code{numerical(1)}]\cr
 #' Set random seed for the simulation.
 #' @param collect [\code{logical(1)}]\cr
-#' return \code{SpatRaster} of all steps 1:\code{n}
+#' Return a \code{SpatRaster} containing the cumulative field after each step
+#' from 1 through \code{n}. These fields are not normalized by the number of
+#' steps.
 #' @param infinit [\code{logical(1)}]\cr
 #' return raster of the random mosaic field algorithm with infinite steps
 #' @param rescale [\code{logical(1)}]\cr
@@ -104,7 +106,7 @@ nlm_mosaicfield <- function(ncol,
 
         ### COLLECT STEPS IN LIST
         if (isTRUE(collect)) {
-          mosaicfield_list[[i]] <- mosaicfield_n
+          mosaicfield_list[[i]] <- mosaicfield_result
         }
       }
 
@@ -126,12 +128,6 @@ nlm_mosaicfield <- function(ncol,
       mosaicfields_return$mosaicfield_raster <- util_update_metadata(mosaicfield_raster)
 
       if (isTRUE(collect)) {
-        names(mosaicfield_list) <- seq_along(mosaicfield_list)
-        mosaicfield_list <-
-          lapply(seq_along(mosaicfield_list), function(i) {
-            mosaicfield_list[[i]] <- mosaicfield_list[[i]] / sqrt(i)
-          })
-
         mosaicfield_list <-
           lapply(seq_along(mosaicfield_list), function(i) {
             # coerce spatstat image list to raster and set proper resolution ----
@@ -151,16 +147,16 @@ nlm_mosaicfield <- function(ncol,
           })
 
         mosaicfields_brick <- terra::rast(mosaicfield_list)
-        names(mosaicfields_brick) <-
-          paste("Step: ", seq_along(mosaicfield_list))
 
         # Rescale values to 0-1
         if (rescale == TRUE) {
           mosaicfields_brick <- util_rescale(mosaicfields_brick)
         }
 
-
-        mosaicfields_return$steps <- util_update_metadata(mosaicfields_brick)
+        mosaicfields_brick <- util_update_metadata(mosaicfields_brick)
+        names(mosaicfields_brick) <-
+          paste0("Step: ", seq_along(mosaicfield_list))
+        mosaicfields_return$steps <- mosaicfields_brick
       }
     }
 

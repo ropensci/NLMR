@@ -40,7 +40,9 @@ Standard deviation of the mosaic displacement distribution}
 Set random seed for the simulation.}
 
 \item{collect}{[\code{logical(1)}]\cr
-return \code{SpatRaster} of all steps 1:\code{n}}
+Return a \code{SpatRaster} containing the cumulative field after each step
+from 1 through \code{n}. These fields are not normalized by the number of
+steps.}
 
 \item{infinit}{[\code{logical(1)}]\cr
 return raster of the random mosaic field algorithm with infinite steps}
