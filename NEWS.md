@@ -3,6 +3,13 @@
 <!-- - Update `nlm_fbm()` to use a new post-`RandomFields` approximation for fractional Brownian landscapes. The current implementation generates an isotropic frequency-based surface for `fract_dim < 2`, then recentres and rescales it based on one-cell differences, while the endpoint `fract_dim = 2` is treated as the smooth linear limit.
 - Update `nlm_gaussianfield()` to use a new post-`RandomFields` approximation based on an exponential covariance surface, with optional nugget noise and a user-defined mean added afterward. In practice, this means that `autocorr_range` now acts more directly on the spatial structure of the landscape, `mag_var` controls the variance of the correlated component, and `nug` adds fine-scale local variation on top of that broader pattern. -->
 
+## NLMR 1.5.0
+
+- Make `nlm_mosaicfield(collect = TRUE)` return named cumulative steps without normalizing them by the step count.
+- Make `nlm_distancegradient()` apply `origin` in column/row order and calculate unscaled distances using the requested raster resolution.
+- Make `landscape_classify()` preserve missing values and safely handle negative, tied, constant, and all-missing landscapes.
+- Make `nlm_neigh()` validate category proportions, allocate every raster cell, and avoid non-interruptible zero-probability loops.
+
 ## NLMR 1.4.0
 
 - Migrate the package to `terra` for raster creation and output handling.
