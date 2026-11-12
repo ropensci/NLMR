@@ -19,12 +19,18 @@ IntegerMatrix rcpp_neigh(int nrow,
     mt.seed(seed);
     std::vector<std::pair<int, int> > cell_index =
             random_cell_indices(ncol, nrow);
+    int attempts = 0;
 
     for (int cat = n_categories; cat >= 0; cat--)
     {
         int n_cells = cells_per_cat(cat);
 
         while (n_cells > 0) {
+            if (++attempts == 10000) {
+                Rcpp::checkUserInterrupt();
+                attempts = 0;
+            }
+
             const int col = cell_index.back().first;
             const int row = cell_index.back().second;
 
@@ -99,4 +105,3 @@ mat <- matrix(0, nrow + 2, ncol + 2)
 no_cat <- rep(floor(nrow * ncol / categories), categories)
 table(rcpp_neigh(nrow, ncol, mat, cat, no_cat, neighbourhood, p_neigh, p_empty))
 */
-

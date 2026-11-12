@@ -23,10 +23,10 @@
 #' Resolution of the raster.
 #' @param p_neigh [\code{numerical(1)}]\cr
 #' Probability of a cell will turning into a value if there is any neighbor with the same or a
-#'  higher value.
+#'  higher value. Must be greater than zero and at most one.
 #' @param p_empty [\code{numerical(1)}]\cr
 #' Probability a cell receives a value if all neighbors have no value (i.e.
-#' zero).
+#' zero). Must be greater than zero and at most one.
 #' @param categories [\code{numerical(1)}]\cr
 #' Number of categories used.
 #' @param neighbourhood [\code{numerical(1)}]\cr
@@ -34,9 +34,9 @@
 #' surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 #' (i.e. left, right, upper and lower cells).
 #' @param proportions [\code{vector(1)}]\cr
-#' The algorithm uses uniform proportions for each category by default. A vector
-#' with as many proportions as categories and that sums up to 1 can be used for
-#' other distributions.
+#' The algorithm uses uniform proportions for each category by default. A
+#' non-negative vector with one value per category and a sum of one can be used
+#' for other distributions.
 #' @param user_seed [\code{numerical(1)}]\cr
 #' Set random seed for the simulation.
 #' @param rescale [\code{logical(1)}]\cr If \code{TRUE} (default), the values
@@ -79,28 +79,35 @@ nlm_neigh <-
     # Check function arguments ----
     checkmate::assert_count(ncol, positive = TRUE)
     checkmate::assert_count(nrow, positive = TRUE)
-    checkmate::assert_numeric(p_empty, lower = 0, upper = 1)
-    checkmate::assert_numeric(p_neigh, lower = 0, upper = 1)
+    checkmate::assert_number(p_empty, lower = 0, upper = 1)
+    checkmate::assert_number(p_neigh, lower = 0, upper = 1)
     checkmate::assert_count(categories, positive = TRUE)
     checkmate::assert_true(neighbourhood == 4 || neighbourhood == 8)
-    checkmate::assert_vector(proportions)
     checkmate::assert_integerish(user_seed, len = 1, lower = 1, null.ok = TRUE)
     checkmate::assert_logical(rescale)
 
-    suppressWarnings(
-      if (!anyNA(proportions)) {
-        checkmate::assert_true(sum(proportions) == 1)
-        }
-      )
+    if (p_empty == 0 || p_neigh == 0) {
+      stop("`p_empty` and `p_neigh` must be greater than zero.", call. = FALSE)
+    }
+
+    if (length(proportions) == 1L && is.na(proportions)) {
+      proportions <- rep(1 / categories, categories)
+    } else {
+      checkmate::assert_numeric(proportions, len = categories, lower = 0,
+                                finite = TRUE, any.missing = FALSE)
+
+      if (abs(sum(proportions) - 1) > sqrt(.Machine$double.eps)) {
+        stop("`proportions` must sum to one.", call. = FALSE)
+      }
+    }
+
+    proportions <- proportions / sum(proportions)
 
     # Determine cells per category
-    # -1 because remaining cells are category
     cat <- categories - 1
-    if (is.double(proportions)) {
-      no_cat <- proportions * nrow * ncol
-    } else {
-      no_cat <- rep(floor(nrow * ncol / categories), cat + 1)
-    }
+    n_cells <- nrow * ncol
+    no_cat <- as.integer(floor(proportions * n_cells))
+    no_cat[1] <- no_cat[1] + as.integer(n_cells - sum(no_cat))
 
     # Create an empty matrix of correct dimensions ----
     mat <- matrix(as.integer(0), nrow, ncol)

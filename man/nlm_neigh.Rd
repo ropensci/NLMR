@@ -29,11 +29,11 @@ Resolution of the raster.}
 
 \item{p_neigh}{[\code{numerical(1)}]\cr
 Probability of a cell will turning into a value if there is any neighbor with the same or a
- higher value.}
+ higher value. Must be greater than zero and at most one.}
 
 \item{p_empty}{[\code{numerical(1)}]\cr
 Probability a cell receives a value if all neighbors have no value (i.e.
-zero).}
+zero). Must be greater than zero and at most one.}
 
 \item{categories}{[\code{numerical(1)}]\cr
 Number of categories used.}
@@ -44,9 +44,9 @@ surrounding cells, while `4 ("Von-Neumann")` takes the four adjacent cells
 (i.e. left, right, upper and lower cells).}
 
 \item{proportions}{[\code{vector(1)}]\cr
-The algorithm uses uniform proportions for each category by default. A vector
-with as many proportions as categories and that sums up to 1 can be used for
-other distributions.}
+The algorithm uses uniform proportions for each category by default. A
+non-negative vector with one value per category and a sum of one can be used
+for other distributions.}
 
 \item{user_seed}{[\code{numerical(1)}]\cr
 Set random seed for the simulation.}
