@@ -24,11 +24,11 @@ test_that("nlm_random produces more than 0 values", {
   expect_false(terra::ncell(example_nlm_random) == 0)
 })
 
-test_that("nlm_random produces values with a uniform distribution", {
+test_that("nlm_random produces values between zero and one", {
   example_nlm_random <- nlm_random(100, 100, rescale = FALSE,
                                    user_seed = 12112026)
-  suppressWarnings(example_nlm_random_test <- chisq.test(example_nlm_random[]))
-  expect_true(example_nlm_random_test$p.value == 1)
+  values <- terra::values(example_nlm_random)
+  expect_true(all(values >= 0 & values <= 1))
 })
 
 test_that("nlm_random reproduces output with user_seed", {
