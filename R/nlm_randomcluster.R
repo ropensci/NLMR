@@ -56,12 +56,6 @@ nlm_randomcluster <- function(ncol, nrow,
                               neighbourhood = 4,
                               user_seed = NULL,
                               rescale = TRUE) {
-
-  if (!requireNamespace("igraph", quietly = TRUE)) {
-    stop("The 'igraph' package is required for `nlm_randomcluster()`. Please install it.",
-         call. = FALSE)
-  }
-
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)

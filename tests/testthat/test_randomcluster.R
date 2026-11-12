@@ -17,7 +17,6 @@ test_that("nlm_randomcluster produces the right number of columns", {
 })
 
 test_that("nlm_randomcluster reproduces output with user_seed", {
-  skip_if_not_installed("igraph")
   cluster_a <- nlm_randomcluster(ncol = 40, nrow = 30, neighbourhood = 4,
                                  p = 0.4, user_seed = 123)
   cluster_b <- nlm_randomcluster(ncol = 40, nrow = 30, neighbourhood = 4,
