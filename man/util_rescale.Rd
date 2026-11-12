@@ -10,7 +10,9 @@ util_rescale(x)
 \item{x}{[\code{SpatRaster}]}
 }
 \value{
-\code{SpatRaster} with values ranging from 0-1
+\code{SpatRaster} with each layer independently rescaled to values
+ranging from 0-1. Non-missing cells in constant layers are set to 0, and
+all-\code{NA} layers remain \code{NA}.
 }
 \description{
 Linearly rescale element values in a raster to a range between 0 and 1
