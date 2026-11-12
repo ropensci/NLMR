@@ -102,7 +102,7 @@ simulate_landscape = function(roughness, weighting){
         landscape_classify(weighting = weighting)
 }
 
-# paramter combinations we are interested in
+# parameter combinations we are interested in
 param_df = expand.grid(roughness = c(0.2, 0.9),
                        weighting = list(c(0.2, 0.8), c(0.2, 0.3, 0.5))) |>
     as.tibble()
@@ -121,10 +121,10 @@ Merging different types of NLMs, such as a planar gradient with a less autocorre
 ```{r, fig.height=7, fig.width=7, message=FALSE, warning=FALSE, fig.align='center'}
 library(NLMR)
 
-# landscape with higher autocorrelation 
+# landscape with higher autocorrelation
 high_autocorrelation <- nlm_edgegradient(ncol = 100, nrow = 100, direction = 80)
 
-# landscape with lower autocorrelation 
+# landscape with lower autocorrelation
 low_autocorrelation <- nlm_fbm(ncol = 100, nrow = 100, fract_dim = 0.5)
 
 # merge to derive ecotone
@@ -140,4 +140,3 @@ terra::plot(terra::rast(list("Low autocorrelation" = low_autocorrelation,
                     "Ecotones" = ecotones
                     )))
 ```
-
