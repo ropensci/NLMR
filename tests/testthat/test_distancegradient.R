@@ -39,4 +39,19 @@ test_that("nlm_distancegradient sets the expected extent", {
   expect_equal(terra::ext(distance_gradient), terra::ext(0, 9, 0, 12))
 })
 
+test_that("nlm_distancegradient respects origin order and resolution", {
+  distance_gradient <- suppressWarnings(nlm_distancegradient(
+    ncol = 8,
+    nrow = 10,
+    resolution = 2,
+    origin = c(2, 3, 6, 7),
+    rescale = FALSE
+  ))
+  distance_matrix <- terra::as.matrix(distance_gradient, wide = TRUE)
+
+  expect_equal(distance_matrix[6:7, 2:3], matrix(0, nrow = 2, ncol = 2))
+  expect_equal(distance_matrix[6, 1], 2)
+  expect_equal(terra::ext(distance_gradient), terra::ext(0, 16, 0, 20))
+})
+
 # nolint end

@@ -17,8 +17,8 @@ Number of rows forming the raster.}
 Resolution of the raster.}
 
 \item{origin}{[\code{numerical(4)}]\cr
-Edge coordinates of the origin (raster::extent with xmin, xmax, ymin, ymax)
-of the distance measurement.}
+Rectangular origin as 1-based cell indices:
+\code{c(first_column, last_column, first_row, last_row)}.}
 
 \item{rescale}{[\code{logical(1)}]\cr
 If \code{TRUE} (default), the values are rescaled between 0-1.
@@ -31,10 +31,9 @@ SpatRaster
 Simulates a distance-gradient neutral landscape model.
 }
 \details{
-The function takes the number of columns and rows as input and creates a
-\code{RasterLayer} with the same extent. \code{Origin} is a numeric vector of
-xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
-distance is measured.
+\code{origin} uses inclusive, 1-based cell indices; rows are numbered from
+top to bottom. Cells inside the selected rectangle have distance zero. With
+\code{rescale = FALSE}, distances are multiplied by \code{resolution}.
 }
 \examples{
 

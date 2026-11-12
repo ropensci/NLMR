@@ -3,10 +3,9 @@
 #' @description Simulates a distance-gradient neutral landscape model.
 #'
 #' @details
-#' The function takes the number of columns and rows as input and creates a
-#' \code{RasterLayer} with the same extent. \code{Origin} is a numeric vector of
-#' xmin, xmax, ymin, ymax for a rectangle inside the raster from which the
-#' distance is measured.
+#' \code{origin} uses inclusive, 1-based cell indices; rows are numbered from
+#' top to bottom. Cells inside the selected rectangle have distance zero. With
+#' \code{rescale = FALSE}, distances are multiplied by \code{resolution}.
 #'
 #' @param ncol [\code{numerical(1)}]\cr
 #' Number of columns forming the raster.
@@ -15,8 +14,8 @@
 #' @param resolution  [\code{numerical(1)}]\cr
 #' Resolution of the raster.
 #' @param origin  [\code{numerical(4)}]\cr
-#' Edge coordinates of the origin (raster::extent with xmin, xmax, ymin, ymax)
-#' of the distance measurement.
+#' Rectangular origin as 1-based cell indices:
+#' \code{c(first_column, last_column, first_row, last_row)}.
 #' @param rescale [\code{logical(1)}]\cr
 #' If \code{TRUE} (default), the values are rescaled between 0-1.
 #' Otherwise, the distance in raster units is calculated.
@@ -47,8 +46,12 @@ nlm_distancegradient <- function(ncol,
   # Check function arguments ----
   checkmate::assert_count(ncol, positive = TRUE)
   checkmate::assert_count(nrow, positive = TRUE)
-  checkmate::assert_numeric(resolution)
-  checkmate::assert_vector(origin, any.missing = FALSE)
+  checkmate::assert_number(resolution, lower = .Machine$double.eps,
+                           finite = TRUE)
+  checkmate::assert_integerish(origin, len = 4, lower = 1,
+                               any.missing = FALSE)
+  checkmate::assert_true(origin[1] <= origin[2])
+  checkmate::assert_true(origin[3] <= origin[4])
   checkmate::assert_true(origin[2] <= ncol)
   checkmate::assert_true(origin[4] <= nrow)
   checkmate::assert_logical(rescale)
@@ -56,24 +59,14 @@ nlm_distancegradient <- function(ncol,
   # create empty raster ----
   distancegradient <-
     terra::rast(ncol = ncol, nrow = nrow,
-                xmin = 0, xmax = ncol,
-                ymin = 0, ymax = nrow)
-  terra::values(distancegradient) <- NA
+                xmin = 0, xmax = ncol * resolution,
+                ymin = 0, ymax = nrow * resolution,
+                crs = "")
+  terra::values(distancegradient) <- NA_real_
 
-  # set origin to 1 ----
-  distancegradient[origin[1]:origin[2], origin[3]:origin[4]] <- 1
-
-  # measure distance to origin ----
-  suppressWarnings(distancegradient <-
-    terra::distance(distancegradient))
-
-  # specify resolution ----
-  terra::ext(distancegradient) <- c(
-    0,
-    terra::ncol(distancegradient) * resolution,
-    0,
-    terra::nrow(distancegradient) * resolution
-  )
+  # set origin and measure distance ----
+  distancegradient[origin[3]:origin[4], origin[1]:origin[2]] <- 1
+  suppressWarnings(distancegradient <- terra::distance(distancegradient))
 
   # Rescale values to 0-1 ----
   if (rescale == TRUE) {
