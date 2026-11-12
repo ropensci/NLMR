@@ -36,7 +36,7 @@ scale of the overall variance in the resulting landscape.}
 \item{user_seed}{[\code{numerical(1)}]\cr
 Set random seed for the simulation.}
 
-\item{torus}{[\code{logical(1)}]\cr  Logical value indicating wether the algorithm should be simulated on a torus (default FALSE)}
+\item{torus}{[\code{logical(1)}]\cr  Logical value indicating whether the algorithm should be simulated on a torus (default FALSE)}
 
 \item{rescale}{[\code{logical(1)}]\cr If \code{TRUE} (default), the values
 are rescaled between 0-1.}
